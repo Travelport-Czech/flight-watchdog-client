@@ -1,0 +1,16 @@
+# package directories
+node_modules
+
+# Serverless directories
+.serverless
+.build
+
+# Ide
+.idea
+
+# Build directory
+.dist
+.typescript
+
+yarn-error.log
+translations.xlsx
