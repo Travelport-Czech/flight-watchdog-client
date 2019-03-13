@@ -50,7 +50,6 @@
     "number-format.js": "2.0.7",
     "numeral": "2.0.6",
     "prettier": "1.16.4",
-    "puppeteer": "1.11.0",
     "react": "16.6.1",
     "react-dom": "16.6.1",
     "request": "2.88.0",
