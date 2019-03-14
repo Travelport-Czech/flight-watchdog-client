@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="cs">
+  <head>
+    <title>Testing page</title>
+    <script type="text/javascript">
+      function submit() {
+        var settings = {
+          token: document.getElementById('option-token').value,
+          keepMinimalisedInDays: parseInt(document.getElementById('option-keepMinimalisedInDays').value)
+        }
+        initFlightWatchdogClient(settings)
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Testing page header</h1>
+    <p>
+      Prices: <span class="AO3_TotalFareValue">2 000 CZK</span>, <span class="AO3_TotalFareValue">3 000 CZK</span>,
+      <span class="AO3_TotalFareValue">4 000 CZK</span>
+    </p>
+    <p>
+      Options:<br/>
+      token: <input name="token" value="token" id="option-token"><br/>
+      keepMinimalisedInDays: <input name="keepMinimalisedInDays" value="1" id="option-keepMinimalisedInDays"><br/>
+      <button onclick="submit(this)" id="option-load-button">Load</button>
+    </p>
+
+    <script type="text/javascript">
+      var font = document.createElement('script')
+      font.href = 'https://fonts.googleapis.com/css?family=Roboto'
+      font.rel = 'stylesheet'
+      document.getElementsByTagName('head')[0].appendChild(font)
+      var s = document.createElement('script')
+      s.src = 'http://localhost:8080/client/index.js'
+      document.getElementsByTagName('head')[0].appendChild(s)
+    </script>
+  </body>
+</html>

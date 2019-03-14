@@ -1,13 +1,10 @@
 const path = require('path')
-const webpack = require('webpack')
 const CompressionPlugin = require('compression-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
-const hashFiles = require('hash-files')
 
 const sourceFile = path.resolve(__dirname, '../src/index.tsx')
 const sourceFileEmailPreview = path.resolve(__dirname, '../src/email.tsx')
 const outputDir = path.resolve(__dirname, '../.dist')
-const outputFileHash = hashFiles.sync({ files: '../src/**' })
 
 let entry = {
   index: ['@babel/polyfill', sourceFile]
@@ -19,11 +16,6 @@ let plugins = [
     safe: false, // load '.env.example' to verify the '.env' variables are all set. Can also be a string to a different file.
     systemvars: true, // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
     silent: false // hide any errors
-  }),
-  new webpack.DefinePlugin({
-    'process.env': {
-      RELEASE_HASH: JSON.stringify(outputFileHash)
-    }
   })
 ]
 
@@ -46,8 +38,9 @@ const clientConfig = {
   entry: entry,
   devtool: 'source-map',
   optimization: {
-    minimize: true
+    minimize: process.env.NODE_ENV === 'prod'
   },
+  watch: true,
   target: 'web',
   output: {
     path: outputDir,

@@ -1,6 +1,7 @@
 stages:
   - install
   - lint
+  - test
 
 install:
   stage: install
@@ -23,3 +24,14 @@ lint:
       - node_modules
   script:
     - npm run lint
+
+test:
+  stage: test
+  tags:
+    - nodejs8
+  cache:
+    key: "phpBuild_$CI_COMMIT_REF_NAME"
+    paths:
+      - node_modules
+  script:
+    - npm run test
