@@ -2,16 +2,14 @@ import { BrowserClient, Hub, Scope } from '@sentry/browser'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { App } from 'src/App'
-import { FakeState } from 'src/FakeState'
 import { isValidClientSettings } from 'src/functions'
 import { ValidEmail } from 'src/validObjects/ValidEmail'
 import { ValidLanguage } from 'src/validObjects/ValidLanguage'
 import { ValidPrice } from 'src/validObjects/ValidPrice'
 
 // tslint:disable-next-line:export-name no-any
-export const initFlightWatchdogClient = async (settingsData: any, initStateData: any) => {
+export const initFlightWatchdogClient = async (settingsData: any) => {
   const settings = isValidClientSettings(settingsData)
-  const initState = initStateData as FakeState | undefined
 
   const sentryClient = process.env.SENTRY_DNS
     ? new Hub(
@@ -48,14 +46,7 @@ export const initFlightWatchdogClient = async (settingsData: any, initStateData:
     const lang = new ValidLanguage(langElement && langElement.getAttribute('lang'))
 
     ReactDOM.render(
-      <App
-        golUrl={golUrl}
-        userEmail={userEmail}
-        clientSettings={settings}
-        price={price}
-        initState={initState}
-        lang={lang}
-      />,
+      <App golUrl={golUrl} userEmail={userEmail} clientSettings={settings} price={price} lang={lang} />,
       document.getElementById(id)
     )
   } catch (err) {

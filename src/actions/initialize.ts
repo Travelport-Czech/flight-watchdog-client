@@ -7,6 +7,7 @@ import { StepToShow } from 'src/StepsToShow'
 import { parseGolUrl } from 'src/utils/parseGolUrl'
 
 export const initialize = async (props: Readonly<Props>, state: Readonly<State>): Promise<State | undefined> => {
+  const apiUrl = props.clientSettings.apiUrl
   if (state.stepToShow !== StepToShow.none) {
     throw new Error('Initialize must call once at start.')
   }
@@ -22,13 +23,13 @@ export const initialize = async (props: Readonly<Props>, state: Readonly<State>)
     return
   }
 
-  const canCreateWatcher = await isAllowedToAddWatcher(token)
+  const canCreateWatcher = await isAllowedToAddWatcher(token, apiUrl)
   if (!canCreateWatcher) {
     return
   }
 
-  const originLocationList = await getDestinationNames(token, golUrlParams.origin, lang)
-  const destinationLocationList = await getDestinationNames(token, golUrlParams.destination, lang)
+  const originLocationList = await getDestinationNames(token, apiUrl, golUrlParams.origin, lang)
+  const destinationLocationList = await getDestinationNames(token, apiUrl, golUrlParams.destination, lang)
 
   const defaultState = {
     destinationLocationList,

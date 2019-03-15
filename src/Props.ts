@@ -1,4 +1,3 @@
-import { FakeState } from 'src/FakeState'
 import { ClientSettings } from 'src/types/ClientSettings'
 import { ValidEmail } from 'src/validObjects/ValidEmail'
 import { ValidLanguage } from 'src/validObjects/ValidLanguage'
@@ -10,5 +9,4 @@ export interface Props {
   readonly golUrl: string
   readonly lang: ValidLanguage
   readonly clientSettings: ClientSettings
-  readonly initState?: FakeState
 }

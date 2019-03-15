@@ -1,4 +1,3 @@
-import { AppLogicError } from 'src/errors/AppLogicError'
 import { StepToShow } from 'src/StepsToShow'
 import { ClientSettings } from 'src/types/ClientSettings'
 import { UnknownNestedObject } from 'src/types/UnknownNestedObject'
@@ -14,12 +13,6 @@ import { ValidNumber } from 'src/validObjects/ValidNumber'
 import { ValidString } from 'src/validObjects/ValidString'
 import { ValidWatcherId } from 'src/validObjects/ValidWatcherId'
 
-const apiUrl: string | undefined = process.env.API_URL
-
-if (!apiUrl) {
-  throw new AppLogicError('Missing queue url')
-}
-
 enum ResponseKeysEnum {
   Count = 'count',
   Limit = 'limit',
@@ -27,8 +20,8 @@ enum ResponseKeysEnum {
   EmailLimit = 'emailLimit'
 }
 
-export const isAllowedToAddWatcher = async (token: string): Promise<boolean> => {
-  const json = await sendRequest(token, '/client/count-all', {})
+export const isAllowedToAddWatcher = async (token: string, apiUrl: ValidString): Promise<boolean> => {
+  const json = await sendRequest(token, apiUrl, '/client/count-all', {})
   if (json.result !== 'Success') {
     return false
   }
@@ -47,8 +40,16 @@ export const isAllowedToAddWatcher = async (token: string): Promise<boolean> => 
   return true
 }
 
-export const getEmailExample = async (token: string, lang: ValidLanguage, name: ValidString): Promise<string> => {
-  const json = await sendRequest(token, '/client/email-example', { lang: lang.toString(), name: name.toString() })
+export const getEmailExample = async (
+  token: string,
+  apiUrl: ValidString,
+  lang: ValidLanguage,
+  name: ValidString
+): Promise<string> => {
+  const json = await sendRequest(token, apiUrl, '/client/email-example', {
+    lang: lang.toString(),
+    name: name.toString()
+  })
   if (json.result !== 'Success') {
     return ''
   }
@@ -64,10 +65,11 @@ export const getEmailExample = async (token: string, lang: ValidLanguage, name: 
 
 export const getDestinationNames = async (
   token: string,
+  apiUrl: ValidString,
   locationCodeList: ValidLocationCodeList,
   lang: ValidLanguage
 ): Promise<Location[]> => {
-  const json = await sendRequest(token, '/client/destination-name', {
+  const json = await sendRequest(token, apiUrl, '/client/destination-name', {
     lang: lang.toString(),
     locationCode: locationCodeList.toString()
   })
@@ -95,9 +97,10 @@ export const getDestinationNames = async (
 
 export const getWatchersCountOnEmail = async (
   token: string,
+  apiUrl: ValidString,
   email: string
 ): Promise<{ readonly limit: number; readonly count: number } | undefined> => {
-  const json = await sendRequest(token, '/client/count', { email })
+  const json = await sendRequest(token, apiUrl, '/client/count', { email })
   if (json.result !== 'Success') {
     return
   }
@@ -115,8 +118,12 @@ export const getWatchersCountOnEmail = async (
   }
 }
 
-export const getWatchersOnEmail = async (token: string, email: ValidEmail): Promise<ValidWatcherId[] | undefined> => {
-  const json = await sendRequest(token, '/client/detail', { email: email.toString() })
+export const getWatchersOnEmail = async (
+  token: string,
+  apiUrl: ValidString,
+  email: ValidEmail
+): Promise<ValidWatcherId[] | undefined> => {
+  const json = await sendRequest(token, apiUrl, '/client/detail', { email: email.toString() })
   if (json.result !== 'Success') {
     return
   }
@@ -134,9 +141,13 @@ export const getWatchersOnEmail = async (token: string, email: ValidEmail): Prom
   })
 }
 
-export const createWatcher = async (token: string, data: WatcherClientCreateParams): Promise<boolean> => {
+export const createWatcher = async (
+  token: string,
+  apiUrl: ValidString,
+  data: WatcherClientCreateParams
+): Promise<boolean> => {
   try {
-    const json = await sendRequest(token, '/client/create', { ...data })
+    const json = await sendRequest(token, apiUrl, '/client/create', { ...data })
     if (json.result !== 'Success') {
       return false
     }
@@ -147,9 +158,14 @@ export const createWatcher = async (token: string, data: WatcherClientCreatePara
   return true
 }
 
-export const sendWatchersList = async (token: string, email: string, lang: ValidLanguage): Promise<boolean> => {
+export const sendWatchersList = async (
+  token: string,
+  apiUrl: ValidString,
+  email: string,
+  lang: ValidLanguage
+): Promise<boolean> => {
   try {
-    const json = await sendRequest(token, '/client/send-watcher-list', { email, lang: lang.toString() })
+    const json = await sendRequest(token, apiUrl, '/client/send-watcher-list', { email, lang: lang.toString() })
     if (json.result !== 'Success') {
       return false
     }
@@ -160,9 +176,14 @@ export const sendWatchersList = async (token: string, email: string, lang: Valid
   return true
 }
 
-export const deleteWatcher = async (token: string, id: ValidWatcherId, email: ValidEmail): Promise<boolean> => {
+export const deleteWatcher = async (
+  token: string,
+  apiUrl: ValidString,
+  id: ValidWatcherId,
+  email: ValidEmail
+): Promise<boolean> => {
   try {
-    const json = await sendRequest(token, '/client/delete', { id: id.toString(), email: email.toString() })
+    const json = await sendRequest(token, apiUrl, '/client/delete', { id: id.toString(), email: email.toString() })
     if (json.result !== 'Success') {
       return false
     }
@@ -175,10 +196,11 @@ export const deleteWatcher = async (token: string, id: ValidWatcherId, email: Va
 
 export const sendRequest = async (
   token: string,
+  apiUrl: ValidString,
   url: string,
   data: UnknownNestedObject
 ): Promise<UnknownNestedObject> => {
-  const endpoint = apiUrl + url
+  const endpoint = apiUrl.toString() + url
   const response = await fetch(endpoint, {
     body: JSON.stringify(data),
     headers: {
@@ -205,16 +227,20 @@ export const isValidClientSettings = (data: any): ClientSettings => {
   )
 
   // tslint:disable-next-line:no-unsafe-any
-  if (!Object.values(StepToShow).includes(data.initStep)) {
+  if (data.initStep !== '' && !Object.values(StepToShow).includes(data.initStep)) {
     throw new Error('Flight Watchdog: Bad init step')
   }
 
   // tslint:disable-next-line:no-unsafe-any
-  const initStep = <StepToShow>data.initStep
+  const initStep = data.initStep ? <StepToShow>data.initStep : undefined
+
+  // tslint:disable-next-line:no-unsafe-any
+  const apiUrl = new ValidString(data.apiUrl ? data.apiUrl : process.env.API_URL)
 
   return {
     keepMinimalisedInDays,
     token: token.toString(),
-    initStep
+    initStep,
+    apiUrl
   }
 }

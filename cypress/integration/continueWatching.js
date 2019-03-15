@@ -4,8 +4,8 @@ const url = golUrlReturn + '&flightWatchdogContinue=email@email.cz'
 
 describe('Continue watching', function() {
     it('Success', function() {
-        cy.visit(url)
-        setOtpions()
+        cy.visit('')
+        setOtpions({ url })
         cy.contains('Chcete hlídat cenu 2 000 CZK?')
         cy.contains('Chcete dál sledovat cenu tohoto letu?')
         cy.get('#flight-watchdog-window-continue-watching-clicked-ok').click()
@@ -15,8 +15,8 @@ describe('Continue watching', function() {
     })
 
     it('Cancel', function() {
-        cy.visit(url)
-        setOtpions()
+        cy.visit('')
+        setOtpions({ url })
         cy.contains('Chcete hlídat cenu 2 000 CZK?')
         cy.contains('Chcete dál sledovat cenu tohoto letu?')
         cy.get('#flight-watchdog-window-continue-watching-clicked-cancel').click()

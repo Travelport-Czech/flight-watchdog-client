@@ -7,6 +7,8 @@ export const showEmail = async (settingsData: any, emailName: any) => {
   const settings = isValidClientSettings(settingsData)
   const langElement = document.getElementsByTagName('html').item(0)
   const lang = new ValidLanguage(langElement && langElement.getAttribute('lang'))
+  // tslint:disable-next-line:no-unsafe-any
+  const apiUrl = new ValidString(settingsData.apiUrl ? settingsData.apiUrl : process.env.API_URL)
   const name = new ValidString(emailName)
   const iframeOld = document.getElementsByTagName('iframe')[0]
   if (iframeOld) {
@@ -16,7 +18,7 @@ export const showEmail = async (settingsData: any, emailName: any) => {
   iframe.setAttribute('width', '100%')
   iframe.setAttribute('height', '1000')
   document.body.appendChild(iframe)
-  const emailContent = await getEmailExample(settings.token, lang, name)
+  const emailContent = await getEmailExample(settings.token, apiUrl, lang, name)
   if (iframe.contentWindow) {
     const doc = iframe.contentWindow.document
     doc.open()

@@ -5,6 +5,9 @@ node_modules
 .serverless
 .build
 
+# cypress
+cypress/screenshots
+
 # Ide
 .idea
 

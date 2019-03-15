@@ -18,10 +18,6 @@ import { StepToShow } from 'src/StepsToShow'
 import { initializeTranslator } from 'src/translation/Text'
 import { FlightParams } from 'src/types/FlightParams'
 import { validateEmail } from 'src/utils/validateEmail'
-import { ValidDate } from 'src/validObjects/ValidDate'
-import { ValidEmail } from 'src/validObjects/ValidEmail'
-import { ValidLocationCodeList } from 'src/validObjects/ValidLocationCodeList'
-import { ValidWatcherId } from 'src/validObjects/ValidWatcherId'
 
 export class App extends React.Component<Props, State> {
   public readonly state: Readonly<State> = {
@@ -99,36 +95,6 @@ export class App extends React.Component<Props, State> {
 
   private readonly init = async (props: Readonly<Props>) => {
     initializeTranslator(props.lang)
-    if (props.initState) {
-      const golUrlParams = props.initState.golUrlParams
-
-      if (!golUrlParams) {
-        this.setState({ ...props.initState, golUrlParams: undefined })
-
-        return
-      }
-
-      const newState = {
-        ...props.initState,
-        golUrlParams: {
-          arrival: new ValidDate(golUrlParams.arrival),
-          departure: new ValidDate(golUrlParams.departure),
-          destination: new ValidLocationCodeList(golUrlParams.destination),
-          emailToContinueWatching: golUrlParams.emailToContinueWatching
-            ? new ValidEmail(golUrlParams.emailToContinueWatching)
-            : undefined,
-          origin: new ValidLocationCodeList(golUrlParams.origin),
-          returnTicket: golUrlParams.returnTicket,
-          step: golUrlParams.step,
-          watcherIdToDelete: golUrlParams.watcherIdToDelete
-            ? new ValidWatcherId(golUrlParams.watcherIdToDelete)
-            : undefined
-        }
-      }
-      this.setState(newState)
-
-      return
-    }
     const state = await actions.initialize(props, this.state)
     if (state) {
       this.setState(state)

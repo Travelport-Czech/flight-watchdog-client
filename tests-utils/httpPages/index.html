@@ -14,6 +14,7 @@
         var settings = {
           token: document.getElementById('option-token').value,
           initStep: document.getElementById('option-initStep').value,
+          apiUrl: document.getElementById('option-apiUrl').value,
           keepMinimalisedInDays: parseInt(document.getElementById('option-keepMinimalisedInDays').value)
         }
         initFlightWatchdogClient(settings)
@@ -30,8 +31,9 @@
       Options:<br/>
       url: <input name="lang" value="?action=vFlights&flights[0][departureDate]=2018-11-01&flights[0][destination]=LON&flights[0][origin]=PRG&flights[1][departureDate]=2018-11-05&flights[1][destination]=PRG&flights[1][origin]=LON&travelers[0]=ADT&returnTicket=on&dateVariants=exact&step=ChooseFromFour" id="option-url"><br/>
       initStep: <select id="option-initStep">
+        <option value="" selected>empty</option>
         <option value="NONE">NONE</option>
-        <option value="CREATE_WATCHER_AGREE" selected>CREATE_WATCHER_AGREE</option>
+        <option value="CREATE_WATCHER_AGREE">CREATE_WATCHER_AGREE</option>
         <option value="CREATE_WATCHER_WORKING">CREATE_WATCHER_WORKING</option>
         <option value="CREATE_WATCHER_DONE">CREATE_WATCHER_DONE</option>
         <option value="REMOVE_WATCHER_BY_ID">REMOVE_WATCHER_BY_ID</option>
@@ -42,6 +44,7 @@
         <option value="CONTINUE_WATCHING">CONTINUE_WATCHING</option>
         <option value="ERROR">ERROR</option>
       </select><br/>
+      apiUrl: <input name="apiUrl" value="http://localhost:3000" id="option-apiUrl"><br/>
       language: <input name="lang" value="cs" id="option-lang"><br/>
       token: <input name="token" value="token" id="option-token"><br/>
       keepMinimalisedInDays: <input name="keepMinimalisedInDays" value="1" id="option-keepMinimalisedInDays"><br/>

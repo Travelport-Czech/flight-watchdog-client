@@ -10,6 +10,7 @@ export const createWatcher = async (
   props: Readonly<Props>,
   state: Readonly<State>
 ): Promise<{ readonly stepToShow: StepToShow }> => {
+  const apiUrl = props.clientSettings.apiUrl
   if (!validateEmail(state.email)) {
     throw new Error('Email is not valid')
   }
@@ -19,7 +20,7 @@ export const createWatcher = async (
   }
 
   const token = props.clientSettings.token
-  const result = await functions.getWatchersCountOnEmail(token, state.email)
+  const result = await functions.getWatchersCountOnEmail(token, apiUrl, state.email)
   if (result === undefined) {
     return { stepToShow: StepToShow.error }
   }
@@ -27,7 +28,7 @@ export const createWatcher = async (
     return { stepToShow: StepToShow.removeWatcher }
   }
   if (result.limit > 1 && result.limit === result.count) {
-    const sendListResult = await functions.sendWatchersList(token, state.email, props.lang)
+    const sendListResult = await functions.sendWatchersList(token, apiUrl, state.email, props.lang)
 
     if (!sendListResult) {
       return { stepToShow: StepToShow.error }
@@ -53,7 +54,7 @@ export const createWatcher = async (
     destination: golUrlParams.destination.toString(),
     origin: golUrlParams.origin.toString()
   }
-  const createResult = await functions.createWatcher(token, watcherCreateParams)
+  const createResult = await functions.createWatcher(token, apiUrl, watcherCreateParams)
   if (!createResult) {
     return { stepToShow: StepToShow.error }
   }
