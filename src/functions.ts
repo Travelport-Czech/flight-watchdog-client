@@ -204,13 +204,17 @@ export const isValidClientSettings = (data: any): ClientSettings => {
     typeof data.keepMinimalisedInDays === 'number' ? data.keepMinimalisedInDays : 7
   )
 
+  // tslint:disable-next-line:no-unsafe-any
   if (!Object.values(StepToShow).includes(data.initStep)) {
     throw new Error('Flight Watchdog: Bad init step')
   }
 
+  // tslint:disable-next-line:no-unsafe-any
+  const initStep = <StepToShow>data.initStep
+
   return {
     keepMinimalisedInDays,
     token: token.toString(),
-    initStep: data.initStep
+    initStep
   }
 }
