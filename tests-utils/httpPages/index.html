@@ -4,6 +4,7 @@
     <title>Testing page</title>
     <script type="text/javascript">
       function submit() {
+        document.getElementsByTagName('html')[0].setAttribute('lang', document.getElementById('option-lang').value)
         var settings = {
           token: document.getElementById('option-token').value,
           keepMinimalisedInDays: parseInt(document.getElementById('option-keepMinimalisedInDays').value)
@@ -20,6 +21,7 @@
     </p>
     <p>
       Options:<br/>
+      language: <input name="lang" value="cs" id="option-lang"><br/>
       token: <input name="token" value="token" id="option-token"><br/>
       keepMinimalisedInDays: <input name="keepMinimalisedInDays" value="1" id="option-keepMinimalisedInDays"><br/>
       <button onclick="submit(this)" id="option-load-button">Load</button>

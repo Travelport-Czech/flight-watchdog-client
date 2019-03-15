@@ -7,12 +7,15 @@ export const golUrlReturn =
     dateTo +
     '&flights[1][destination]=PRG&flights[1][origin]=LON&travelers[0]=ADT&returnTicket=on&dateVariants=exact&step=ChooseFromFour'
 
-export const setOtpions = ({ token, keepMinimalisedInDays } = {}) => {
+export const setOtpions = ({ token, keepMinimalisedInDays, lang } = {}) => {
     if (token !== undefined) {
         cy.get('#option-token').clear().type(token)
     }
     if (keepMinimalisedInDays !== undefined) {
         cy.get('#option-keepMinimalisedInDays').clear().type(keepMinimalisedInDays)
+    }
+    if (lang !== undefined) {
+        cy.get('#option-lang').clear().type(lang)
     }
     cy.get('#option-load-button').click()
 }
