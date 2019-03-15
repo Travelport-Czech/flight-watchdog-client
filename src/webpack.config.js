@@ -40,7 +40,6 @@ const clientConfig = {
   optimization: {
     minimize: process.env.NODE_ENV === 'prod'
   },
-  watch: true,
   target: 'web',
   output: {
     path: outputDir,

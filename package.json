@@ -1,6 +1,6 @@
 {
   "name": "@ceesystems/flight-watchdog-client",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "README.md",
   "engines": {
@@ -10,13 +10,14 @@
     "lint": "tsc && tslint --project tsconfig.json --config tslint.json",
     "lint-fix": "prettier 'src/**/*' --write --single-quote --no-semi --print-width 120",
     "build-test": "cross-env NODE_ENV=test webpack-cli --config src/webpack.config.js",
+    "build-test-watch": "cross-env NODE_ENV=test webpack-cli --config src/webpack.config.js --watch",
     "build-devel": "cross-env NODE_ENV=devel webpack-cli --config src/webpack.config.js",
     "build-prod": "cross-env NODE_ENV=prod webpack-cli --config src/webpack.config.js",
     "http-server": "node tests-utils/startHttpServer.js",
     "api-server": "node tests-utils/startApiServer.js",
     "cypress-open": "cypress open",
     "cypress-run": "cypress run",
-    "test-open": "concurrently -k -s first \"npm:build-test\" \"npm:http-server\" \"npm:api-server\" \"npm:cypress-open\"",
+    "test-open": "concurrently -k -s first \"npm:build-test-watch\" \"npm:http-server\" \"npm:api-server\" \"npm:cypress-open\"",
     "test": "concurrently -k -s first \"npm:http-server\" \"npm:api-server\" \"npm:cypress-run\""
   },
   "dependencies": {
