@@ -84,6 +84,32 @@ server.route({
     }
 })
 
+server.route({
+    method: 'POST',
+    path:'/client/destination-name',
+    handler: function (request, h) {
+        let code = 'LON'
+        let name = 'Londýn'
+        console.log('michal', request.payload)
+        if (request.payload.lang === 'en' && request.payload.locationCode === 'LON') {
+            name = 'London'
+        }
+        if (request.payload.lang === 'cs' && request.payload.locationCode === 'PRG') {
+            code = 'PRG'
+            name = 'Praha - Letište Václava Havla'
+        }
+        if (request.payload.lang === 'en' && request.payload.locationCode === 'PRG') {
+            code = 'PRG'
+            name = 'Prague - Ruzyne'
+        }
+        return h.response({
+            "context": [{"code": code,"name": name}],
+            "message":"Found.",
+            "result":"Success"
+        })
+    }
+})
+
 const start = async function() {
     try {
         console.log('Starting HAPI server...')

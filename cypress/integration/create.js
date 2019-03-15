@@ -7,6 +7,8 @@ describe('Create watcher', function() {
         cy.visit(golUrlReturn)
         setOtpions()
         cy.contains('Chcete hlídat cenu 2 000 CZK?')
+        cy.contains('Praha - Letište Václava Havla')
+        cy.contains('Londýn')
         cy.get('.content input').type('michal@email.cz')
         cy.get(createButtonSelector).click()
         cy.contains('Skvělé, hotovo. Až najdeme nižší cenu, pošleme Vám E-mail.')
