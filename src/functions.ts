@@ -1,4 +1,5 @@
 import { AppLogicError } from 'src/errors/AppLogicError'
+import { StepToShow } from 'src/StepsToShow'
 import { ClientSettings } from 'src/types/ClientSettings'
 import { UnknownNestedObject } from 'src/types/UnknownNestedObject'
 import { WatcherClientCreateParams } from 'src/types/WatcherClientCreateParams'
@@ -203,8 +204,13 @@ export const isValidClientSettings = (data: any): ClientSettings => {
     typeof data.keepMinimalisedInDays === 'number' ? data.keepMinimalisedInDays : 7
   )
 
+  if (!Object.values(StepToShow).includes(data.initStep)) {
+    throw new Error('Flight Watchdog: Bad init step')
+  }
+
   return {
     keepMinimalisedInDays,
-    token: token.toString()
+    token: token.toString(),
+    initStep: data.initStep
   }
 }

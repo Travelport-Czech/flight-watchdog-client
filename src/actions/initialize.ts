@@ -39,6 +39,13 @@ export const initialize = async (props: Readonly<Props>, state: Readonly<State>)
     stepToShow: StepToShow.none
   }
 
+  if (props.clientSettings.initStep) {
+    return {
+      ...defaultState,
+      stepToShow: props.clientSettings.initStep
+    }
+  }
+
   if (golUrlParams.emailToContinueWatching) {
     return {
       ...defaultState,
