@@ -227,7 +227,7 @@ export const isValidClientSettings = (data: any): ClientSettings => {
   )
 
   // tslint:disable-next-line:no-unsafe-any
-  if (!data.initStep && !Object.values(StepToShow).includes(data.initStep)) {
+  if (data.initStep && !Object.values(StepToShow).includes(data.initStep)) {
     throw new Error('Flight Watchdog: Bad init step')
   }
 
