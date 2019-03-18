@@ -1,7 +1,7 @@
 import * as xlsx from 'xlsx'
-import { csTranslation } from '../src/translation/csTranslation'
-import { enTranslation } from '../src/translation/enTranslation'
-import { TranslationEnum } from '../src/translation/TranslationEnum'
+import { csTranslation } from '../src/client/translation/csTranslation'
+import { enTranslation } from '../src/client/translation/enTranslation'
+import { TranslationEnum } from '../src/client/translation/TranslationEnum'
 
 const fileName = 'translations.xlsx'
 

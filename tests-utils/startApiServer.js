@@ -90,7 +90,6 @@ server.route({
     handler: function (request, h) {
         let code = 'LON'
         let name = 'Londýn'
-        console.log('michal', request.payload)
         if (request.payload.lang === 'en' && request.payload.locationCode === 'LON') {
             name = 'London'
         }
