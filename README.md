@@ -1,5 +1,7 @@
 # Flight Watchdog Client
 
+[![Build Status](https://travis-ci.org/Travelport-Czech/flight-watchdog-client.svg?branch=master)](https://travis-ci.org/Travelport-Czech/flight-watchdog-client)
+
 ## Needed applications
 
 * Node (>8.10)
