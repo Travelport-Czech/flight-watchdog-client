@@ -16,6 +16,7 @@
     "http-server": "node tests-utils/startHttpServer.js",
     "api-server": "node tests-utils/startApiServer.js",
     "cypress-open": "cypress open",
+    "cypress-run": "cypress run",
     "cypress-run-ci": "cypress run --record --key 423f2479-eb95-4c8c-95ab-215cadb063b4",
     "test-open": "concurrently -k -s first \"npm:build-test-watch\" \"npm:http-server\" \"npm:api-server\" \"npm:cypress-open\"",
     "test": "npm run lint && npm run build-test && concurrently -k -s first \"npm:http-server\" \"npm:api-server\" \"npm:cypress-run\"",
