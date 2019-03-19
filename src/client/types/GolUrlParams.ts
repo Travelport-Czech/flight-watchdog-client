@@ -1,7 +1,7 @@
-import { ValidDate } from 'src/client/validObjects/ValidDate'
-import { ValidEmail } from 'src/client/validObjects/ValidEmail'
-import { ValidLocationCodeList } from 'src/client/validObjects/ValidLocationCodeList'
-import { ValidWatcherId } from 'src/client/validObjects/ValidWatcherId'
+import { ValidDate } from 'src/shared/validObjects/ValidDate'
+import { ValidEmail } from 'src/shared/validObjects/ValidEmail'
+import { ValidLocationCodeList } from 'src/shared/validObjects/ValidLocationCodeList'
+import { ValidWatcherId } from 'src/shared/validObjects/ValidWatcherId'
 
 export interface GolUrlParams {
   readonly returnTicket: boolean

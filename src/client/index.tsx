@@ -3,9 +3,9 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { App } from 'src/client/App'
 import { isValidClientSettings } from 'src/client/functions'
-import { ValidEmail } from 'src/client/validObjects/ValidEmail'
-import { ValidLanguage } from 'src/client/validObjects/ValidLanguage'
-import { ValidPrice } from 'src/client/validObjects/ValidPrice'
+import { ValidEmail } from 'src/shared/validObjects/ValidEmail'
+import { ValidLanguage } from 'src/shared/validObjects/ValidLanguage'
+import { ValidPrice } from 'src/shared/validObjects/ValidPrice'
 
 // tslint:disable-next-line:export-name no-any
 export const initFlightWatchdogClient = async (settingsData: any) => {

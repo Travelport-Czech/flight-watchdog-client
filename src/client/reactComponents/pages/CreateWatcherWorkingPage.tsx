@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { OpenedWindow } from 'src/client/reactComponents/OpenedWindow'
 import * as styles from 'src/client/styles'
-import { Text } from 'src/client/translation/Text'
-import { TranslationEnum } from 'src/client/translation/TranslationEnum'
 import { FlightParams } from 'src/client/types/FlightParams'
-import { ValidPrice } from 'src/client/validObjects/ValidPrice'
+import { Text } from 'src/shared/translation/Text'
+import { TranslationEnum } from 'src/shared/translation/TranslationEnum'
+import { ValidPrice } from 'src/shared/validObjects/ValidPrice'
 
 interface Props {
   readonly flightParams: FlightParams

@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { renderToString } from 'react-dom/server'
 import * as styles from 'src/client/styles'
-import { Text } from 'src/client/translation/Text'
-import { TranslationEnum } from 'src/client/translation/TranslationEnum'
+import { Text } from 'src/shared/translation/Text'
+import { TranslationEnum } from 'src/shared/translation/TranslationEnum'
 
 interface Props {
   readonly value?: string

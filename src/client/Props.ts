@@ -1,7 +1,7 @@
 import { ClientSettings } from 'src/client/types/ClientSettings'
-import { ValidEmail } from 'src/client/validObjects/ValidEmail'
-import { ValidLanguage } from 'src/client/validObjects/ValidLanguage'
-import { ValidPrice } from 'src/client/validObjects/ValidPrice'
+import { ValidEmail } from 'src/shared/validObjects/ValidEmail'
+import { ValidLanguage } from 'src/shared/validObjects/ValidLanguage'
+import { ValidPrice } from 'src/shared/validObjects/ValidPrice'
 
 export interface Props {
   readonly userEmail?: ValidEmail

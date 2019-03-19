@@ -1,6 +1,6 @@
 import { getEmailExample, isValidClientSettings } from 'src/client/functions'
-import { ValidLanguage } from 'src/client/validObjects/ValidLanguage'
-import { ValidString } from 'src/client/validObjects/ValidString'
+import { ValidLanguage } from 'src/shared/validObjects/ValidLanguage'
+import { ValidString } from 'src/shared/validObjects/ValidString'
 
 // tslint:disable-next-line:export-name no-any
 export const showEmail = async (settingsData: any, emailName: any) => {

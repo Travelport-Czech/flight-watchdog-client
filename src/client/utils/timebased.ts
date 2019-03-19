@@ -1,6 +1,6 @@
 import * as moment from 'moment'
-import { formatSystemDate, ValidDate } from 'src/client/validObjects/ValidDate'
-import { formatSystemDateTime, ValidDateTime } from 'src/client/validObjects/ValidDateTime'
+import { formatSystemDate, ValidDate } from 'src/shared/validObjects/ValidDate'
+import { formatSystemDateTime, ValidDateTime } from 'src/shared/validObjects/ValidDateTime'
 
 const momentDateTime: string | undefined = process.env.STATIC_TIMEBASED === 'true' ? '2018-10-01 12:00:00' : undefined
 

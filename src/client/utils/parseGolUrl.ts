@@ -1,8 +1,8 @@
 import { GolUrlParams } from 'src/client/types/GolUrlParams'
-import { ValidDate } from 'src/client/validObjects/ValidDate'
-import { ValidEmail } from 'src/client/validObjects/ValidEmail'
-import { ValidLocationCodeList } from 'src/client/validObjects/ValidLocationCodeList'
-import { ValidWatcherId } from 'src/client/validObjects/ValidWatcherId'
+import { ValidDate } from 'src/shared/validObjects/ValidDate'
+import { ValidEmail } from 'src/shared/validObjects/ValidEmail'
+import { ValidLocationCodeList } from 'src/shared/validObjects/ValidLocationCodeList'
+import { ValidWatcherId } from 'src/shared/validObjects/ValidWatcherId'
 
 const getUrlParameterValue = (url: string, key: string): string => {
   const urlParts = url.split('&')

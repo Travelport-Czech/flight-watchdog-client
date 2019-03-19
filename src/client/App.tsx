@@ -15,9 +15,9 @@ import { RemoveWatcherPage } from 'src/client/reactComponents/pages/RemoveWatche
 import { RemoveWatcherWorkingPage } from 'src/client/reactComponents/pages/RemoveWatcherWorkingPage'
 import { State } from 'src/client/State'
 import { StepToShow } from 'src/client/StepsToShow'
-import { initializeTranslator } from 'src/client/translation/Text'
 import { FlightParams } from 'src/client/types/FlightParams'
 import { validateEmail } from 'src/client/utils/validateEmail'
+import { initializeTranslator } from 'src/shared/translation/Text'
 
 export class App extends React.Component<Props, State> {
   public readonly state: Readonly<State> = {

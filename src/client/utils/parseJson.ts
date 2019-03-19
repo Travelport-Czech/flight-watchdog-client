@@ -1,5 +1,5 @@
-import { InvalidJsonError } from 'src/client/errors/InvalidJsonError'
 import { UnknownNestedObject } from 'src/client/types/UnknownNestedObject'
+import { InvalidJsonError } from 'src/shared/errors/InvalidJsonError'
 
 export const parseJson = (data: string | undefined | null): UnknownNestedObject => {
   if (!data) {

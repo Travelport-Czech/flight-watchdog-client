@@ -1,6 +1,6 @@
 import { StepToShow } from 'src/client/StepsToShow'
 import { GolUrlParams } from 'src/client/types/GolUrlParams'
-import { Location } from 'src/client/validObjects/Location'
+import { Location } from 'src/shared/validObjects/Location'
 
 export interface State {
   readonly stepToShow: StepToShow

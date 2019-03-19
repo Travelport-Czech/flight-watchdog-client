@@ -13,6 +13,8 @@ cypress/screenshots
 
 # Build directory
 .dist
+.dist-translation-scripts
+.dist-server
 .typescript
 
 yarn-error.log

@@ -3,11 +3,11 @@ import { Button } from 'src/client/reactComponents/Button'
 import { EmailInput } from 'src/client/reactComponents/EmailInput'
 import { OpenedWindow } from 'src/client/reactComponents/OpenedWindow'
 import * as styles from 'src/client/styles'
-import { Text } from 'src/client/translation/Text'
-import { TranslationEnum } from 'src/client/translation/TranslationEnum'
 import { FlightParams } from 'src/client/types/FlightParams'
 import { validateEmail } from 'src/client/utils/validateEmail'
-import { ValidPrice } from 'src/client/validObjects/ValidPrice'
+import { Text } from 'src/shared/translation/Text'
+import { TranslationEnum } from 'src/shared/translation/TranslationEnum'
+import { ValidPrice } from 'src/shared/validObjects/ValidPrice'
 
 interface Props {
   readonly email: string
