@@ -8,7 +8,7 @@
   },
   "scripts": {
     "lint": "tsc && tslint --project tsconfig.json --config tslint.json",
-    "lint-fix": "prettier src/**/* --write --single-quote --no-semi --print-width 120",
+    "autofix": "prettier src/**/* --write --single-quote --no-semi --print-width 120 --end-of-line lf",
     "build-test": "cross-env NODE_ENV=test webpack-cli --config src/client/webpack.config.js",
     "build-test-watch": "cross-env NODE_ENV=test webpack-cli --config src/client/webpack.config.js --watch",
     "build-devel": "cross-env NODE_ENV=devel webpack-cli --config src/client/webpack.config.js",

@@ -34,7 +34,7 @@ const serverConfig = {
               {
                 root: ['./src'],
                 alias: {
-                  "src": "./src"
+                  src: './src'
                 }
               }
             ]

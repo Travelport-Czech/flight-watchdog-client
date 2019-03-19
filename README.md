@@ -29,6 +29,7 @@
     * `npm run test-open` to run tests separately
 1. Run tests: `npm run test`
 1. (optional) Add or modify tests to folder `cypress/integration`
+1. Run `npm run autofix`
 1. Commit and push this changes
 
 ### Release
