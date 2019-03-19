@@ -1,21 +1,36 @@
 # Flight Watchdog Client
 
 [![Build Status](https://travis-ci.org/Travelport-Czech/flight-watchdog-client.svg?branch=master)](https://travis-ci.org/Travelport-Czech/flight-watchdog-client)
+[![Cypress dashboard](https://img.shields.io/badge/cypress-dashboard-brightgreen.svg)](https://dashboard.cypress.io/#/projects/138158/runs)
 
-## Needed applications
+The *Flight Watchdog Client* is frontend part built on the *Flight Watchdog API* ([link to documentation](https://cee-systems.gitbook.io/flight-watchdog-api/))  and designated for the online booking tool [GOL IBE](https://www.cee-systems.com/gol-ibe). 
+
+The Flight Watchdog is a tool for daily flight price tracking. The flight tracking is defined by origin and destination, and a price limit. It sends you a notification, if it finds a lower price than defined.
+
+## Requirements
 
 * Node (>8.10)
-* Yarn (https://yarnpkg.com)
+* [Yarn](https://yarnpkg.com)
 
 ## Prepare development environment
 
-1. Clone project
-1. Install dependencies
+Clone project
+```bash
+> git clone git@github.com:Travelport-Czech/flight-watchdog-client.git
 ```
+Install dependencies
+```bash
 > yarn install
+```
+Run tests
+```bash
+> npm run test
 ```
 
 ## Create Own Watchdog Client 
+
+You can create the own modification of the Client. If you choose, follow next procedure.
+
 ### Prepare
 1. Fork this repository
 1. Prepare development environment of your fork
