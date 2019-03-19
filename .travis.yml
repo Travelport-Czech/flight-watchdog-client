@@ -6,4 +6,4 @@ cache:
   directories:
     - node_modules
     - ~/.cache
-script: npm run test
+script: npm run test-ci
