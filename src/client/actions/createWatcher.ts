@@ -49,7 +49,7 @@ export const createWatcher = async (
       : state.email,
     lang: props.lang.toString(),
     priceLimit: props.price.toString(),
-    arrival: golUrlParams.arrival.toString(),
+    arrival: golUrlParams.arrival ? golUrlParams.arrival.toString() : undefined,
     departure: golUrlParams.departure.toString(),
     destination: golUrlParams.destination.toString(),
     origin: golUrlParams.origin.toString()

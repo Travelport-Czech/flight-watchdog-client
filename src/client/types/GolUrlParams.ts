@@ -4,11 +4,11 @@ import { ValidLocationCodeList } from 'src/shared/validObjects/ValidLocationCode
 import { ValidWatcherId } from 'src/shared/validObjects/ValidWatcherId'
 
 export interface GolUrlParams {
-  readonly returnTicket: boolean
+  readonly flightType: 'return' | 'oneway'
   readonly origin: ValidLocationCodeList
   readonly destination: ValidLocationCodeList
   readonly departure: ValidDate
-  readonly arrival: ValidDate
+  readonly arrival?: ValidDate
   readonly step: boolean
   readonly emailToContinueWatching?: ValidEmail
   readonly watcherIdToDelete?: ValidWatcherId

@@ -17,29 +17,57 @@ const getUrlParameterValue = (url: string, key: string): string => {
 }
 
 export const parseGolUrl = (url: string): GolUrlParams | undefined => {
-  const returnTicket = getUrlParameterValue(url, 'returnTicket') === 'on'
-  const origin = getUrlParameterValue(url, 'flights[0][origin]=')
-  const destination = getUrlParameterValue(url, 'flights[0][destination]=')
-  const departure = getUrlParameterValue(url, 'flights[0][departureDate]=')
-  const arrival = getUrlParameterValue(url, 'flights[1][departureDate]=')
-  const step = getUrlParameterValue(url, 'step') === 'ChooseFromFour'
-  const emailToContinueWatching = getUrlParameterValue(url, 'flightWatchdogContinue')
-  const watcherIdToDelete = getUrlParameterValue(url, 'flightWatchdogDelete')
-  const email = getUrlParameterValue(url, 'email')
+  if (getUrlParameterValue(url, 'returnTicket') === 'on') {
+    const origin = getUrlParameterValue(url, 'flights[0][origin]=')
+    const destination = getUrlParameterValue(url, 'flights[0][destination]=')
+    const departure = getUrlParameterValue(url, 'flights[0][departureDate]=')
+    const arrival = getUrlParameterValue(url, 'flights[1][departureDate]=')
+    const step = getUrlParameterValue(url, 'step') === 'ChooseFromFour'
+    const emailToContinueWatching = getUrlParameterValue(url, 'flightWatchdogContinue')
+    const watcherIdToDelete = getUrlParameterValue(url, 'flightWatchdogDelete')
+    const email = getUrlParameterValue(url, 'email')
 
-  if (!returnTicket || !origin || !destination || !departure || !arrival || !step) {
-    return
+    if (!origin || !destination || !departure || !arrival || !step) {
+      return
+    }
+
+    return {
+      arrival: new ValidDate(arrival),
+      departure: new ValidDate(departure),
+      destination: new ValidLocationCodeList(destination),
+      email: email ? new ValidEmail(email) : undefined,
+      emailToContinueWatching: emailToContinueWatching ? new ValidEmail(emailToContinueWatching) : undefined,
+      origin: new ValidLocationCodeList(origin),
+      flightType: 'return',
+      step,
+      watcherIdToDelete: watcherIdToDelete ? new ValidWatcherId(watcherIdToDelete) : undefined
+    }
   }
 
-  return {
-    arrival: new ValidDate(arrival),
-    departure: new ValidDate(departure),
-    destination: new ValidLocationCodeList(destination),
-    email: email ? new ValidEmail(email) : undefined,
-    emailToContinueWatching: emailToContinueWatching ? new ValidEmail(emailToContinueWatching) : undefined,
-    origin: new ValidLocationCodeList(origin),
-    returnTicket,
-    step,
-    watcherIdToDelete: watcherIdToDelete ? new ValidWatcherId(watcherIdToDelete) : undefined
+  if (getUrlParameterValue(url, 'returnTicket') === '') {
+    const origin = getUrlParameterValue(url, 'flights[0][origin]=')
+    const destination = getUrlParameterValue(url, 'flights[0][destination]=')
+    const departure = getUrlParameterValue(url, 'flights[0][departureDate]=')
+    const step = getUrlParameterValue(url, 'step') === 'ChooseFromFour'
+    const emailToContinueWatching = getUrlParameterValue(url, 'flightWatchdogContinue')
+    const watcherIdToDelete = getUrlParameterValue(url, 'flightWatchdogDelete')
+    const email = getUrlParameterValue(url, 'email')
+
+    if (!origin || !destination || !departure || !step) {
+      return
+    }
+
+    return {
+      departure: new ValidDate(departure),
+      destination: new ValidLocationCodeList(destination),
+      email: email ? new ValidEmail(email) : undefined,
+      emailToContinueWatching: emailToContinueWatching ? new ValidEmail(emailToContinueWatching) : undefined,
+      origin: new ValidLocationCodeList(origin),
+      flightType: 'oneway',
+      step,
+      watcherIdToDelete: watcherIdToDelete ? new ValidWatcherId(watcherIdToDelete) : undefined
+    }
   }
+
+  return
 }

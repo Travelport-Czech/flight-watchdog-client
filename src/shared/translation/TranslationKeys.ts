@@ -23,7 +23,8 @@ export interface TranslationKeys {
   readonly [T.ClientTitle]: string
   readonly [T.ClientDestinations]: string
   readonly [T.ClientDescription]: string
-  readonly [T.ClientDates]: string
+  readonly [T.ClientDatesReturn]: string
+  readonly [T.ClientDatesOneway]: string
   readonly [T.EmailTitle]: string
   readonly [T.EmailLowerPriceSubject]: string
   readonly [T.EmailDescription]: string

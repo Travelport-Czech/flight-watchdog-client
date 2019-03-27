@@ -37,7 +37,7 @@ export class EmailLowerPriceHeader extends React.Component<Props> {
           </Text>
         </div>
         <div style={styles.headerDates}>
-          <Text name={TranslationEnum.ClientDates}>
+          <Text name={TranslationEnum.ClientDatesReturn}>
             {watcher.departure.formatToLocalWithDayName()}
             {watcher.arrival.formatToLocalWithDayName()}
           </Text>

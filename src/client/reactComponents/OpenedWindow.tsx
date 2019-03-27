@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { CrossButton } from 'src/client/reactComponents/CrossButton'
+import { HeaderDates } from 'src/client/reactComponents/HeaderDates'
 import * as styles from 'src/client/styles'
 import { FlightParams } from 'src/client/types/FlightParams'
 import { LocationNameList } from 'src/shared/reactComponents/LocationNameList'
@@ -16,14 +17,7 @@ interface Props {
 
 export class OpenedWindow extends React.Component<Props> {
   public render() {
-    const {
-      arrival,
-      departure,
-      destination,
-      destinationLocationList,
-      origin,
-      originLocationList
-    } = this.props.flightParams
+    const { destination, destinationLocationList, origin, originLocationList } = this.props.flightParams
 
     return (
       <div
@@ -53,10 +47,7 @@ export class OpenedWindow extends React.Component<Props> {
             </Text>
           </div>
           <div style={styles.headerDates}>
-            <Text name={TranslationEnum.ClientDates}>
-              {departure.formatToLocalWithDayName()}
-              {arrival.formatToLocalWithDayName()}
-            </Text>
+            <HeaderDates flightParams={this.props.flightParams} />
           </div>
         </div>
         <div className="content" style={styles.content}>

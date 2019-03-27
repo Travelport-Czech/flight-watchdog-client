@@ -8,5 +8,5 @@ export interface FlightParams {
   readonly originLocationList: Location[]
   readonly destinationLocationList: Location[]
   readonly departure: ValidDate
-  readonly arrival: ValidDate
+  readonly arrival?: ValidDate
 }
