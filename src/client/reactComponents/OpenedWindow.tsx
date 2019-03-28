@@ -30,6 +30,7 @@ export class OpenedWindow extends React.Component<Props> {
         data-origin={origin.toString()}
         data-destination={destination.toString()}
         data-price={this.props.price.amount.toString()}
+        data-flightType={flightType}
       >
         <div style={styles.header}>
           <CrossButton onClick={this.props.handleClose} />
