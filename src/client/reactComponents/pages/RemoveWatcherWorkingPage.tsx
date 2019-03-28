@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { OpenedWindow } from 'src/client/reactComponents/OpenedWindow'
-import * as styles from 'src/shared/reactComponents/styles'
 import { FlightParams } from 'src/client/types/FlightParams'
+import * as styles from 'src/shared/reactComponents/styles'
 import { Text } from 'src/shared/translation/Text'
 import { TranslationEnum } from 'src/shared/translation/TranslationEnum'
 import { ValidPrice } from 'src/shared/validObjects/ValidPrice'
