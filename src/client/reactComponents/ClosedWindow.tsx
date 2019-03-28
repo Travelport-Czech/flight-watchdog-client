@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Consts } from 'src/client/Consts'
-import * as styles from 'src/client/styles'
+import * as styles from 'src/shared/reactComponents/styles'
 import { Text } from 'src/shared/translation/Text'
 import { TranslationEnum } from 'src/shared/translation/TranslationEnum'
 

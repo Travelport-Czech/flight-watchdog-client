@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as styles from 'src/server/reactComponents/styles'
+import * as styles from 'src/shared/reactComponents/styles'
 import { Text } from 'src/shared/translation/Text'
 import { TranslationEnum } from 'src/shared/translation/TranslationEnum'
 import { ValidUrl } from 'src/shared/validObjects/ValidUrl'

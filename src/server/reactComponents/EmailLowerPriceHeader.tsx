@@ -1,7 +1,7 @@
 import * as React from 'react'
-import * as styles from 'src/server/reactComponents/styles'
 import { WatcherFullInfo } from 'src/server/WatcherFullInfo'
 import { LocationNameList } from 'src/shared/reactComponents/LocationNameList'
+import * as styles from 'src/shared/reactComponents/styles'
 import { Text } from 'src/shared/translation/Text'
 import { TranslationEnum } from 'src/shared/translation/TranslationEnum'
 

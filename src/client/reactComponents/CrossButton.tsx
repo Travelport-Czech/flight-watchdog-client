@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as styles from 'src/client/styles'
+import * as styles from 'src/shared/reactComponents/styles'
 
 interface Props {
   onClick(event: React.MouseEvent<HTMLElement>): void
