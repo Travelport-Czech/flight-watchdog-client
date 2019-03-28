@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Consts } from 'src/client/Consts'
 import { CrossButton } from 'src/client/reactComponents/CrossButton'
 import { HeaderDates } from 'src/client/reactComponents/HeaderDates'
 import * as styles from 'src/client/styles'
@@ -17,11 +18,13 @@ interface Props {
 
 export class OpenedWindow extends React.Component<Props> {
   public render() {
-    const { destination, destinationLocationList, origin, originLocationList } = this.props.flightParams
+    const { destination, destinationLocationList, origin, originLocationList, flightType } = this.props.flightParams
+    const destinationTextKey =
+      flightType === 'return' ? TranslationEnum.ClientDestinationsReturn : TranslationEnum.ClientDestinationsOneway
 
     return (
       <div
-        className="chat-box"
+        className={`${Consts.elementClassPrefix}_window`}
         style={styles.chatBox}
         id={this.props.id}
         data-origin={origin.toString()}
@@ -36,8 +39,8 @@ export class OpenedWindow extends React.Component<Props> {
           <div style={styles.headerTextDescription}>
             <Text name={TranslationEnum.ClientDescription} />
           </div>
-          <div style={styles.headerDestinations}>
-            <Text name={TranslationEnum.ClientDestinations}>
+          <div style={styles.headerDestinations} className={`${Consts.elementClassPrefix}_destionations`}>
+            <Text name={destinationTextKey}>
               <span style={styles.primaryColor}>
                 <LocationNameList locationList={originLocationList} />
               </span>

@@ -9,4 +9,5 @@ export interface FlightParams {
   readonly destinationLocationList: Location[]
   readonly departure: ValidDate
   readonly arrival?: ValidDate
+  readonly flightType: 'oneway' | 'return'
 }

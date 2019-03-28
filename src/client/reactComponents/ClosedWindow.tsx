@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Consts } from 'src/client/Consts'
 import * as styles from 'src/client/styles'
 import { Text } from 'src/shared/translation/Text'
 import { TranslationEnum } from 'src/shared/translation/TranslationEnum'
@@ -10,7 +11,11 @@ interface Props {
 export class ClosedWindow extends React.Component<Props> {
   public render() {
     return (
-      <div className="chat-box" style={styles.chatBox} id="flight-watchdog-window-is-closed">
+      <div
+        className={`${Consts.elementClassPrefix}_window`}
+        style={styles.chatBox}
+        id="flight-watchdog-window-is-closed"
+      >
         <span style={styles.icon} />
         <input
           type="checkbox"

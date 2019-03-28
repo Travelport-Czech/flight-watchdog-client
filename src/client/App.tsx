@@ -153,7 +153,7 @@ export class App extends React.Component<Props, State> {
       return
     }
 
-    const { departure, arrival, origin, destination } = this.state.golUrlParams
+    const { departure, arrival, origin, destination, flightType } = this.state.golUrlParams
 
     return {
       arrival,
@@ -161,7 +161,8 @@ export class App extends React.Component<Props, State> {
       destination,
       destinationLocationList: this.state.destinationLocationList,
       origin,
-      originLocationList: this.state.originLocationList
+      originLocationList: this.state.originLocationList,
+      flightType
     }
   }
 

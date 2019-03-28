@@ -6,4 +6,5 @@ export interface WatcherClientCreateParams {
   readonly departure: string
   readonly destination: string
   readonly origin: string
+  readonly flightType: 'oneway' | 'return'
 }

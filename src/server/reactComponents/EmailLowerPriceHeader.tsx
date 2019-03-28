@@ -27,7 +27,7 @@ export class EmailLowerPriceHeader extends React.Component<Props> {
         </div>
 
         <div style={styles.headerDestinations}>
-          <Text name={TranslationEnum.ClientDestinations}>
+          <Text name={TranslationEnum.ClientDestinationsReturn}>
             <span style={styles.primaryColor}>
               <LocationNameList locationList={originLocationList} />
             </span>

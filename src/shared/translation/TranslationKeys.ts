@@ -21,7 +21,8 @@ export interface TranslationKeys {
   readonly [T.ClientMessageMinimalizedWindow]: string
   readonly [T.ClientInputEmailPlaceholder]: string
   readonly [T.ClientTitle]: string
-  readonly [T.ClientDestinations]: string
+  readonly [T.ClientDestinationsReturn]: string
+  readonly [T.ClientDestinationsOneway]: string
   readonly [T.ClientDescription]: string
   readonly [T.ClientDatesReturn]: string
   readonly [T.ClientDatesOneway]: string

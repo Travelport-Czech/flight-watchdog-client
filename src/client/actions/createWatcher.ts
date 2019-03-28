@@ -52,7 +52,8 @@ export const createWatcher = async (
     arrival: golUrlParams.arrival ? golUrlParams.arrival.toString() : undefined,
     departure: golUrlParams.departure.toString(),
     destination: golUrlParams.destination.toString(),
-    origin: golUrlParams.origin.toString()
+    origin: golUrlParams.origin.toString(),
+    flightType: golUrlParams.flightType
   }
   const createResult = await functions.createWatcher(token, apiUrl, watcherCreateParams)
   if (!createResult) {
