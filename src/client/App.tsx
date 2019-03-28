@@ -148,7 +148,7 @@ export class App extends React.Component<Props, State> {
   }
 
   private readonly createFlightParams = (): FlightParams | undefined => {
-    const { departure, arrival, origin, destination, flightType } = this.props.golUrlParams
+    const { departure, arrival, origin, destination, flightType } = this.props.appConfig
 
     return {
       arrival,

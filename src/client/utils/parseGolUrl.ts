@@ -1,4 +1,4 @@
-import { GolUrlParams } from 'src/client/types/GolUrlParams'
+import { AppConfig } from 'src/client/types/AppConfig'
 import { ValidDate } from 'src/shared/validObjects/ValidDate'
 import { ValidEmail } from 'src/shared/validObjects/ValidEmail'
 import { ValidLocationCodeList } from 'src/shared/validObjects/ValidLocationCodeList'
@@ -16,7 +16,7 @@ const getUrlParameterValue = (url: string, key: string): string => {
   }, '')
 }
 
-export const parseGolUrl = (url: string): GolUrlParams | undefined => {
+export const parseGolUrl = (url: string): AppConfig | undefined => {
   if (getUrlParameterValue(url, 'returnTicket') === 'on') {
     const origin = getUrlParameterValue(url, 'flights[0][origin]=')
     const destination = getUrlParameterValue(url, 'flights[0][destination]=')

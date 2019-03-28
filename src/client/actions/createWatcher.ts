@@ -32,7 +32,7 @@ export const createWatcher = async (
     return { stepToShow: StepToShow.removeMoreWatchers }
   }
 
-  const { emailToContinueWatching, arrival, departure, origin, destination, flightType } = props.golUrlParams
+  const { emailToContinueWatching, arrival, departure, origin, destination, flightType } = props.appConfig
 
   const watcherCreateParams: WatcherClientCreateParams = {
     email: emailToContinueWatching ? emailToContinueWatching.toString() : state.email,

@@ -12,7 +12,7 @@ export const initialize = async (props: Readonly<Props>, state: Readonly<State>)
   }
   const token = props.clientSettings.token
   const lang = props.lang
-  const { origin, destination, emailToContinueWatching, watcherIdToDelete } = props.golUrlParams
+  const { origin, destination, emailToContinueWatching, watcherIdToDelete } = props.appConfig
 
   if (!token) {
     return
@@ -29,7 +29,7 @@ export const initialize = async (props: Readonly<Props>, state: Readonly<State>)
   const defaultState = {
     destinationLocationList,
     email: props.userEmail ? props.userEmail.toString() : '',
-    golUrlParams: props.golUrlParams,
+    golUrlParams: props.appConfig,
     originLocationList,
     showBadEmailError: false,
     stepToShow: StepToShow.none

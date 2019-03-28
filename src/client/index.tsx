@@ -48,9 +48,9 @@ export const initFlightWatchdogClient = async (settingsData: any) => {
 
     const langElement = document.getElementsByTagName('html').item(0)
     const lang = new ValidLanguage(langElement && langElement.getAttribute('lang'))
-    const golUrlParams = parseGolUrl(golUrl)
+    const appConfig = parseGolUrl(golUrl)
 
-    if (!golUrlParams) {
+    if (!appConfig) {
       // tslint:disable-next-line
       console.log('Flight watchdog error', 'Not supported url.')
 
@@ -58,7 +58,7 @@ export const initFlightWatchdogClient = async (settingsData: any) => {
     }
 
     ReactDOM.render(
-      <App golUrlParams={golUrlParams} userEmail={userEmail} clientSettings={settings} price={price} lang={lang} />,
+      <App appConfig={appConfig} userEmail={userEmail} clientSettings={settings} price={price} lang={lang} />,
       document.getElementById(id)
     )
   } catch (err) {

@@ -3,7 +3,7 @@ import { ValidEmail } from 'src/shared/validObjects/ValidEmail'
 import { ValidLocationCodeList } from 'src/shared/validObjects/ValidLocationCodeList'
 import { ValidWatcherId } from 'src/shared/validObjects/ValidWatcherId'
 
-export interface GolUrlParams {
+export interface AppConfig {
   readonly flightType: 'return' | 'oneway'
   readonly origin: ValidLocationCodeList
   readonly destination: ValidLocationCodeList
