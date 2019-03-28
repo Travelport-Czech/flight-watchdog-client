@@ -18,22 +18,19 @@ export const deleteWatcherByEmail = async (props: Readonly<Props>, state: Readon
   return false
 }
 
-export const deleteWatcherById = async (props: Readonly<Props>, state: Readonly<State>): Promise<boolean> => {
+export const deleteWatcherById = async (props: Readonly<Props>): Promise<boolean> => {
   const apiUrl = props.clientSettings.apiUrl
-  if (!state.golUrlParams) {
+  if (!props.golUrlParams.watcherIdToDelete) {
     return false
   }
-  if (!state.golUrlParams.watcherIdToDelete) {
-    return false
-  }
-  if (!state.golUrlParams.email) {
+  if (!props.golUrlParams.email) {
     return false
   }
 
   return functions.deleteWatcher(
     props.clientSettings.token,
     apiUrl,
-    state.golUrlParams.watcherIdToDelete,
-    state.golUrlParams.email
+    props.golUrlParams.watcherIdToDelete,
+    props.golUrlParams.email
   )
 }

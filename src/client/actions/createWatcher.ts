@@ -3,7 +3,6 @@ import { Props } from 'src/client/Props'
 import { State } from 'src/client/State'
 import { StepToShow } from 'src/client/StepsToShow'
 import { WatcherClientCreateParams } from 'src/client/types/WatcherClientCreateParams'
-import { parseGolUrl } from 'src/client/utils/parseGolUrl'
 import { validateEmail } from 'src/client/utils/validateEmail'
 
 export const createWatcher = async (
@@ -13,10 +12,6 @@ export const createWatcher = async (
   const apiUrl = props.clientSettings.apiUrl
   if (!validateEmail(state.email)) {
     throw new Error('Email is not valid')
-  }
-
-  if (!state.golUrlParams) {
-    throw new Error('GolUrlParams is not valid')
   }
 
   const token = props.clientSettings.token
@@ -37,23 +32,17 @@ export const createWatcher = async (
     return { stepToShow: StepToShow.removeMoreWatchers }
   }
 
-  const golUrlParams = parseGolUrl(props.golUrl)
-
-  if (!golUrlParams) {
-    return { stepToShow: StepToShow.error }
-  }
+  const { emailToContinueWatching, arrival, departure, origin, destination, flightType } = props.golUrlParams
 
   const watcherCreateParams: WatcherClientCreateParams = {
-    email: state.golUrlParams.emailToContinueWatching
-      ? state.golUrlParams.emailToContinueWatching.toString()
-      : state.email,
+    email: emailToContinueWatching ? emailToContinueWatching.toString() : state.email,
     lang: props.lang.toString(),
     priceLimit: props.price.toString(),
-    arrival: golUrlParams.arrival ? golUrlParams.arrival.toString() : undefined,
-    departure: golUrlParams.departure.toString(),
-    destination: golUrlParams.destination.toString(),
-    origin: golUrlParams.origin.toString(),
-    flightType: golUrlParams.flightType
+    arrival: arrival ? arrival.toString() : undefined,
+    departure: departure.toString(),
+    destination: destination.toString(),
+    origin: origin.toString(),
+    flightType: flightType
   }
   const createResult = await functions.createWatcher(token, apiUrl, watcherCreateParams)
   if (!createResult) {

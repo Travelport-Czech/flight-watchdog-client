@@ -23,7 +23,6 @@ export class App extends React.Component<Props, State> {
   public readonly state: Readonly<State> = {
     destinationLocationList: [],
     email: '',
-    golUrlParams: undefined,
     originLocationList: [],
     showBadEmailError: false,
     stepToShow: StepToShow.none
@@ -135,7 +134,7 @@ export class App extends React.Component<Props, State> {
 
   private readonly handleDeleteById = async () => {
     this.setState({ stepToShow: StepToShow.removeWatcherWorking })
-    const deleteIsSuccessful = await actions.deleteWatcherById(this.props, this.state)
+    const deleteIsSuccessful = await actions.deleteWatcherById(this.props)
     if (!deleteIsSuccessful) {
       this.setState({ stepToShow: StepToShow.error })
 
@@ -149,11 +148,7 @@ export class App extends React.Component<Props, State> {
   }
 
   private readonly createFlightParams = (): FlightParams | undefined => {
-    if (!this.state.golUrlParams) {
-      return
-    }
-
-    const { departure, arrival, origin, destination, flightType } = this.state.golUrlParams
+    const { departure, arrival, origin, destination, flightType } = this.props.golUrlParams
 
     return {
       arrival,

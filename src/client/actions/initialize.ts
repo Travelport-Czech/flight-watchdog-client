@@ -4,7 +4,6 @@ import { getDestinationNames, isAllowedToAddWatcher } from 'src/client/functions
 import { Props } from 'src/client/Props'
 import { State } from 'src/client/State'
 import { StepToShow } from 'src/client/StepsToShow'
-import { parseGolUrl } from 'src/client/utils/parseGolUrl'
 
 export const initialize = async (props: Readonly<Props>, state: Readonly<State>): Promise<State | undefined> => {
   const apiUrl = props.clientSettings.apiUrl
@@ -13,13 +12,9 @@ export const initialize = async (props: Readonly<Props>, state: Readonly<State>)
   }
   const token = props.clientSettings.token
   const lang = props.lang
+  const { origin, destination, emailToContinueWatching, watcherIdToDelete } = props.golUrlParams
 
   if (!token) {
-    return
-  }
-
-  const golUrlParams = parseGolUrl(props.golUrl)
-  if (!golUrlParams) {
     return
   }
 
@@ -28,13 +23,13 @@ export const initialize = async (props: Readonly<Props>, state: Readonly<State>)
     return
   }
 
-  const originLocationList = await getDestinationNames(token, apiUrl, golUrlParams.origin, lang)
-  const destinationLocationList = await getDestinationNames(token, apiUrl, golUrlParams.destination, lang)
+  const originLocationList = await getDestinationNames(token, apiUrl, origin, lang)
+  const destinationLocationList = await getDestinationNames(token, apiUrl, destination, lang)
 
   const defaultState = {
     destinationLocationList,
     email: props.userEmail ? props.userEmail.toString() : '',
-    golUrlParams,
+    golUrlParams: props.golUrlParams,
     originLocationList,
     showBadEmailError: false,
     stepToShow: StepToShow.none
@@ -47,15 +42,15 @@ export const initialize = async (props: Readonly<Props>, state: Readonly<State>)
     }
   }
 
-  if (golUrlParams.emailToContinueWatching) {
+  if (emailToContinueWatching) {
     return {
       ...defaultState,
-      email: golUrlParams.emailToContinueWatching.toString(),
+      email: emailToContinueWatching.toString(),
       stepToShow: StepToShow.continueWatching
     }
   }
 
-  if (golUrlParams.watcherIdToDelete) {
+  if (watcherIdToDelete) {
     return {
       ...defaultState,
       stepToShow: StepToShow.removeWatcherById

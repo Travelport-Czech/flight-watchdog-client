@@ -3,6 +3,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { App } from 'src/client/App'
 import { isValidClientSettings } from 'src/client/functions'
+import { parseGolUrl } from 'src/client/utils/parseGolUrl'
 import { ValidEmail } from 'src/shared/validObjects/ValidEmail'
 import { ValidLanguage } from 'src/shared/validObjects/ValidLanguage'
 import { ValidPrice } from 'src/shared/validObjects/ValidPrice'
@@ -37,6 +38,9 @@ export const initFlightWatchdogClient = async (settingsData: any) => {
       lowestPriceHtmlElement && lowestPriceHtmlElement.textContent ? lowestPriceHtmlElement.textContent : ''
 
     if (!lowestPrice) {
+      // tslint:disable-next-line
+      console.log('Flight watchdog error', 'Price not found.')
+
       return
     }
 
@@ -44,14 +48,22 @@ export const initFlightWatchdogClient = async (settingsData: any) => {
 
     const langElement = document.getElementsByTagName('html').item(0)
     const lang = new ValidLanguage(langElement && langElement.getAttribute('lang'))
+    const golUrlParams = parseGolUrl(golUrl)
+
+    if (!golUrlParams) {
+      // tslint:disable-next-line
+      console.log('Flight watchdog error', 'Not supported url.')
+
+      return
+    }
 
     ReactDOM.render(
-      <App golUrl={golUrl} userEmail={userEmail} clientSettings={settings} price={price} lang={lang} />,
+      <App golUrlParams={golUrlParams} userEmail={userEmail} clientSettings={settings} price={price} lang={lang} />,
       document.getElementById(id)
     )
   } catch (err) {
     // tslint:disable-next-line
-    console.log('FLight watchdog error', err)
+    console.log('Flight watchdog error', err)
     if (sentryClient) {
       sentryClient.configureScope((scope: Scope) => {
         scope.setExtra('url', golUrl)
