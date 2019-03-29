@@ -3,10 +3,10 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { App } from 'src/client/App'
 import { isValidClientSettings } from 'src/client/functions'
-import { parseGolUrl } from 'src/client/utils/parseGolUrl'
-import { ValidEmail } from 'src/shared/validObjects/ValidEmail'
-import { ValidLanguage } from 'src/shared/validObjects/ValidLanguage'
-import { ValidPrice } from 'src/shared/validObjects/ValidPrice'
+import { createAppConfigFromGolFe } from 'src/client/utils/createAppConfigFromGolFe'
+import { createTagManagerSnippet } from 'src/client/utils/createTagManagerSnippet'
+
+const analyticsId = process.env.ANALYTICS_ID
 
 // tslint:disable-next-line:export-name no-any
 export const initFlightWatchdogClient = async (settingsData: any) => {
@@ -24,43 +24,22 @@ export const initFlightWatchdogClient = async (settingsData: any) => {
   const golUrl = decodeURIComponent(window.location.href)
 
   try {
-    createTagManagerSnippet()
+    if (analyticsId) {
+      createTagManagerSnippet(analyticsId)
+    }
 
     const id = 'flight-watchdog-client-app'
     const node = document.createElement('div')
     node.setAttribute('id', id)
     document.body.appendChild(node)
 
-    const userEmail = getCustomerEmail()
-
-    const lowestPriceHtmlElement = document.getElementsByClassName('AO3_TotalFareValue').item(0) as HTMLSpanElement
-    const lowestPrice =
-      lowestPriceHtmlElement && lowestPriceHtmlElement.textContent ? lowestPriceHtmlElement.textContent : ''
-
-    if (!lowestPrice) {
-      // tslint:disable-next-line
-      console.log('Flight watchdog error', 'Price not found.')
-
-      return
-    }
-
-    const price = new ValidPrice(lowestPrice)
-
-    const langElement = document.getElementsByTagName('html').item(0)
-    const lang = new ValidLanguage(langElement && langElement.getAttribute('lang'))
-    const appConfig = parseGolUrl(golUrl)
+    const appConfig = createAppConfigFromGolFe(document, golUrl)
 
     if (!appConfig) {
-      // tslint:disable-next-line
-      console.log('Flight watchdog error', 'Not supported url.')
-
       return
     }
 
-    ReactDOM.render(
-      <App appConfig={appConfig} userEmail={userEmail} clientSettings={settings} price={price} lang={lang} />,
-      document.getElementById(id)
-    )
+    ReactDOM.render(<App appConfig={appConfig} clientSettings={settings} />, document.getElementById(id))
   } catch (err) {
     // tslint:disable-next-line
     console.log('Flight watchdog error', err)
@@ -73,43 +52,6 @@ export const initFlightWatchdogClient = async (settingsData: any) => {
       throw err
     }
   }
-}
-
-const getCustomerEmail = (): ValidEmail | undefined => {
-  try {
-    const userEmailHtmlElement = document.getElementById('fiUsername') as HTMLInputElement
-
-    return userEmailHtmlElement && userEmailHtmlElement.value ? new ValidEmail(userEmailHtmlElement.value) : undefined
-  } catch (err) {
-    return
-  }
-}
-
-const createTagManagerSnippet = (): void => {
-  const analyticsId = process.env.ANALYTICS_ID
-  if (!analyticsId) {
-    return
-  }
-  const script = document.createElement('script')
-  // tslint:disable-next-line:max-line-length
-  const text = document.createTextNode(
-    "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','" +
-      analyticsId +
-      "');"
-  )
-  script.appendChild(text)
-  if (document.head) {
-    document.head.appendChild(script)
-  }
-
-  const noscript = document.createElement('noscript')
-  const iframe = document.createElement('iframe')
-  iframe.setAttribute('src', 'https://www.googletagmanager.com/ns.html?id=' + analyticsId)
-  iframe.setAttribute('height', '0')
-  iframe.setAttribute('width', '0')
-  iframe.setAttribute('style', 'display:none;visibility:hidden')
-  noscript.appendChild(iframe)
-  document.body.appendChild(noscript)
 }
 
 // set as global function

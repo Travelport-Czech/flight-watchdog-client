@@ -14,6 +14,17 @@ export const createWatcher = async (
     throw new Error('Email is not valid')
   }
 
+  const {
+    emailToContinueWatching,
+    arrival,
+    departure,
+    origin,
+    destination,
+    flightType,
+    lang,
+    lowestPrice
+  } = props.appConfig
+
   const token = props.clientSettings.token
   const result = await functions.getWatchersCountOnEmail(token, apiUrl, state.email)
   if (result === undefined) {
@@ -23,7 +34,7 @@ export const createWatcher = async (
     return { stepToShow: StepToShow.removeWatcher }
   }
   if (result.limit > 1 && result.limit === result.count) {
-    const sendListResult = await functions.sendWatchersList(token, apiUrl, state.email, props.lang)
+    const sendListResult = await functions.sendWatchersList(token, apiUrl, state.email, lang)
 
     if (!sendListResult) {
       return { stepToShow: StepToShow.error }
@@ -32,12 +43,10 @@ export const createWatcher = async (
     return { stepToShow: StepToShow.removeMoreWatchers }
   }
 
-  const { emailToContinueWatching, arrival, departure, origin, destination, flightType } = props.appConfig
-
   const watcherCreateParams: WatcherClientCreateParams = {
     email: emailToContinueWatching ? emailToContinueWatching.toString() : state.email,
-    lang: props.lang.toString(),
-    priceLimit: props.price.toString(),
+    lang: lang.toString(),
+    priceLimit: lowestPrice.toString(),
     arrival: arrival ? arrival.toString() : undefined,
     departure: departure.toString(),
     destination: destination.toString(),

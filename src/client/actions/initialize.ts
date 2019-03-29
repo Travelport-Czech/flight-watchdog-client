@@ -11,8 +11,7 @@ export const initialize = async (props: Readonly<Props>, state: Readonly<State>)
     throw new Error('Initialize must call once at start.')
   }
   const token = props.clientSettings.token
-  const lang = props.lang
-  const { origin, destination, emailToContinueWatching, watcherIdToDelete } = props.appConfig
+  const { origin, destination, emailToContinueWatching, watcherIdToDelete, lang, customerEmail } = props.appConfig
 
   if (!token) {
     return
@@ -28,7 +27,7 @@ export const initialize = async (props: Readonly<Props>, state: Readonly<State>)
 
   const defaultState = {
     destinationLocationList,
-    email: props.userEmail ? props.userEmail.toString() : '',
+    email: customerEmail ? customerEmail.toString() : '',
     golUrlParams: props.appConfig,
     originLocationList,
     showBadEmailError: false,

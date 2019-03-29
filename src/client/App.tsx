@@ -67,22 +67,17 @@ export class App extends React.Component<Props, State> {
     }
 
     if (this.state.stepToShow === StepToShow.error) {
-      return <ErrorPage flightParams={flightParams} price={this.props.price} onClose={this.handleClose} />
-    }
-
-    if (this.state.stepToShow === StepToShow.removeWatcher) {
       return (
-        <RemoveWatcherPage
-          flightParams={flightParams}
-          price={this.props.price}
-          onClose={this.handleClose}
-          onDeleteAndCreateWatcher={this.handleDeleteAndCreateWatcher}
-        />
+        <ErrorPage flightParams={flightParams} price={this.props.appConfig.lowestPrice} onClose={this.handleClose} />
       )
     }
 
+    if (this.state.stepToShow === StepToShow.removeWatcher) {
+      return this.renderRemoveWatcher(flightParams)
+    }
+
     if (this.state.stepToShow === StepToShow.removeMoreWatchers) {
-      return <RemoveMoreWatchersPage flightParams={flightParams} price={this.props.price} onClose={this.handleClose} />
+      return this.renderRemoveMoreWatchers(flightParams)
     }
 
     if (this.state.stepToShow === StepToShow.minimalized) {
@@ -93,7 +88,7 @@ export class App extends React.Component<Props, State> {
   }
 
   private readonly init = async (props: Readonly<Props>) => {
-    initializeTranslator(props.lang)
+    initializeTranslator(props.appConfig.lang)
     const state = await actions.initialize(props, this.state)
     if (state) {
       this.setState(state)
@@ -165,7 +160,7 @@ export class App extends React.Component<Props, State> {
     return (
       <RemoveWatcherByIdPage
         flightParams={flightParams}
-        price={this.props.price}
+        price={this.props.appConfig.lowestPrice}
         onClose={this.handleClose}
         onDelete={this.handleDeleteById}
       />
@@ -173,24 +168,63 @@ export class App extends React.Component<Props, State> {
   }
 
   private readonly renderCreateWatcherDone = (flightParams: FlightParams): JSX.Element => {
-    return <CreateWatcherDonePage flightParams={flightParams} price={this.props.price} onClose={this.handleClose} />
+    return (
+      <CreateWatcherDonePage
+        flightParams={flightParams}
+        price={this.props.appConfig.lowestPrice}
+        onClose={this.handleClose}
+      />
+    )
   }
 
   private readonly renderRemoveWatcherWorking = (flightParams: FlightParams): JSX.Element => {
-    return <RemoveWatcherWorkingPage flightParams={flightParams} price={this.props.price} onClose={this.handleClose} />
+    return (
+      <RemoveWatcherWorkingPage
+        flightParams={flightParams}
+        price={this.props.appConfig.lowestPrice}
+        onClose={this.handleClose}
+      />
+    )
   }
 
   private readonly renderCreateWatcherWorking = (flightParams: FlightParams): JSX.Element => {
-    return <CreateWatcherWorkingPage flightParams={flightParams} price={this.props.price} onClose={this.handleClose} />
+    return (
+      <CreateWatcherWorkingPage
+        flightParams={flightParams}
+        price={this.props.appConfig.lowestPrice}
+        onClose={this.handleClose}
+      />
+    )
   }
 
   private readonly renderContinueWatching = (flightParams: FlightParams): JSX.Element => {
     return (
       <ContinueWatchingPage
         flightParams={flightParams}
-        price={this.props.price}
+        price={this.props.appConfig.lowestPrice}
         onClose={this.handleClose}
         onCreateWatcher={this.handleCreateWatcher}
+      />
+    )
+  }
+
+  private readonly renderRemoveWatcher = (flightParams: FlightParams): JSX.Element => {
+    return (
+      <RemoveWatcherPage
+        flightParams={flightParams}
+        price={this.props.appConfig.lowestPrice}
+        onClose={this.handleClose}
+        onDeleteAndCreateWatcher={this.handleDeleteAndCreateWatcher}
+      />
+    )
+  }
+
+  private readonly renderRemoveMoreWatchers = (flightParams: FlightParams): JSX.Element => {
+    return (
+      <RemoveMoreWatchersPage
+        flightParams={flightParams}
+        price={this.props.appConfig.lowestPrice}
+        onClose={this.handleClose}
       />
     )
   }
@@ -203,7 +237,7 @@ export class App extends React.Component<Props, State> {
         email={email}
         showBadEmailError={showBadEmailError}
         flightParams={flightParams}
-        price={this.props.price}
+        price={this.props.appConfig.lowestPrice}
         onClose={this.handleClose}
         onCreateWatcher={this.handleCreateWatcher}
         onEmailChange={this.handleEmailChange}

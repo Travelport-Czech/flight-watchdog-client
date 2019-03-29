@@ -23,7 +23,7 @@ export const deleteWatcherById = async (props: Readonly<Props>): Promise<boolean
   if (!props.appConfig.watcherIdToDelete) {
     return false
   }
-  if (!props.appConfig.email) {
+  if (!props.appConfig.emailForWatcherDelete) {
     return false
   }
 
@@ -31,6 +31,6 @@ export const deleteWatcherById = async (props: Readonly<Props>): Promise<boolean
     props.clientSettings.token,
     apiUrl,
     props.appConfig.watcherIdToDelete,
-    props.appConfig.email
+    props.appConfig.emailForWatcherDelete
   )
 }
