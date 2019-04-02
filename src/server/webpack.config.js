@@ -1,45 +1,48 @@
 const path = require('path')
-const slsw = require('serverless-webpack')
 const Dotenv = require('dotenv-webpack')
-const nodeExternals = require('webpack-node-externals')
 
-const entries = {}
+const sourceFile = path.resolve(__dirname, 'functions/example.tsx')
+const outputDir = path.resolve(__dirname, '../../.dist-server')
 
-Object.keys(slsw.lib.entries).forEach(key => (entries[key] = ['./source-map-install.js', slsw.lib.entries[key]]))
+let entry = {
+  index: ['@babel/polyfill', sourceFile]
+}
 
 const plugins = [
   new Dotenv({
-    path: path.resolve(__dirname, '.env.' + process.env.NODE_ENV), // load this now instead of the ones in '.env'
+    path: path.resolve(__dirname, '../../.env.test'), // load this now instead of the ones in '.env'
     safe: false, // load '.env.example' to verify the '.env' variables are all set. Can also be a string to a different file.
     systemvars: true, // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
     silent: false // hide any errors
   })
 ]
 
-const serverConfig = {
-  mode: 'production', // dev mode couses memory leak
-  optimization: {
-    minimize: false
-  },
-  externals: process.env.NODE_ENV === 'test' ? [nodeExternals()] : [/aws-sdk/],
-  entry: entries,
+const config = {
+  mode: 'production',
+  entry: entry,
   devtool: 'source-map',
+  optimization: {
+    minimize: process.env.NODE_ENV === 'prod'
+  },
+  target: 'web',
+  output: {
+    path: outputDir,
+    filename: '[name].js'
+  },
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
   },
-  output: {
-    libraryTarget: 'commonjs',
-    path: path.join(__dirname, '.dist-server'),
-    filename: '[name].js'
-  },
-  target: 'node',
   module: {
     rules: [
       {
         test: /\.(ts|js)x?$/,
-        loader: 'babel-loader',
+        loader: 'babel-loader?cacheDirectory=true',
         options: {
-          presets: [['@babel/preset-env', { targets: { node: '8.10' } }], '@babel/typescript', '@babel/preset-react'],
+          presets: [
+            ['@babel/preset-env', { targets: '> 0.25%, not dead' }],
+            '@babel/typescript',
+            '@babel/preset-react'
+          ],
           plugins: [
             '@babel/proposal-class-properties',
             '@babel/proposal-object-rest-spread',
@@ -48,7 +51,8 @@ const serverConfig = {
               {
                 root: ['./src'],
                 alias: {
-                  src: './src'
+                  src: './src',
+                  tests: './src/tests'
                 }
               }
             ]
@@ -57,8 +61,11 @@ const serverConfig = {
       }
     ]
   },
-  plugins: process.env.NODE_ENV === 'test' ? plugins : [],
-  stats: 'minimal'
+  plugins: plugins,
+  stats: 'minimal',
+  performance: {
+    hints: false
+  }
 }
 
-module.exports = serverConfig
+module.exports = config

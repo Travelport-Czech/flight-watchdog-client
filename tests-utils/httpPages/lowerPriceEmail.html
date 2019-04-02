@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="cs">
+  <head>
+    <title>Preview page</title>
+    <script type="text/javascript">
+      var init = function() {
+        showEmail('lower-price')
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Email Lower Price</h1>
+    <script type="text/javascript">
+      var settings = {
+        token: 'token'
+      }
+      var s = document.createElement('script')
+      s.src = 'http://localhost:8080/client/email.js'
+      s.onload = init
+      document.getElementsByTagName('head')[0].appendChild(s)
+    </script>
+  </body>
+</html>

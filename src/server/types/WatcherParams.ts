@@ -1,6 +1,7 @@
 import { ValidDate } from 'src/shared/validObjects/ValidDate'
 import { ValidDateTime } from 'src/shared/validObjects/ValidDateTime'
 import { ValidEmail } from 'src/shared/validObjects/ValidEmail'
+import { ValidFlightType } from 'src/shared/validObjects/ValidFlightType'
 import { ValidLanguage } from 'src/shared/validObjects/ValidLanguage'
 import { ValidLocationCodeList } from 'src/shared/validObjects/ValidLocationCodeList'
 import { ValidPrice } from 'src/shared/validObjects/ValidPrice'
@@ -12,8 +13,9 @@ export interface WatcherParams {
   readonly origin: ValidLocationCodeList
   readonly destination: ValidLocationCodeList
   readonly departure: ValidDate
-  readonly arrival: ValidDate
+  readonly arrival?: ValidDate
   readonly priceLimit: ValidPrice
   readonly lang: ValidLanguage
   readonly created: ValidDateTime
+  readonly flightType: ValidFlightType
 }

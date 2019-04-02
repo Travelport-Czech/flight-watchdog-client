@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { EmailButton } from 'src/server/reactComponents/EmailButton'
 import { EmailLowerPriceHeader } from 'src/server/reactComponents/EmailLowerPriceHeader'
-import { WatcherFullInfo } from 'src/server/WatcherFullInfo'
+import { WatcherPriceHistory } from 'src/server/reactComponents/WatcherPriceHistory'
+import { WatcherFullInfo } from 'src/server/types/WatcherFullInfo'
 import * as styles from 'src/shared/reactComponents/styles'
 import { Text } from 'src/shared/translation/Text'
 import { TranslationEnum } from 'src/shared/translation/TranslationEnum'
@@ -15,14 +16,12 @@ interface Props {
 
 export class EmailLowerPriceContent extends React.Component<Props> {
   public render() {
-    const { watcherFullInfo, price } = this.props
+    const { watcherFullInfo, price, showSvg } = this.props
     const { watcher, watcherLinks } = watcherFullInfo
     const { resultLink, continueLink } = watcherLinks
 
     const priceDiff = watcher.priceLimit.subtract(price)
     const priceDiffPercent = watcher.priceLimit.diffPercent(price)
-
-    const imageSrc = 'cid:' + watcher.id.toString()
 
     return (
       <div style={{ textAlign: 'center' }}>
@@ -60,7 +59,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                   style={{ marginBottom: '20px' }}
                 />
 
-                <img src={imageSrc} alt="Price history" />
+                <WatcherPriceHistory watchersFullInfo={watcherFullInfo} showSvg={showSvg} />
 
                 <div style={{ ...styles.simpleText, marginBottom: '10px', marginTop: '20px' }}>
                   <Text name={TranslationEnum.EmailButtonContinueWatchingPrefixText} />

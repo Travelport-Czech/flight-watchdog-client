@@ -16,7 +16,6 @@ import { ValidWatcherId } from 'src/shared/validObjects/ValidWatcherId'
 enum ResponseKeysEnum {
   Count = 'count',
   Limit = 'limit',
-  EmailContent = 'emailContent',
   EmailLimit = 'emailLimit'
 }
 
@@ -38,29 +37,6 @@ export const isAllowedToAddWatcher = async (token: string, apiUrl: ValidString):
   }
 
   return true
-}
-
-export const getEmailExample = async (
-  token: string,
-  apiUrl: ValidString,
-  lang: ValidLanguage,
-  name: ValidString
-): Promise<string> => {
-  const json = await sendRequest(token, apiUrl, '/client/email-example', {
-    lang: lang.toString(),
-    name: name.toString()
-  })
-  if (json.result !== 'Success') {
-    return ''
-  }
-
-  if (!json.context) {
-    return ''
-  }
-
-  const content = new ValidString(json.context[ResponseKeysEnum.EmailContent])
-
-  return content.toString()
 }
 
 export const getDestinationNames = async (

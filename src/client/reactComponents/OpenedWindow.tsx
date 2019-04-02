@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { Consts } from 'src/client/Consts'
 import { CrossButton } from 'src/client/reactComponents/CrossButton'
-import { HeaderDates } from 'src/client/reactComponents/HeaderDates'
 import { FlightParams } from 'src/client/types/FlightParams'
+import { HeaderDates } from 'src/shared/reactComponents/HeaderDates'
 import { LocationNameList } from 'src/shared/reactComponents/LocationNameList'
 import * as styles from 'src/shared/reactComponents/styles'
 import { Text } from 'src/shared/translation/Text'
@@ -18,7 +18,15 @@ interface Props {
 
 export class OpenedWindow extends React.Component<Props> {
   public render() {
-    const { destination, destinationLocationList, origin, originLocationList, flightType } = this.props.flightParams
+    const {
+      destination,
+      destinationLocationList,
+      origin,
+      originLocationList,
+      flightType,
+      departure,
+      arrival
+    } = this.props.flightParams
     const destinationTextKey =
       flightType === 'return' ? TranslationEnum.ClientDestinationsReturn : TranslationEnum.ClientDestinationsOneway
 
@@ -51,7 +59,7 @@ export class OpenedWindow extends React.Component<Props> {
             </Text>
           </div>
           <div style={styles.headerDates}>
-            <HeaderDates flightParams={this.props.flightParams} />
+            <HeaderDates departure={departure} arrival={arrival} />
           </div>
         </div>
         <div className="content" style={styles.content}>

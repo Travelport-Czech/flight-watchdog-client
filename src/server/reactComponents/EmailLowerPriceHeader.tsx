@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { WatcherFullInfo } from 'src/server/WatcherFullInfo'
+import { WatcherFullInfo } from 'src/server/types/WatcherFullInfo'
+import { HeaderDates } from 'src/shared/reactComponents/HeaderDates'
 import { LocationNameList } from 'src/shared/reactComponents/LocationNameList'
 import * as styles from 'src/shared/reactComponents/styles'
 import { Text } from 'src/shared/translation/Text'
@@ -14,6 +15,9 @@ export class EmailLowerPriceHeader extends React.Component<Props> {
     const { watcherFullInfo } = this.props
     const { watcher, watcherLinks, originLocationList, destinationLocationList } = watcherFullInfo
     const { frontendUrl } = watcherLinks
+    const destinationTextKey = watcher.flightType.isReturn()
+      ? TranslationEnum.ClientDestinationsReturn
+      : TranslationEnum.ClientDestinationsOneway
 
     return (
       <div style={styles.header}>
@@ -27,7 +31,7 @@ export class EmailLowerPriceHeader extends React.Component<Props> {
         </div>
 
         <div style={styles.headerDestinations}>
-          <Text name={TranslationEnum.ClientDestinationsReturn}>
+          <Text name={destinationTextKey}>
             <span style={styles.primaryColor}>
               <LocationNameList locationList={originLocationList} />
             </span>
@@ -37,10 +41,7 @@ export class EmailLowerPriceHeader extends React.Component<Props> {
           </Text>
         </div>
         <div style={styles.headerDates}>
-          <Text name={TranslationEnum.ClientDatesReturn}>
-            {watcher.departure.formatToLocalWithDayName()}
-            {watcher.arrival.formatToLocalWithDayName()}
-          </Text>
+          <HeaderDates departure={watcher.departure} arrival={watcher.arrival} />
         </div>
       </div>
     )
