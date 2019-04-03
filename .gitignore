@@ -12,10 +12,9 @@ cypress/screenshots
 .idea
 
 # Build directory
-.dist
-.dist-translation-scripts
+.dist-client
 .dist-server
-.typescript
+.dist-translation-scripts
 
 yarn-error.log
 translations.xlsx

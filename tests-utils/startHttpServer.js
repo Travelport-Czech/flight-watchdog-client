@@ -1,7 +1,7 @@
 const path = require('path')
 const Hapi = require('hapi')
 
-const rootPath = '../.dist'
+const rootPath = '../.dist-client'
 const rootPathEmail = '../.dist-server'
 const rootClientJs = path.join(__dirname, rootPath + '/index.js')
 const rootClientJsMap = path.join(__dirname, rootPath + '/index.js.map')

@@ -1,0 +1,46 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:latest",
+    "tslint-react",
+    "tslint-consistent-codestyle",
+    "tslint-eslint-rules",
+    "tslint-immutable",
+    "tslint-microsoft-contrib",
+    "tslint-config-prettier",
+    "tslint-plugin-prettier"
+  ],
+  "jsRules": {},
+  "rules": {
+    "no-implicit-dependencies": [true, "dev", ["emails", "shared"]],
+    "no-submodule-imports": [true, "emails", "shared", "react-dom", "moment"],
+    "typedef": [false, "variable-declaration"], // Typedef enforcement for variables that contain a function => duplicate function declaration
+    "no-use-before-declare": false, // useful only for var declaration
+    "only-arrow-functions": true,
+    "interface-name": [true, "never-prefix"],
+    "jsx-boolean-value": ["never"],
+    "prefer-template": false,
+    "type-literal-delimiter": false,
+    "newline-per-chained-call": false,
+    "strict-boolean-expressions": false,
+    "completed-docs": false,
+    "mocha-no-side-effect-code": false,
+    // Immutability rules
+    "readonly-keyword": true,
+    "no-let": true,
+    "no-object-mutation": true,
+    "no-delete": true,
+    "prettier": [
+      true,
+      {
+        "singleQuote":  true,
+        "semi": false,
+        "printWidth": 120
+      }
+    ]
+  },
+  "rulesDirectory": [
+    "../../node_modules/tslint-eslint-rules/dist/rules",
+    "../../node_modules/tslint-microsoft-contrib"
+  ]
+}
