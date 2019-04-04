@@ -1,6 +1,6 @@
 {
   "name": "@ceesystems/flight-watchdog-client",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "CEE Systems Watchdog Client",
   "main": "dist-emails/index.ts",
   "types": "dist-emails/index.d.ts",
