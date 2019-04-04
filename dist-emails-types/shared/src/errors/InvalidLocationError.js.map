@@ -1,1 +1,0 @@
-{"version":3,"file":"InvalidLocationError.js","sourceRoot":"","sources":["../../../../app/shared/src/errors/InvalidLocationError.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,wBAAwB,CAAA;AAEjD,MAAM,OAAO,oBAAqB,SAAQ,QAAQ;IAChD,YAAY,KAAa;QACvB,KAAK,CAAC,oBAAoB,GAAG,KAAK,GAAG,IAAI,CAAC,CAAA;IAC5C,CAAC;CACF"}

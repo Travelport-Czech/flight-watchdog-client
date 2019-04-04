@@ -1,4 +1,6 @@
 const path = require('path')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+const DtsBundleWebpack = require('dts-bundle-webpack')
 
 const sourceFile = path.resolve(__dirname, 'src/index.ts')
 const outputDir = path.resolve(__dirname, '../../dist-emails')
@@ -14,29 +16,9 @@ const config = {
   module: {
     rules: [
       {
-        loader: 'babel-loader?cacheDirectory=true',
-        options: {
-          plugins: [
-            '@babel/proposal-class-properties',
-            '@babel/proposal-object-rest-spread',
-            [
-              'module-resolver',
-              {
-                alias: {
-                  emails: './app/emails/src',
-                  shared: './app/shared/src'
-                },
-                root: ['./src']
-              }
-            ]
-          ],
-          presets: [
-            ['@babel/preset-env', { targets: { node: '8.10' } }],
-            '@babel/typescript',
-            '@babel/preset-react'
-          ],
-        },
-        test: /\.(ts|js)x?$/
+        exclude: /node_modules/,
+        test: /\.tsx?$/,
+        use: 'ts-loader'
       }
     ]
   },
@@ -50,8 +32,19 @@ const config = {
   performance: {
     hints: false
   },
+  plugins: [
+    new DtsBundleWebpack({
+      baseDir: 'dist-emails',
+      main: 'dist-emails/emails/src/index.d.ts',
+      name: 'index',
+      out: 'index.d.ts',
+    })
+  ],
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    plugins: [new TsconfigPathsPlugin({
+      configFile: path.resolve(__dirname, 'tsconfig.json')
+    })]
   },
   stats: 'minimal',
   target: 'node'

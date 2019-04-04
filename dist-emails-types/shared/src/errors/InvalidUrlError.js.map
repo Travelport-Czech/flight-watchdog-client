@@ -1,1 +1,0 @@
-{"version":3,"file":"InvalidUrlError.js","sourceRoot":"","sources":["../../../../app/shared/src/errors/InvalidUrlError.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,wBAAwB,CAAA;AAEjD,MAAM,OAAO,eAAgB,SAAQ,QAAQ;IAC3C,YAAY,KAAa;QACvB,KAAK,CAAC,eAAe,GAAG,KAAK,GAAG,IAAI,CAAC,CAAA;IACvC,CAAC;CACF"}

@@ -1,1 +1,0 @@
-{"version":3,"file":"InvalidJsonError.js","sourceRoot":"","sources":["../../../../app/shared/src/errors/InvalidJsonError.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,wBAAwB,CAAA;AAEjD,MAAM,OAAO,gBAAiB,SAAQ,QAAQ;IAC5C;QACE,KAAK,CAAC,eAAe,CAAC,CAAA;IACxB,CAAC;CACF"}
