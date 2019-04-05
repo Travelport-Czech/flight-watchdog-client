@@ -2,7 +2,7 @@ const path = require('path')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 const sourceFile = path.resolve(__dirname, 'src/index.ts')
-const outputDir = path.resolve(__dirname, '../../dist-emails')
+const outputDir = path.resolve(__dirname, '../../.dist-emails')
 
 let entry = {
   index: ['@babel/polyfill', sourceFile]
