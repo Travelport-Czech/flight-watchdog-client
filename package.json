@@ -1,6 +1,6 @@
 {
   "name": "@ceesystems/flight-watchdog-client",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "description": "CEE Systems Watchdog Client",
   "main": "dist-emails/index.ts",
   "types": "dist-emails/emails/src/index.d.ts",
@@ -8,7 +8,6 @@
     "node": ">=8.10"
   },
   "scripts": {
-    "prepare": "npm run build-emails-prod",
     "lint-client": "tsc --project app/client/tsconfig.json && tslint --project app/client/tsconfig.json --config app/client/tslint.json",
     "lint-emails": "tsc --project app/emails/tsconfig.json && tslint --project app/emails/tsconfig.json --config app/emails/tslint.json",
     "autofix": "prettier src/**/* --write --single-quote --no-semi --print-width 120 --end-of-line lf",
@@ -69,6 +68,7 @@
     "inert": "5.1.2",
     "js-beautify": "1.8.9",
     "js-cookie": "2.2.0",
+    "path-alias-resolver": "https://github.com/Travelport-Czech/path-alias-resolver.git#1.0.4",
     "moment": "2.24.0",
     "number-format.js": "2.0.7",
     "numeral": "2.0.6",
@@ -78,6 +78,7 @@
     "request": "2.88.0",
     "request-promise-native": "1.0.5",
     "typescript": "3.3.3",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
     "utf-8-validate": "5.0.2",
     "uuid": "3.3.2",
     "valid-url": "1.0.9",
@@ -96,10 +97,8 @@
     "hapi": "18.1.0",
     "hapi-cors": "1.0.3",
     "opn-cli": "4.0.0",
-    "path-alias-resolver": "https://github.com/Travelport-Czech/path-alias-resolver.git#1.0.4",
     "prettier": "1.16.4",
     "ts-loader": "^5.3.3",
-    "tsconfig-paths-webpack-plugin": "^3.2.0",
     "tslint": "5.15.0",
     "tslint-config-prettier": "1.18.0",
     "tslint-consistent-codestyle": "1.15.1",
