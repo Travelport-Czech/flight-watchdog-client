@@ -1,6 +1,6 @@
 {
   "name": "@ceesystems/flight-watchdog-client",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "description": "CEE Systems Watchdog Client",
   "main": "dist-emails/index.ts",
   "types": "dist-emails/emails/src/index.d.ts",
@@ -63,6 +63,7 @@
     "email-validator": "2.0.4",
     "extendable-error": "0.1.5",
     "fs-extra": "7.0.1",
+    "gulp": "^4.0.0",
     "hash-files": "1.1.1",
     "html-loader": "0.5.5",
     "inert": "5.1.2",
@@ -94,7 +95,6 @@
     "@types/xlsx": "0.0.36",
     "concurrently": "4.1.0",
     "cypress": "3.1.5",
-    "gulp": "^4.0.0",
     "hapi": "18.1.0",
     "hapi-cors": "1.0.3",
     "opn-cli": "4.0.0",
