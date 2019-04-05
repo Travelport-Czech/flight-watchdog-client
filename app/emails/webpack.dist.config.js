@@ -1,6 +1,5 @@
 const path = require('path')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
-const DtsBundleWebpack = require('dts-bundle-webpack')
 
 const sourceFile = path.resolve(__dirname, 'src/index.ts')
 const outputDir = path.resolve(__dirname, '../../dist-emails')
@@ -57,18 +56,12 @@ const config = {
   performance: {
     hints: false
   },
-  plugins: [
-    new DtsBundleWebpack({
-      baseDir: 'dist-emails',
-      main: 'dist-emails/emails/src/index.d.ts',
-      name: 'index',
-      out: 'index.d.ts',
-    })
-  ],
+  plugins: [],
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     plugins: [new TsconfigPathsPlugin({
-      configFile: path.resolve(__dirname, 'tsconfig.json')
+      configFile: path.resolve(__dirname, 'tsconfig.json'),
+      logLevel: 'info'
     })]
   },
   stats: 'minimal',
