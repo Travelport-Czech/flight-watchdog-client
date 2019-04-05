@@ -1,6 +1,6 @@
-import { Location } from 'shared/validObjects/Location'
-import { ValidDate } from 'shared/validObjects/ValidDate'
-import { ValidLocationCodeList } from 'shared/validObjects/ValidLocationCodeList'
+import { Location } from '@shared/validObjects/Location'
+import { ValidDate } from '@shared/validObjects/ValidDate'
+import { ValidLocationCodeList } from '@shared/validObjects/ValidLocationCodeList'
 
 export interface FlightParams {
   readonly origin: ValidLocationCodeList

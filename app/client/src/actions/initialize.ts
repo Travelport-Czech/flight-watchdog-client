@@ -1,8 +1,8 @@
-import { Consts } from 'client/Consts'
-import { getDestinationNames, isAllowedToAddWatcher } from 'client/functions'
-import { Props } from 'client/Props'
-import { State } from 'client/State'
-import { StepToShow } from 'client/StepsToShow'
+import { Consts } from '@client/Consts'
+import { getDestinationNames, isAllowedToAddWatcher } from '@client/functions'
+import { Props } from '@client/Props'
+import { State } from '@client/State'
+import { StepToShow } from '@client/StepsToShow'
 import * as Cookies from 'js-cookie'
 
 export const initialize = async (props: Readonly<Props>, state: Readonly<State>): Promise<State | undefined> => {

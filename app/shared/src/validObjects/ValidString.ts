@@ -1,4 +1,4 @@
-import { InvalidStringError } from 'shared/errors/InvalidStringError'
+import { InvalidStringError } from '@shared/errors/InvalidStringError'
 
 // tslint:disable-next-line:no-any
 const validate = (val: any): string => {

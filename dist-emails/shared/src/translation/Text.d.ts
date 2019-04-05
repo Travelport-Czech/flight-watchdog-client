@@ -1,6 +1,6 @@
+import { TranslationEnum } from '@shared/translation/TranslationEnum';
+import { ValidLanguage } from '@shared/validObjects/ValidLanguage';
 import * as React from 'react';
-import { TranslationEnum } from 'shared/translation/TranslationEnum';
-import { ValidLanguage } from 'shared/validObjects/ValidLanguage';
 export declare const initializeTranslator: (changeLanguage: ValidLanguage) => void;
 export declare const getLanguage: () => ValidLanguage;
 export declare const translate: (name: TranslationEnum, params?: string[]) => string;

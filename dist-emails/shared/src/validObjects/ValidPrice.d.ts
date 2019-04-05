@@ -1,4 +1,4 @@
-import { ValidString } from 'shared/validObjects/ValidString';
+import { ValidString } from '@shared/validObjects/ValidString';
 export declare class ValidPrice extends ValidString {
     private readonly amm;
     private readonly curr;

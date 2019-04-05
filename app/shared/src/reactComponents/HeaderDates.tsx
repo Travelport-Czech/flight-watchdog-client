@@ -1,7 +1,7 @@
+import { Text } from '@shared/translation/Text'
+import { TranslationEnum } from '@shared/translation/TranslationEnum'
+import { ValidDate } from '@shared/validObjects/ValidDate'
 import * as React from 'react'
-import { Text } from 'shared/translation/Text'
-import { TranslationEnum } from 'shared/translation/TranslationEnum'
-import { ValidDate } from 'shared/validObjects/ValidDate'
 
 interface Props {
   readonly departure: ValidDate

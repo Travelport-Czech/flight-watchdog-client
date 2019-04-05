@@ -1,9 +1,9 @@
-import * as functions from 'client/functions'
-import { Props } from 'client/Props'
-import { State } from 'client/State'
-import { StepToShow } from 'client/StepsToShow'
-import { WatcherClientCreateParams } from 'client/types/WatcherClientCreateParams'
-import { validateEmail } from 'shared/utils/validateEmail'
+import * as functions from '@client/functions'
+import { Props } from '@client/Props'
+import { State } from '@client/State'
+import { StepToShow } from '@client/StepsToShow'
+import { WatcherClientCreateParams } from '@client/types/WatcherClientCreateParams'
+import { validateEmail } from '@shared/utils/validateEmail'
 
 export const createWatcher = async (
   props: Readonly<Props>,

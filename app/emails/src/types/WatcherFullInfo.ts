@@ -1,7 +1,7 @@
-import { Location } from 'emails/types/Location'
-import { SearchResult } from 'emails/types/SearchResult'
-import { WatcherLinks } from 'emails/types/WatcherLinks'
-import { WatcherParams } from 'emails/types/WatcherParams'
+import { Location } from '@emails/types/Location'
+import { SearchResult } from '@emails/types/SearchResult'
+import { WatcherLinks } from '@emails/types/WatcherLinks'
+import { WatcherParams } from '@emails/types/WatcherParams'
 
 export interface WatcherFullInfo {
   readonly watcher: WatcherParams

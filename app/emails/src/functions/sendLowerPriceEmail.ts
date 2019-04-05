@@ -1,9 +1,9 @@
-import { createLowerPriceEmailRaw } from 'emails/factories/lowerPriceEmailFactory'
-import { WatcherFullInfo } from 'emails/types/WatcherFullInfo'
+import { createLowerPriceEmailRaw } from '@emails/factories/lowerPriceEmailFactory'
+import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
+import { initializeTranslator } from '@shared/translation/Text'
+import { ValidEmail } from '@shared/validObjects/ValidEmail'
+import { ValidPrice } from '@shared/validObjects/ValidPrice'
 import * as React from 'react'
-import { initializeTranslator } from 'shared/translation/Text'
-import { ValidEmail } from 'shared/validObjects/ValidEmail'
-import { ValidPrice } from 'shared/validObjects/ValidPrice'
 
 /**
  * Do not delete this function!

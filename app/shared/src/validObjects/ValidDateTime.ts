@@ -1,6 +1,6 @@
+import { InvalidDateTimeError } from '@shared/errors/InvalidDateTimeError'
+import { ValidDate } from '@shared/validObjects/ValidDate'
 import * as moment from 'moment'
-import { InvalidDateTimeError } from 'shared/errors/InvalidDateTimeError'
-import { ValidDate } from 'shared/validObjects/ValidDate'
 
 const dateRegexp = /^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$/
 export const formatSystemDateTime = 'YYYY-MM-DD HH:mm:ss'

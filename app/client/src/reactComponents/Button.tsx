@@ -1,5 +1,5 @@
+import * as styles from '@shared/reactComponents/styles'
 import * as React from 'react'
-import * as styles from 'shared/reactComponents/styles'
 
 interface Props {
   readonly style?: object

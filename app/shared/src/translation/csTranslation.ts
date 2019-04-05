@@ -1,5 +1,5 @@
-import { TranslationEnum as T } from 'shared/translation/TranslationEnum'
-import { TranslationKeys } from 'shared/translation/TranslationKeys'
+import { TranslationEnum as T } from '@shared/translation/TranslationEnum'
+import { TranslationKeys } from '@shared/translation/TranslationKeys'
 
 // tslint:disable:max-line-length
 export const csTranslation: TranslationKeys = {

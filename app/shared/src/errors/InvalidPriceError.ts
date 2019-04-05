@@ -1,4 +1,4 @@
-import { AppError } from 'shared/errors/AppError'
+import { AppError } from '@shared/errors/AppError'
 
 export class InvalidPriceError extends AppError {
   constructor(value: string) {

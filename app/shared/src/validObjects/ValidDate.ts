@@ -1,10 +1,10 @@
+import { InvalidDateError } from '@shared/errors/InvalidDateError'
+import { Text } from '@shared/translation/Text'
+import { TranslationEnum } from '@shared/translation/TranslationEnum'
+import { getActualDate, getActualMoment } from '@shared/utils/timebased'
 import * as moment from 'moment'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { InvalidDateError } from 'shared/errors/InvalidDateError'
-import { Text } from 'shared/translation/Text'
-import { TranslationEnum } from 'shared/translation/TranslationEnum'
-import { getActualDate, getActualMoment } from 'shared/utils/timebased'
 
 const dateRegexp = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/
 export const formatSystemDate = 'YYYY-MM-DD'

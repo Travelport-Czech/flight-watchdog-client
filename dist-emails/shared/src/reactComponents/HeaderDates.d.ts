@@ -1,5 +1,5 @@
+import { ValidDate } from '@shared/validObjects/ValidDate';
 import * as React from 'react';
-import { ValidDate } from 'shared/validObjects/ValidDate';
 interface Props {
     readonly departure: ValidDate;
     readonly arrival?: ValidDate;

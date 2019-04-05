@@ -33,8 +33,8 @@ const config = {
               'module-resolver',
               {
                 alias: {
-                  emails: './app/emails/src',
-                  shared: './app/shared/src'
+                  '@emails': './app/emails/src',
+                  '@shared': './app/shared/src'
                 },
                 root: ['./src']
               }

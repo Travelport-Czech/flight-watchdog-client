@@ -1,13 +1,13 @@
-import { GraphDot } from 'emails/reactComponents/GraphDot'
-import { GraphLabel } from 'emails/reactComponents/GraphLabel'
-import { GraphPriceLimitDot } from 'emails/reactComponents/GraphPriceLimitDot'
-import { SearchResult } from 'emails/types/SearchResult'
-import { WatcherParams } from 'emails/types/WatcherParams'
+import { GraphDot } from '@emails/reactComponents/GraphDot'
+import { GraphLabel } from '@emails/reactComponents/GraphLabel'
+import { GraphPriceLimitDot } from '@emails/reactComponents/GraphPriceLimitDot'
+import { SearchResult } from '@emails/types/SearchResult'
+import { WatcherParams } from '@emails/types/WatcherParams'
+import { translate } from '@shared/translation/Text'
+import { TranslationEnum } from '@shared/translation/TranslationEnum'
+import { ValidPrice } from '@shared/validObjects/ValidPrice'
 import * as React from 'react'
 import { Area, CartesianGrid, ComposedChart, Legend, Line, XAxis, YAxis } from 'recharts'
-import { translate } from 'shared/translation/Text'
-import { TranslationEnum } from 'shared/translation/TranslationEnum'
-import { ValidPrice } from 'shared/validObjects/ValidPrice'
 
 interface Props {
   readonly searchResults: SearchResult[]

@@ -11,8 +11,8 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "emails/*": ["./src/*"],
-      "shared/*": ["./../shared/src/*"]
+      "@emails/*": ["./src/*"],
+      "@shared/*": ["./../shared/src/*"]
     },
     "pretty": true,
     "declaration": true,

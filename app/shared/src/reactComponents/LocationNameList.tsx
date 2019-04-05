@@ -1,6 +1,6 @@
+import { LocationName } from '@shared/reactComponents/LocationName'
+import { Location } from '@shared/validObjects/Location'
 import * as React from 'react'
-import { LocationName } from 'shared/reactComponents/LocationName'
-import { Location } from 'shared/validObjects/Location'
 
 interface Props {
   readonly locationList: Location[]

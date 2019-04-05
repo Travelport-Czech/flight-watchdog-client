@@ -1,5 +1,5 @@
-import { WatchersGraphPriceHistory } from 'emails/reactComponents/WatchersGraphPriceHistory'
-import { WatcherFullInfo } from 'emails/types/WatcherFullInfo'
+import { WatchersGraphPriceHistory } from '@emails/reactComponents/WatchersGraphPriceHistory'
+import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import * as React from 'react'
 
 interface Props {

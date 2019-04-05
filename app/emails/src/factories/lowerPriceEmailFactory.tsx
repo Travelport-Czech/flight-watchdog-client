@@ -1,13 +1,13 @@
-import { createAttachmentPngRaw, createEmailRawBegin } from 'emails/factories/emailFactory'
-import { emailTemplate, rawEmailEndPart } from 'emails/factories/emailTemplates'
-import { EmailLowerPriceContent } from 'emails/reactComponents/EmailLowerPriceContent'
-import { EmailLowerPriceSubject } from 'emails/reactComponents/EmailLowerPriceSubject'
-import { WatchersGraphPriceHistory } from 'emails/reactComponents/WatchersGraphPriceHistory'
-import { WatcherFullInfo } from 'emails/types/WatcherFullInfo'
+import { createAttachmentPngRaw, createEmailRawBegin } from '@emails/factories/emailFactory'
+import { emailTemplate, rawEmailEndPart } from '@emails/factories/emailTemplates'
+import { EmailLowerPriceContent } from '@emails/reactComponents/EmailLowerPriceContent'
+import { EmailLowerPriceSubject } from '@emails/reactComponents/EmailLowerPriceSubject'
+import { WatchersGraphPriceHistory } from '@emails/reactComponents/WatchersGraphPriceHistory'
+import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
+import { ValidEmail } from '@shared/validObjects/ValidEmail'
+import { ValidPrice } from '@shared/validObjects/ValidPrice'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { ValidEmail } from 'shared/validObjects/ValidEmail'
-import { ValidPrice } from 'shared/validObjects/ValidPrice'
 
 export const createLowerPriceEmailRaw = async (
   createImage: (reactElement: React.ReactElement<{}>, width: number, height: number) => Promise<string>,

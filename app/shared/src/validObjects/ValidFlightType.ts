@@ -1,5 +1,5 @@
-import { AppError } from 'shared/errors/AppError'
-import { ValidString } from 'shared/validObjects/ValidString'
+import { AppError } from '@shared/errors/AppError'
+import { ValidString } from '@shared/validObjects/ValidString'
 
 const validate = (val: string): 'return' | 'oneway' => {
   if (val === 'return') {

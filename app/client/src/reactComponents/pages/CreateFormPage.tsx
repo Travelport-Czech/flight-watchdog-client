@@ -1,13 +1,13 @@
-import { Button } from 'client/reactComponents/Button'
-import { EmailInput } from 'client/reactComponents/EmailInput'
-import { OpenedWindow } from 'client/reactComponents/OpenedWindow'
-import { FlightParams } from 'client/types/FlightParams'
+import { Button } from '@client/reactComponents/Button'
+import { EmailInput } from '@client/reactComponents/EmailInput'
+import { OpenedWindow } from '@client/reactComponents/OpenedWindow'
+import { FlightParams } from '@client/types/FlightParams'
+import * as styles from '@shared/reactComponents/styles'
+import { Text } from '@shared/translation/Text'
+import { TranslationEnum } from '@shared/translation/TranslationEnum'
+import { validateEmail } from '@shared/utils/validateEmail'
+import { ValidPrice } from '@shared/validObjects/ValidPrice'
 import * as React from 'react'
-import * as styles from 'shared/reactComponents/styles'
-import { Text } from 'shared/translation/Text'
-import { TranslationEnum } from 'shared/translation/TranslationEnum'
-import { validateEmail } from 'shared/utils/validateEmail'
-import { ValidPrice } from 'shared/validObjects/ValidPrice'
 
 interface Props {
   readonly email: string

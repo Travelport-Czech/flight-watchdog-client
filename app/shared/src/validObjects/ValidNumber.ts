@@ -1,4 +1,4 @@
-import { InvalidNumberError } from 'shared/errors/InvalidNumberError'
+import { InvalidNumberError } from '@shared/errors/InvalidNumberError'
 
 // tslint:disable-next-line:no-any
 const validate = (val: any): number => {

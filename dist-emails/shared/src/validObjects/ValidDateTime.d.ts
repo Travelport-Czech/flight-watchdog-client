@@ -1,5 +1,5 @@
+import { ValidDate } from '@shared/validObjects/ValidDate';
 import * as moment from 'moment';
-import { ValidDate } from 'shared/validObjects/ValidDate';
 export declare const formatSystemDateTime = "YYYY-MM-DD HH:mm:ss";
 export declare class ValidDateTime {
     private readonly val;

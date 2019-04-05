@@ -1,8 +1,8 @@
-import { AppConfig } from 'client/types/AppConfig'
-import { parseGolUrl } from 'client/utils/parseGolUrl'
-import { ValidEmail } from 'shared/validObjects/ValidEmail'
-import { ValidLanguage } from 'shared/validObjects/ValidLanguage'
-import { ValidPrice } from 'shared/validObjects/ValidPrice'
+import { AppConfig } from '@client/types/AppConfig'
+import { parseGolUrl } from '@client/utils/parseGolUrl'
+import { ValidEmail } from '@shared/validObjects/ValidEmail'
+import { ValidLanguage } from '@shared/validObjects/ValidLanguage'
+import { ValidPrice } from '@shared/validObjects/ValidPrice'
 
 export const createAppConfigFromGolFe = (doc: Document, url: string): AppConfig | undefined => {
   const appConfigPartFromUrl = parseGolUrl(url)

@@ -1,8 +1,8 @@
+import { App } from '@client/App'
+import { isValidClientSettings } from '@client/functions'
+import { createAppConfigFromGolFe } from '@client/utils/createAppConfigFromGolFe'
+import { createTagManagerSnippet } from '@client/utils/createTagManagerSnippet'
 import { BrowserClient, Hub, Scope } from '@sentry/browser'
-import { App } from 'client/App'
-import { isValidClientSettings } from 'client/functions'
-import { createAppConfigFromGolFe } from 'client/utils/createAppConfigFromGolFe'
-import { createTagManagerSnippet } from 'client/utils/createTagManagerSnippet'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 

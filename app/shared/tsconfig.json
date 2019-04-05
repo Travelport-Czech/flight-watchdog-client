@@ -10,7 +10,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "shared/*": ["./src/*"]
+      "@shared/*": ["./src/*"]
     },
     "pretty": true,
     "declaration": true,

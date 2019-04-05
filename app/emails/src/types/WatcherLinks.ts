@@ -1,4 +1,4 @@
-import { ValidUrl } from 'shared/validObjects/ValidUrl'
+import { ValidUrl } from '@shared/validObjects/ValidUrl'
 
 export interface WatcherLinks {
   readonly resultLink: ValidUrl

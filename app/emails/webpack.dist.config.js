@@ -9,6 +9,28 @@ let entry = {
   index: ['@babel/polyfill', sourceFile]
 }
 
+const babelOptions = {
+  plugins: [
+    '@babel/proposal-class-properties',
+    '@babel/proposal-object-rest-spread',
+    [
+      'module-resolver',
+      {
+        alias: {
+          '@emails': './app/emails/src',
+          '@shared': './app/shared/src'
+        },
+        root: ['.']
+      }
+    ]
+  ],
+    presets: [
+    ['@babel/preset-env', { targets: { node: '8.10' } }],
+    '@babel/typescript',
+    '@babel/preset-react'
+  ],
+}
+
 const config = {
   devtool: 'source-map',
   entry: entry,
@@ -16,9 +38,12 @@ const config = {
   module: {
     rules: [
       {
-        exclude: /node_modules/,
-        test: /\.tsx?$/,
-        use: 'ts-loader'
+        loader: 'babel-loader?cacheDirectory=true',
+        options: babelOptions,
+        test: /\.(ts)x?$/
+      },
+      {
+        loader: 'ts-loader'
       }
     ]
   },

@@ -1,5 +1,5 @@
+import { ValidPrice } from '@shared/validObjects/ValidPrice';
 import * as React from 'react';
-import { ValidPrice } from 'shared/validObjects/ValidPrice';
 interface Props {
     readonly x?: number;
     readonly y?: number;

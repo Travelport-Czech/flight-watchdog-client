@@ -1,6 +1,6 @@
-import { AppError } from 'shared/errors/AppError'
-import { InvalidUrlError } from 'shared/errors/InvalidUrlError'
-import { ValidString } from 'shared/validObjects/ValidString'
+import { AppError } from '@shared/errors/AppError'
+import { InvalidUrlError } from '@shared/errors/InvalidUrlError'
+import { ValidString } from '@shared/validObjects/ValidString'
 import { isWebUri } from 'valid-url'
 
 const validate = (val: string): string => {

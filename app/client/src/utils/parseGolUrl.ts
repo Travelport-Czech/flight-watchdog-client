@@ -1,7 +1,7 @@
-import { ValidDate } from 'shared/validObjects/ValidDate'
-import { ValidEmail } from 'shared/validObjects/ValidEmail'
-import { ValidLocationCodeList } from 'shared/validObjects/ValidLocationCodeList'
-import { ValidWatcherId } from 'shared/validObjects/ValidWatcherId'
+import { ValidDate } from '@shared/validObjects/ValidDate'
+import { ValidEmail } from '@shared/validObjects/ValidEmail'
+import { ValidLocationCodeList } from '@shared/validObjects/ValidLocationCodeList'
+import { ValidWatcherId } from '@shared/validObjects/ValidWatcherId'
 
 const getUrlParameterValue = (url: string, key: string): string => {
   const urlParts = url.split('&')

@@ -1,4 +1,4 @@
-import { WatcherFullInfo } from 'emails/types/WatcherFullInfo';
+import { WatcherFullInfo } from '@emails/types/WatcherFullInfo';
 import * as React from 'react';
 interface Props {
     readonly watcherFullInfo: WatcherFullInfo;

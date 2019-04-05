@@ -1,10 +1,10 @@
+import { AppError } from '@shared/errors/AppError'
+import { InvalidPriceError } from '@shared/errors/InvalidPriceError'
+import { PriceOperationWithDifferentCurrencyError } from '@shared/errors/PriceOperationWithDifferentCurrencyError'
+import { ValidNumber } from '@shared/validObjects/ValidNumber'
+import { ValidString } from '@shared/validObjects/ValidString'
 import * as format from 'number-format.js'
 import * as numeral from 'numeral'
-import { AppError } from 'shared/errors/AppError'
-import { InvalidPriceError } from 'shared/errors/InvalidPriceError'
-import { PriceOperationWithDifferentCurrencyError } from 'shared/errors/PriceOperationWithDifferentCurrencyError'
-import { ValidNumber } from 'shared/validObjects/ValidNumber'
-import { ValidString } from 'shared/validObjects/ValidString'
 
 const inputRegexp = new RegExp(/^([0-9]{1,3}\s?)*\s([A-Z]{3})$/)
 

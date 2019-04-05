@@ -1,13 +1,13 @@
 // tslint:disable:no-import-side-effect
+import { AppLogicError } from '@shared/errors/AppLogicError'
+import { csTranslation } from '@shared/translation/csTranslation'
+import { enTranslation } from '@shared/translation/enTranslation'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
+import { TranslationEnum } from '@shared/translation/TranslationEnum'
+import { TranslationKeys } from '@shared/translation/TranslationKeys'
+import { ValidLanguage } from '@shared/validObjects/ValidLanguage'
 import * as moment from 'moment'
 import * as React from 'react'
-import { AppLogicError } from 'shared/errors/AppLogicError'
-import { csTranslation } from 'shared/translation/csTranslation'
-import { enTranslation } from 'shared/translation/enTranslation'
-import { SupportedLanguageEnum } from 'shared/translation/SupportedLanguageEnum'
-import { TranslationEnum } from 'shared/translation/TranslationEnum'
-import { TranslationKeys } from 'shared/translation/TranslationKeys'
-import { ValidLanguage } from 'shared/validObjects/ValidLanguage'
 
 // tslint:disable-next-line:no-let
 let language: ValidLanguage | undefined

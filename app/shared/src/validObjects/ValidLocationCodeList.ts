@@ -1,7 +1,7 @@
-import { AppError } from 'shared/errors/AppError'
-import { InvalidLocationError } from 'shared/errors/InvalidLocationError'
-import { ValidLocationCode } from 'shared/validObjects/ValidLocationCode'
-import { ValidString } from 'shared/validObjects/ValidString'
+import { AppError } from '@shared/errors/AppError'
+import { InvalidLocationError } from '@shared/errors/InvalidLocationError'
+import { ValidLocationCode } from '@shared/validObjects/ValidLocationCode'
+import { ValidString } from '@shared/validObjects/ValidString'
 
 const inputRegexp = new RegExp(/^[A-Z]{3}(\/[A-Z]{3})*$/)
 

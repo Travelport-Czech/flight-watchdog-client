@@ -46,8 +46,8 @@ const clientConfig = {
               'module-resolver',
               {
                 alias: {
-                  client: './app/client/src',
-                  shared: './app/shared/src'
+                  '@client': './app/client/src',
+                  '@shared': './app/shared/src'
                 },
                 root: ['./src']
               }

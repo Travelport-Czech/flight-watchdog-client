@@ -1,7 +1,7 @@
-import * as functions from 'client/functions'
-import { Props } from 'client/Props'
-import { State } from 'client/State'
-import { ValidEmail } from 'shared/validObjects/ValidEmail'
+import * as functions from '@client/functions'
+import { Props } from '@client/Props'
+import { State } from '@client/State'
+import { ValidEmail } from '@shared/validObjects/ValidEmail'
 
 export const deleteWatcherByEmail = async (props: Readonly<Props>, state: Readonly<State>): Promise<boolean> => {
   const apiUrl = props.clientSettings.apiUrl

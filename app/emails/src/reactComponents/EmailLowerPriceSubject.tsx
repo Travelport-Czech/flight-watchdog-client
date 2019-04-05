@@ -1,7 +1,7 @@
+import { Text } from '@shared/translation/Text'
+import { TranslationEnum } from '@shared/translation/TranslationEnum'
+import { ValidLocationCodeList } from '@shared/validObjects/ValidLocationCodeList'
 import * as React from 'react'
-import { Text } from 'shared/translation/Text'
-import { TranslationEnum } from 'shared/translation/TranslationEnum'
-import { ValidLocationCodeList } from 'shared/validObjects/ValidLocationCodeList'
 
 interface Props {
   readonly origin: ValidLocationCodeList

@@ -12,8 +12,8 @@
   ],
   "jsRules": {},
   "rules": {
-    "no-implicit-dependencies": [true, "dev", ["shared"]],
-    "no-submodule-imports": [true, "shared", "react-dom", "moment"],
+    "no-implicit-dependencies": [true, "dev", ["@shared"]],
+    "no-submodule-imports": [true, "@shared", "react-dom", "moment"],
     "typedef": [false, "variable-declaration"], // Typedef enforcement for variables that contain a function => duplicate function declaration
     "no-use-before-declare": false, // useful only for var declaration
     "only-arrow-functions": true,

@@ -1,12 +1,12 @@
-import { EmailButton } from 'emails/reactComponents/EmailButton'
-import { EmailLowerPriceHeader } from 'emails/reactComponents/EmailLowerPriceHeader'
-import { WatcherPriceHistory } from 'emails/reactComponents/WatcherPriceHistory'
-import { WatcherFullInfo } from 'emails/types/WatcherFullInfo'
+import { EmailButton } from '@emails/reactComponents/EmailButton'
+import { EmailLowerPriceHeader } from '@emails/reactComponents/EmailLowerPriceHeader'
+import { WatcherPriceHistory } from '@emails/reactComponents/WatcherPriceHistory'
+import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
+import * as styles from '@shared/reactComponents/styles'
+import { Text } from '@shared/translation/Text'
+import { TranslationEnum } from '@shared/translation/TranslationEnum'
+import { ValidPrice } from '@shared/validObjects/ValidPrice'
 import * as React from 'react'
-import * as styles from 'shared/reactComponents/styles'
-import { Text } from 'shared/translation/Text'
-import { TranslationEnum } from 'shared/translation/TranslationEnum'
-import { ValidPrice } from 'shared/validObjects/ValidPrice'
 
 interface Props {
   readonly watcherFullInfo: WatcherFullInfo

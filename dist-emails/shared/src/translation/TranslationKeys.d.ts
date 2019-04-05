@@ -1,4 +1,4 @@
-import { TranslationEnum as T } from 'shared/translation/TranslationEnum';
+import { TranslationEnum as T } from '@shared/translation/TranslationEnum';
 export interface TranslationKeys {
     readonly [T.FormatDate]: string;
     readonly [T.FormatDateDayMonth]: string;

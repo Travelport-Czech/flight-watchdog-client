@@ -1,8 +1,8 @@
-import { rawEmailAttachmentPartTemplate, rawEmailTemplate } from 'emails/factories/emailTemplates'
-import { EmailNoReplyName } from 'emails/reactComponents/EmailNoReplyName'
+import { rawEmailAttachmentPartTemplate, rawEmailTemplate } from '@emails/factories/emailTemplates'
+import { EmailNoReplyName } from '@emails/reactComponents/EmailNoReplyName'
+import { ValidEmail } from '@shared/validObjects/ValidEmail'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { ValidEmail } from 'shared/validObjects/ValidEmail'
 
 export const createEmailRawBegin = (
   subject: string,

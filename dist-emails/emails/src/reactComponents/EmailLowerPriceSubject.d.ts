@@ -1,5 +1,5 @@
+import { ValidLocationCodeList } from '@shared/validObjects/ValidLocationCodeList';
 import * as React from 'react';
-import { ValidLocationCodeList } from 'shared/validObjects/ValidLocationCodeList';
 interface Props {
     readonly origin: ValidLocationCodeList;
     readonly destination: ValidLocationCodeList;

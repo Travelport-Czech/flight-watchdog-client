@@ -1,7 +1,7 @@
-import { SearchResult } from 'emails/types/SearchResult';
-import { WatcherParams } from 'emails/types/WatcherParams';
+import { SearchResult } from '@emails/types/SearchResult';
+import { WatcherParams } from '@emails/types/WatcherParams';
+import { ValidPrice } from '@shared/validObjects/ValidPrice';
 import * as React from 'react';
-import { ValidPrice } from 'shared/validObjects/ValidPrice';
 interface Props {
     readonly searchResults: SearchResult[];
     readonly priceLimit: ValidPrice;

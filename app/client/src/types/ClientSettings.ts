@@ -1,6 +1,6 @@
-import { StepToShow } from 'client/StepsToShow'
-import { ValidNumber } from 'shared/validObjects/ValidNumber'
-import { ValidString } from 'shared/validObjects/ValidString'
+import { StepToShow } from '@client/StepsToShow'
+import { ValidNumber } from '@shared/validObjects/ValidNumber'
+import { ValidString } from '@shared/validObjects/ValidString'
 
 export interface ClientSettings {
   readonly token: string

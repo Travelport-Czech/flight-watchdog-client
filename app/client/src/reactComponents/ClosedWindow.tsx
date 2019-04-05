@@ -1,8 +1,8 @@
-import { Consts } from 'client/Consts'
+import { Consts } from '@client/Consts'
+import * as styles from '@shared/reactComponents/styles'
+import { Text } from '@shared/translation/Text'
+import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import * as React from 'react'
-import * as styles from 'shared/reactComponents/styles'
-import { Text } from 'shared/translation/Text'
-import { TranslationEnum } from 'shared/translation/TranslationEnum'
 
 interface Props {
   handleOpen(event: React.MouseEvent<HTMLInputElement>): void

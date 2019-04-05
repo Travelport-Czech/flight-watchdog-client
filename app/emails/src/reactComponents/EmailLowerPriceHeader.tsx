@@ -1,10 +1,10 @@
-import { WatcherFullInfo } from 'emails/types/WatcherFullInfo'
+import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
+import { HeaderDates } from '@shared/reactComponents/HeaderDates'
+import { LocationNameList } from '@shared/reactComponents/LocationNameList'
+import * as styles from '@shared/reactComponents/styles'
+import { Text } from '@shared/translation/Text'
+import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import * as React from 'react'
-import { HeaderDates } from 'shared/reactComponents/HeaderDates'
-import { LocationNameList } from 'shared/reactComponents/LocationNameList'
-import * as styles from 'shared/reactComponents/styles'
-import { Text } from 'shared/translation/Text'
-import { TranslationEnum } from 'shared/translation/TranslationEnum'
 
 interface Props {
   readonly watcherFullInfo: WatcherFullInfo
