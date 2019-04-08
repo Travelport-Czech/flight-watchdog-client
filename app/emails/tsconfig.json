@@ -5,10 +5,7 @@
     "sourceMap": true,
     "strict": true,
     "moduleResolution": "node",
-    "rootDirs": [
-      "./src",
-      "../shared/src"
-    ],
+    "rootDir": "../../app",
     "baseUrl": ".",
     "paths": {
       "@emails/*": ["./src/*"],
@@ -26,7 +23,8 @@
     "outDir": "../../.dist-emails",
     "jsx": "react"
   },
-  "files": [
-    "./src/index.ts"
+  "include": [
+    "./src/**/*",
+    "../shared/src/**/*"
   ]
 }
