@@ -1,6 +1,6 @@
 {
   "name": "@ceesystems/flight-watchdog-client",
-  "version": "1.4.15",
+  "version": "1.4.16",
   "description": "CEE Systems Watchdog Client",
   "main": ".dist-emails/emails/src/index.js",
   "types": ".dist-emails/emails/src/index.d.ts",
@@ -8,7 +8,7 @@
     "node": ">=8.10"
   },
   "scripts": {
-    "prepare": "tsc --project app/emails/tsconfig.json && npm run build-emails-prod-types",
+    "postinstall": "npm run build-emails-prod",
     "lint-client": "tsc --project app/client/tsconfig.json && tslint --project app/client/tsconfig.json --config app/client/tslint.json",
     "lint-emails": "tsc --project app/emails/tsconfig.json && tslint --project app/emails/tsconfig.json --config app/emails/tslint.json",
     "autofix": "prettier src/**/* --write --single-quote --no-semi --print-width 120 --end-of-line lf",
