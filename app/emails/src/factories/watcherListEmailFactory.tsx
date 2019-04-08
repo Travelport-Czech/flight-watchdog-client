@@ -8,7 +8,7 @@ import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
 export const createWatcherListEmailRaw = async (
-  createImage: (reactElement: React.ReactElement<{}>, width: number, height: number) => Promise<string>,
+  createImage: (html: string, width: number, height: number) => Promise<string>,
   watcherFullInfoList: WatcherFullInfo[],
   agencyParams: AgencyParams
 ): Promise<string> => {

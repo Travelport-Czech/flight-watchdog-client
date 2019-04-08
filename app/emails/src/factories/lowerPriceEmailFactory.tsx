@@ -9,7 +9,7 @@ import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
 export const createLowerPriceEmailRaw = async (
-  createImage: (reactElement: React.ReactElement<{}>, width: number, height: number) => Promise<string>,
+  createImage: (html: string, width: number, height: number) => Promise<string>,
   watcherFullInfo: WatcherFullInfo,
   agencyParams: AgencyParams,
   price: ValidPrice

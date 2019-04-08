@@ -53,3 +53,16 @@ You can create the own modification of the Client. If you choose, follow next pr
 1. Change the version number in in package.json (`version` attribute)
 1. Create a new tag (version number) on repository (on GitHub create a release)
 1. Notify CEE Travelport with the version number to release
+
+## Translations
+
+* Generate the excel table to the file `translations.xlsx`:
+```
+> npm run lang-export
+``` 
+* Do modifications in the file `translations.xlsx`
+* Apply modifications with:
+```
+> npm run lang-import
+```
+* Commit and push changes to the git

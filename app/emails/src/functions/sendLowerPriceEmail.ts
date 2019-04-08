@@ -3,7 +3,6 @@ import { AgencyParams } from '@emails/types/AgencyParams'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { initializeTranslator } from '@shared/translation/Text'
 import { ValidPrice } from '@shared/validObjects/ValidPrice'
-import * as React from 'react'
 
 /**
  * Do not delete this function!
@@ -12,7 +11,7 @@ import * as React from 'react'
  */
 export const sendLowerPriceEmail = async (
   sendEmail: (content: string) => Promise<void>,
-  createImage: (reactElement: React.ReactElement<{}>, width: number, height: number) => Promise<string>,
+  createImage: (html: string, width: number, height: number) => Promise<string>,
   watcherFullInfo: WatcherFullInfo,
   agencyParams: AgencyParams,
   price: ValidPrice
