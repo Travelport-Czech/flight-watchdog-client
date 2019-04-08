@@ -1,4 +1,4 @@
-import { golUrlReturn, setOtpions } from '../support/helper'
+import { golUrlReturn, setOtpions } from '../../support/helper'
 
 const url = golUrlReturn + '&flightWatchdogDelete=generate-0000-0000-0000-000000000001&email=email@email.cz'
 

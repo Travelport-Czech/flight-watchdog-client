@@ -1,4 +1,4 @@
-import {golUrlReturn, golUrlOneway, setOtpions, normalizeText} from '../support/helper'
+import {golUrlReturn, golUrlOneway, setOtpions, normalizeText} from '../../support/helper'
 
 const createButtonSelector = '#flight-watchdog-window-clicked-create-watcher'
 

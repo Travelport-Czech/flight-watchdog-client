@@ -1,4 +1,4 @@
-import { golUrlReturn, setOtpions } from '../support/helper'
+import { golUrlReturn, setOtpions } from '../../support/helper'
 
 const url = golUrlReturn + '&flightWatchdogContinue=email@email.cz'
 

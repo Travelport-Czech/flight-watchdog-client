@@ -1,5 +1,7 @@
 import { rawEmailAttachmentPartTemplate, rawEmailTemplate } from '@emails/factories/emailTemplates'
 import { EmailNoReplyName } from '@emails/reactComponents/EmailNoReplyName'
+import { WatchersGraphPriceHistory } from '@emails/reactComponents/WatchersGraphPriceHistory'
+import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { ValidEmail } from '@shared/validObjects/ValidEmail'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
@@ -27,7 +29,7 @@ export const createEmailRawBegin = (
   return raw
 }
 
-export const createAttachmentPngRaw = (name: string, contentBase64: string) => {
+const createAttachmentPngRaw = (name: string, contentBase64: string) => {
   // tslint:disable-next-line:no-let
   let raw: string
   const content = contentBase64.replace(/([^\0]{76})/g, '$1\n') // breaks long lines
@@ -35,4 +37,36 @@ export const createAttachmentPngRaw = (name: string, contentBase64: string) => {
   raw = raw.replace(/\{name\}/g, name)
 
   return raw
+}
+
+export const createAttachmentRawFromWatcherList = async (
+  createImage: (reactElement: React.ReactElement<{}>, width: number, height: number) => Promise<string>,
+  watcherFullInfoList: WatcherFullInfo[]
+): Promise<string> => {
+  const promiseList = watcherFullInfoList.map(
+    async (watcherFullInfo: WatcherFullInfo): Promise<string> => {
+      return createAttachmentRawFromWatcher(createImage, watcherFullInfo)
+    }
+  )
+  const results = await Promise.all(promiseList)
+
+  return results.join('')
+}
+
+export const createAttachmentRawFromWatcher = async (
+  createImage: (reactElement: React.ReactElement<{}>, width: number, height: number) => Promise<string>,
+  watcherFullInfo: WatcherFullInfo
+): Promise<string> => {
+  const image = await createImage(
+    <WatchersGraphPriceHistory
+      searchResults={watcherFullInfo.searchResults}
+      priceLimit={watcherFullInfo.watcher.priceLimit}
+      watcher={watcherFullInfo.watcher}
+      absolutePosition
+    />,
+    600,
+    200
+  )
+
+  return createAttachmentPngRaw(watcherFullInfo.watcher.id.toString(), image)
 }

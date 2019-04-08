@@ -27,7 +27,7 @@
     "mocha-no-side-effect-code": false,
     // Immutability rules
     "readonly-keyword": true,
-    "no-let": true,
+    "no-let": false,
     "no-object-mutation": true,
     "no-delete": true,
     "prettier": [

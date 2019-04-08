@@ -1,4 +1,4 @@
-import { normalizeText} from '../support/helper'
+import { normalizeText} from '../../support/helper'
 
 describe('Lower Price Email', function() {
     it('Default', function() {

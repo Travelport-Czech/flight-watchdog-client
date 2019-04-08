@@ -66,6 +66,14 @@ const initServer = async () => {
     }
   })
 
+  server.route({
+    method: 'GET',
+    path: '/marketingEmail',
+    handler: function(request, h) {
+      return h.file(rootWebDir + '/marketingEmail.html')
+    }
+  })
+
   return server
 }
 

@@ -4,17 +4,18 @@ import { LocationNameList } from '@shared/reactComponents/LocationNameList'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
+import { ValidUrl } from '@shared/validObjects/ValidUrl'
 import * as React from 'react'
 
 interface Props {
   readonly watcherFullInfo: WatcherFullInfo
+  readonly frontendUrl: ValidUrl
 }
 
 export class EmailLowerPriceHeader extends React.Component<Props> {
   public render() {
-    const { watcherFullInfo } = this.props
-    const { watcher, watcherLinks, originLocationList, destinationLocationList } = watcherFullInfo
-    const { frontendUrl } = watcherLinks
+    const { watcherFullInfo, frontendUrl } = this.props
+    const { watcher, originLocationList, destinationLocationList } = watcherFullInfo
     const destinationTextKey = watcher.flightType.isReturn()
       ? TranslationEnum.ClientDestinationsReturn
       : TranslationEnum.ClientDestinationsOneway
