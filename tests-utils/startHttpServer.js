@@ -74,6 +74,14 @@ const initServer = async () => {
     }
   })
 
+  server.route({
+    method: 'GET',
+    path: '/watcherListEmail',
+    handler: function(request, h) {
+      return h.file(rootWebDir + '/watcherListEmail.html')
+    }
+  })
+
   return server
 }
 

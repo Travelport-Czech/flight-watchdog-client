@@ -1,5 +1,6 @@
 import { createLowerPriceEmail } from '@emails/factories/lowerPriceEmailFactory'
 import { createMarketingEmail } from '@emails/factories/marketingEmailFactory'
+import { createWatchersListEmail } from '@emails/factories/watcherListEmailFactory'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { WatcherParams } from '@emails/types/WatcherParams'
@@ -31,6 +32,10 @@ export const showEmail = async (emailName: string) => {
     content = await createMarketingEmailContent(lang)
   }
 
+  if (emailName === 'watcher-list') {
+    content = await createWatcherListEmailContent(lang)
+  }
+
   document.open()
   // tslint:disable-next-line:no-document-write
   document.write(content)
@@ -43,8 +48,7 @@ const agencySettings: AgencyParams = {
   frontendUrl: new ValidUrl('https://example.cz')
 }
 
-const createLowerPriceEmailContent = async (lang: ValidLanguage): Promise<string> => {
-  const price = new ValidPrice('5000 CZK')
+const createWatcherFullInfo = (lang: ValidLanguage): WatcherFullInfo => {
   const watcher: WatcherParams = {
     arrival: new ValidDate('2018-12-25'),
     created: new ValidDateTime('2018-09-19 12:00:00'),
@@ -68,7 +72,7 @@ const createLowerPriceEmailContent = async (lang: ValidLanguage): Promise<string
     flightType: new ValidFlightType('return')
   }
 
-  const watcherFullInfo: WatcherFullInfo = {
+  return {
     destinationLocationList: [
       {
         code: new ValidLocationCode('PRG'),
@@ -101,69 +105,26 @@ const createLowerPriceEmailContent = async (lang: ValidLanguage): Promise<string
       }
     ]
   }
+}
+
+const createLowerPriceEmailContent = async (lang: ValidLanguage): Promise<string> => {
+  const price = new ValidPrice('5000 CZK')
+
+  const watcherFullInfo = createWatcherFullInfo(lang)
 
   return createLowerPriceEmail(watcherFullInfo, agencySettings, price, true)
 }
 
 const createMarketingEmailContent = async (lang: ValidLanguage): Promise<string> => {
-  const watcher: WatcherParams = {
-    arrival: new ValidDate('2018-12-25'),
-    created: new ValidDateTime('2018-09-19 12:00:00'),
-    departure: new ValidDate('2018-12-16'),
-    destination: new ValidLocationCodeList('LON'),
-    email: new ValidEmail('none@email.cz'),
-    id: new ValidWatcherId('example'),
-    lang,
-    origin: new ValidLocationCodeList('PRG'),
-    priceLimit: new ValidPrice('6000 CZK'),
-    flightType: new ValidFlightType('return')
-  }
-
-  const searchResult = {
-    price: new ValidPrice('4500 CZK'),
-    created: new ValidDateTime('2018-09-20 12:00:00'),
-    origin: new ValidLocationCodeList('PRG'),
-    destination: new ValidLocationCodeList('LON'),
-    departure: new ValidDate('2018-12-16'),
-    arrival: new ValidDate('2018-12-25'),
-    flightType: new ValidFlightType('return')
-  }
-
-  const watcherFullInfo: WatcherFullInfo = {
-    destinationLocationList: [
-      {
-        code: new ValidLocationCode('PRG'),
-        name: 'Praha'
-      }
-    ],
-    originLocationList: [
-      {
-        code: new ValidLocationCode('LON'),
-        name: 'Londýn'
-      }
-    ],
-    watcher,
-    searchResults: [
-      searchResult,
-      {
-        ...searchResult,
-        price: new ValidPrice('5812 CZK'),
-        created: new ValidDateTime('2018-09-21 12:00:00')
-      },
-      {
-        ...searchResult,
-        price: new ValidPrice('6321 CZK'),
-        created: new ValidDateTime('2018-09-22 12:00:00')
-      },
-      {
-        ...searchResult,
-        price: new ValidPrice('5000 CZK'),
-        created: new ValidDateTime('2018-09-23 12:00:00')
-      }
-    ]
-  }
+  const watcherFullInfo = createWatcherFullInfo(lang)
 
   return createMarketingEmail([watcherFullInfo, watcherFullInfo], agencySettings, true)
+}
+
+const createWatcherListEmailContent = async (lang: ValidLanguage): Promise<string> => {
+  const watcherFullInfo = createWatcherFullInfo(lang)
+
+  return createWatchersListEmail([watcherFullInfo, watcherFullInfo], agencySettings, true)
 }
 
 // set as global function
