@@ -12,7 +12,8 @@
     "baseUrl": ".",
     "paths": {
       "@emails/*": ["./src/*"],
-      "@shared/*": ["./../shared/src/*"]
+      "@shared/*": ["./../shared/src/*"],
+      "*" : ["./../../node_modules/@types/*", "*"]
     },
     "pretty": true,
     "declaration": true,
