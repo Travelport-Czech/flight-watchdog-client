@@ -84,7 +84,7 @@
     "ts-loader": "^5.3.3",
     "utf-8-validate": "5.0.2",
     "uuid": "3.3.2",
-    "@ceesystems/valid-objects-ts": "https://github.com/Travelport-Czech/valid-objects-ts.git#7883ea669b55bfd81da14e35f06477724e0ea8ac",
+    "@ceesystems/valid-objects-ts": "https://github.com/Travelport-Czech/valid-objects-ts.git#v1.0.0",
     "valid-url": "1.0.9",
     "webpack": "4.22.0",
     "webpack-cli": "3.1.2"
