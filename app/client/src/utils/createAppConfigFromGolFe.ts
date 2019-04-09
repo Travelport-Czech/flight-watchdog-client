@@ -1,8 +1,7 @@
+import { ValidEmail, ValidLanguage, ValidPrice } from '@ceesystems/valid-objects-ts'
 import { AppConfig } from '@client/types/AppConfig'
 import { parseGolUrl } from '@client/utils/parseGolUrl'
-import { ValidEmail } from '@shared/validObjects/ValidEmail'
-import { ValidLanguage } from '@shared/validObjects/ValidLanguage'
-import { ValidPrice } from '@shared/validObjects/ValidPrice'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 export const createAppConfigFromGolFe = (doc: Document, url: string): AppConfig | undefined => {
   const appConfigPartFromUrl = parseGolUrl(url)
@@ -26,7 +25,7 @@ export const createAppConfigFromGolFe = (doc: Document, url: string): AppConfig 
   }
 
   const langElement = document.getElementsByTagName('html').item(0)
-  const lang = new ValidLanguage(langElement && langElement.getAttribute('lang'))
+  const lang = new ValidLanguage(langElement && langElement.getAttribute('lang'), Object.values(SupportedLanguageEnum))
 
   return {
     ...appConfigPartFromUrl,
@@ -40,7 +39,9 @@ const getCustomerEmail = (doc: Document): ValidEmail | undefined => {
   try {
     const userEmailHtmlElement = <HTMLInputElement | null>doc.getElementById('fiUsername')
 
-    return userEmailHtmlElement && userEmailHtmlElement.value ? new ValidEmail(userEmailHtmlElement.value) : undefined
+    return userEmailHtmlElement && userEmailHtmlElement.value
+      ? new ValidEmail(userEmailHtmlElement.value, ['+'])
+      : undefined
   } catch (err) {
     return
   }

@@ -1,4 +1,4 @@
-import { ValidUrl } from '@shared/validObjects/ValidUrl'
+import { ValidUrl } from '@ceesystems/valid-objects-ts'
 
 export interface WatcherLinks {
   readonly resultLink: ValidUrl

@@ -1,5 +1,5 @@
 import { StepToShow } from '@client/StepsToShow'
-import { Location } from '@shared/validObjects/Location'
+import { Location } from '@shared/types/Location'
 
 export interface State {
   readonly stepToShow: StepToShow

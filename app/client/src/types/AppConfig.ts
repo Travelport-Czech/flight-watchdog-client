@@ -1,18 +1,20 @@
-import { ValidDate } from '@shared/validObjects/ValidDate'
-import { ValidEmail } from '@shared/validObjects/ValidEmail'
-import { ValidLanguage } from '@shared/validObjects/ValidLanguage'
-import { ValidLocationCodeList } from '@shared/validObjects/ValidLocationCodeList'
-import { ValidPrice } from '@shared/validObjects/ValidPrice'
-import { ValidWatcherId } from '@shared/validObjects/ValidWatcherId'
+import {
+  ValidDate,
+  ValidEmail,
+  ValidIATALocationList,
+  ValidLanguage,
+  ValidPrice,
+  ValidString
+} from '@ceesystems/valid-objects-ts'
 
 export interface AppConfig {
   readonly flightType: 'return' | 'oneway'
-  readonly origin: ValidLocationCodeList
-  readonly destination: ValidLocationCodeList
+  readonly origin: ValidIATALocationList
+  readonly destination: ValidIATALocationList
   readonly departure: ValidDate
   readonly arrival?: ValidDate
   readonly emailToContinueWatching?: ValidEmail
-  readonly watcherIdToDelete?: ValidWatcherId
+  readonly watcherIdToDelete?: ValidString
   readonly emailForWatcherDelete?: ValidEmail
   readonly customerEmail?: ValidEmail
   readonly lowestPrice: ValidPrice

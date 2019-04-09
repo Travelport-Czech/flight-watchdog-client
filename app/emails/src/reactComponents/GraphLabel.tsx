@@ -1,4 +1,4 @@
-import { ValidPrice } from '@shared/validObjects/ValidPrice'
+import { ValidPrice } from '@ceesystems/valid-objects-ts'
 import * as React from 'react'
 
 interface Props {

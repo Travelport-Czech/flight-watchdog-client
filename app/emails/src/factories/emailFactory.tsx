@@ -1,8 +1,8 @@
+import { ValidEmail } from '@ceesystems/valid-objects-ts'
 import { rawEmailAttachmentPartTemplate, rawEmailTemplate } from '@emails/factories/emailTemplates'
 import { EmailNoReplyName } from '@emails/reactComponents/EmailNoReplyName'
 import { WatchersGraphPriceHistory } from '@emails/reactComponents/WatchersGraphPriceHistory'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
-import { ValidEmail } from '@shared/validObjects/ValidEmail'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 

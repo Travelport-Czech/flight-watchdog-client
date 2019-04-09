@@ -28,9 +28,10 @@ export class WatchersList extends React.Component<Props> {
     const lines = watchersFullInfoList.map((watchersFullInfo: WatcherFullInfo, index) => {
       const { watcher, originLocationList, destinationLocationList } = watchersFullInfo
       const watcherLinks = createWatcherLinks(watcher, agencyParams)
-      const destinationTextKey = watcher.flightType.isReturn()
-        ? TranslationEnum.ClientDestinationsReturn
-        : TranslationEnum.ClientDestinationsOneway
+      const destinationTextKey =
+        watcher.flightType === 'return'
+          ? TranslationEnum.ClientDestinationsReturn
+          : TranslationEnum.ClientDestinationsOneway
 
       return (
         <div key={index} style={styles.emailBlock}>

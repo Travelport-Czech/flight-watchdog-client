@@ -1,10 +1,9 @@
-import { Location } from '@shared/validObjects/Location'
-import { ValidDate } from '@shared/validObjects/ValidDate'
-import { ValidLocationCodeList } from '@shared/validObjects/ValidLocationCodeList'
+import { ValidDate, ValidIATALocationList } from '@ceesystems/valid-objects-ts'
+import { Location } from '@shared/types/Location'
 
 export interface FlightParams {
-  readonly origin: ValidLocationCodeList
-  readonly destination: ValidLocationCodeList
+  readonly origin: ValidIATALocationList
+  readonly destination: ValidIATALocationList
   readonly originLocationList: Location[]
   readonly destinationLocationList: Location[]
   readonly departure: ValidDate

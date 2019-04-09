@@ -1,25 +1,28 @@
+import {
+  ValidDate,
+  ValidDateTime,
+  ValidEmail,
+  ValidIATALocation,
+  ValidIATALocationList,
+  ValidLanguage,
+  ValidPrice,
+  ValidString,
+  ValidUrl
+} from '@ceesystems/valid-objects-ts'
 import { createLowerPriceEmail } from '@emails/factories/lowerPriceEmailFactory'
 import { createMarketingEmail } from '@emails/factories/marketingEmailFactory'
 import { createWatchersListEmail } from '@emails/factories/watcherListEmailFactory'
 import { AgencyParams } from '@emails/types/AgencyParams'
+import { SearchResult } from '@emails/types/SearchResult'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { WatcherParams } from '@emails/types/WatcherParams'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 import { initializeTranslator } from '@shared/translation/Text'
-import { ValidDate } from '@shared/validObjects/ValidDate'
-import { ValidDateTime } from '@shared/validObjects/ValidDateTime'
-import { ValidEmail } from '@shared/validObjects/ValidEmail'
-import { ValidFlightType } from '@shared/validObjects/ValidFlightType'
-import { ValidLanguage } from '@shared/validObjects/ValidLanguage'
-import { ValidLocationCode } from '@shared/validObjects/ValidLocationCode'
-import { ValidLocationCodeList } from '@shared/validObjects/ValidLocationCodeList'
-import { ValidPrice } from '@shared/validObjects/ValidPrice'
-import { ValidUrl } from '@shared/validObjects/ValidUrl'
-import { ValidWatcherId } from '@shared/validObjects/ValidWatcherId'
 
 // tslint:disable-next-line:export-name
 export const showEmail = async (emailName: string) => {
   const langElement = document.getElementsByTagName('html').item(0)
-  const lang = new ValidLanguage(langElement && langElement.getAttribute('lang'))
+  const lang = new ValidLanguage(langElement && langElement.getAttribute('lang'), Object.values(SupportedLanguageEnum))
 
   initializeTranslator(lang)
 
@@ -53,35 +56,35 @@ const createWatcherFullInfo = (lang: ValidLanguage): WatcherFullInfo => {
     arrival: new ValidDate('2018-12-25'),
     created: new ValidDateTime('2018-09-19 12:00:00'),
     departure: new ValidDate('2018-12-16'),
-    destination: new ValidLocationCodeList('LON'),
+    destination: new ValidIATALocationList('LON'),
     email: new ValidEmail('none@email.cz'),
-    id: new ValidWatcherId('example'),
+    id: new ValidString('example'),
     lang,
-    origin: new ValidLocationCodeList('PRG'),
+    origin: new ValidIATALocationList('PRG'),
     priceLimit: new ValidPrice('6000 CZK'),
-    flightType: new ValidFlightType('return')
+    flightType: 'return'
   }
 
-  const searchResult = {
+  const searchResult: SearchResult = {
     price: new ValidPrice('4500 CZK'),
     created: new ValidDateTime('2018-09-20 12:00:00'),
-    origin: new ValidLocationCodeList('PRG'),
-    destination: new ValidLocationCodeList('LON'),
+    origin: new ValidIATALocationList('PRG'),
+    destination: new ValidIATALocationList('LON'),
     departure: new ValidDate('2018-12-16'),
     arrival: new ValidDate('2018-12-25'),
-    flightType: new ValidFlightType('return')
+    flightType: 'return'
   }
 
   return {
     destinationLocationList: [
       {
-        code: new ValidLocationCode('PRG'),
+        code: new ValidIATALocation('PRG'),
         name: 'Praha'
       }
     ],
     originLocationList: [
       {
-        code: new ValidLocationCode('LON'),
+        code: new ValidIATALocation('LON'),
         name: 'Londýn'
       }
     ],

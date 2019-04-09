@@ -10,7 +10,7 @@
     "paths": {
       "@emails/*": ["./src/*"],
       "@shared/*": ["./../shared/src/*"],
-      "*" : ["./../../node_modules/@types/*", "*"]
+      "*": ["./../../node_modules/@types/*", "*"]
     },
     "pretty": true,
     "declaration": true,
@@ -23,8 +23,5 @@
     "outDir": "../../.dist-emails",
     "jsx": "react"
   },
-  "include": [
-    "./src/**/*",
-    "../shared/src/**/*"
-  ]
+  "include": ["./src/**/*", "../shared/src/**/*"]
 }

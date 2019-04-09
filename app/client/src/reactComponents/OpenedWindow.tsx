@@ -1,3 +1,4 @@
+import { ValidPrice } from '@ceesystems/valid-objects-ts'
 import { Consts } from '@client/Consts'
 import { CrossButton } from '@client/reactComponents/CrossButton'
 import { FlightParams } from '@client/types/FlightParams'
@@ -6,7 +7,6 @@ import { LocationNameList } from '@shared/reactComponents/LocationNameList'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidPrice } from '@shared/validObjects/ValidPrice'
 import * as React from 'react'
 
 interface Props {

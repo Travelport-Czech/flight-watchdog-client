@@ -5,10 +5,7 @@
     "sourceMap": true,
     "strict": true,
     "moduleResolution": "node",
-    "rootDirs": [
-      "./src",
-      "../shared/src"
-    ],
+    "rootDirs": ["./src", "../shared/src"],
     "baseUrl": ".",
     "paths": {
       "@client/*": ["./src/*"],
@@ -25,12 +22,6 @@
     "outDir": "../../.dist-client",
     "jsx": "react"
   },
-  "include": [
-    "./src/**/*",
-    "./../shared/src/**/*"
-  ],
-  "exclude": [
-    "../../node_modules",
-    "**/*.spec.ts"
-  ]
+  "include": ["./src/**/*", "./../shared/src/**/*"],
+  "exclude": ["../../node_modules", "**/*.spec.ts"]
 }

@@ -1,6 +1,4 @@
-import { ValidEmail } from '@shared/validObjects/ValidEmail'
-import { ValidNumber } from '@shared/validObjects/ValidNumber'
-import { ValidUrl } from '@shared/validObjects/ValidUrl'
+import { ValidEmail, ValidNumber, ValidUrl } from '@ceesystems/valid-objects-ts'
 
 export interface AgencyParams {
   readonly emailFrom: ValidEmail

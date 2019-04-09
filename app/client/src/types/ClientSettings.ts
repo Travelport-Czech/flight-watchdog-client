@@ -1,6 +1,5 @@
+import { ValidNumber, ValidString } from '@ceesystems/valid-objects-ts'
 import { StepToShow } from '@client/StepsToShow'
-import { ValidNumber } from '@shared/validObjects/ValidNumber'
-import { ValidString } from '@shared/validObjects/ValidString'
 
 export interface ClientSettings {
   readonly token: string

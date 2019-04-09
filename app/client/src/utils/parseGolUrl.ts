@@ -1,7 +1,4 @@
-import { ValidDate } from '@shared/validObjects/ValidDate'
-import { ValidEmail } from '@shared/validObjects/ValidEmail'
-import { ValidLocationCodeList } from '@shared/validObjects/ValidLocationCodeList'
-import { ValidWatcherId } from '@shared/validObjects/ValidWatcherId'
+import { ValidDate, ValidEmail, ValidIATALocationList, ValidString } from '@ceesystems/valid-objects-ts'
 
 const getUrlParameterValue = (url: string, key: string): string => {
   const urlParts = url.split('&')
@@ -21,12 +18,12 @@ export const parseGolUrl = (
   | undefined
   | {
       readonly flightType: 'return' | 'oneway'
-      readonly origin: ValidLocationCodeList
-      readonly destination: ValidLocationCodeList
+      readonly origin: ValidIATALocationList
+      readonly destination: ValidIATALocationList
       readonly departure: ValidDate
       readonly arrival?: ValidDate
       readonly emailToContinueWatching?: ValidEmail
-      readonly watcherIdToDelete?: ValidWatcherId
+      readonly watcherIdToDelete?: ValidString
       readonly emailForWatcherDelete?: ValidEmail
     } => {
   if (getUrlParameterValue(url, 'returnTicket') === 'on') {
@@ -46,12 +43,12 @@ export const parseGolUrl = (
     return {
       arrival: new ValidDate(arrival),
       departure: new ValidDate(departure),
-      destination: new ValidLocationCodeList(destination),
+      destination: new ValidIATALocationList(destination),
       emailForWatcherDelete: email ? new ValidEmail(email) : undefined,
       emailToContinueWatching: emailToContinueWatching ? new ValidEmail(emailToContinueWatching) : undefined,
-      origin: new ValidLocationCodeList(origin),
+      origin: new ValidIATALocationList(origin),
       flightType: 'return',
-      watcherIdToDelete: watcherIdToDelete ? new ValidWatcherId(watcherIdToDelete) : undefined
+      watcherIdToDelete: watcherIdToDelete ? new ValidString(watcherIdToDelete) : undefined
     }
   }
 
@@ -70,12 +67,12 @@ export const parseGolUrl = (
 
     return {
       departure: new ValidDate(departure),
-      destination: new ValidLocationCodeList(destination),
+      destination: new ValidIATALocationList(destination),
       emailForWatcherDelete: email ? new ValidEmail(email) : undefined,
       emailToContinueWatching: emailToContinueWatching ? new ValidEmail(emailToContinueWatching) : undefined,
-      origin: new ValidLocationCodeList(origin),
+      origin: new ValidIATALocationList(origin),
       flightType: 'oneway',
-      watcherIdToDelete: watcherIdToDelete ? new ValidWatcherId(watcherIdToDelete) : undefined
+      watcherIdToDelete: watcherIdToDelete ? new ValidString(watcherIdToDelete) : undefined
     }
   }
 

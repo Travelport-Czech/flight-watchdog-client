@@ -1,5 +1,4 @@
-import { formatSystemDate, ValidDate } from '@shared/validObjects/ValidDate'
-import { formatSystemDateTime, ValidDateTime } from '@shared/validObjects/ValidDateTime'
+import { formatSystemDate, formatSystemDateTime, ValidDate, ValidDateTime } from '@ceesystems/valid-objects-ts'
 import * as moment from 'moment'
 
 const momentDateTime: string | undefined = process.env.STATIC_TIMEBASED === 'true' ? '2018-10-01 12:00:00' : undefined

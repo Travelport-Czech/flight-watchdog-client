@@ -1,11 +1,11 @@
+import { ValidUrl } from '@ceesystems/valid-objects-ts'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { WatcherLinks } from '@emails/types/WatcherLinks'
 import { WatcherParams } from '@emails/types/WatcherParams'
 import { AppLogicError } from '@shared/errors/AppLogicError'
-import { ValidUrl } from '@shared/validObjects/ValidUrl'
 
 const createResultLink = (watcher: WatcherParams): string => {
-  if (watcher.flightType.isReturn()) {
+  if (watcher.flightType === 'return') {
     if (!watcher.arrival) {
       throw new AppLogicError('Missing arrival for return flight')
     }
@@ -23,7 +23,7 @@ const createResultLink = (watcher: WatcherParams): string => {
 &step=ChooseFromFour`
   }
 
-  if (watcher.flightType.isOneway()) {
+  if (watcher.flightType === 'oneway') {
     return `/index.php?action=vFlights\
 &flights[0][departureDate]=${watcher.departure.formatToSystem()}\
 &flights[0][destination]=${watcher.destination.toString()}\

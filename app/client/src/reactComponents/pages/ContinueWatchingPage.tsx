@@ -1,10 +1,10 @@
+import { ValidPrice } from '@ceesystems/valid-objects-ts'
 import { Button } from '@client/reactComponents/Button'
 import { OpenedWindow } from '@client/reactComponents/OpenedWindow'
 import { FlightParams } from '@client/types/FlightParams'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidPrice } from '@shared/validObjects/ValidPrice'
 import * as React from 'react'
 
 interface Props {

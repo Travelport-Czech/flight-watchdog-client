@@ -1,21 +1,23 @@
-import { ValidDate } from '@shared/validObjects/ValidDate'
-import { ValidDateTime } from '@shared/validObjects/ValidDateTime'
-import { ValidEmail } from '@shared/validObjects/ValidEmail'
-import { ValidFlightType } from '@shared/validObjects/ValidFlightType'
-import { ValidLanguage } from '@shared/validObjects/ValidLanguage'
-import { ValidLocationCodeList } from '@shared/validObjects/ValidLocationCodeList'
-import { ValidPrice } from '@shared/validObjects/ValidPrice'
-import { ValidWatcherId } from '@shared/validObjects/ValidWatcherId'
+import {
+  ValidDate,
+  ValidDateTime,
+  ValidEmail,
+  ValidIATALocationList,
+  ValidLanguage,
+  ValidPrice,
+  ValidString
+} from '@ceesystems/valid-objects-ts'
+import { FlightType } from '@emails/types/FlightType'
 
 export interface WatcherParams {
-  readonly id: ValidWatcherId
+  readonly id: ValidString
   readonly email: ValidEmail
-  readonly origin: ValidLocationCodeList
-  readonly destination: ValidLocationCodeList
+  readonly origin: ValidIATALocationList
+  readonly destination: ValidIATALocationList
   readonly departure: ValidDate
   readonly arrival?: ValidDate
   readonly priceLimit: ValidPrice
   readonly lang: ValidLanguage
   readonly created: ValidDateTime
-  readonly flightType: ValidFlightType
+  readonly flightType: FlightType
 }

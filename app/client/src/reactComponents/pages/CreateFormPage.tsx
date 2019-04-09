@@ -1,3 +1,4 @@
+import { ValidPrice } from '@ceesystems/valid-objects-ts'
 import { Button } from '@client/reactComponents/Button'
 import { EmailInput } from '@client/reactComponents/EmailInput'
 import { OpenedWindow } from '@client/reactComponents/OpenedWindow'
@@ -6,7 +7,6 @@ import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import { validateEmail } from '@shared/utils/validateEmail'
-import { ValidPrice } from '@shared/validObjects/ValidPrice'
 import * as React from 'react'
 
 interface Props {

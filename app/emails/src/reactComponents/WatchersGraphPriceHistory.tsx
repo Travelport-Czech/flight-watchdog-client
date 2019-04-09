@@ -1,12 +1,14 @@
+import { ValidPrice } from '@ceesystems/valid-objects-ts'
 import { GraphDot } from '@emails/reactComponents/GraphDot'
 import { GraphLabel } from '@emails/reactComponents/GraphLabel'
 import { GraphPriceLimitDot } from '@emails/reactComponents/GraphPriceLimitDot'
 import { SearchResult } from '@emails/types/SearchResult'
 import { WatcherParams } from '@emails/types/WatcherParams'
-import { translate } from '@shared/translation/Text'
+import { Text, translate } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidPrice } from '@shared/validObjects/ValidPrice'
+import { getActualDate } from '@shared/utils/timebased'
 import * as React from 'react'
+import { renderToStaticMarkup } from 'react-dom/server'
 import { Area, CartesianGrid, ComposedChart, Legend, Line, XAxis, YAxis } from 'recharts'
 
 interface Props {
@@ -19,10 +21,12 @@ interface Props {
 export class WatchersGraphPriceHistory extends React.Component<Props> {
   public render() {
     const { priceLimit, searchResults, watcher, absolutePosition } = this.props
-
+    const dateFormat = renderToStaticMarkup(<Text name={TranslationEnum.FormatDateDayMonth} />)
+    const actualDate = getActualDate()
+    const actualDateMinus15 = actualDate.subtractDays(15)
     const last15Results = searchResults.filter(
       (item: SearchResult): boolean => {
-        return item.created.getValidDate().isInIntervalDays(15)
+        return item.created.getValidDate().isAfter(actualDateMinus15)
       }
     )
 
@@ -45,7 +49,7 @@ export class WatchersGraphPriceHistory extends React.Component<Props> {
       return {
         datetime: item.created.getValidDate().formatToSystem(),
         limit: priceLimit.amount,
-        name: item.created.getValidDate().formatToLocalDayMonth(),
+        name: item.created.getValidDate().formatToLocal(dateFormat),
         price: item.price ? item.price.amount : priceLimit.amount
       }
     })

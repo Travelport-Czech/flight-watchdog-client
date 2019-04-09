@@ -33,14 +33,11 @@
     "prettier": [
       true,
       {
-        "singleQuote":  true,
+        "singleQuote": true,
         "semi": false,
         "printWidth": 120
       }
     ]
   },
-  "rulesDirectory": [
-    "../../node_modules/tslint-eslint-rules/dist/rules",
-    "../../node_modules/tslint-microsoft-contrib"
-  ]
+  "rulesDirectory": ["../../node_modules/tslint-eslint-rules/dist/rules", "../../node_modules/tslint-microsoft-contrib"]
 }

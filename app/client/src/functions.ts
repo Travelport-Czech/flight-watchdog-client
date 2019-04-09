@@ -1,17 +1,18 @@
+import {
+  ValidEmail,
+  ValidIATALocation,
+  ValidIATALocationList,
+  ValidLanguage,
+  ValidNumber,
+  ValidString
+} from '@ceesystems/valid-objects-ts'
 import { StepToShow } from '@client/StepsToShow'
 import { ClientSettings } from '@client/types/ClientSettings'
 import { UnknownNestedObject } from '@client/types/UnknownNestedObject'
 import { WatcherClientCreateParams } from '@client/types/WatcherClientCreateParams'
 import { createAuthorizationBasicToken } from '@client/utils/createAuthorizationBasicToken'
 import { parseJson } from '@client/utils/parseJson'
-import { Location } from '@shared/validObjects/Location'
-import { ValidEmail } from '@shared/validObjects/ValidEmail'
-import { ValidLanguage } from '@shared/validObjects/ValidLanguage'
-import { ValidLocationCode } from '@shared/validObjects/ValidLocationCode'
-import { ValidLocationCodeList } from '@shared/validObjects/ValidLocationCodeList'
-import { ValidNumber } from '@shared/validObjects/ValidNumber'
-import { ValidString } from '@shared/validObjects/ValidString'
-import { ValidWatcherId } from '@shared/validObjects/ValidWatcherId'
+import { Location } from '@shared/types/Location'
 
 enum ResponseKeysEnum {
   Count = 'count',
@@ -42,7 +43,7 @@ export const isAllowedToAddWatcher = async (token: string, apiUrl: ValidString):
 export const getDestinationNames = async (
   token: string,
   apiUrl: ValidString,
-  locationCodeList: ValidLocationCodeList,
+  locationCodeList: ValidIATALocationList,
   lang: ValidLanguage
 ): Promise<Location[]> => {
   const json = await sendRequest(token, apiUrl, '/client/destination-name', {
@@ -64,7 +65,7 @@ export const getDestinationNames = async (
   return json.context.map(
     (item: UnknownNestedObject): Location => {
       return {
-        code: new ValidLocationCode(item.code),
+        code: new ValidIATALocation(item.code),
         name: item.name ? new ValidString(item.name).toString() : undefined
       }
     }
@@ -98,7 +99,7 @@ export const getWatchersOnEmail = async (
   token: string,
   apiUrl: ValidString,
   email: ValidEmail
-): Promise<ValidWatcherId[] | undefined> => {
+): Promise<ValidString[] | undefined> => {
   const json = await sendRequest(token, apiUrl, '/client/detail', { email: email.toString() })
   if (json.result !== 'Success') {
     return
@@ -113,7 +114,7 @@ export const getWatchersOnEmail = async (
   }
 
   return json.context.map((item: UnknownNestedObject) => {
-    return new ValidWatcherId(item.id)
+    return new ValidString(item.id)
   })
 }
 
@@ -155,7 +156,7 @@ export const sendWatchersList = async (
 export const deleteWatcher = async (
   token: string,
   apiUrl: ValidString,
-  id: ValidWatcherId,
+  id: ValidString,
   email: ValidEmail
 ): Promise<boolean> => {
   try {

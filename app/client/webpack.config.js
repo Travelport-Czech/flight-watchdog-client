@@ -14,7 +14,7 @@ let plugins = [
     path: path.resolve(__dirname, '.env.' + process.env.NODE_ENV), // load this now instead of the ones in '.env'
     safe: false, // load '.env.example' to verify the '.env' variables are all set. Can also be a string to a different file.
     silent: false, // hide any errors
-    systemvars: true, // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
+    systemvars: true // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
   })
 ]
 
@@ -53,13 +53,9 @@ const clientConfig = {
               }
             ]
           ],
-          presets: [
-            ['@babel/preset-env', { targets: '> 0.25%, not dead' }],
-            '@babel/typescript',
-            '@babel/preset-react'
-          ]
+          presets: [['@babel/preset-env', { targets: '> 0.25%, not dead' }], '@babel/typescript', '@babel/preset-react']
         },
-        test: /\.(ts|js)x?$/,
+        test: /\.(ts|js)x?$/
       }
     ]
   },

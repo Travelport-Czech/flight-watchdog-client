@@ -1,11 +1,11 @@
+import { ValidIATALocationList } from '@ceesystems/valid-objects-ts'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidLocationCodeList } from '@shared/validObjects/ValidLocationCodeList'
 import * as React from 'react'
 
 interface Props {
-  readonly origin: ValidLocationCodeList
-  readonly destination: ValidLocationCodeList
+  readonly origin: ValidIATALocationList
+  readonly destination: ValidIATALocationList
 }
 
 export class EmailLowerPriceSubject extends React.Component<Props> {
