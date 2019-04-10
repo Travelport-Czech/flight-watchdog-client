@@ -22,7 +22,7 @@ export const enTranslation: TranslationKeys = {
   [T.ClientMessageMoreWatchersAlreadyExists]: `You have reached the limit of watchers for this email. If you want to track this flight, you have to delete one of the existing watchers. A list of watchers has been sent to your email and you can edit it.`,
   [T.ClientMessageMinimalizedWindow]: `Looking for a cheaper flight? Click here.`,
   [T.ClientInputEmailPlaceholder]: `enter your email...`,
-  [T.ClientTitle]: `Do you want to track the price {?}?`,
+  [T.ClientTitle]: `Track the price {?}?`,
   [T.ClientDestinationsReturn]: `from{_}{?} to{_}{?} and{_}back`,
   [T.ClientDestinationsOneway]: `from{_}{?} to{_}{?}`,
   [T.ClientDescription]: `We'll track it for you! And you'll get an update on its development every day.`,
