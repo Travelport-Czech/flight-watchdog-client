@@ -9,7 +9,7 @@ describe('Continue watching', function() {
         cy.contains('Chcete hlídat cenu 2 000 CZK?')
         cy.contains('Chcete dál sledovat cenu tohoto letu?')
         cy.get('#flight-watchdog-window-continue-watching-clicked-ok').click()
-        cy.contains('Skvělé, hotovo. Až najdeme nižší cenu, pošleme Vám E-mail.')
+        cy.contains('Skvěle, hotovo. Až najdeme nižší cenu, pošleme Vám e-mail.')
         cy.get('.content button').click()
         cy.contains('Hledáte levnější letenku? Klikněte zde.')
     })

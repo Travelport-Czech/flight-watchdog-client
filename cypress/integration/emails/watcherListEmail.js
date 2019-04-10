@@ -6,7 +6,7 @@ describe('Watcher List Email', function() {
         cy.get('tr').eq(0).should((tr) => {
             expect(normalizeText(tr.text()), 'header').to.equal(`\
 Seznam hlídačů letů\
-Tento E-mail byl odeslán na základě Vašeho požadavku na smazání hlídače letu na webu https://example.cz. Po kliknutí na tlačítko smazat budete přesměrování na výsledky vyhledávání daného letu a budete vyzvání k potrvzení smazání.\
+Tento e-mail byl odeslán na základě Vašeho požadavku na smazání hlídače letu na webu https://example.cz. Po kliknutí na tlačítko Smazat budete přesměrováni na výsledky vyhledávání daného letu a budete vyzváni k potrvzení smazání.\
 `)
         })
         cy.get('tr').eq(1).should((tr) => {

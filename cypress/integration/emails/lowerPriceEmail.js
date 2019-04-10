@@ -13,11 +13,12 @@ neděle 16. 12. 2018 až úterý 25. 12. 2018\
         })
         cy.get('tr').eq(1).should((tr) => {
             expect(normalizeText(tr.text()), 'content').to.equal(`\
-Nalezli jsme cenu o 1 000 CZK nižší, což je o 17 % méně.\
+Nalezli jsme cenu nižší o 1 000 CZK, což je o 17 % méně.\
 Nalezená cena je\
 5 000 CZK\
 Původní cena byla 6 000 CZK\
-Pro zobrazení letu na webu klikněte na tlačítko níže:Rezervovat\
+Pro zobrazení letu na webu klikněte na tlačítko níže:\
+Rezervovat\
 19.9.\
 20.9.\
 21.9.\

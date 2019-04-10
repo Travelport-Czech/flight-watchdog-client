@@ -6,7 +6,7 @@ describe('Marketing Email', function() {
         cy.get('tr').eq(0).should((tr) => {
             expect(normalizeText(tr.text()), 'header').to.equal(`\
 Vývoj cen hlídačů letů\
-Tento E-mail je odesílán každý den na základě Vašeho založení hlídače letu na webu https://example.cz.\
+Tento e-mail je odesílán každý den na základě Vašeho založení hlídače letu na webu https://example.cz.\
 `)
         })
         cy.get('tr').eq(1).should((tr) => {

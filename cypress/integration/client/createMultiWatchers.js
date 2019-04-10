@@ -9,7 +9,7 @@ describe('Create watcher multiple', function() {
         cy.contains('Chcete hlídat cenu 2 000 CZK?')
         cy.get('.content input').type('multiple@email.cz')
         cy.get(createButtonSelector).click()
-        cy.contains('Skvělé, hotovo. Až najdeme nižší cenu, pošleme Vám E-mail.')
+        cy.contains('Skvěle, hotovo. Až najdeme nižší cenu, pošleme Vám e-mail.')
         cy.get('.content button').click()
         cy.contains('Hledáte levnější letenku? Klikněte zde.')
     })
