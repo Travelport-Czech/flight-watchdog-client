@@ -9,6 +9,8 @@
   },
   "scripts": {
     "postinstall": "npm run build-emails-prod && npm run build-client-prod",
+    "lang-export": "webpack-cli --config app/translationScripts/webpack.config.js && node .dist-translation-scripts/export.js",
+    "lang-import": "webpack-cli --config app/translationScripts/webpack.config.js && node .dist-translation-scripts/import.js",
     "lint-client": "tsc --project app/client/tsconfig.json && tslint --project app/client/tsconfig.json --config app/client/tslint.json",
     "lint-emails": "tsc --project app/emails/tsconfig.json && tslint --project app/emails/tsconfig.json --config app/emails/tslint.json",
     "autofix": "prettier app/**/* --write --single-quote --no-semi --print-width 120 --end-of-line lf",

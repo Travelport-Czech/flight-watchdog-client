@@ -1,6 +1,6 @@
-import { csTranslation } from 'shared/src/translation/csTranslation'
-import { enTranslation } from 'shared/src/translation/enTranslation'
-import { TranslationEnum } from 'shared/src/translation/TranslationEnum'
+import { csTranslation } from '@shared/translation/csTranslation'
+import { enTranslation } from '@shared/translation/enTranslation'
+import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import * as xlsx from 'xlsx'
 
 const fileName = 'translations.xlsx'

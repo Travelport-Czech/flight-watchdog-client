@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "rootDir": "../../app",
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["./../shared/src/*"],
+      "*": ["./../../node_modules/@types/*", "*"]
+    },
+    "pretty": true,
+    "declaration": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "removeComments": true,
+    "noImplicitReturns": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "../../.dist-translation-scripts"
+  },
+  "include": ["./src/**/*", "../shared/src/**/*"]
+}

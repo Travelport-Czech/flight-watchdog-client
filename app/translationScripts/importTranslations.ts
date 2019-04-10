@@ -4,8 +4,8 @@ import * as xlsx from 'xlsx'
 // tslint:disable:non-literal-fs-path
 
 const fileName = 'translations.xlsx'
-const csFilePath = 'src/shared/translation/csTranslation.ts'
-const enFilePath = 'src/shared/translation/enTranslation.ts'
+const csFilePath = 'app/shared/src/translation/csTranslation.ts'
+const enFilePath = 'app/shared/src/translation/enTranslation.ts'
 
 // tslint:disable-next-line
 console.log('Import started from file ' + fileName + '.')
