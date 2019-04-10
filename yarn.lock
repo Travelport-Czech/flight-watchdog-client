@@ -815,12 +815,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@ceesystems/valid-objects-ts@https://github.com/Travelport-Czech/valid-objects-ts.git#v1.0.1":
-  version "1.0.1"
-  resolved "https://github.com/Travelport-Czech/valid-objects-ts.git#0ef218c615f48bff934d491134369d64a4c7abb0"
+"@ceesystems/valid-objects-ts@git+https://github.com/Travelport-Czech/valid-objects-ts.git#v1.0.4":
+  version "1.0.4"
+  resolved "git+https://github.com/Travelport-Czech/valid-objects-ts.git#1ac67aabc9340726cb5201392db06b6f47c42645"
   dependencies:
-    "@types/email-validator" "^1.0.6"
-    "@types/moment" "^2.13.0"
     "@types/numeral" "^0.0.25"
     "@types/valid-url" "^1.0.2"
     email-validator "^2.0.4"
@@ -828,7 +826,7 @@
     moment "^2.24.0"
     number-format.js "^2.0.8"
     numeral "^2.0.6"
-    path-alias-resolver "https://github.com/Travelport-Czech/path-alias-resolver.git#1.0.5"
+    path-alias-resolver "git+https://github.com/Travelport-Czech/path-alias-resolver.git#v1.0.5"
     valid-url "^1.0.9"
 
 "@cypress/listr-verbose-renderer@0.4.1":
@@ -965,13 +963,6 @@
   dependencies:
     "@types/d3-path" "*"
 
-"@types/email-validator@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@types/email-validator/-/email-validator-1.0.6.tgz#d555e53c826ac75e0205305f33ff47fc46930cd3"
-  integrity sha512-6DAeWG+gKRlAWz7iczV8WPeD4KZzmevffrOW5c6WKqn8lvlWzOqGeKMcKZ0ggVvI2W4jNKdyEWBwuVfdD2haWg==
-  dependencies:
-    email-validator "*"
-
 "@types/form-data@*":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@types/form-data/-/form-data-2.2.1.tgz#ee2b3b8eaa11c0938289953606b745b738c54b1e"
@@ -1032,13 +1023,6 @@
   version "2.2.44"
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.44.tgz#1d4a798e53f35212fd5ad4d04050620171cd5b5e"
   integrity sha512-k2tWTQU8G4+iSMvqKi0Q9IIsWAp/n8xzdZS4Q4YVIltApoMA00wFBFdlJnmoaK1/z7B0Cy0yPe6GgXteSmdUNw==
-
-"@types/moment@^2.13.0":
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/@types/moment/-/moment-2.13.0.tgz#604ebd189bc3bc34a1548689404e61a2a4aac896"
-  integrity sha1-YE69GJvDvDShVIaJQE5hoqSqyJY=
-  dependencies:
-    moment "*"
 
 "@types/node@*":
   version "11.13.0"
@@ -3027,7 +3011,7 @@ elliptic@^6.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
-email-validator@*, email-validator@2.0.4, email-validator@^2.0.4:
+email-validator@2.0.4, email-validator@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/email-validator/-/email-validator-2.0.4.tgz#b8dfaa5d0dae28f1b03c95881d904d4e40bfe7ed"
   integrity sha512-gYCwo7kh5S3IDyZPLZf6hSS0MnZT8QmJFqYvbqlDZSbwdZlY6QZWxJ4i/6UhITOJ4XzyI647Bm2MXKCLqnJ4nQ==
@@ -3830,7 +3814,7 @@ gulp-cli@^2.0.0:
     v8flags "^3.0.1"
     yargs "^7.1.0"
 
-gulp@^4.0.0:
+gulp@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/gulp/-/gulp-4.0.0.tgz#95766c601dade4a77ed3e7b2b6dc03881b596366"
   integrity sha1-lXZsYB2t5Kd+0+eyttwDiBtZY2Y=
@@ -5207,15 +5191,15 @@ mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
   dependencies:
     minimist "0.0.8"
 
-moment@*, moment@2.24.0, moment@2.x.x, moment@^2.24.0:
-  version "2.24.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
-  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
-
 moment@2.22.2:
   version "2.22.2"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
   integrity sha1-PCV/mDn8DpP/UxSWMiOeuQeD/2Y=
+
+moment@2.24.0, moment@2.x.x, moment@^2.24.0:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -5788,15 +5772,9 @@ pascalcase@^0.1.1:
   resolved "https://registry.yarnpkg.com/pascalcase/-/pascalcase-0.1.1.tgz#b363e55e8006ca6fe21784d2db22bd15d7917f14"
   integrity sha1-s2PlXoAGym/iF4TS2yK9FdeRfxQ=
 
-"path-alias-resolver@https://github.com/Travelport-Czech/path-alias-resolver.git#1.0.4":
+"path-alias-resolver@git+https://github.com/Travelport-Czech/path-alias-resolver.git#v1.0.5":
   version "1.0.3-alpha"
-  resolved "https://github.com/Travelport-Czech/path-alias-resolver.git#00956b9dd27999d317308c7b563dc4a0aaa03e1a"
-  dependencies:
-    babel-plugin-module-resolver "^3.0.0"
-
-"path-alias-resolver@https://github.com/Travelport-Czech/path-alias-resolver.git#1.0.5":
-  version "1.0.3-alpha"
-  resolved "https://github.com/Travelport-Czech/path-alias-resolver.git#96dbca0e46aef231bdaf4e58d8c0ab63d09561fd"
+  resolved "git+https://github.com/Travelport-Czech/path-alias-resolver.git#96dbca0e46aef231bdaf4e58d8c0ab63d09561fd"
   dependencies:
     babel-plugin-module-resolver "^3.0.0"
 
@@ -7367,7 +7345,7 @@ trim-right@^1.0.1:
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
   integrity sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
 
-ts-loader@^5.3.3:
+ts-loader@5.3.3:
   version "5.3.3"
   resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-5.3.3.tgz#8b4af042e773132d86b3c99ef0acf3b4d325f473"
   integrity sha512-KwF1SplmOJepnoZ4eRIloH/zXL195F51skt7reEsS6jvDqzgc/YSbz9b8E07GxIUwLXdcD4ssrJu6v8CwaTafA==
