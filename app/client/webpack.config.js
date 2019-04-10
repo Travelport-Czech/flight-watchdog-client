@@ -1,6 +1,7 @@
 const path = require('path')
 const CompressionPlugin = require('compression-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
+const Visualizer = require('webpack-visualizer-plugin');
 
 const sourceFile = path.resolve(__dirname, 'src/index.tsx')
 const outputDir = path.resolve(__dirname, '../../.dist-client')
@@ -28,6 +29,9 @@ if (process.env.NODE_ENV !== 'test') {
       threshold: 10240
     })
   )
+  plugins.push(new Visualizer({
+    filename: './statistics.html'
+  }))
 }
 
 const clientConfig = {
@@ -60,14 +64,14 @@ const clientConfig = {
     ]
   },
   optimization: {
-    minimize: process.env.NODE_ENV === 'prod'
+    minimize: process.env.NODE_ENV === 'production'
   },
   output: {
     filename: '[name].js',
     path: outputDir
   },
   performance: {
-    hints: process.env.NODE_ENV !== 'test'
+    hints: process.env.NODE_ENV === 'test' ? false : 'warning'
   },
   plugins: plugins,
   resolve: {
