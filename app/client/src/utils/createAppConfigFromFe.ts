@@ -3,6 +3,7 @@ import {
   ValidEmail,
   ValidIATALocationList,
   ValidLanguage,
+  ValidObjectError,
   ValidPrice,
   ValidString
 } from '@ceesystems/valid-objects-ts'
@@ -59,7 +60,10 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
     }
     // tslint:enable
   } catch (e) {
-    throw new InvalidClientInputError(e.message)
+    if (e instanceof AppError || e instanceof ValidObjectError) {
+      throw new InvalidClientInputError(e.message)
+    }
+    throw e
   }
 }
 
