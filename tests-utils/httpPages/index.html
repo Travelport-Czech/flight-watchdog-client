@@ -3,6 +3,22 @@
   <head>
     <title>Testing page</title>
     <script type="text/javascript">
+      dataLayer = [
+        {
+          'page': {
+            'type' : 'Ticket list'
+          },
+          'searchVariables' : {
+            'tickets': {'babies':0, 'kids':0, 'young':0, 'adults':1 },
+            'departureDate': '2018-11-01',
+            'roundTrip': true,
+            'returnDate': '2018-11-05',
+            'to': 'LON',
+            'from': 'PRG',
+          }
+        }
+      ];
+
       function submit() {
         var newUrl = document.getElementById('option-url').value
         window.history.pushState('', '', newUrl)
@@ -17,6 +33,7 @@
           apiUrl: document.getElementById('option-apiUrl').value,
           keepMinimalisedInDays: parseInt(document.getElementById('option-keepMinimalisedInDays').value)
         }
+        dataLayer[0].searchVariables.roundTrip = document.getElementById('option-flighttype').value === 'return' ? true : false
         initFlightWatchdogClient(settings)
       }
     </script>
@@ -24,12 +41,21 @@
   <body>
     <h1>Testing page</h1>
     <p>
-      Prices: <span class="AO3_TotalFareValue">2 000 CZK</span>, <span class="AO3_TotalFareValue">3 000 CZK</span>,
-      <span class="AO3_TotalFareValue">4 000 CZK</span>
+      Price:
+      <div class="offersData">
+        <div class="offerContainer">
+          <div class="buttons">
+            <a class="tariff-btn">
+              <span>Rezervovat</span>
+              <strong>2&nbsp;000 CZK</strong>
+            </a>
+          </div>
+        </div>
+      </div>
     </p>
     <p>
       Options:<br/>
-      url: <input name="lang" value="?action=vFlights&flights[0][departureDate]=2018-11-01&flights[0][destination]=LON&flights[0][origin]=PRG&flights[1][departureDate]=2018-11-05&flights[1][destination]=PRG&flights[1][origin]=LON&travelers[0]=ADT&returnTicket=on&dateVariants=exact&step=ChooseFromFour" id="option-url"><br/>
+      url: <input name="lang" value="" id="option-url"><br/>
       initStep: <select id="option-initStep">
         <option value="" selected>empty</option>
         <option value="NONE">NONE</option>
@@ -46,6 +72,7 @@
       </select><br/>
       apiUrl: <input name="apiUrl" value="http://localhost:3000" id="option-apiUrl"><br/>
       language: <input name="lang" value="cs" id="option-lang"><br/>
+      flight type: <input name="flighttype" value="return" id="option-flighttype"> (return or oneway)<br/>
       token: <input name="token" value="token" id="option-token"><br/>
       keepMinimalisedInDays: <input name="keepMinimalisedInDays" value="1" id="option-keepMinimalisedInDays"><br/>
       <button onclick="submit(this)" id="option-load-button">Load</button>

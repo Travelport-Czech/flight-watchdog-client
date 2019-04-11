@@ -1,10 +1,10 @@
-import { golUrlReturn, setOtpions } from '../../support/helper'
+import { setOtpions } from '../../support/helper'
 
 const createButtonSelector = '#flight-watchdog-window-clicked-create-watcher'
 
 describe('Change language', function() {
     it('English', function() {
-        cy.visit(golUrlReturn)
+        cy.visit('')
         setOtpions({lang: 'en'})
         cy.contains('Track the price 2 000 CZK?')
         cy.contains('Prague - Ruzyne')

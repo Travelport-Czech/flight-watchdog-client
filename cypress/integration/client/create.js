@@ -1,11 +1,11 @@
-import {golUrlReturn, golUrlOneway, setOtpions, normalizeText} from '../../support/helper'
+import {setOtpions, normalizeText} from '../../support/helper'
 
 const createButtonSelector = '#flight-watchdog-window-clicked-create-watcher'
 
 describe('Create watcher', function() {
     it('Default success return flight', function() {
-        cy.visit('/')
-        setOtpions({url: golUrlReturn})
+        cy.visit('')
+        setOtpions()
         cy.get('.flight-watchdog-client_window').should(($window) => {
             expect(normalizeText($window.text()), 'content').to.equal(`\
 ×Chcete hlídat cenu 2 000 CZK?\
@@ -23,8 +23,8 @@ Hlídat Nemám zájem`)
     })
 
     it('Default success oneway flight', function() {
-        cy.visit('/')
-        setOtpions({url: golUrlOneway})
+        cy.visit('')
+        setOtpions({flightType: 'oneway'})
         cy.get('.flight-watchdog-client_window').should(($window) => {
             expect(normalizeText($window.text()), 'content').to.equal(`\
 ×Chcete hlídat cenu 2 000 CZK?\
@@ -42,8 +42,8 @@ Hlídat Nemám zájem`)
     })
 
     it('Bad email', function() {
-        cy.visit('/')
-        setOtpions({url: golUrlReturn})
+        cy.visit('')
+        setOtpions()
         cy.get('.flight-watchdog-client_window').should(($window) => {
             expect(normalizeText($window.text()), 'content').to.equal(`\
 ×Chcete hlídat cenu 2 000 CZK?\
