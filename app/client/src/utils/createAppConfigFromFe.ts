@@ -15,10 +15,12 @@ import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum
 declare var dataLayer: any // global variable from html
 
 export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | undefined => {
+  // tslint:disable-next-line:no-unsafe-any
   if (!dataLayer || dataLayer.length === 0) {
     throw new AppError('Empty dataLayer')
   }
 
+  // tslint:disable-next-line:no-unsafe-any
   if (!dataLayer[0].searchVariables) {
     throw new AppError('DataLayer not contain searchVariables')
   }
@@ -29,16 +31,17 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
   const langElement = document.getElementsByTagName('html').item(0)
   const lang = new ValidLanguage(langElement && langElement.getAttribute('lang'), Object.values(SupportedLanguageEnum))
 
-  const lowestPriceElement = <HTMLElement | null>(
-    doc.querySelector('.offersData .offerContainer .buttons .tariff-btn strong')
-  )
+  const lowestPriceElement = doc.querySelector('.offersData .offerContainer .buttons .tariff-btn strong')
 
   if (!lowestPriceElement) {
     throw new AppError('DataLayer not contain lowest price')
   }
 
+  // tslint:disable:no-unsafe-any
   return {
-    arrival: dataLayer[0].searchVariables.roundTrip ? new ValidDate(dataLayer[0].searchVariables.returnDate) : undefined,
+    arrival: dataLayer[0].searchVariables.roundTrip
+      ? new ValidDate(dataLayer[0].searchVariables.returnDate)
+      : undefined,
     departure: new ValidDate(dataLayer[0].searchVariables.departureDate),
     destination: new ValidIATALocationList(dataLayer[0].searchVariables.to),
     emailForWatcherDelete: email ? new ValidEmail(email) : undefined,
@@ -46,9 +49,10 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
     origin: new ValidIATALocationList(dataLayer[0].searchVariables.from),
     flightType: dataLayer[0].searchVariables.roundTrip ? 'return' : 'oneway',
     watcherIdToDelete: watcherIdToDelete ? new ValidString(watcherIdToDelete) : undefined,
-    lowestPrice: new ValidPrice(normalizeText(lowestPriceElement.innerText)),
+    lowestPrice: new ValidPrice(normalizeText(lowestPriceElement.innerHTML)),
     lang
   }
+  // tslint:enable
 }
 
-const normalizeText = (s: string) => s.replace(/\s/g, ' ')
+const normalizeText = (s: string) => s.replace(/&nbsp;/g, ' ')
