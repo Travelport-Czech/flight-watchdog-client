@@ -65,7 +65,7 @@ export const label: CSSProperties = {
 export const content: CSSProperties = {
   backgroundColor: '#f9f9f9',
   boxShadow: 'inset 0px 11px 8px -10px #CCC',
-  height: '120px',
+  height: '170px',
   padding: '20px',
   textAlign: 'left'
 }
