@@ -21,7 +21,7 @@ id_dealer=10\
 &departure_destination_1_short=${encodeURIComponent(watcher.origin.toString())}\
 &departure_destination_1=${encodeURIComponent(watcher.origin.toString())}\
 &departure_date_1=${watcher.departure.formatToSystem()}\
-&departure_date_2==${watcher.arrival.formatToSystem()}\
+&departure_date_2=${watcher.arrival.formatToSystem()}\
 &passengers_adt=1\
 `
   }
