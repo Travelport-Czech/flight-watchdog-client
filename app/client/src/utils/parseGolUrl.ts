@@ -16,8 +16,8 @@ export const parseGolUrl = (
       readonly emailForWatcherDelete?: ValidEmail
     } => {
   if (getUrlParameterValue(url, 'returnTicket') === 'on') {
-    const origin = getUrlParameterValue(url, 'flights[0][origin]=')
-    const destination = getUrlParameterValue(url, 'flights[0][destination]=')
+    const origin = getUrlParameterValue(url, 'flights[0][origin]=').toUpperCase()
+    const destination = getUrlParameterValue(url, 'flights[0][destination]=').toUpperCase()
     const departure = getUrlParameterValue(url, 'flights[0][departureDate]=')
     const arrival = getUrlParameterValue(url, 'flights[1][departureDate]=')
     const step = getUrlParameterValue(url, 'step') === 'ChooseFromFour'
