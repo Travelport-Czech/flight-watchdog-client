@@ -29,6 +29,11 @@ export const parseGolUrl = (
       return
     }
 
+    // ignore format 2019-07-14T09:00:00
+    if (origin.includes('T') || destination.includes('T')) {
+      return
+    }
+
     return {
       arrival: new ValidDate(arrival),
       departure: new ValidDate(departure),
