@@ -3,7 +3,7 @@ import { AppConfig } from '@client/types/AppConfig'
 import { parseGolUrl } from '@client/utils/parseGolUrl'
 import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
-export const createAppConfigFromGolFe = (doc: Document, url: string): AppConfig | undefined => {
+export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | undefined => {
   const appConfigPartFromUrl = parseGolUrl(url)
 
   if (!appConfigPartFromUrl) {

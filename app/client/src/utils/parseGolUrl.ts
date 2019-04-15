@@ -1,16 +1,5 @@
 import { ValidDate, ValidEmail, ValidIATALocationList, ValidString } from '@ceesystems/valid-objects-ts'
-
-const getUrlParameterValue = (url: string, key: string): string => {
-  const urlParts = url.split('&')
-
-  return urlParts.reduce((acc: string, current: string): string => {
-    if (current.includes(key)) {
-      return decodeURIComponent(current.split('=')[1])
-    }
-
-    return acc
-  }, '')
-}
+import { getUrlParameterValue } from '@client/utils/getUrlParameterValue'
 
 export const parseGolUrl = (
   url: string

@@ -1,6 +1,6 @@
 import { App } from '@client/App'
 import { isValidClientSettings } from '@client/functions'
-import { createAppConfigFromGolFe } from '@client/utils/createAppConfigFromGolFe'
+import { createAppConfigFromFe } from '@client/utils/createAppConfigFromFe'
 import { createTagManagerSnippet } from '@client/utils/createTagManagerSnippet'
 import { BrowserClient, Hub, Scope } from '@sentry/browser'
 import * as React from 'react'
@@ -33,7 +33,7 @@ export const initFlightWatchdogClient = async (settingsData: any) => {
     node.setAttribute('id', id)
     document.body.appendChild(node)
 
-    const appConfig = createAppConfigFromGolFe(document, golUrl)
+    const appConfig = createAppConfigFromFe(document, golUrl)
 
     if (!appConfig) {
       return
@@ -42,7 +42,7 @@ export const initFlightWatchdogClient = async (settingsData: any) => {
     ReactDOM.render(<App appConfig={appConfig} clientSettings={settings} />, document.getElementById(id))
   } catch (err) {
     // tslint:disable-next-line
-    console.log('Flight watchdog error', err)
+    console.log('Flight watchdog error:', err)
     if (sentryClient) {
       sentryClient.configureScope((scope: Scope) => {
         scope.setExtra('url', golUrl)
