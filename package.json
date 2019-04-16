@@ -41,7 +41,7 @@
     "@babel/preset-env": "7.4.3",
     "@babel/preset-react": "7.0.0",
     "@babel/preset-typescript": "7.3.3",
-    "@ceesystems/valid-objects-ts": "git+https://github.com/Travelport-Czech/valid-objects-ts.git#v1.0.4",
+    "@ceesystems/valid-objects-ts": "git+https://github.com/Travelport-Czech/valid-objects-ts.git#v1.0.7",
     "@sentry/browser": "4.6.3",
     "@types/fs-extra": "5.0.4",
     "@types/google.analytics": "0.0.39",
