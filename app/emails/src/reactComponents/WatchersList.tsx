@@ -1,4 +1,4 @@
-import { createResultLink, createWatcherLinks } from '@emails/factories/createWatcherLinks'
+import { createResultUrl, createWatcherLinks } from '@emails/factories/createWatcherLinks'
 import { EmailButton } from '@emails/reactComponents/EmailButton'
 import { WatcherPriceHistory } from '@emails/reactComponents/WatcherPriceHistory'
 import { AgencyParams } from '@emails/types/AgencyParams'
@@ -16,6 +16,27 @@ interface Props {
   readonly watchersFullInfoList: WatcherFullInfo[]
   readonly agencyParams: AgencyParams
   readonly showSvg?: boolean
+}
+
+const createAdditionalResults = (additionalResults: FlightResult[], agencyParams: AgencyParams) => {
+  return (
+    <div style={{ marginTop: '20px' }}>
+      <div style={styles.headerLevel2}>
+        <Text name={TranslationEnum.EmailAdditionalResultsHeader} />
+      </div>
+      {additionalResults.map((flight: FlightResult, index2: number) => {
+        return (
+          <p key={index2}>
+            {flight.price.formatToLocale()}
+            {' - '}
+            <HeaderDates departure={flight.departure} arrival={flight.arrival} />
+            {' -> '}
+            <a href={createResultUrl(flight, agencyParams).toString()}>Zobrazit</a>
+          </p>
+        )
+      })}
+    </div>
+  )
 }
 
 export class WatchersList extends React.Component<Props> {
@@ -77,22 +98,7 @@ export class WatchersList extends React.Component<Props> {
             </tr>
           </table>
 
-          <div style={{ marginTop: '20px' }}>
-            <div style={styles.headerLevel2}>
-              <Text name={TranslationEnum.EmailAdditionalResultsHeader} />
-            </div>
-            {additionalResults.map((flight: FlightResult, index2: number) => {
-              return (
-                <p key={index2}>
-                  {flight.price.formatToLocale()}
-                  {' - '}
-                  <HeaderDates departure={flight.departure} arrival={flight.arrival} />
-                  {' -> '}
-                  <a href={createResultLink(flight)}>Zobrazit</a>
-                </p>
-              )
-            })}
-          </div>
+          {additionalResults.length !== 0 && createAdditionalResults(additionalResults, agencyParams)}
         </div>
       )
     })

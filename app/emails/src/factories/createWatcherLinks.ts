@@ -5,7 +5,11 @@ import { WatcherLinks } from '@emails/types/WatcherLinks'
 import { WatcherParams } from '@emails/types/WatcherParams'
 import { AppLogicError } from '@shared/errors/AppLogicError'
 
-export const createResultLink = (flight: FlightParams): string => {
+export const createResultUrl = (flight: FlightParams, agencyParams: AgencyParams): ValidUrl => {
+  return new ValidUrl(agencyParams.frontendUrl.toString() + createResultLink(flight))
+}
+
+const createResultLink = (flight: FlightParams): string => {
   if (flight.flightType === 'return') {
     if (!flight.arrival) {
       throw new AppLogicError('Missing arrival for return flight')
