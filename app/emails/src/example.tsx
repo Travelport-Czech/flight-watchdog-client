@@ -13,6 +13,7 @@ import { createLowerPriceEmail } from '@emails/factories/lowerPriceEmailFactory'
 import { createMarketingEmail } from '@emails/factories/marketingEmailFactory'
 import { createWatchersListEmail } from '@emails/factories/watcherListEmailFactory'
 import { AgencyParams } from '@emails/types/AgencyParams'
+import { FlightResult } from '@emails/types/FlightResult'
 import { SearchResult } from '@emails/types/SearchResult'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { WatcherParams } from '@emails/types/WatcherParams'
@@ -75,6 +76,15 @@ const createWatcherFullInfo = (lang: ValidLanguage): WatcherFullInfo => {
     flightType: 'return'
   }
 
+  const flightResult: FlightResult = {
+    price: new ValidPrice('3500 CZK'),
+    origin: new ValidIATALocationList('PRG'),
+    destination: new ValidIATALocationList('LON'),
+    departure: new ValidDate('2018-12-16'),
+    arrival: new ValidDate('2018-12-25'),
+    flightType: 'return'
+  }
+
   return {
     destinationLocationList: [
       {
@@ -89,6 +99,7 @@ const createWatcherFullInfo = (lang: ValidLanguage): WatcherFullInfo => {
       }
     ],
     watcher,
+    additionalResults: [flightResult, flightResult, flightResult],
     searchResults: [
       searchResult,
       {

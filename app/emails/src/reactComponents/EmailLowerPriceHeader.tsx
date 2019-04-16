@@ -32,7 +32,7 @@ export class EmailLowerPriceHeader extends React.Component<Props> {
           </Text>
         </div>
 
-        <div style={styles.headerDestinations}>
+        <div style={styles.headerLevel2}>
           <Text name={destinationTextKey}>
             <span style={styles.primaryColor}>
               <LocationNameList locationList={originLocationList} />

@@ -1,33 +1,34 @@
 import { ValidUrl } from '@ceesystems/valid-objects-ts'
 import { AgencyParams } from '@emails/types/AgencyParams'
+import { FlightParams } from '@emails/types/FlightParams'
 import { WatcherLinks } from '@emails/types/WatcherLinks'
 import { WatcherParams } from '@emails/types/WatcherParams'
 import { AppLogicError } from '@shared/errors/AppLogicError'
 
-const createResultLink = (watcher: WatcherParams): string => {
-  if (watcher.flightType === 'return') {
-    if (!watcher.arrival) {
+export const createResultLink = (flight: FlightParams): string => {
+  if (flight.flightType === 'return') {
+    if (!flight.arrival) {
       throw new AppLogicError('Missing arrival for return flight')
     }
 
     return `/index.php?action=vFlights\
-&flights[0][departureDate]=${watcher.departure.formatToSystem()}\
-&flights[0][destination]=${watcher.destination.toString()}\
-&flights[0][origin]=${encodeURIComponent(watcher.origin.toString())}\
-&flights[1][departureDate]=${watcher.arrival.formatToSystem()}\
-&flights[1][destination]=${watcher.origin.toString()}\
-&flights[1][origin]=${watcher.destination.toString()}\
+&flights[0][departureDate]=${flight.departure.formatToSystem()}\
+&flights[0][destination]=${flight.destination.toString()}\
+&flights[0][origin]=${encodeURIComponent(flight.origin.toString())}\
+&flights[1][departureDate]=${flight.arrival.formatToSystem()}\
+&flights[1][destination]=${flight.origin.toString()}\
+&flights[1][origin]=${flight.destination.toString()}\
 &travelers[0]=ADT\
 &returnTicket=on\
 &dateVariants=exact\
 &step=ChooseFromFour`
   }
 
-  if (watcher.flightType === 'oneway') {
+  if (flight.flightType === 'oneway') {
     return `/index.php?action=vFlights\
-&flights[0][departureDate]=${watcher.departure.formatToSystem()}\
-&flights[0][destination]=${watcher.destination.toString()}\
-&flights[0][origin]=${encodeURIComponent(watcher.origin.toString())}\
+&flights[0][departureDate]=${flight.departure.formatToSystem()}\
+&flights[0][destination]=${flight.destination.toString()}\
+&flights[0][origin]=${encodeURIComponent(flight.origin.toString())}\
 &travelers[0]=ADT\
 &returnTicket=\
 &dateVariants=exact\

@@ -163,7 +163,7 @@ export const headerTextDescription: CSSProperties = {
   marginBottom: '15px'
 }
 
-export const headerDestinations: CSSProperties = {
+export const headerLevel2: CSSProperties = {
   ...secondaryColor,
   fontSize: '18px',
   lineHeight: '28px',

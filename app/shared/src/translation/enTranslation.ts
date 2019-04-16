@@ -47,6 +47,7 @@ export const enTranslation: TranslationKeys = {
   [T.EmailMarketingHeader]: `Flight prices trends`,
   [T.EmailMarketingDescription]: `This email is sent to you daily based on your request to track flight prices on {?}.`,
   [T.EmailNoReplyName]: `Flight watchdog`,
+  [T.EmailAdditionalResultsHeader]: `Similar offers (people just buying)`,
   [T.GraphLegendPriceLimit]: `Tracked price`,
   [T.GraphLegendPriceTrend]: `Price trend`
 }

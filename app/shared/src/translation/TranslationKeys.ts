@@ -45,6 +45,7 @@ export interface TranslationKeys {
   readonly [T.EmailMarketingHeader]: string
   readonly [T.EmailMarketingDescription]: string
   readonly [T.EmailNoReplyName]: string
+  readonly [T.EmailAdditionalResultsHeader]: string
   readonly [T.GraphLegendPriceLimit]: string
   readonly [T.GraphLegendPriceTrend]: string
 }

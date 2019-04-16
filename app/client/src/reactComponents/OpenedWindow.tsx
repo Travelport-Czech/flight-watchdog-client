@@ -48,7 +48,7 @@ export class OpenedWindow extends React.Component<Props> {
           <div style={styles.headerTextDescription}>
             <Text name={TranslationEnum.ClientDescription} />
           </div>
-          <div style={styles.headerDestinations} className={`${Consts.elementClassPrefix}_destionations`}>
+          <div style={styles.headerLevel2} className={`${Consts.elementClassPrefix}_destionations`}>
             <Text name={destinationTextKey}>
               <span style={styles.primaryColor}>
                 <LocationNameList locationList={originLocationList} />
