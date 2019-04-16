@@ -19,12 +19,14 @@ interface Props {
 }
 
 const createAdditionalResults = (additionalResults: FlightResult[], agencyParams: AgencyParams) => {
+  const additionalResultsLimited = additionalResults.slice(0, 5)
+
   return (
     <div style={{ marginTop: '20px' }}>
       <div style={styles.headerLevel2}>
         <Text name={TranslationEnum.EmailAdditionalResultsHeader} />
       </div>
-      {additionalResults.map((flight: FlightResult, index2: number) => {
+      {additionalResultsLimited.map((flight: FlightResult, index2: number) => {
         return (
           <p key={index2}>
             {flight.price.formatToLocale()}
