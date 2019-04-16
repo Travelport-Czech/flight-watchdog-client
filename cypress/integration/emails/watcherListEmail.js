@@ -18,7 +18,7 @@ Hlídaná cena\
 Vývoj cenyLimit ceny 6000 CZK\
 Rezervovat\
 Smazat\
-Podobné nabídky (lidé právě kupijí)\
+Podobné nabídky (lidé právě kupují)\
 3 500 CZK - neděle 16. 12. 2018 až úterý 25. 12. 2018 -> Zobrazit\
 3 500 CZK - neděle 16. 12. 2018 až úterý 25. 12. 2018 -> Zobrazit\
 3 500 CZK - neděle 16. 12. 2018 až úterý 25. 12. 2018 -> Zobrazit\
@@ -30,7 +30,7 @@ Vývoj ceny\
 Limit ceny 6000 CZK\
 Rezervovat\
 Smazat\
-Podobné nabídky (lidé právě kupijí)\
+Podobné nabídky (lidé právě kupují)\
 3 500 CZK - neděle 16. 12. 2018 až úterý 25. 12. 2018 -> Zobrazit\
 3 500 CZK - neděle 16. 12. 2018 až úterý 25. 12. 2018 -> Zobrazit\
 3 500 CZK - neděle 16. 12. 2018 až úterý 25. 12. 2018 -> Zobrazit\
