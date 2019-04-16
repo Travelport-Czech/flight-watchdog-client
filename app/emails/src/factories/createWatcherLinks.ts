@@ -6,8 +6,11 @@ import { WatcherParams } from '@emails/types/WatcherParams'
 import { AppLogicError } from '@shared/errors/AppLogicError'
 
 export const createResultUrl = (flight: FlightParams, agencyParams: AgencyParams): ValidUrl => {
+  const { dealerId, frontendUrl } = agencyParams
+  const dealerIdUrlPart = dealerId ? '&dealer_id=' + dealerId.toString() : ''
+
   return new ValidUrl(
-    agencyParams.frontendUrl.toString() + createResultLink(flight) + '&flightWatchdogAdditionalResult='
+    frontendUrl.toString() + createResultLink(flight) + '&flightWatchdogAdditionalResult=' + dealerIdUrlPart
   )
 }
 
