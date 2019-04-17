@@ -8,9 +8,13 @@ import { AppLogicError } from '@shared/errors/AppLogicError'
 export const createResultUrl = (flight: FlightParams, agencyParams: AgencyParams): ValidUrl => {
   const { dealerId, frontendUrl } = agencyParams
   const dealerIdUrlPart = dealerId ? '&dealer_id=' + dealerId.toString() : ''
+  const waitPageString = `${frontendUrl.toString()}/index.php?action=vWait&redirect=`
 
   return new ValidUrl(
-    frontendUrl.toString() + createResultLink(flight) + '&flightWatchdogAdditionalResult=' + dealerIdUrlPart
+    waitPageString +
+      encodeURIComponent(
+        frontendUrl.toString() + createResultLink(flight) + '&flightWatchdogAdditionalResult=' + dealerIdUrlPart
+      )
   )
 }
 
