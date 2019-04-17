@@ -112,6 +112,13 @@ export const buttonHovered: CSSProperties = {
   transition: 'all 300ms linear'
 }
 
+export const link: CSSProperties = {
+  ...secondaryColor,
+  background: 'transparent',
+  border: 'none',
+  textDecoration: 'none'
+}
+
 export const buttonLink: CSSProperties = {
   ...secondaryColor,
   background: 'transparent',

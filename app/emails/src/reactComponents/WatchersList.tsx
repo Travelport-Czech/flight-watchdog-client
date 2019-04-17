@@ -27,13 +27,17 @@ const createAdditionalResults = (additionalResults: FlightResult[], agencyParams
         <Text name={TranslationEnum.EmailAdditionalResultsHeader} />
       </div>
       {additionalResultsLimited.map((flight: FlightResult, index2: number) => {
+        const link = createResultUrl(flight, agencyParams).toString()
+
         return (
           <p key={index2}>
-            {flight.price.formatToLocale()}
-            {' - '}
-            <HeaderDates departure={flight.departure} arrival={flight.arrival} />
-            {' -> '}
-            <a href={createResultUrl(flight, agencyParams).toString()}>Zobrazit</a>
+            <a href={link} style={styles.link}>
+              <span style={{ fontWeight: 'bold' }}>{flight.price.formatToLocale()}</span>
+              {' - '}
+              <HeaderDates departure={flight.departure} arrival={flight.arrival} />
+              {' -> '}
+              <span style={{ ...styles.buttonLink, fontWeight: 'bold' }}>Zobrazit</span>
+            </a>
           </p>
         )
       })}
