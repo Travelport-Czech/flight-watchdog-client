@@ -30,7 +30,7 @@ export const parseGolUrl = (
     }
 
     // ignore format 2019-07-14T09:00:00
-    if (origin.includes('T') || destination.includes('T')) {
+    if (arrival.includes('T') || departure.includes('T')) {
       return
     }
 
