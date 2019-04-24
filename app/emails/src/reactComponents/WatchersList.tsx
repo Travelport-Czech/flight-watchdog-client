@@ -7,6 +7,7 @@ import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { AppLogicError } from '@shared/errors/AppLogicError'
 import { HeaderDates } from '@shared/reactComponents/HeaderDates'
 import { LocationNameList } from '@shared/reactComponents/LocationNameList'
+import { Price } from '@shared/reactComponents/Price'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
@@ -32,7 +33,9 @@ const createAdditionalResults = (additionalResults: FlightResult[], agencyParams
         return (
           <p key={index2}>
             <a href={link} style={styles.link}>
-              <span style={{ fontWeight: 'bold' }}>{flight.price.formatToLocale()}</span>
+              <span style={{ fontWeight: 'bold' }}>
+                <Price price={flight.price} />
+              </span>
               {' - '}
               <HeaderDates departure={flight.departure} arrival={flight.arrival} />
               {' -> '}

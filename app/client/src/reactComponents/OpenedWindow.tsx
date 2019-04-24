@@ -4,6 +4,7 @@ import { CrossButton } from '@client/reactComponents/CrossButton'
 import { FlightParams } from '@client/types/FlightParams'
 import { HeaderDates } from '@shared/reactComponents/HeaderDates'
 import { LocationNameList } from '@shared/reactComponents/LocationNameList'
+import { Price } from '@shared/reactComponents/Price'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
@@ -43,7 +44,9 @@ export class OpenedWindow extends React.Component<Props> {
         <div style={styles.header}>
           <CrossButton onClick={this.props.handleClose} />
           <div style={styles.headerText}>
-            <Text name={TranslationEnum.ClientTitle}>{this.props.price.formatToLocale()}</Text>
+            <Text name={TranslationEnum.ClientTitle}>
+              <Price price={this.props.price} />
+            </Text>
           </div>
           <div style={styles.headerTextDescription}>
             <Text name={TranslationEnum.ClientDescription} />
