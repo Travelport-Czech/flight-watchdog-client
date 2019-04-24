@@ -5,6 +5,7 @@ import { EmailLowerPriceHeader } from '@emails/reactComponents/EmailLowerPriceHe
 import { WatcherPriceHistory } from '@emails/reactComponents/WatcherPriceHistory'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
+import { Price } from '@shared/reactComponents/Price'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
@@ -40,7 +41,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
               <div className="content" style={styles.emailTableContent}>
                 <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
                   <Text name={TranslationEnum.EmailContentDescription}>
-                    {priceDiff.formatToLocale()}
+                    <Price price={priceDiff} />
                     {priceDiffPercent.toString()}
                   </Text>
                 </div>
@@ -48,10 +49,14 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                   <Text name={TranslationEnum.EmailPricePrefixText} />
                 </div>
                 <div style={{ fontSize: '25px', lineHeight: '25px', marginBottom: '10px' }}>
-                  <Text name={TranslationEnum.EmailPrice}>{price.formatToLocale()}</Text>
+                  <Text name={TranslationEnum.EmailPrice}>
+                    <Price price={price} />
+                  </Text>
                 </div>
                 <div style={{ ...styles.simpleText, marginBottom: '25px' }}>
-                  <Text name={TranslationEnum.EmailPriceSuffixText}>{watcher.priceLimit.formatToLocale()}</Text>
+                  <Text name={TranslationEnum.EmailPriceSuffixText}>
+                    <Price price={watcher.priceLimit} />
+                  </Text>
                 </div>
 
                 <div style={{ ...styles.simpleText, marginBottom: '10px' }}>
