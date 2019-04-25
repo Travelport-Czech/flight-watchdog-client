@@ -1,22 +1,14 @@
-matrix:
-  include:
-    - language: node_js
-      node_js:
-        - "10"
-      cache:
-        yarn: true
-        directories:
-          - node_modules
-          - ~/.cache
-      script:
-        - npm run test-ci
-    - language: java
-      cache:
-        directories:
-          - node_modules
-      dist: trusty
-      addons:
-        sonarcloud:
-          organization: "travelport-czech"
-      script:
-        - sonar-scanner
+language: node_js
+node_js:
+  - "10"
+addons:
+  sonarcloud:
+    organization: "travelport-czech"
+cache:
+  yarn: true
+  directories:
+    - node_modules
+    - ~/.cache
+script:
+  - npm run test-ci
+  - sonar-scanner
