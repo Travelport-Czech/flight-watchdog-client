@@ -11,6 +11,9 @@ matrix:
       script:
         - npm run test-ci
     - language: java
+      cache:
+        directories:
+          - node_modules
       dist: trusty
       addons:
         sonarcloud:
