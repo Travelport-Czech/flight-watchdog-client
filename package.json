@@ -26,7 +26,7 @@
     "api-server": "node tests-utils/startApiServer.js",
     "cypress-open": "cypress open",
     "cypress-run": "cypress run",
-    "cypress-run-ci": "cypress run --record --key 0ce2f32f-fc1e-4051-a454-df2a1e61d145",
+    "cypress-run-ci": "cypress run --browser chrome --record --key 0ce2f32f-fc1e-4051-a454-df2a1e61d145",
     "test-open": "concurrently -k -s first \"npm:build-client-test-watch\" \"npm:build-emails-test-watch\" \"npm:http-server\" \"npm:api-server\" \"npm:cypress-open\"",
     "test-after-install": "npm run lint-client && concurrently -k -s first \"npm:http-server\" \"npm:api-server\" \"npm:cypress-run\"",
     "test": "npm run lint-client && npm run build-client-test && npm run build-emails-test && concurrently -k -s first \"npm:http-server\" \"npm:api-server\" \"npm:cypress-run\"",
