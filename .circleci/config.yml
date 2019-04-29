@@ -1,7 +1,7 @@
 jobs:
   build:
     docker:
-      - image: circleci/node:8.10
+      - image: cypress/base:8
     steps:
       - checkout # special step to check out source code to working directory
       - restore_cache:
@@ -18,4 +18,4 @@ jobs:
             - ~/.cache/yarn
       - run:
           name: Run tests
-          command: npm test
+          command: npm run test-after-install
