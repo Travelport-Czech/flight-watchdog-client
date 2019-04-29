@@ -20,7 +20,7 @@ jobs:
             - ~/.cache/yarn
       - run:
           name: Run tests
-          command: npm run test-ci
+          command: npm run test
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: cypress/screenshots
           prefix: cypress
