@@ -122,6 +122,7 @@ export class App extends React.Component<Props, State> {
     this.setState({ stepToShow: StepToShow.createWatcherWorking })
     const deleteIsSuccessful = await actions.deleteWatcherByEmail(this.props, this.state)
     if (!deleteIsSuccessful) {
+      this.props.handleError(new Error('API delete watcher error.'), { props: this.props, state: this.state })
       this.setState({ stepToShow: StepToShow.error })
     }
     this.setState(await actions.createWatcher(this.props, this.state))
@@ -131,6 +132,7 @@ export class App extends React.Component<Props, State> {
     this.setState({ stepToShow: StepToShow.removeWatcherWorking })
     const deleteIsSuccessful = await actions.deleteWatcherById(this.props)
     if (!deleteIsSuccessful) {
+      this.props.handleError(new Error('API delete watcher error.'), { props: this.props, state: this.state })
       this.setState({ stepToShow: StepToShow.error })
 
       return

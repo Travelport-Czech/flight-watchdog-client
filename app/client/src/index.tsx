@@ -23,6 +23,10 @@ export const initFlightWatchdogClient = async (settingsData: any) => {
 
   const golUrl = decodeURIComponent(window.location.href)
 
+  const handleError = (err: Error, data?: unknown) => {
+    handleErrorDefault(sentryClient, golUrl, err, data)
+  }
+
   try {
     if (analyticsId) {
       createTagManagerSnippet(analyticsId)
@@ -39,18 +43,27 @@ export const initFlightWatchdogClient = async (settingsData: any) => {
       return
     }
 
-    ReactDOM.render(<App appConfig={appConfig} clientSettings={settings} />, document.getElementById(id))
+    ReactDOM.render(
+      <App appConfig={appConfig} clientSettings={settings} handleError={handleError} />,
+      document.getElementById(id)
+    )
   } catch (err) {
-    // tslint:disable-next-line
-    console.log('Flight watchdog error:', err)
-    if (sentryClient) {
-      sentryClient.configureScope((scope: Scope) => {
-        scope.setExtra('url', golUrl)
-      })
-      sentryClient.captureException(err)
-    } else {
-      throw err
-    }
+    // tslint:disable-next-line:no-unsafe-any
+    handleError(err)
+  }
+}
+
+const handleErrorDefault = (sentryClient: Hub | undefined, url: string, err: Error, data?: unknown) => {
+  // tslint:disable-next-line
+  console.log('Flight watchdog error:', err)
+  if (sentryClient) {
+    sentryClient.configureScope((scope: Scope) => {
+      scope.setExtra('url', url)
+      if (data) {
+        scope.setExtra('data', JSON.stringify(data))
+      }
+    })
+    sentryClient.captureException(err)
   }
 }
 
