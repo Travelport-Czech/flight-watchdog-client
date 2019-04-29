@@ -26,11 +26,11 @@
     "api-server": "node tests-utils/startApiServer.js",
     "cypress-open": "cypress open",
     "cypress-run": "cypress run",
-    "cypress-run-ci": "cross-env DEBUG=cypress:* cypress run --browser chrome",
+    "cypress-run-ci": "cypress run --browser chrome",
     "test-open": "concurrently -k -s first \"npm:build-client-test-watch\" \"npm:build-emails-test-watch\" \"npm:http-server\" \"npm:api-server\" \"npm:cypress-open\"",
     "test-after-install": "npm run lint-client && concurrently -k -s first \"npm:http-server\" \"npm:api-server\" \"npm:cypress-run-ci\"",
     "test": "npm run lint-client && npm run build-client-test && npm run build-emails-test && concurrently -k -s first \"npm:http-server\" \"npm:api-server\" \"npm:cypress-run\"",
-    "test-ci": "npm run lint-client && npm run build-client-test && npm run build-emails-test && concurrently -k -s first \"npm:http-server\" \"npm:api-server\" \"npm:cypress-run-ci\"",
+    "test-ci": "npm run lint-client && npm run build-client-test && npm run build-emails-test && concurrently -k -s first \"npm:http-server\" \"npm:api-server\" \"wait-on http://localhost:8081/ && npm:cypress-run-ci\"",
     "open": "concurrently \"npm:build-client-test-watch\" \"npm:build-emails-test-watch\" \"npm:http-server\" \"npm:api-server\" \"opn http://localhost:8080\""
   },
   "dependencies": {
@@ -113,6 +113,7 @@
     "tslint-microsoft-contrib": "6.1.0",
     "tslint-plugin-prettier": "2.0.1",
     "tslint-react": "4.0.0",
+    "wait-on": "^3.2.0",
     "xlsx": "0.14.1"
   },
   "author": "C.E.E. group Travelport a.s.",
