@@ -19,3 +19,6 @@ jobs:
       - run:
           name: Run tests
           command: npm run test-after-install
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: cypress/screenshots
+          prefix: cypress
