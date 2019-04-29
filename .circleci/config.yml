@@ -1,7 +1,7 @@
 jobs:
   build:
     docker:
-      - image: cypress/base:node8.15.1
+      - image: cypress/base:8.15.1
     steps:
       - checkout # special step to check out source code to working directory
       - restore_cache:
