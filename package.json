@@ -30,7 +30,7 @@
     "test-open": "concurrently -k -s first \"npm:build-client-test-watch\" \"npm:build-emails-test-watch\" \"npm:http-server\" \"npm:api-server\" \"npm:cypress-open\"",
     "test-after-install": "npm run lint-client && concurrently -k -s first \"npm:http-server\" \"npm:api-server\" \"npm:cypress-run-ci\"",
     "test": "npm run lint-client && npm run build-client-test && npm run build-emails-test && concurrently -k -s first \"npm:http-server\" \"npm:api-server\" \"npm:cypress-run\"",
-    "test-ci": "npm run lint-client && npm run build-client-test && npm run build-emails-test && concurrently -k -s first \"npm:http-server\" \"npm:api-server\" \"wait-on http://localhost:8080/ && npm:cypress-run-ci\"",
+    "test-ci": "npm run lint-client && npm run build-client-test && npm run build-emails-test && concurrently -k -s first \"npm:http-server\" \"npm:api-server\" \"wait-on http://localhost:8080/ && npm run cypress-run-ci\"",
     "open": "concurrently \"npm:build-client-test-watch\" \"npm:build-emails-test-watch\" \"npm:http-server\" \"npm:api-server\" \"opn http://localhost:8080\""
   },
   "dependencies": {
