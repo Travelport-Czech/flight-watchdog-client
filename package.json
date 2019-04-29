@@ -8,7 +8,7 @@
     "node": ">=8.10"
   },
   "scripts": {
-    "postinstall": "npm run build-emails-prod && npm run build-client-prod",
+    "postinstall": "\"$NO_YARN_POSTINSTALL\" || npm run build-emails-prod && npm run build-client-prod",
     "lang-export": "webpack-cli --config app/translationScripts/webpack.config.js && node .dist-translation-scripts/export.js",
     "lang-import": "webpack-cli --config app/translationScripts/webpack.config.js && node .dist-translation-scripts/import.js",
     "lint-client": "tsc --project app/client/tsconfig.json && tslint --project app/client/tsconfig.json --config app/client/tslint.json",

@@ -2,6 +2,8 @@ jobs:
   build:
     docker:
       - image: cypress/browsers:node8.15.1-chrome73
+    environment:
+      NO_YARN_POSTINSTALL: 1
     steps:
       - checkout # special step to check out source code to working directory
       - restore_cache:
