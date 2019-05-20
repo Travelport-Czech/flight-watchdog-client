@@ -3388,6 +3388,11 @@ file-type@^10.4.0:
   resolved "https://registry.yarnpkg.com/file-type/-/file-type-10.10.0.tgz#b7cbc8ec48871edd7a3629e0a6d01b2b80a4d56c"
   integrity sha512-3CTQE/db3dnK2jsfd4XiXMKw9nD0QVEMRLdBzqYDRr5BvYMUccDpP8hMc1uPb1VZ9Iw/cAJjYPNwJ5UzxGqsRg==
 
+file-type@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/file-type/-/file-type-11.0.0.tgz#576ca9ec099925b0c4df7e75d3be52696b62fb52"
+  integrity sha512-ixd0mHkDO8KJ1S+ANTM+cZoZgL+TB0txLMm9KjTndfOjFYuRmrUcOtmSEm+e9s7wrynZOvvRD/8LwMQ6a24Irg==
+
 fill-range@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/fill-range/-/fill-range-4.0.0.tgz#d544811d428f98eb06a63dc402d2403c328c38f7"
@@ -5709,7 +5714,7 @@ p-try@^1.0.0:
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-1.0.0.tgz#cbc79cdbaf8fd4228e13f621f2b1a237c1b207b3"
   integrity sha1-y8ec26+P1CKOE/Yh8rGiN8GyB7M=
 
-p-try@^2.0.0:
+p-try@^2.0.0, p-try@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.2.0.tgz#cb2868540e313d61de58fafbe35ce9004d5540e6"
   integrity sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
@@ -6225,6 +6230,14 @@ react@^0.14.0:
   dependencies:
     envify "^3.0.0"
     fbjs "^0.6.1"
+
+read-chunk@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/read-chunk/-/read-chunk-3.2.0.tgz#2984afe78ca9bfbbdb74b19387bf9e86289c16ca"
+  integrity sha512-CEjy9LCzhmD7nUpJ1oVOE6s/hBkejlcJEgLQHVnQznOSilOPb+kpKktlLfFDK3/WP43+F80xkUTM2VOkYoSYvQ==
+  dependencies:
+    pify "^4.0.1"
+    with-open-file "^0.1.6"
 
 read-files@^0.1.0:
   version "0.1.0"
@@ -7962,6 +7975,15 @@ wide-align@^1.1.0:
   integrity sha512-QGkOQc8XL6Bt5PwnsExKBPuMKBxnGxWWW3fU55Xt4feHozMUhdUMaBCk290qpm/wG5u/RSKzwdAC4i51YigihA==
   dependencies:
     string-width "^1.0.2 || 2"
+
+with-open-file@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/with-open-file/-/with-open-file-0.1.6.tgz#0bc178ecab75f6baac8ae11c85e07445d690ea50"
+  integrity sha512-SQS05JekbtwQSgCYlBsZn/+m2gpn4zWsqpCYIrCHva0+ojXcnmUEPsBN6Ipoz3vmY/81k5PvYEWSxER2g4BTqA==
+  dependencies:
+    p-finally "^1.0.0"
+    p-try "^2.1.0"
+    pify "^4.0.1"
 
 worker-farm@^1.5.2:
   version "1.6.0"

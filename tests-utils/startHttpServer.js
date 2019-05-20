@@ -1,5 +1,7 @@
 const path = require('path')
 const Hapi = require('hapi')
+const fileType = require('file-type')
+const readChunk = require('read-chunk');
 
 const rootPath = '../.dist-client'
 const rootPathEmail = '../.dist-emails'
@@ -22,7 +24,13 @@ const initServer = async () => {
     method: 'GET',
     path: '/client/index.js',
     handler: function(request, h) {
-      return h.file(rootClientJs)
+      const type = fileType(readChunk.sync(rootClientJs, 0, fileType.minimumBytes))
+      console.log('File type', type)
+      const response = h.file(rootClientJs)
+      if (type && type.mime === 'application/gzip') {
+        response.header('Content-Encoding', 'gzip')
+      }
+      return response
     }
   })
 
