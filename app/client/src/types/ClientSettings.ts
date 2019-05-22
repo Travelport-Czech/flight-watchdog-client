@@ -6,4 +6,6 @@ export interface ClientSettings {
   readonly keepMinimalisedInDays: ValidNumber
   readonly initStep: StepToShow | undefined
   readonly apiUrl: ValidString
+  readonly analyticsId?: ValidString
+  readonly sentryDns?: ValidString
 }

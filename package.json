@@ -20,7 +20,6 @@
     "build-emails-prod": "tsc --project app/emails/tsconfig.json && npm run build-emails-prod-types",
     "build-client-test": "cross-env NODE_ENV=test webpack-cli --config app/client/webpack.config.js",
     "build-client-test-watch": "cross-env NODE_ENV=test webpack-cli --config app/client/webpack.config.js --watch",
-    "build-client-devel": "cross-env NODE_ENV=devel webpack-cli --config app/client/webpack.config.js",
     "build-client-prod": "cross-env NODE_ENV=production webpack-cli --config app/client/webpack.config.js",
     "http-server": "node tests-utils/startHttpServer.js",
     "api-server": "node tests-utils/startApiServer.js",

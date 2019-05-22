@@ -1,21 +1,20 @@
 import { App } from '@client/App'
 import { isValidClientSettings } from '@client/functions'
+import { UnknownNestedObject } from '@client/types/UnknownNestedObject'
 import { createAppConfigFromFe } from '@client/utils/createAppConfigFromFe'
 import { createTagManagerSnippet } from '@client/utils/createTagManagerSnippet'
 import { BrowserClient, Hub, Scope } from '@sentry/browser'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-const analyticsId = process.env.ANALYTICS_ID
-
 // tslint:disable-next-line:export-name no-any
-export const initFlightWatchdogClient = async (settingsData: any) => {
+export const initFlightWatchdogClient = async (settingsData: UnknownNestedObject) => {
   const settings = isValidClientSettings(settingsData)
 
-  const sentryClient = process.env.SENTRY_DNS
+  const sentryClient = settings.sentryDns
     ? new Hub(
         new BrowserClient({
-          dsn: process.env.SENTRY_DNS,
+          dsn: settings.sentryDns.toString(),
           release: process.env.RELEASE_HASH
         })
       )
@@ -28,8 +27,8 @@ export const initFlightWatchdogClient = async (settingsData: any) => {
   }
 
   try {
-    if (analyticsId) {
-      createTagManagerSnippet(analyticsId)
+    if (settings.analyticsId) {
+      createTagManagerSnippet(settings.analyticsId.toString())
     }
 
     const id = 'flight-watchdog-client-app'
