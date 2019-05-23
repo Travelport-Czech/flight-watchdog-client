@@ -39,7 +39,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
-    "@ceesystems/valid-objects-ts": "git+https://github.com/Travelport-Czech/valid-objects-ts.git#v1.0.10",
+    "@ceesystems/valid-objects-ts": "git+https://github.com/Travelport-Czech/valid-objects-ts.git#v1.0.11",
     "@sentry/browser": "^5.3.0",
     "@types/fs-extra": "^7.0.0",
     "@types/google.analytics": "^0.0.39",

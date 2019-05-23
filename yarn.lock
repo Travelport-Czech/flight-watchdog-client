@@ -891,9 +891,9 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@ceesystems/valid-objects-ts@git+https://github.com/Travelport-Czech/valid-objects-ts.git#v1.0.10":
-  version "1.0.10"
-  resolved "git+https://github.com/Travelport-Czech/valid-objects-ts.git#8c29400d4fa82a94ec3966dd21d5d75767310638"
+"@ceesystems/valid-objects-ts@git+https://github.com/Travelport-Czech/valid-objects-ts.git#v1.0.11":
+  version "1.0.11"
+  resolved "git+https://github.com/Travelport-Czech/valid-objects-ts.git#3f739a3f7ae6d2eeb338e9d0b02b42844b6132ac"
   dependencies:
     "@types/numeral" "^0.0.25"
     "@types/valid-url" "^1.0.2"
