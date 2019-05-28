@@ -1,5 +1,5 @@
 const path = require('path')
-const Hapi = require('hapi')
+const Hapi = require('@hapi/hapi')
 const fileType = require('file-type')
 const readChunk = require('read-chunk');
 
@@ -18,7 +18,7 @@ const initServer = async () => {
     routes: { log: { collect: true } }
   })
 
-  await server.register(require('inert'))
+  await server.register(require('@hapi/inert'))
 
   server.route({
     method: 'GET',
