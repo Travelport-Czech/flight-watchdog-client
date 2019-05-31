@@ -28,7 +28,7 @@ const createAdditionalResults = (additionalResults: FlightResult[], agencyParams
         <Text name={TranslationEnum.EmailAdditionalResultsHeader} />
       </div>
       {additionalResultsLimited.map((flight: FlightResult, index2: number) => {
-        const link = createResultUrl(flight, agencyParams).toString()
+        const link = createResultUrl(flight, agencyParams, { flightWatchdogAdditionalResult: '' }).toString()
 
         return (
           <p key={index2}>

@@ -5,16 +5,22 @@ import { WatcherLinks } from '@emails/types/WatcherLinks'
 import { WatcherParams } from '@emails/types/WatcherParams'
 import { AppLogicError } from '@shared/errors/AppLogicError'
 
-export const createResultUrl = (flight: FlightParams, agencyParams: AgencyParams): ValidUrl => {
+export const createResultUrl = (
+  flight: FlightParams,
+  agencyParams: AgencyParams,
+  addParams: { readonly [key: string]: string }
+): ValidUrl => {
   const { dealerId, frontendUrl } = agencyParams
   const dealerIdUrlPart = dealerId ? '&dealer_id=' + dealerId.toString() : ''
   const waitPageString = `${frontendUrl.toString()}/index.php?action=vWait&redirect=`
 
+  const addParamsPart = Object.entries(addParams).map(item => {
+    return `&${item[0]}=${item[1]}`
+  })
+
   return new ValidUrl(
     waitPageString +
-      encodeURIComponent(
-        frontendUrl.toString() + createResultLink(flight) + '&flightWatchdogAdditionalResult=' + dealerIdUrlPart
-      )
+      encodeURIComponent(frontendUrl.toString() + createResultLink(flight) + dealerIdUrlPart + addParamsPart)
   )
 }
 
