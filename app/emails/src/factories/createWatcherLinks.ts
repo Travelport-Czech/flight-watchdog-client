@@ -18,7 +18,7 @@ export const createResultUrl = (flight: FlightParams, agencyParams: AgencyParams
   )
 }
 
-export const createResultLink = (flight: FlightParams): string => {
+const createResultLink = (flight: FlightParams): string => {
   if (flight.flightType === 'return') {
     if (!flight.arrival) {
       throw new AppLogicError('Missing arrival for return flight')
