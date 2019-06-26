@@ -87,7 +87,7 @@ var startFlightWatchdogClient = function () {
         return;
       }
       var settings = {
-        token: 'XXX',
+        token: 'xxx',
         keepMinimalisedInDays: 7
       };
       initFlightWatchdogClient(settings);
@@ -95,14 +95,21 @@ var startFlightWatchdogClient = function () {
     document.getElementsByTagName('head')[0].appendChild(s);
   }
 }
+var started = 0;
 var mutationObserver = new MutationObserver(function(mutations) {
   mutations.forEach(function(mutation) {
-    if (document.querySelector('.offersData .offerContainer .buttons .tariff-btn strong')) {
+    console.log('change')
+    if (document.querySelector('.airticketOfferItem')) {
+      if (started) {
+        console.log('already started')
+        return
+      }
+      started = 1
       startFlightWatchdogClient()
     }
   });
 });
-mutationObserver.observe(document.getElementById('offersPanel'), {
+mutationObserver.observe(document.getElementsByTagName('body')[0], {
   childList: true,
   subtree: true
 });
