@@ -37,7 +37,7 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
       Object.values(SupportedLanguageEnum)
     )
 
-    const lowestPriceElement = doc.querySelector('.offersData .offerContainer .buttons .tariff-btn strong')
+    const lowestPriceElement = doc.querySelector('#airticket-offer-list .airticketOfferItem .tariff-btn strong')
 
     if (!lowestPriceElement) {
       throw new AppError('Lowest price not found')
