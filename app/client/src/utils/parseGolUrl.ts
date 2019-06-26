@@ -28,7 +28,7 @@ const parseOneWayFlight = (url: string): undefined | FlightData => {
   const origin = getUrlParameterValue(url, 'flights[0][origin]=')
   const destination = getUrlParameterValue(url, 'flights[0][destination]=')
   const departure = getUrlParameterValue(url, 'flights[0][departureDate]=')
-  const step = getUrlParameterValue(url, 'step') === 'ChooseFromFour'
+  const step = getUrlParameterValue(url, 'step').toLowerCase() === 'choosefromfour'
   const emailToContinueWatching = getUrlParameterValue(url, 'flightWatchdogContinue')
   const watcherIdToDelete = getUrlParameterValue(url, 'flightWatchdogDelete')
   const email = getUrlParameterValue(url, 'email')
@@ -58,7 +58,7 @@ const parseReturnFlight = (url: string): undefined | FlightData => {
   const destination = getUrlParameterValue(url, 'flights[0][destination]=').toUpperCase()
   const departure = getUrlParameterValue(url, 'flights[0][departureDate]=')
   const arrival = getUrlParameterValue(url, 'flights[1][departureDate]=')
-  const step = getUrlParameterValue(url, 'step') === 'ChooseFromFour'
+  const step = getUrlParameterValue(url, 'step').toLowerCase() === 'choosefromfour'
   const emailToContinueWatching = getUrlParameterValue(url, 'flightWatchdogContinue')
   const watcherIdToDelete = getUrlParameterValue(url, 'flightWatchdogDelete')
   const email = getUrlParameterValue(url, 'email')
