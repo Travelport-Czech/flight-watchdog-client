@@ -216,5 +216,5 @@ export const emailButton: CSSProperties = {
   textAlign: 'center',
   textDecoration: 'none',
   transition: 'all 300ms linear 0s',
-  width: '110px'
+  width: '120px'
 }
