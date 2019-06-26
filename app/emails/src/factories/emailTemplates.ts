@@ -12,7 +12,7 @@ export const emailTemplate = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Trans
 </body>
 </html>`
 
-export const rawEmailTemplate = `From: {emailFrom} ({emailFromName})
+export const rawEmailTemplate = `From: {emailFromName} <{emailFrom}>
 To: {emailTo}
 Subject: {subject}
 MIME-Version: 1.0
