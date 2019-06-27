@@ -1,6 +1,6 @@
-import { ValidPrice } from '@ceesystems/valid-objects-ts'
 import { Consts } from '@client/Consts'
 import { CrossButton } from '@client/reactComponents/CrossButton'
+import { AppConfig } from '@client/types/AppConfig'
 import { FlightParams } from '@client/types/FlightParams'
 import { HeaderDates } from '@shared/reactComponents/HeaderDates'
 import { LocationNameList } from '@shared/reactComponents/LocationNameList'
@@ -12,7 +12,7 @@ import * as React from 'react'
 
 interface Props {
   readonly flightParams: FlightParams
-  readonly price: ValidPrice
+  readonly appConfig: AppConfig
   readonly id: string
   handleClose(event: React.MouseEvent<HTMLElement>): void
 }
@@ -31,6 +31,14 @@ export class OpenedWindow extends React.Component<Props> {
     const destinationTextKey =
       flightType === 'return' ? TranslationEnum.ClientDestinationsReturn : TranslationEnum.ClientDestinationsOneway
 
+    const price = <Price price={this.props.appConfig.lowestPrice}/>
+    const priceWithDifferentCurrencies = (
+      <React.Fragment>
+        <Price price={this.props.appConfig.lowestPrice} /> (
+        <Price price={this.props.appConfig.lowestPriceCustomCurrency} />)
+      </React.Fragment>
+    )
+
     return (
       <div
         className={`${Consts.elementClassPrefix}_window`}
@@ -38,14 +46,16 @@ export class OpenedWindow extends React.Component<Props> {
         id={this.props.id}
         data-origin={origin.toString()}
         data-destination={destination.toString()}
-        data-price={this.props.price.amount.toString()}
+        data-price={this.props.appConfig.lowestPrice.amount.toString()}
         data-flighttype={flightType}
       >
         <div style={styles.header}>
           <CrossButton onClick={this.props.handleClose} />
           <div style={styles.headerText}>
             <Text name={TranslationEnum.ClientTitle}>
-              <Price price={this.props.price} />
+              {this.props.appConfig.lowestPrice.currency === this.props.appConfig.lowestPriceCustomCurrency.currency
+                ? price
+                : priceWithDifferentCurrencies}
             </Text>
           </div>
           <div style={styles.headerTextDescription}>

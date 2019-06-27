@@ -12,7 +12,7 @@ export const golUrlOneway =
   dateFrom +
   '&flights[0][destination]=LON&flights[0][origin]=PRG&travelers[0]=ADT&returnTicket=&dateVariants=exact&step=ChooseFromFour'
 
-export const setOtpions = ({ token, keepMinimalisedInDays, lang, url } = {}) => {
+export const setOtpions = ({ token, keepMinimalisedInDays, lang, url, price, defaultPrice } = {}) => {
     if (url !== undefined) {
         cy.get('#option-url').clear().type(url)
     }
@@ -24,6 +24,12 @@ export const setOtpions = ({ token, keepMinimalisedInDays, lang, url } = {}) => 
     }
     if (lang !== undefined) {
         cy.get('#option-lang').clear().type(lang)
+    }
+    if (defaultPrice !== undefined) {
+        cy.get('#option-defaultPrice').clear().type(defaultPrice)
+    }
+    if (price !== undefined) {
+        cy.get('#option-price').clear().type(price)
     }
     cy.get('#option-load-button').click()
 }

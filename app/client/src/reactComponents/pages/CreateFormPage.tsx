@@ -1,7 +1,7 @@
-import { ValidPrice } from '@ceesystems/valid-objects-ts'
 import { Button } from '@client/reactComponents/Button'
 import { EmailInput } from '@client/reactComponents/EmailInput'
 import { OpenedWindow } from '@client/reactComponents/OpenedWindow'
+import { AppConfig } from '@client/types/AppConfig'
 import { FlightParams } from '@client/types/FlightParams'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
@@ -13,21 +13,21 @@ interface Props {
   readonly email: string
   readonly showBadEmailError: boolean
   readonly flightParams: FlightParams
-  readonly price: ValidPrice
+  readonly appConfig: AppConfig
   onClose(event: React.MouseEvent<HTMLElement>): void
   onEmailChange(event: React.ChangeEvent<HTMLInputElement>): void
   onCreateWatcher(): void
 }
 export class CreateFormPage extends React.Component<Props> {
   public render() {
-    const { email, showBadEmailError, flightParams, price, onClose, onEmailChange, onCreateWatcher } = this.props
+    const { email, showBadEmailError, flightParams, appConfig, onClose, onEmailChange, onCreateWatcher } = this.props
     const isEmailValid = validateEmail(email)
 
     return (
       <OpenedWindow
         handleClose={onClose}
         flightParams={flightParams}
-        price={price}
+        appConfig={appConfig}
         id="flight-watchdog-window-is-open-to-create"
       >
         <EmailInput value={email} onChange={onEmailChange} />

@@ -11,13 +11,15 @@
           app.remove()
         }
         document.getElementsByTagName('html')[0].setAttribute('lang', document.getElementById('option-lang').value)
+        document.getElementsByClassName('AO3_TotalFareValue')[0].innerHTML = document.getElementById('option-price').value
+        document.getElementsByClassName('AO3_TotalFareValue')[0].setAttribute('data-default-price', document.getElementById('option-defaultPrice').value)
         var settings = {
           token: document.getElementById('option-token').value,
           initStep: document.getElementById('option-initStep').value,
           apiUrl: document.getElementById('option-apiUrl').value,
           keepMinimalisedInDays: parseInt(document.getElementById('option-keepMinimalisedInDays').value),
           analyticsId: document.getElementById('option-analyticsId').value,
-          sentryDns: document.getElementById('option-sentryDns').value,
+          sentryDns: document.getElementById('option-sentryDns').value
         }
         initFlightWatchdogClient(settings)
       }
@@ -26,8 +28,7 @@
   <body>
     <h1>Testing page</h1>
     <p>
-      Prices: <span class="AO3_TotalFareValue">2 000 CZK</span>, <span class="AO3_TotalFareValue">3 000 CZK</span>,
-      <span class="AO3_TotalFareValue">4 000 CZK</span>
+      Prices: <span class="AO3_TotalFareValue" data-default-price="2 000 CZK">2 000 CZK</span>
     </p>
     <p>
       Options:<br/>
@@ -47,6 +48,8 @@
         <option value="ERROR">ERROR</option>
       </select><br/>
       apiUrl: <input name="apiUrl" value="http://localhost:3000" id="option-apiUrl"><br/>
+      price: <input name="token" value="2 000 CZK" id="option-price"><br/>
+      defaultPrice: <input name="token" value="2 000 CZK" id="option-defaultPrice"><br/>
       language: <input name="lang" value="cs" id="option-lang"><br/>
       token: <input name="token" value="token" id="option-token"><br/>
       analyticsId: <input name="analyticsId" value="false" id="option-analyticsId"><br/>

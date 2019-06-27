@@ -63,26 +63,12 @@ Hlídat Nemám zájem`)
     it('Return flight url with lower case step', function() {
         cy.visit('/')
         setOtpions({url: golUrlReturn.replace('ChooseFromFour', 'chooseFromFour')})
-        cy.get('.flight-watchdog-client_window').should(($window) => {
-            expect(normalizeText($window.text()), 'content').to.equal(`\
-×Chcete hlídat cenu 2 000 CZK?\
-Budeme ji hlídat za Vás! Každý den pak dostanete informaci o jejím vývoji.\
-z Praha - Letište Václava Havla (PRG) do Londýn (LON) a zpět\
-čtvrtek 1. 11. 2018 až pondělí 5. 11. 2018\
-Hlídat Nemám zájem`)
-        })
+        cy.contains('Chcete hlídat cenu 2\u00a0000\u00a0CZK?')
     })
 
     it('Oneway flight url with lower case step', function() {
         cy.visit('/')
         setOtpions({url: golUrlOneway.replace('ChooseFromFour', 'chooseFromFour')})
-        cy.get('.flight-watchdog-client_window').should(($window) => {
-            expect(normalizeText($window.text()), 'content').to.equal(`\
-×Chcete hlídat cenu 2 000 CZK?\
-Budeme ji hlídat za Vás! Každý den pak dostanete informaci o jejím vývoji.\
-z Praha - Letište Václava Havla (PRG) do Londýn (LON)\
-čtvrtek 1. 11. 2018\
-Hlídat Nemám zájem`)
-        })
+        cy.contains('Chcete hlídat cenu 2\u00a0000\u00a0CZK?')
     })
 })

@@ -7,6 +7,6 @@ interface Props {
 
 export class Price extends React.Component<Props> {
   public render() {
-    return this.props.price.formatToLocale('# ##0,## ¤')
+    return this.props.price.formatToLocale('# ##0,## ¤').replace(/ /g, '\u00a0')
   }
 }

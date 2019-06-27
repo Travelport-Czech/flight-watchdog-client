@@ -15,6 +15,11 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
 
   const lowestPriceHtmlElement = <HTMLSpanElement | null>doc.getElementsByClassName('AO3_TotalFareValue').item(0)
   const lowestPrice =
+    lowestPriceHtmlElement && lowestPriceHtmlElement.getAttribute('data-default-price')
+      ? lowestPriceHtmlElement.getAttribute('data-default-price')
+      : ''
+
+  const lowestPriceCustomCurrency =
     lowestPriceHtmlElement && lowestPriceHtmlElement.textContent ? lowestPriceHtmlElement.textContent : ''
 
   if (!lowestPrice) {
@@ -31,6 +36,7 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
     ...appConfigPartFromUrl,
     customerEmail: getCustomerEmail(doc),
     lowestPrice: new ValidPrice(lowestPrice),
+    lowestPriceCustomCurrency: new ValidPrice(lowestPriceCustomCurrency),
     lang
   }
 }
