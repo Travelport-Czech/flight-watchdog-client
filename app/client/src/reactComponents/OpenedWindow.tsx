@@ -31,7 +31,7 @@ export class OpenedWindow extends React.Component<Props> {
     const destinationTextKey =
       flightType === 'return' ? TranslationEnum.ClientDestinationsReturn : TranslationEnum.ClientDestinationsOneway
 
-    const price = <Price price={this.props.appConfig.lowestPrice}/>
+    const price = <Price price={this.props.appConfig.lowestPrice} />
     const priceWithDifferentCurrencies = (
       <React.Fragment>
         <Price price={this.props.appConfig.lowestPrice} /> (
