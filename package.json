@@ -33,8 +33,8 @@
     "open": "concurrently \"npm:build-client-test-watch\" \"npm:build-emails-test-watch\" \"npm:http-server\" \"npm:api-server\" \"opn http://localhost:8080\""
   },
   "dependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/polyfill": "^7.4.4",
@@ -84,8 +84,8 @@
     "utf-8-validate": "^5.0.2",
     "uuid": "^3.3.2",
     "valid-url": "^1.0.9",
-    "webpack": "^4.32.1",
-    "webpack-cli": "^3.3.2",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.6",
     "webpack-visualizer-plugin": "^0.1.11"
   },
   "resolutions": {
