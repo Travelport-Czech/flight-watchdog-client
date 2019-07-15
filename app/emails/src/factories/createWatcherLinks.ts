@@ -4,6 +4,7 @@ import { FlightParams } from '@emails/types/FlightParams'
 import { WatcherLinks } from '@emails/types/WatcherLinks'
 import { WatcherParams } from '@emails/types/WatcherParams'
 import { AppLogicError } from '@shared/errors/AppLogicError'
+import { urlParamsConst } from '@shared/utils/consts'
 
 export const createResultUrl = (
   flight: FlightParams,
@@ -66,19 +67,14 @@ export const createWatcherLinks = (watcher: WatcherParams, agencyParams: AgencyP
   const dealerIdUrlPart = dealerId ? '&dealer_id=' + dealerId.toString() : ''
   const resultLinkString = frontendUrl.toString() + createResultLink(watcher) + dealerIdUrlPart
 
-  const resultLink = new ValidUrl(resultLinkString + '&flightWatchdogResult=')
+  const resultLink = new ValidUrl(`${resultLinkString}&${urlParamsConst.result}=`)
 
-  const continueLink = new ValidUrl(
-    resultLinkString + '&flightWatchdogContinue=' + encodeURIComponent(watcher.email.toString())
-  )
+  const continueLink = new ValidUrl(`${resultLinkString}\
+&${urlParamsConst.continue}=${encodeURIComponent(watcher.email.toString())}`)
 
-  const deleteLink = new ValidUrl(
-    resultLinkString +
-      '&flightWatchdogDelete=' +
-      encodeURIComponent(watcher.id.toString()) +
-      '&email=' +
-      encodeURIComponent(watcher.email.toString())
-  )
+  const deleteLink = new ValidUrl(`${resultLinkString}\
+&${urlParamsConst.delete}=${encodeURIComponent(watcher.id.toString())}\
+&${urlParamsConst.email}=${encodeURIComponent(watcher.email.toString())}`)
 
   return {
     continueLink,

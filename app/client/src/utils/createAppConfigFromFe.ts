@@ -12,6 +12,7 @@ import { getUrlParameterValue } from '@client/utils/getUrlParameterValue'
 import { AppError } from '@shared/errors/AppError'
 import { InvalidClientInputError } from '@shared/errors/InvalidClientInputError'
 import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
+import { urlParamsConst } from '@shared/utils/consts'
 
 // tslint:disable-next-line:no-any
 declare var dataLayer: any // global variable from html
@@ -28,9 +29,9 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
       throw new AppError('DataLayer not contain searchVariables')
     }
 
-    const emailToContinueWatching = getUrlParameterValue(url, 'flightWatchdogContinue')
-    const watcherIdToDelete = getUrlParameterValue(url, 'flightWatchdogDelete')
-    const email = getUrlParameterValue(url, 'email')
+    const emailToContinueWatching = getUrlParameterValue(url, urlParamsConst.continue)
+    const watcherIdToDelete = getUrlParameterValue(url, urlParamsConst.delete)
+    const email = getUrlParameterValue(url, urlParamsConst.email)
     const langElement = document.getElementsByTagName('html').item(0)
     const lang = new ValidLanguage(
       langElement && langElement.getAttribute('lang'),
