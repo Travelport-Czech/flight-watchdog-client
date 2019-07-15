@@ -43,6 +43,8 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
       throw new AppError('Lowest price not found')
     }
 
+    const lowestPrice = new ValidPrice(normalizeText(lowestPriceElement.innerHTML))
+
     // tslint:disable:no-unsafe-any
     return {
       arrival: dataLayer[0].searchVariables.roundTrip
@@ -55,7 +57,8 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
       origin: new ValidIATALocationList(dataLayer[0].searchVariables.from),
       flightType: dataLayer[0].searchVariables.roundTrip ? 'return' : 'oneway',
       watcherIdToDelete: watcherIdToDelete ? new ValidString(watcherIdToDelete) : undefined,
-      lowestPrice: new ValidPrice(normalizeText(lowestPriceElement.innerHTML)),
+      lowestPrice,
+      lowestPriceCustomCurrency: lowestPrice,
       lang
     }
     // tslint:enable

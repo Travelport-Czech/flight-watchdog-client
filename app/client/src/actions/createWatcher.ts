@@ -28,6 +28,8 @@ export const createWatcher = async (
   const token = props.clientSettings.token
   const result = await functions.getWatchersCountOnEmail(token, apiUrl, state.email)
   if (result === undefined) {
+    props.handleError(new Error('API send watchers count on email error.'), { props, state })
+
     return { stepToShow: StepToShow.error }
   }
   if (result.limit === 1 && result.count === 1) {
@@ -37,6 +39,8 @@ export const createWatcher = async (
     const sendListResult = await functions.sendWatchersList(token, apiUrl, state.email, lang)
 
     if (!sendListResult) {
+      props.handleError(new Error('API send watcher list error.'), { props, state })
+
       return { stepToShow: StepToShow.error }
     }
 
@@ -55,6 +59,8 @@ export const createWatcher = async (
   }
   const createResult = await functions.createWatcher(token, apiUrl, watcherCreateParams)
   if (!createResult) {
+    props.handleError(new Error('API create watcher error.'), { props, state })
+
     return { stepToShow: StepToShow.error }
   }
 

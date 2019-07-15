@@ -27,11 +27,15 @@
           app.remove()
         }
         document.getElementsByTagName('html')[0].setAttribute('lang', document.getElementById('option-lang').value)
+        document.getElementsByClassName('price')[0].innerHTML = document.getElementById('option-price').value
+        document.getElementsByClassName('price')[0].setAttribute('data-default-price', document.getElementById('option-defaultPrice').value)
         var settings = {
           token: document.getElementById('option-token').value,
           initStep: document.getElementById('option-initStep').value,
           apiUrl: document.getElementById('option-apiUrl').value,
-          keepMinimalisedInDays: parseInt(document.getElementById('option-keepMinimalisedInDays').value)
+          keepMinimalisedInDays: parseInt(document.getElementById('option-keepMinimalisedInDays').value),
+          analyticsId: document.getElementById('option-analyticsId').value,
+          sentryDns: document.getElementById('option-sentryDns').value
         }
         dataLayer[0].searchVariables.roundTrip = document.getElementById('option-flighttype').value === 'return' ? true : false
         initFlightWatchdogClient(settings)
@@ -42,14 +46,12 @@
     <h1>Testing page</h1>
     <p>
       Price:
-      <div class="offersData">
-        <div class="offerContainer">
-          <div class="buttons">
-            <a class="tariff-btn">
-              <span>Rezervovat</span>
-              <strong>2&nbsp;000 CZK</strong>
-            </a>
-          </div>
+      <div id="airticket-offer-list">
+        <div class="airticketOfferItem">
+          <a class="tariff-btn">
+            <span>Rezervovat</span>
+            <strong class="price">2&nbsp;000 CZK</strong>
+          </a>
         </div>
       </div>
     </p>
@@ -71,9 +73,13 @@
         <option value="ERROR">ERROR</option>
       </select><br/>
       apiUrl: <input name="apiUrl" value="http://localhost:3000" id="option-apiUrl"><br/>
+      price: <input name="token" value="2 000 CZK" id="option-price"><br/>
+      defaultPrice: <input name="token" value="2 000 CZK" id="option-defaultPrice"><br/>
       language: <input name="lang" value="cs" id="option-lang"><br/>
       flight type: <input name="flighttype" value="return" id="option-flighttype"> (return or oneway)<br/>
       token: <input name="token" value="token" id="option-token"><br/>
+      analyticsId: <input name="analyticsId" value="false" id="option-analyticsId"><br/>
+      sentryDns: <input name="sentryDns" value="false" id="option-sentryDns"><br/>
       keepMinimalisedInDays: <input name="keepMinimalisedInDays" value="1" id="option-keepMinimalisedInDays"><br/>
       <button onclick="submit(this)" id="option-load-button">Load</button>
     </p>

@@ -42,11 +42,12 @@ export const enTranslation: TranslationKeys = {
   [T.EmailButtonContinueWatching]: `Continue tracking`,
   [T.EmailButtonDelete]: `Delete`,
   [T.EmailFooter]: `Provided by Flight Watchdog.`,
-  [T.EmailWatcherListHeader]: `List of the flight watchdogs`,
+  [T.EmailWatcherListHeader]: `List of your flight watchdogs`,
   [T.EmailWatcherListDescription]: `This email was sent to you based on your request to delete the flight watcher on {?}. When you click Delete, you will be redirected to flight search results and you will be prompted to delete the flight.`,
   [T.EmailMarketingHeader]: `Flight prices trends`,
   [T.EmailMarketingDescription]: `This email is sent to you daily based on your request to track flight prices on {?}.`,
   [T.EmailNoReplyName]: `Flight watchdog`,
+  [T.EmailAdditionalResultsHeader]: `Similar offers (people just buying)`,
   [T.GraphLegendPriceLimit]: `Tracked price`,
   [T.GraphLegendPriceTrend]: `Price trend`
 }

@@ -1,0 +1,26 @@
+jobs:
+  build:
+    docker:
+      - image: cypress/browsers:node8.15.1-chrome73
+    steps:
+      - checkout # special step to check out source code to working directory
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+          environment:
+            NO_YARN_POSTINSTALL: 1
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: Run tests
+          command: npm run test
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: cypress/screenshots
+          prefix: cypress

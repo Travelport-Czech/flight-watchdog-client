@@ -1,7 +1,6 @@
 # Flight Watchdog Client
 
-[![Build Status](https://travis-ci.org/Travelport-Czech/flight-watchdog-client.svg?branch=master)](https://travis-ci.org/Travelport-Czech/flight-watchdog-client)
-[![Cypress dashboard](https://img.shields.io/badge/cypress-dashboard-brightgreen.svg)](https://dashboard.cypress.io/#/projects/138158/runs)
+[![CircleCI](https://circleci.com/gh/Travelport-Czech/flight-watchdog-client/tree/master.svg?style=svg)](https://circleci.com/gh/Travelport-Czech/flight-watchdog-client/tree/master)
 
 The *Flight Watchdog Client* is frontend part built on the [Flight Watchdog API](https://cee-systems.gitbook.io/flight-watchdog-api/)  and designated for the online booking tool [GOL IBE](https://www.cee-systems.com/gol-ibe). 
 

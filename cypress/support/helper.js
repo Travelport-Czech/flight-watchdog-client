@@ -1,5 +1,5 @@
 
-export const setOtpions = ({ token, keepMinimalisedInDays, lang, url, flightType } = {}) => {
+export const setOtpions = ({ token, keepMinimalisedInDays, lang, url, flightType, price, defaultPrice } = {}) => {
     if (url !== undefined) {
         cy.get('#option-url').clear().type(url)
     }
@@ -14,6 +14,12 @@ export const setOtpions = ({ token, keepMinimalisedInDays, lang, url, flightType
     }
     if (flightType !== undefined) {
         cy.get('#option-flighttype').clear().type(flightType)
+    }
+    if (defaultPrice !== undefined) {
+        cy.get('#option-defaultPrice').clear().type(defaultPrice)
+    }
+    if (price !== undefined) {
+        cy.get('#option-price').clear().type(price)
     }
     cy.get('#option-load-button').click()
 }

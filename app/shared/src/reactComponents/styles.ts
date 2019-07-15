@@ -112,6 +112,13 @@ export const buttonHovered: CSSProperties = {
   transition: 'all 300ms linear'
 }
 
+export const link: CSSProperties = {
+  ...secondaryColor,
+  background: 'transparent',
+  border: 'none',
+  textDecoration: 'none'
+}
+
 export const buttonLink: CSSProperties = {
   ...secondaryColor,
   background: 'transparent',
@@ -163,7 +170,7 @@ export const headerTextDescription: CSSProperties = {
   marginBottom: '15px'
 }
 
-export const headerDestinations: CSSProperties = {
+export const headerLevel2: CSSProperties = {
   ...secondaryColor,
   fontSize: '18px',
   lineHeight: '28px',
@@ -209,5 +216,5 @@ export const emailButton: CSSProperties = {
   textAlign: 'center',
   textDecoration: 'none',
   transition: 'all 300ms linear 0s',
-  width: '110px'
+  width: '120px'
 }

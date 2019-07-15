@@ -1,5 +1,5 @@
-import { ValidPrice } from '@ceesystems/valid-objects-ts'
 import { OpenedWindow } from '@client/reactComponents/OpenedWindow'
+import { AppConfig } from '@client/types/AppConfig'
 import { FlightParams } from '@client/types/FlightParams'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
@@ -8,18 +8,18 @@ import * as React from 'react'
 
 interface Props {
   readonly flightParams: FlightParams
-  readonly price: ValidPrice
+  readonly appConfig: AppConfig
   onClose(event: React.MouseEvent<HTMLElement>): void
 }
 export class RemoveWatcherWorkingPage extends React.Component<Props> {
   public render() {
-    const { flightParams, price, onClose } = this.props
+    const { flightParams, appConfig, onClose } = this.props
 
     return (
       <OpenedWindow
         handleClose={onClose}
         flightParams={flightParams}
-        price={price}
+        appConfig={appConfig}
         id="flight-watchdog-window-is-deleting"
       >
         <p style={styles.simpleText}>

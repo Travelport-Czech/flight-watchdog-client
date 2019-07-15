@@ -7,3 +7,4 @@
 export * from '@emails/functions/sendLowerPriceEmail'
 export * from '@emails/functions/sendMarketingEmail'
 export * from '@emails/functions/sendWatcherListEmail'
+export { createResultUrl } from '@emails/factories/createWatcherLinks'

@@ -18,5 +18,6 @@ export interface AppConfig {
   readonly emailForWatcherDelete?: ValidEmail
   readonly customerEmail?: ValidEmail
   readonly lowestPrice: ValidPrice
+  readonly lowestPriceCustomCurrency: ValidPrice
   readonly lang: ValidLanguage
 }

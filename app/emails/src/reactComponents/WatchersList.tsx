@@ -1,11 +1,13 @@
-import { createWatcherLinks } from '@emails/factories/createWatcherLinks'
+import { createResultUrl, createWatcherLinks } from '@emails/factories/createWatcherLinks'
 import { EmailButton } from '@emails/reactComponents/EmailButton'
 import { WatcherPriceHistory } from '@emails/reactComponents/WatcherPriceHistory'
 import { AgencyParams } from '@emails/types/AgencyParams'
+import { FlightResult } from '@emails/types/FlightResult'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { AppLogicError } from '@shared/errors/AppLogicError'
 import { HeaderDates } from '@shared/reactComponents/HeaderDates'
 import { LocationNameList } from '@shared/reactComponents/LocationNameList'
+import { Price } from '@shared/reactComponents/Price'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
@@ -17,6 +19,35 @@ interface Props {
   readonly showSvg?: boolean
 }
 
+const createAdditionalResults = (additionalResults: FlightResult[], agencyParams: AgencyParams) => {
+  const additionalResultsLimited = additionalResults.slice(0, 5)
+
+  return (
+    <div style={{ marginTop: '20px' }}>
+      <div style={styles.headerLevel2}>
+        <Text name={TranslationEnum.EmailAdditionalResultsHeader} />
+      </div>
+      {additionalResultsLimited.map((flight: FlightResult, index2: number) => {
+        const link = createResultUrl(flight, agencyParams, { flightWatchdogAdditionalResult: '' }).toString()
+
+        return (
+          <p key={index2}>
+            <a href={link} style={styles.link}>
+              <span style={{ fontWeight: 'bold' }}>
+                <Price price={flight.price} />
+              </span>
+              {' - '}
+              <HeaderDates departure={flight.departure} arrival={flight.arrival} />
+              {' -> '}
+              <span style={{ ...styles.buttonLink, fontWeight: 'bold' }}>Zobrazit</span>
+            </a>
+          </p>
+        )
+      })}
+    </div>
+  )
+}
+
 export class WatchersList extends React.Component<Props> {
   public render() {
     const { watchersFullInfoList, agencyParams, showSvg } = this.props
@@ -26,7 +57,7 @@ export class WatchersList extends React.Component<Props> {
     }
 
     const lines = watchersFullInfoList.map((watchersFullInfo: WatcherFullInfo, index) => {
-      const { watcher, originLocationList, destinationLocationList } = watchersFullInfo
+      const { watcher, originLocationList, destinationLocationList, additionalResults } = watchersFullInfo
       const watcherLinks = createWatcherLinks(watcher, agencyParams)
       const destinationTextKey =
         watcher.flightType === 'return'
@@ -35,17 +66,15 @@ export class WatchersList extends React.Component<Props> {
 
       return (
         <div key={index} style={styles.emailBlock}>
-          <div style={styles.headerDestinations}>
-            <div style={styles.headerDestinations}>
-              <Text name={destinationTextKey}>
-                <span style={styles.primaryColor}>
-                  <LocationNameList locationList={originLocationList} />
-                </span>
-                <span style={styles.primaryColor}>
-                  <LocationNameList locationList={destinationLocationList} />
-                </span>
-              </Text>
-            </div>
+          <div style={styles.headerLevel2}>
+            <Text name={destinationTextKey}>
+              <span style={styles.primaryColor}>
+                <LocationNameList locationList={originLocationList} />
+              </span>
+              <span style={styles.primaryColor}>
+                <LocationNameList locationList={destinationLocationList} />
+              </span>
+            </Text>
           </div>
           <div style={styles.headerDates}>
             <HeaderDates departure={watcher.departure} arrival={watcher.arrival} />
@@ -77,6 +106,8 @@ export class WatchersList extends React.Component<Props> {
               </td>
             </tr>
           </table>
+
+          {additionalResults.length !== 0 && createAdditionalResults(additionalResults, agencyParams)}
         </div>
       )
     })

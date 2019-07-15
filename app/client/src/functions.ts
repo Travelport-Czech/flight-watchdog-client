@@ -191,33 +191,38 @@ export const sendRequest = async (
 }
 
 // tslint:disable-next-line:no-any
-export const isValidClientSettings = (data: any): ClientSettings => {
+export const isValidClientSettings = (data: UnknownNestedObject): ClientSettings => {
   if (!data) {
     throw new Error('Flight Watchdog: Missing settings')
   }
-  // tslint:disable-next-line:no-unsafe-any
   const token = new ValidString(data.token)
-  // tslint:disable-next-line:no-unsafe-any
+
   const keepMinimalisedInDays = new ValidNumber(
-    // tslint:disable-next-line:no-unsafe-any
     typeof data.keepMinimalisedInDays === 'number' ? data.keepMinimalisedInDays : 7
   )
 
-  // tslint:disable-next-line:no-unsafe-any
   if (data.initStep && !Object.values(StepToShow).includes(data.initStep)) {
     throw new Error('Flight Watchdog: Bad init step')
   }
 
-  // tslint:disable-next-line:no-unsafe-any
   const initStep = data.initStep ? <StepToShow>data.initStep : undefined
 
-  // tslint:disable-next-line:no-unsafe-any
   const apiUrl = new ValidString(data.apiUrl ? data.apiUrl : process.env.API_URL)
+
+  const analyticsId =
+    data.analyticsId === 'false'
+      ? undefined
+      : new ValidString(data.analyticsId ? data.analyticsId : process.env.ANALYTICS_ID)
+
+  const sentryDns =
+    data.sentryDns === 'false' ? undefined : new ValidString(data.sentryDns ? data.sentryDns : process.env.SENTRY_DNS)
 
   return {
     keepMinimalisedInDays,
     token: token.toString(),
     initStep,
-    apiUrl
+    apiUrl,
+    analyticsId,
+    sentryDns
   }
 }

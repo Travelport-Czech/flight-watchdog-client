@@ -6,7 +6,7 @@ describe('Delete watcher', function() {
     it('Success delete', function() {
         cy.visit('')
         setOtpions({ url })
-        cy.contains('Chcete hlídat cenu 2 000 CZK?')
+        cy.contains('Chcete hlídat cenu 2\u00a0000\u00a0CZK?')
         cy.contains('Opravdu chcete hlídač smazat?')
         cy.get('#flight-watchdog-window-clicked-delete-by-id-yes').click()
         cy.contains('Hlídat')

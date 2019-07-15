@@ -1,8 +1,11 @@
-const Hapi = require('hapi')
+const Hapi = require('@hapi/hapi')
 
 const server = new Hapi.Server({
     host: 'localhost',
-    port: 3000
+    port: 3000,
+    routes: {
+        cors: true
+    }
 })
 
 server.route({
@@ -112,13 +115,6 @@ server.route({
 const start = async function() {
     try {
         console.log('Starting HAPI server...')
-        await server.register({
-            plugin: require('hapi-cors'),
-            options: {
-                origins: ['http://localhost:8080']
-            }
-        })
-
         await server.start();
         console.log('Server starter.')
     } catch(err) {

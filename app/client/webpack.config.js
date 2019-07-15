@@ -12,7 +12,7 @@ let entry = {
 
 let plugins = [
   new Dotenv({
-    path: path.resolve(__dirname, '.env.' + process.env.NODE_ENV), // load this now instead of the ones in '.env'
+    path: path.resolve(__dirname, '.env'), // load this now instead of the ones in '.env'
     safe: false, // load '.env.example' to verify the '.env' variables are all set. Can also be a string to a different file.
     silent: false, // hide any errors
     systemvars: true // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
