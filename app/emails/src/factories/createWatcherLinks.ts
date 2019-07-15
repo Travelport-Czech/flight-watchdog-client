@@ -17,7 +17,7 @@ export const createResultUrl = (
     return `&${item[0]}=${item[1]}`
   })
 
-  return new ValidUrl(frontendUrl.toString() + createResultLink(flight) + dealerIdUrlPart + addParamsPart)
+  return new ValidUrl(frontendUrl.toString() + createResultLink(flight) + dealerIdUrlPart + addParamsPart.join(''))
 }
 
 const createResultLink = (flight: FlightParams): string => {
