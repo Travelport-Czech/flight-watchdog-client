@@ -1,5 +1,6 @@
 import { ValidDate, ValidEmail, ValidIATALocationList, ValidString } from '@ceesystems/valid-objects-ts'
 import { getUrlParameterValue } from '@client/utils/getUrlParameterValue'
+import { urlParamsConst } from '@shared/utils/consts'
 
 interface FlightData {
   readonly flightType: 'return' | 'oneway'
@@ -29,9 +30,9 @@ const parseOneWayFlight = (url: string): undefined | FlightData => {
   const destination = getUrlParameterValue(url, 'flights[0][destination]=')
   const departure = getUrlParameterValue(url, 'flights[0][departureDate]=')
   const step = getUrlParameterValue(url, 'step').toLowerCase() === 'choosefromfour'
-  const emailToContinueWatching = getUrlParameterValue(url, 'flightWatchdogContinue')
-  const watcherIdToDelete = getUrlParameterValue(url, 'flightWatchdogDelete')
-  const email = getUrlParameterValue(url, 'email')
+  const emailToContinueWatching = getUrlParameterValue(url, urlParamsConst.continue)
+  const watcherIdToDelete = getUrlParameterValue(url, urlParamsConst.delete)
+  const email = getUrlParameterValue(url, urlParamsConst.email)
 
   if (!origin || !destination || !departure || !step) {
     return
