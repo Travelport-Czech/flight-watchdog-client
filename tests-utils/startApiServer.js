@@ -8,16 +8,34 @@ const server = new Hapi.Server({
     }
 })
 
+let tokenLimitCount = false
+
 server.route({
     method: 'POST',
     path:'/client/count-all',
     handler: function (request, h) {
+        const headers = request.headers
+
+        let limit = 1000
+        let count = 6
+
+        if (headers.authorization === 'Basic OnRva2VuTGltaXQ=') {
+            limit = 1
+            count = tokenLimitCount ? 1 : 0
+            tokenLimitCount = !tokenLimitCount
+        }
+
+        if (headers.authorization === 'Basic OnRva2VuTGltaXRaZXJv') {
+            limit = 1
+            count = 1
+        }
+
         return h.response({
             "result": "Success",
             "message": "Done.",
             "context": {
-                "limit": 1000,
-                "count": 6
+                "limit": limit,
+                "count": count
             }
         })
     }

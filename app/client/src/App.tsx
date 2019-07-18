@@ -1,5 +1,6 @@
 import * as actions from '@client/actions'
 import { Consts } from '@client/Consts'
+import { isAllowedToAddWatcher } from '@client/functions'
 import { Props } from '@client/Props'
 import { ClosedWindow } from '@client/reactComponents/ClosedWindow'
 import { ContinueWatchingPage } from '@client/reactComponents/pages/ContinueWatchingPage'
@@ -93,7 +94,15 @@ export class App extends React.Component<Props, State> {
     }
   }
 
-  private readonly handleClose = () => {
+  private readonly handleClose = async () => {
+    const { token, apiUrl } = this.props.clientSettings
+    const canCreateWatcher = await isAllowedToAddWatcher(token, apiUrl)
+    if (!canCreateWatcher) {
+      this.setState({ stepToShow: StepToShow.none })
+
+      return
+    }
+
     const keepMinimalisedInDays = this.props.clientSettings.keepMinimalisedInDays.value
     if (keepMinimalisedInDays !== 0) {
       Cookies.set(Consts.cookieName, 'true', { expires: keepMinimalisedInDays })
