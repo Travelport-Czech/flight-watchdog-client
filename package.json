@@ -94,7 +94,7 @@
     "@hapi/hapi": "^18.3.1",
     "@hapi/inert": "^5.2.0",
     "concurrently": "4.1.0",
-    "cypress": "3.3.0",
+    "cypress": "^3.4.0",
     "fs-extra": "7.0.1",
     "opn-cli": "4.0.0",
     "prettier": "1.17.1",
