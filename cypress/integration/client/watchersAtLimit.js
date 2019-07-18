@@ -19,7 +19,9 @@ Hlídat Nemám zájem`)
         cy.get(createButtonSelector).click()
         cy.contains('Skvěle, hotovo. Až najdeme nižší cenu, pošleme Vám e-mail.')
         cy.get('.content button').click()
-        cy.contains('Hledáte levnější letenku? Klikněte zde.')
+        cy.get('#flight-watchdog-client-app').should(($window) => {
+            expect($window.text(), 'content').to.equal('')
+        })
     })
 
     it('Should disable after check limit', function() {

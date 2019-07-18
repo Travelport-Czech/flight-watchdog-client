@@ -8,20 +8,21 @@ const server = new Hapi.Server({
     }
 })
 
+let tokenLimitCount = false
+
 server.route({
     method: 'POST',
     path:'/client/count-all',
     handler: function (request, h) {
         const headers = request.headers
 
-        console.log('michal', headers.authorization)
-
         let limit = 1000
         let count = 6
 
         if (headers.authorization === 'Basic OnRva2VuTGltaXQ=') {
             limit = 1
-            count = 0
+            count = tokenLimitCount ? 1 : 0
+            tokenLimitCount = !tokenLimitCount
         }
 
         if (headers.authorization === 'Basic OnRva2VuTGltaXRaZXJv') {
