@@ -12,12 +12,29 @@ server.route({
     method: 'POST',
     path:'/client/count-all',
     handler: function (request, h) {
+        const headers = request.headers
+
+        console.log('michal', headers.authorization)
+
+        let limit = 1000
+        let count = 6
+
+        if (headers.authorization === 'Basic OnRva2VuTGltaXQ=') {
+            limit = 1
+            count = 0
+        }
+
+        if (headers.authorization === 'Basic OnRva2VuTGltaXRaZXJv') {
+            limit = 1
+            count = 1
+        }
+
         return h.response({
             "result": "Success",
             "message": "Done.",
             "context": {
-                "limit": 1000,
-                "count": 6
+                "limit": limit,
+                "count": count
             }
         })
     }
