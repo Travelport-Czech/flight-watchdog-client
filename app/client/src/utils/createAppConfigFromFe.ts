@@ -57,8 +57,6 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
       throw new AppError('Destination IATA code not found')
     }
 
-    console.log('michal', destinationList.join('/').replace(/(\(|\))/g, ''))
-
     // tslint:disable:no-unsafe-any
     return {
       arrival: dataLayer[0].searchVariables.roundTrip
