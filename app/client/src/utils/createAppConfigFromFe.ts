@@ -39,12 +39,25 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
     )
 
     const lowestPriceElement = doc.querySelector('#airticket-offer-list .airticketOfferItem .tariff-btn strong')
-
     if (!lowestPriceElement) {
       throw new AppError('Lowest price not found')
     }
 
     const lowestPrice = new ValidPrice(normalizeText(lowestPriceElement.innerHTML))
+
+    const destinationElement = doc.querySelector('#top-infopanel div div div div strong')
+    if (!destinationElement) {
+      throw new AppError('Destination string not found')
+    }
+
+    const destination = new ValidString(destinationElement.innerHTML)
+    const destinationList = destination.toString().match(/\(([A-Z]{3})\)/g)
+
+    if (destinationList === null) {
+      throw new AppError('Destination IATA code not found')
+    }
+
+    console.log('michal', destinationList.join('/').replace(/(\(|\))/g, ''))
 
     // tslint:disable:no-unsafe-any
     return {
@@ -55,7 +68,7 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
       destination: new ValidIATALocationList(dataLayer[0].searchVariables.to),
       emailForWatcherDelete: email ? new ValidEmail(email) : undefined,
       emailToContinueWatching: emailToContinueWatching ? new ValidEmail(emailToContinueWatching) : undefined,
-      origin: new ValidIATALocationList(dataLayer[0].searchVariables.from),
+      origin: new ValidIATALocationList(destinationList.join('/').replace(/(\(|\))/g, '')),
       flightType: dataLayer[0].searchVariables.roundTrip ? 'return' : 'oneway',
       watcherIdToDelete: watcherIdToDelete ? new ValidString(watcherIdToDelete) : undefined,
       lowestPrice,
