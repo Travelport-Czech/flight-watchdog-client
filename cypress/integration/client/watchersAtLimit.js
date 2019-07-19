@@ -1,11 +1,11 @@
-import {golUrlReturn, golUrlOneway, setOtpions, normalizeText} from '../../support/helper'
+import {setOtpions, normalizeText} from '../../support/helper'
 
 const createButtonSelector = '#flight-watchdog-window-clicked-create-watcher'
 
 describe('Watchers at limit', function() {
     it('Should disable after create', function() {
         cy.visit('/')
-        setOtpions({token: 'tokenLimit', url: golUrlReturn})
+        setOtpions({token: 'tokenLimit'})
         cy.get('.flight-watchdog-client_window').should(($window) => {
             expect(normalizeText($window.text()), 'content').to.equal(`\
 ×Chcete hlídat cenu 2 000 CZK?\
@@ -26,7 +26,7 @@ Hlídat Nemám zájem`)
 
     it('Should disable after check limit', function() {
         cy.visit('/')
-        setOtpions({token: 'tokenLimitZero', url: golUrlReturn})
+        setOtpions({token: 'tokenLimitZero'})
         cy.get('#flight-watchdog-client-app').should(($window) => {
             expect($window.text(), 'content').to.equal('')
         })
