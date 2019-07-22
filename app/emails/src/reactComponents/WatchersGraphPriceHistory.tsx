@@ -24,11 +24,9 @@ export class WatchersGraphPriceHistory extends React.Component<Props> {
     const dateFormat = renderToStaticMarkup(<Text name={TranslationEnum.FormatDateDayMonth} />)
     const actualDate = getActualDate()
     const actualDateMinus15 = actualDate.subtractDays(15)
-    const last15Results = searchResults.filter(
-      (item: SearchResult): boolean => {
-        return item.created.getValidDate().isAfter(actualDateMinus15)
-      }
-    )
+    const last15Results = searchResults.filter((item: SearchResult): boolean => {
+      return item.created.getValidDate().isAfter(actualDateMinus15)
+    })
 
     const firstSearchResult: SearchResult = {
       origin: watcher.origin,
