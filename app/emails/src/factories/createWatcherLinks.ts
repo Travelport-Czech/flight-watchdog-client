@@ -21,7 +21,7 @@ export const createResultUrl = (
 
   return new ValidUrl(
     waitPageString +
-      encodeURIComponent(frontendUrl.toString() + createResultLink(flight) + dealerIdUrlPart + addParamsPart)
+      encodeURIComponent(frontendUrl.toString() + createResultLink(flight) + dealerIdUrlPart + addParamsPart.join(''))
   )
 }
 
