@@ -26,13 +26,11 @@ interface LangItem {
 }
 
 const data: LangItem[] = xlsx.utils.sheet_to_json(worksheet)
-data.map(
-  (item: LangItem): void => {
-    const regexp = new RegExp('(\\[T\\.' + item.key + '\\]: `)(.*)(`,)')
-    csFile = csFile.replace(regexp, '$1' + item.cs + '$3')
-    enFile = enFile.replace(regexp, '$1' + item.en + '$3')
-  }
-)
+data.map((item: LangItem): void => {
+  const regexp = new RegExp('(\\[T\\.' + item.key + '\\]: `)(.*)(`,)')
+  csFile = csFile.replace(regexp, '$1' + item.cs + '$3')
+  enFile = enFile.replace(regexp, '$1' + item.en + '$3')
+})
 
 fs.writeFileSync(csFilePath, csFile)
 fs.writeFileSync(enFilePath, enFile)

@@ -73,11 +73,9 @@ export const translate = (name: TranslationEnum, params: string[] = []): string 
     )
   }
 
-  return parts.reduce(
-    (acc: string, current: string, index: number): string => {
-      return acc + current.replace('{_}', '\u00a0') + params[index]
-    }
-  )
+  return parts.reduce((acc: string, current: string, index: number): string => {
+    return acc + current.replace('{_}', '\u00a0') + params[index]
+  })
 }
 
 interface Props {

@@ -13,7 +13,7 @@
     "lang-import": "webpack-cli --config app/translationScripts/webpack.config.js && node .dist-translation-scripts/import.js",
     "lint-client": "tsc --project app/client/tsconfig.json && tslint --project app/client/tsconfig.json --config app/client/tslint.json",
     "lint-emails": "tsc --project app/emails/tsconfig.json && tslint --project app/emails/tsconfig.json --config app/emails/tslint.json",
-    "autofix": "prettier app/**/* --write --single-quote --no-semi --print-width 120 --end-of-line lf",
+    "autofix": "prettier app/**/* --write --config prettier.config.js",
     "build-emails-test-watch": "webpack-cli --config app/emails/webpack.example.config.js --watch",
     "build-emails-test": "webpack-cli --config app/emails/webpack.example.config.js",
     "build-emails-prod-types": "gulp --gulpfile app/emails/gulpfile.js",
