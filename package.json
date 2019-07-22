@@ -56,7 +56,6 @@
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-preset-latest-node": "^3.2.1",
     "bufferutil": "^4.0.1",
-    "compression-webpack-plugin": "^2.0.0",
     "cross-env": "^5.2.0",
     "dotenv-webpack": "^1.7.0",
     "email-validator": "^2.0.4",

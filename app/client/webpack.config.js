@@ -1,5 +1,4 @@
 const path = require('path')
-const CompressionPlugin = require('compression-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 const Visualizer = require('webpack-visualizer-plugin')
 
@@ -20,15 +19,6 @@ let plugins = [
 ]
 
 if (process.env.NODE_ENV !== 'test') {
-  plugins.push(
-    new CompressionPlugin({
-      algorithm: 'gzip',
-      filename: '[path][query]',
-      minRatio: 0.8,
-      test: /\.js/,
-      threshold: 10240
-    })
-  )
   plugins.push(
     new Visualizer({
       filename: './statistics.html'
@@ -73,7 +63,7 @@ const clientConfig = {
     path: outputDir
   },
   performance: {
-    hints: process.env.NODE_ENV === 'test' ? false : 'warning'
+    hints: false
   },
   plugins: plugins,
   resolve: {
