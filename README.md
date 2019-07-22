@@ -80,7 +80,7 @@ var startFlightWatchdogClient = function () {
     font.rel = 'stylesheet'
     document.getElementsByTagName('head')[0].appendChild(font);
     var s = document.createElement('script');
-    s.src = 'https://s3-eu-west-1.amazonaws.com/flight-watchdog-client-prod/index-sa.js';
+    s.src = 'https://d33mffcdbk5uwb.cloudfront.net/index-sa.js';
     s.onload = function() {
       if (!initFlightWatchdogClient) {
         return;
