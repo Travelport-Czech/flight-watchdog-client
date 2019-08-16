@@ -1,4 +1,4 @@
-import { ValidUrl } from '@ceesystems/valid-objects-ts'
+import { ValidLanguage, ValidUrl } from '@ceesystems/valid-objects-ts'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { FlightParams } from '@emails/types/FlightParams'
 import { WatcherLinks } from '@emails/types/WatcherLinks'
@@ -6,8 +6,14 @@ import { WatcherParams } from '@emails/types/WatcherParams'
 import { AppLogicError } from '@shared/errors/AppLogicError'
 import { urlParamsConst } from '@shared/utils/consts'
 
+const langCodeMapToGolLangCode = {
+  cs: 'cz',
+  en: 'en'
+}
+
 export const createResultUrl = (
   flight: FlightParams,
+  lang: ValidLanguage,
   agencyParams: AgencyParams,
   addParams: { readonly [key: string]: string }
 ): ValidUrl => {
@@ -21,11 +27,13 @@ export const createResultUrl = (
 
   return new ValidUrl(
     waitPageString +
-      encodeURIComponent(frontendUrl.toString() + createResultLink(flight) + dealerIdUrlPart + addParamsPart.join(''))
+      encodeURIComponent(
+        frontendUrl.toString() + createResultLink(flight, lang) + dealerIdUrlPart + addParamsPart.join('')
+      )
   )
 }
 
-const createResultLink = (flight: FlightParams): string => {
+const createResultLink = (flight: FlightParams, lang: ValidLanguage): string => {
   if (flight.flightType === 'return') {
     if (!flight.arrival) {
       throw new AppLogicError('Missing arrival for return flight')
@@ -38,6 +46,7 @@ const createResultLink = (flight: FlightParams): string => {
 &flights[1][departureDate]=${flight.arrival.formatToSystem()}\
 &flights[1][destination]=${flight.origin.toString()}\
 &flights[1][origin]=${flight.destination.toString()}\
+&lang=${langCodeMapToGolLangCode[lang.toString()]}\
 &travelers[0]=ADT\
 &returnTicket=on\
 &dateVariants=exact\
@@ -49,6 +58,7 @@ const createResultLink = (flight: FlightParams): string => {
 &flights[0][departureDate]=${flight.departure.formatToSystem()}\
 &flights[0][destination]=${flight.destination.toString()}\
 &flights[0][origin]=${encodeURIComponent(flight.origin.toString())}\
+&lang=${langCodeMapToGolLangCode[lang.toString()]}\
 &travelers[0]=ADT\
 &returnTicket=\
 &dateVariants=exact\
@@ -60,9 +70,11 @@ const createResultLink = (flight: FlightParams): string => {
 
 export const createWatcherLinks = (watcher: WatcherParams, agencyParams: AgencyParams): WatcherLinks => {
   const { dealerId, frontendUrl } = agencyParams
-  const waitPageString = `${frontendUrl.toString()}/index.php?action=vWait&redirect=`
+  const waitPageString = `${frontendUrl.toString()}/index.php?lang=${
+    langCodeMapToGolLangCode[watcher.lang.toString()]
+  }&action=vWait&redirect=`
   const dealerIdUrlPart = dealerId ? '&dealer_id=' + dealerId.toString() : ''
-  const resultLinkString = frontendUrl.toString() + createResultLink(watcher) + dealerIdUrlPart
+  const resultLinkString = frontendUrl.toString() + createResultLink(watcher, watcher.lang) + dealerIdUrlPart
 
   const resultLink = new ValidUrl(waitPageString + encodeURIComponent(resultLinkString) + `&${urlParamsConst.result}=`)
 

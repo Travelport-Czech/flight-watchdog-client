@@ -1,3 +1,4 @@
+import { ValidLanguage } from '@ceesystems/valid-objects-ts'
 import { createResultUrl, createWatcherLinks } from '@emails/factories/createWatcherLinks'
 import { EmailButton } from '@emails/reactComponents/EmailButton'
 import { WatcherPriceHistory } from '@emails/reactComponents/WatcherPriceHistory'
@@ -19,7 +20,11 @@ interface Props {
   readonly showSvg?: boolean
 }
 
-const createAdditionalResults = (additionalResults: FlightResult[], agencyParams: AgencyParams) => {
+const createAdditionalResults = (
+  additionalResults: FlightResult[],
+  lang: ValidLanguage,
+  agencyParams: AgencyParams
+) => {
   const additionalResultsLimited = additionalResults.slice(0, 5)
 
   return (
@@ -28,7 +33,7 @@ const createAdditionalResults = (additionalResults: FlightResult[], agencyParams
         <Text name={TranslationEnum.EmailAdditionalResultsHeader} />
       </div>
       {additionalResultsLimited.map((flight: FlightResult, index2: number) => {
-        const link = createResultUrl(flight, agencyParams, { flightWatchdogAdditionalResult: '' }).toString()
+        const link = createResultUrl(flight, lang, agencyParams, { flightWatchdogAdditionalResult: '' }).toString()
 
         return (
           <p key={index2}>
@@ -55,6 +60,8 @@ export class WatchersList extends React.Component<Props> {
     if (watchersFullInfoList.length === 0) {
       throw new AppLogicError('Empty watcher list')
     }
+
+    const lang = watchersFullInfoList[0].watcher.lang
 
     const lines = watchersFullInfoList.map((watchersFullInfo: WatcherFullInfo, index) => {
       const { watcher, originLocationList, destinationLocationList, additionalResults } = watchersFullInfo
@@ -107,7 +114,7 @@ export class WatchersList extends React.Component<Props> {
             </tr>
           </table>
 
-          {additionalResults.length !== 0 && createAdditionalResults(additionalResults, agencyParams)}
+          {additionalResults.length !== 0 && createAdditionalResults(additionalResults, lang, agencyParams)}
         </div>
       )
     })
