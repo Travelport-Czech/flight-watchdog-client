@@ -44,7 +44,9 @@ const createAdditionalResults = (
               {' - '}
               <HeaderDates departure={flight.departure} arrival={flight.arrival} />
               {' -> '}
-              <span style={{ ...styles.buttonLink, fontWeight: 'bold' }}>Zobrazit</span>
+              <span style={{ ...styles.buttonLink, fontWeight: 'bold' }}>
+                <Text name={TranslationEnum.EmailAdditionalResultsShow} />
+              </span>
             </a>
           </p>
         )

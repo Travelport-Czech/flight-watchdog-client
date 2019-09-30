@@ -44,6 +44,7 @@ export enum TranslationEnum {
   EmailMarketingDescription = 'EmailMarketingDescription',
   EmailNoReplyName = 'EmailNoReplyName',
   EmailAdditionalResultsHeader = 'EmailAdditionalResultsHeader',
+  EmailAdditionalResultsShow = 'EmailAdditionalResultsShow',
   GraphLegendPriceLimit = 'GraphLegendPriceLimit',
   GraphLegendPriceTrend = 'GraphLegendPriceTrend'
 }
