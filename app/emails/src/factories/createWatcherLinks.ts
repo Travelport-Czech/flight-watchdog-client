@@ -1,4 +1,4 @@
-import { ValidUrl } from '@ceesystems/valid-objects-ts'
+import { ValidLanguage, ValidUrl } from '@ceesystems/valid-objects-ts'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { FlightParams } from '@emails/types/FlightParams'
 import { WatcherLinks } from '@emails/types/WatcherLinks'
@@ -6,8 +6,14 @@ import { WatcherParams } from '@emails/types/WatcherParams'
 import { AppLogicError } from '@shared/errors/AppLogicError'
 import { urlParamsConst } from '@shared/utils/consts'
 
+const langCodeMapToGolLangCode = {
+  cs: 'cs',
+  en: 'en'
+}
+
 export const createResultUrl = (
   flight: FlightParams,
+  lang: ValidLanguage,
   agencyParams: AgencyParams,
   addParams: { readonly [key: string]: string }
 ): ValidUrl => {
@@ -18,10 +24,12 @@ export const createResultUrl = (
     return `&${item[0]}=${item[1]}`
   })
 
-  return new ValidUrl(frontendUrl.toString() + createResultLink(flight) + dealerIdUrlPart + addParamsPart.join(''))
+  return new ValidUrl(
+    frontendUrl.toString() + createResultLink(flight, lang) + dealerIdUrlPart + addParamsPart.join('')
+  )
 }
 
-const createResultLink = (flight: FlightParams): string => {
+const createResultLink = (flight: FlightParams, lang: ValidLanguage): string => {
   if (flight.flightType === 'return') {
     if (!flight.arrival) {
       throw new AppLogicError('Missing arrival for return flight')
@@ -30,7 +38,7 @@ const createResultLink = (flight: FlightParams): string => {
     return `/booking/api/search/v3?\
 id_dealer=10\
 &client_encoding=utf-8\
-&lang=cs\
+&lang=${langCodeMapToGolLangCode[lang.toString()]}\
 &id=airticket\
 &ui_formtype=round_trip\
 &arrival_destination_1_short=${encodeURIComponent(flight.destination.toString())}\
@@ -47,7 +55,7 @@ id_dealer=10\
     return `/booking/api/search/v3?\
 id_dealer=10\
 &client_encoding=utf-8\
-&lang=cs\
+&lang=${langCodeMapToGolLangCode[lang.toString()]}\
 &id=airticket\
 &ui_formtype=oneway\
 &arrival_destination_1_short=${encodeURIComponent(flight.destination.toString())}\
@@ -65,7 +73,7 @@ id_dealer=10\
 export const createWatcherLinks = (watcher: WatcherParams, agencyParams: AgencyParams): WatcherLinks => {
   const { dealerId, frontendUrl } = agencyParams
   const dealerIdUrlPart = dealerId ? '&dealer_id=' + dealerId.toString() : ''
-  const resultLinkString = frontendUrl.toString() + createResultLink(watcher) + dealerIdUrlPart
+  const resultLinkString = frontendUrl.toString() + createResultLink(watcher, watcher.lang) + dealerIdUrlPart
 
   const resultLink = new ValidUrl(`${resultLinkString}&${urlParamsConst.result}=`)
 

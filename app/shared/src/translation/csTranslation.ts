@@ -48,6 +48,7 @@ export const csTranslation: TranslationKeys = {
   [T.EmailMarketingDescription]: `Tento e-mail je odesílán každý den na základě Vašeho založení hlídače letu na webu {?}.`,
   [T.EmailNoReplyName]: `Hlídač letenek`,
   [T.EmailAdditionalResultsHeader]: `Podobné nabídky (lidé právě kupují)`,
+  [T.EmailAdditionalResultsShow]: `Zobrazit`,
   [T.GraphLegendPriceLimit]: `Hlídaná cena`,
   [T.GraphLegendPriceTrend]: `Vývoj ceny`
 }
