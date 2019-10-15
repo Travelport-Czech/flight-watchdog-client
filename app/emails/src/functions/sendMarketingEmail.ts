@@ -1,7 +1,6 @@
 import { createMarketingEmailRaw } from '@emails/factories/marketingEmailFactory'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
-import { initializeTranslator } from '@shared/translation/Text'
 
 /**
  * Do not delete this function!
@@ -14,8 +13,6 @@ export const sendMarketingEmail = async (
   watcherFullInfoList: WatcherFullInfo[],
   agencyParams: AgencyParams
 ) => {
-  initializeTranslator(watcherFullInfoList[0].watcher.lang)
-
   const emailContent = await createMarketingEmailRaw(createImage, watcherFullInfoList, agencyParams)
 
   await sendEmail(emailContent)

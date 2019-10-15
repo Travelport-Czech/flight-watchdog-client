@@ -13,7 +13,7 @@
   "jsRules": {},
   "rules": {
     "no-implicit-dependencies": [true, "dev", ["@client", "@shared"]],
-    "no-submodule-imports": [true, "@client", "@shared", "react-dom", "moment"],
+    "no-submodule-imports": [true, "@client", "@shared", "react-dom"],
     "typedef": [false, "variable-declaration"], // Typedef enforcement for variables that contain a function => duplicate function declaration
     "no-use-before-declare": false, // useful only for var declaration
     "only-arrow-functions": true,

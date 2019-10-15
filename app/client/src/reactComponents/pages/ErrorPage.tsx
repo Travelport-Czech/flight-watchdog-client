@@ -24,10 +24,10 @@ export class ErrorPage extends React.Component<Props> {
         id="flight-watchdog-window-is-open-error"
       >
         <p style={styles.simpleText}>
-          <Text name={TranslationEnum.ClientMessageError} />
+          <Text name={TranslationEnum.ClientMessageError} lang={appConfig.lang} />
         </p>
         <Button onClick={onClose}>
-          <Text name={TranslationEnum.ClientButtonClose} />
+          <Text name={TranslationEnum.ClientButtonClose} lang={appConfig.lang} />
         </Button>
       </OpenedWindow>
     )

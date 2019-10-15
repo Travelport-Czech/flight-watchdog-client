@@ -1,16 +1,16 @@
 import { formatSystemDate, formatSystemDateTime, ValidDate, ValidDateTime } from '@ceesystems/valid-objects-ts'
-import * as moment from 'moment'
+import * as dayjs from 'dayjs'
 
 const momentDateTime: string | undefined = process.env.STATIC_TIMEBASED === 'true' ? '2018-10-01 12:00:00' : undefined
 
-export const getActualMoment = (): moment.Moment => {
-  return moment(momentDateTime)
+const getActual = (): dayjs.Dayjs => {
+  return dayjs(momentDateTime)
 }
 
 export const getActualDateTime = (): ValidDateTime => {
-  return new ValidDateTime(getActualMoment().format(formatSystemDateTime))
+  return new ValidDateTime(getActual().format(formatSystemDateTime))
 }
 
 export const getActualDate = (): ValidDate => {
-  return new ValidDate(getActualMoment().format(formatSystemDate))
+  return new ValidDate(getActual().format(formatSystemDate))
 }

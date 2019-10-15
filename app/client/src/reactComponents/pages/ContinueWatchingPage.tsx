@@ -25,17 +25,17 @@ export class ContinueWatchingPage extends React.Component<Props> {
         id="flight-watchdog-window-is-open-continue-watching"
       >
         <p style={styles.simpleText}>
-          <Text name={TranslationEnum.ClientMessageContinueWatching} />
+          <Text name={TranslationEnum.ClientMessageContinueWatching} lang={appConfig.lang} />
         </p>
         <Button onClick={onCreateWatcher} id="flight-watchdog-window-continue-watching-clicked-ok">
-          <Text name={TranslationEnum.ClientButtonYes} />
+          <Text name={TranslationEnum.ClientButtonYes} lang={appConfig.lang} />
         </Button>
         <Button
           onClick={onClose}
           id="flight-watchdog-window-continue-watching-clicked-cancel"
           style={{ marginLeft: '5px' }}
         >
-          <Text name={TranslationEnum.ClientButtonClose} />
+          <Text name={TranslationEnum.ClientButtonClose} lang={appConfig.lang} />
         </Button>
       </OpenedWindow>
     )

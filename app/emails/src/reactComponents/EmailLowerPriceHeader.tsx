@@ -16,6 +16,7 @@ export class EmailLowerPriceHeader extends React.Component<Props> {
   public render() {
     const { watcherFullInfo, frontendUrl } = this.props
     const { watcher, originLocationList, destinationLocationList } = watcherFullInfo
+    const { lang, departure, arrival } = watcher
     const destinationTextKey =
       watcher.flightType === 'return'
         ? TranslationEnum.ClientDestinationsReturn
@@ -24,16 +25,16 @@ export class EmailLowerPriceHeader extends React.Component<Props> {
     return (
       <div style={styles.header}>
         <div style={styles.headerText}>
-          <Text name={TranslationEnum.EmailTitle} />
+          <Text name={TranslationEnum.EmailTitle} lang={lang} />
         </div>
         <div style={styles.headerTextDescription}>
-          <Text name={TranslationEnum.EmailDescription}>
+          <Text name={TranslationEnum.EmailDescription} lang={lang}>
             <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
           </Text>
         </div>
 
         <div style={styles.headerLevel2}>
-          <Text name={destinationTextKey}>
+          <Text name={destinationTextKey} lang={lang}>
             <span style={styles.primaryColor}>
               <LocationNameList locationList={originLocationList} />
             </span>
@@ -43,7 +44,7 @@ export class EmailLowerPriceHeader extends React.Component<Props> {
           </Text>
         </div>
         <div style={styles.headerDates}>
-          <HeaderDates departure={watcher.departure} arrival={watcher.arrival} />
+          <HeaderDates departure={departure} arrival={arrival} lang={lang} />
         </div>
       </div>
     )

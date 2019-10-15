@@ -24,10 +24,10 @@ export class RemoveMoreWatchersPage extends React.Component<Props> {
         id="flight-watchdog-window-is-open-delete-more-watchers"
       >
         <p style={styles.simpleText}>
-          <Text name={TranslationEnum.ClientMessageMoreWatchersAlreadyExists} />
+          <Text name={TranslationEnum.ClientMessageMoreWatchersAlreadyExists} lang={appConfig.lang} />
         </p>
         <Button onClick={onClose} id="flight-watchdog-window-clicked-ok">
-          <Text name={TranslationEnum.ClientButtonOk} />
+          <Text name={TranslationEnum.ClientButtonOk} lang={appConfig.lang} />
         </Button>
       </OpenedWindow>
     )

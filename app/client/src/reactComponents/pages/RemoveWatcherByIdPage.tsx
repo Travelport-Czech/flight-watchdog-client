@@ -25,13 +25,13 @@ export class RemoveWatcherByIdPage extends React.Component<Props> {
         id="flight-watchdog-window-is-open-delete-by-id"
       >
         <p style={styles.simpleText}>
-          <Text name={TranslationEnum.ClientMessageWatcherDeleteById} />
+          <Text name={TranslationEnum.ClientMessageWatcherDeleteById} lang={appConfig.lang} />
         </p>
         <Button onClick={onDelete} id="flight-watchdog-window-clicked-delete-by-id-yes">
-          <Text name={TranslationEnum.ClientButtonYes} />
+          <Text name={TranslationEnum.ClientButtonYes} lang={appConfig.lang} />
         </Button>
         <Button onClick={onClose} style={{ marginLeft: '5px' }} id="flight-watchdog-window-clicked-delete-by-id-cancel">
-          <Text name={TranslationEnum.ClientButtonClose} />
+          <Text name={TranslationEnum.ClientButtonClose} lang={appConfig.lang} />
         </Button>
       </OpenedWindow>
     )

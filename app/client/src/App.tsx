@@ -15,7 +15,6 @@ import { RemoveWatcherWorkingPage } from '@client/reactComponents/pages/RemoveWa
 import { State } from '@client/State'
 import { StepToShow } from '@client/StepsToShow'
 import { FlightParams } from '@client/types/FlightParams'
-import { initializeTranslator } from '@shared/translation/Text'
 import { validateEmail } from '@shared/utils/validateEmail'
 import * as Cookies from 'js-cookie'
 import * as React from 'react'
@@ -39,6 +38,7 @@ export class App extends React.Component<Props, State> {
 
   public render() {
     const flightParams = this.createFlightParams()
+    const { lang } = this.props.appConfig
     if (!flightParams) {
       return ''
     }
@@ -80,14 +80,13 @@ export class App extends React.Component<Props, State> {
     }
 
     if (this.state.stepToShow === StepToShow.minimalized) {
-      return <ClosedWindow handleOpen={this.handleOpen} />
+      return <ClosedWindow handleOpen={this.handleOpen} lang={lang} />
     }
 
     return ''
   }
 
   private readonly init = async (props: Readonly<Props>) => {
-    initializeTranslator(props.appConfig.lang)
     const state = await actions.initialize(props, this.state)
     if (state) {
       this.setState(state)

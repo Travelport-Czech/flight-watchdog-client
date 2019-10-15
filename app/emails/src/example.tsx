@@ -18,14 +18,11 @@ import { SearchResult } from '@emails/types/SearchResult'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { WatcherParams } from '@emails/types/WatcherParams'
 import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
-import { initializeTranslator } from '@shared/translation/Text'
 
 // tslint:disable-next-line:export-name
 export const showEmail = async (emailName: string) => {
   const langElement = document.getElementsByTagName('html').item(0)
   const lang = new ValidLanguage(langElement && langElement.getAttribute('lang'), Object.values(SupportedLanguageEnum))
-
-  initializeTranslator(lang)
 
   let content = ''
   if (emailName === 'lower-price') {

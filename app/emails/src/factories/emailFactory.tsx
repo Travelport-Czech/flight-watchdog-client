@@ -1,8 +1,9 @@
-import { ValidEmail } from '@ceesystems/valid-objects-ts'
+import { ValidEmail, ValidLanguage } from '@ceesystems/valid-objects-ts'
 import { rawEmailAttachmentPartTemplate, rawEmailTemplate } from '@emails/factories/emailTemplates'
-import { EmailNoReplyName } from '@emails/reactComponents/EmailNoReplyName'
 import { WatchersGraphPriceHistory } from '@emails/reactComponents/WatchersGraphPriceHistory'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
+import { Text } from '@shared/translation/Text'
+import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
@@ -10,12 +11,15 @@ export const createEmailRawBegin = (
   subject: string,
   content: string,
   emailTo: ValidEmail,
-  emailFrom: ValidEmail
+  emailFrom: ValidEmail,
+  lang: ValidLanguage
 ): string => {
   // tslint:disable-next-line:no-let
   let raw: string
   const subjectBase64 = Buffer.from(subject).toString('base64')
-  const noReplyName = Buffer.from(renderToStaticMarkup(<EmailNoReplyName />)).toString('base64')
+  const noReplyName = Buffer.from(
+    renderToStaticMarkup(<Text name={TranslationEnum.EmailNoReplyName} lang={lang} />)
+  ).toString('base64')
   const htmlBase64 = Buffer.from(content)
     .toString('base64')
     .replace(/([^\0]{76})/g, '$1\n') // breaks long lines

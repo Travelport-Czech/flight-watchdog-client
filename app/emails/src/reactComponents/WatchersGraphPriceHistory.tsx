@@ -4,7 +4,7 @@ import { GraphLabel } from '@emails/reactComponents/GraphLabel'
 import { GraphPriceLimitDot } from '@emails/reactComponents/GraphPriceLimitDot'
 import { SearchResult } from '@emails/types/SearchResult'
 import { WatcherParams } from '@emails/types/WatcherParams'
-import { Text, translate } from '@shared/translation/Text'
+import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import { getActualDate } from '@shared/utils/timebased'
 import * as React from 'react'
@@ -21,12 +21,18 @@ interface Props {
 export class WatchersGraphPriceHistory extends React.Component<Props> {
   public render() {
     const { priceLimit, searchResults, watcher, absolutePosition } = this.props
-    const dateFormat = renderToStaticMarkup(<Text name={TranslationEnum.FormatDateDayMonth} />)
+    const dateFormat = renderToStaticMarkup(<Text name={TranslationEnum.FormatDateDayMonth} lang={watcher.lang} />)
     const actualDate = getActualDate()
     const actualDateMinus15 = actualDate.subtractDays(15)
     const last15Results = searchResults.filter((item: SearchResult): boolean => {
       return item.created.getValidDate().isAfter(actualDateMinus15)
     })
+    const priceLimitLabel = renderToStaticMarkup(
+      <Text name={TranslationEnum.GraphLegendPriceLimit} lang={watcher.lang} />
+    )
+    const priceTrendLabel = renderToStaticMarkup(
+      <Text name={TranslationEnum.GraphLegendPriceTrend} lang={watcher.lang} />
+    )
 
     const firstSearchResult: SearchResult = {
       origin: watcher.origin,
@@ -66,7 +72,7 @@ export class WatchersGraphPriceHistory extends React.Component<Props> {
           <CartesianGrid stroke="#eee" strokeDasharray="3 5" />
           <Legend verticalAlign="top" wrapperStyle={{ top: '170px', fontSize: '10px' }} iconType="line" />
           <Line
-            name={translate(TranslationEnum.GraphLegendPriceLimit)}
+            name={priceLimitLabel}
             isAnimationActive={false}
             type="monotone"
             dataKey="limit"
@@ -74,7 +80,7 @@ export class WatchersGraphPriceHistory extends React.Component<Props> {
             dot={<GraphPriceLimitDot />}
           />
           <Area
-            name={translate(TranslationEnum.GraphLegendPriceTrend)}
+            name={priceTrendLabel}
             isAnimationActive={false}
             type="monotone"
             dataKey="price"

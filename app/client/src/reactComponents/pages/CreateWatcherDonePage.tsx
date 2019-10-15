@@ -24,10 +24,10 @@ export class CreateWatcherDonePage extends React.Component<Props> {
         id="flight-watchdog-window-is-open-create-done"
       >
         <p style={styles.simpleText}>
-          <Text name={TranslationEnum.ClientMessageCreateWatcherDone} />
+          <Text name={TranslationEnum.ClientMessageCreateWatcherDone} lang={appConfig.lang} />
         </p>
         <Button onClick={onClose}>
-          <Text name={TranslationEnum.ClientButtonOk} />
+          <Text name={TranslationEnum.ClientButtonOk} lang={appConfig.lang} />
         </Button>
       </OpenedWindow>
     )

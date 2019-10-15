@@ -30,13 +30,15 @@ export class CreateFormPage extends React.Component<Props> {
         appConfig={appConfig}
         id="flight-watchdog-window-is-open-to-create"
       >
-        <EmailInput value={email} onChange={onEmailChange} />
+        <EmailInput value={email} onChange={onEmailChange} lang={appConfig.lang} />
         <Button onClick={onCreateWatcher} id="flight-watchdog-window-clicked-create-watcher">
-          <Text name={TranslationEnum.ClientButtonCreate} />
+          <Text name={TranslationEnum.ClientButtonCreate} lang={appConfig.lang} />
         </Button>
         <div style={styles.simpleText}>
           <span style={styles.errorText}>
-            {!isEmailValid && showBadEmailError && <Text name={TranslationEnum.ClientBadEmailError} />}
+            {!isEmailValid && showBadEmailError && (
+              <Text name={TranslationEnum.ClientBadEmailError} lang={appConfig.lang} />
+            )}
           </span>
           &nbsp;
           <Button
@@ -45,7 +47,7 @@ export class CreateFormPage extends React.Component<Props> {
             style={{ float: 'right' }}
             id="flight-watchdog-window-clicked-not-interested"
           >
-            <Text name={TranslationEnum.ClientButtonNotInterested} />
+            <Text name={TranslationEnum.ClientButtonNotInterested} lang={appConfig.lang} />
           </Button>
         </div>
       </OpenedWindow>

@@ -11,7 +11,7 @@ describe('Watchers at limit', function() {
 ×Chcete hlídat cenu 2 000 CZK?\
 Budeme ji hlídat za Vás! Každý den pak dostanete informaci o jejím vývoji.\
 z Praha - Letište Václava Havla (PRG) do Londýn (LON) a zpět\
-čtvrtek 1. 11. 2018 až pondělí 5. 11. 2018\
+1. 11. 2018 až 5. 11. 2018\
 Hlídat Nemám zájem`)
         })
         cy.screenshot()

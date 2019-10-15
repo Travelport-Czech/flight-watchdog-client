@@ -8,7 +8,7 @@ describe('Lower Price Email', function() {
 Nalezli jsme lepší cenu letu, který jste hledali!\
 Na základě Vašeho vytvoření upozornění na nižší cenu na webu https://example.cz, byl tento E-mail odeslán ihned po zjištění nižší ceny.\
 z Londýn (LON) do Praha (PRG) a zpět\
-neděle 16. 12. 2018 až úterý 25. 12. 2018\
+16. 12. 2018 až 25. 12. 2018\
 `)
         })
         cy.get('tr').eq(1).should((tr) => {

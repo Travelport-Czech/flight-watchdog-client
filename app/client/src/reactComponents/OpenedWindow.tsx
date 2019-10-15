@@ -19,6 +19,7 @@ interface Props {
 
 export class OpenedWindow extends React.Component<Props> {
   public render() {
+    const { lowestPrice, lowestPriceCustomCurrency, lang } = this.props.appConfig
     const {
       destination,
       destinationLocationList,
@@ -31,11 +32,11 @@ export class OpenedWindow extends React.Component<Props> {
     const destinationTextKey =
       flightType === 'return' ? TranslationEnum.ClientDestinationsReturn : TranslationEnum.ClientDestinationsOneway
 
-    const price = <Price price={this.props.appConfig.lowestPrice} />
+    const price = <Price price={lowestPrice} />
     const priceWithDifferentCurrencies = (
       <React.Fragment>
-        <Price price={this.props.appConfig.lowestPrice} /> (
-        <Price price={this.props.appConfig.lowestPriceCustomCurrency} />)
+        <Price price={lowestPrice} /> (
+        <Price price={lowestPriceCustomCurrency} />)
       </React.Fragment>
     )
 
@@ -46,23 +47,21 @@ export class OpenedWindow extends React.Component<Props> {
         id={this.props.id}
         data-origin={origin.toString()}
         data-destination={destination.toString()}
-        data-price={this.props.appConfig.lowestPrice.amount.toString()}
+        data-price={lowestPrice.amount.toString()}
         data-flighttype={flightType}
       >
         <div style={styles.header}>
           <CrossButton onClick={this.props.handleClose} />
           <div style={styles.headerText}>
-            <Text name={TranslationEnum.ClientTitle}>
-              {this.props.appConfig.lowestPrice.currency === this.props.appConfig.lowestPriceCustomCurrency.currency
-                ? price
-                : priceWithDifferentCurrencies}
+            <Text name={TranslationEnum.ClientTitle} lang={lang}>
+              {lowestPrice.currency === lowestPriceCustomCurrency.currency ? price : priceWithDifferentCurrencies}
             </Text>
           </div>
           <div style={styles.headerTextDescription}>
-            <Text name={TranslationEnum.ClientDescription} />
+            <Text name={TranslationEnum.ClientDescription} lang={lang} />
           </div>
           <div style={styles.headerLevel2} className={`${Consts.elementClassPrefix}_destionations`}>
-            <Text name={destinationTextKey}>
+            <Text name={destinationTextKey} lang={lang}>
               <span style={styles.primaryColor}>
                 <LocationNameList locationList={originLocationList} />
               </span>
@@ -72,7 +71,7 @@ export class OpenedWindow extends React.Component<Props> {
             </Text>
           </div>
           <div style={styles.headerDates}>
-            <HeaderDates departure={departure} arrival={arrival} />
+            <HeaderDates departure={departure} arrival={arrival} lang={lang} />
           </div>
         </div>
         <div className="content" style={styles.content}>

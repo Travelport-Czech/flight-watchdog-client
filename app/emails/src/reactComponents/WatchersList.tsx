@@ -30,7 +30,7 @@ const createAdditionalResults = (
   return (
     <div style={{ marginTop: '20px' }}>
       <div style={styles.headerLevel2}>
-        <Text name={TranslationEnum.EmailAdditionalResultsHeader} />
+        <Text name={TranslationEnum.EmailAdditionalResultsHeader} lang={lang} />
       </div>
       {additionalResultsLimited.map((flight: FlightResult, index2: number) => {
         const link = createResultUrl(flight, lang, agencyParams, { flightWatchdogAdditionalResult: '' }).toString()
@@ -42,10 +42,10 @@ const createAdditionalResults = (
                 <Price price={flight.price} />
               </span>
               {' - '}
-              <HeaderDates departure={flight.departure} arrival={flight.arrival} />
+              <HeaderDates departure={flight.departure} arrival={flight.arrival} lang={lang} />
               {' -> '}
               <span style={{ ...styles.buttonLink, fontWeight: 'bold' }}>
-                <Text name={TranslationEnum.EmailAdditionalResultsShow} />
+                <Text name={TranslationEnum.EmailAdditionalResultsShow} lang={lang} />
               </span>
             </a>
           </p>
@@ -67,6 +67,7 @@ export class WatchersList extends React.Component<Props> {
 
     const lines = watchersFullInfoList.map((watchersFullInfo: WatcherFullInfo, index) => {
       const { watcher, originLocationList, destinationLocationList, additionalResults } = watchersFullInfo
+      const { priceLimit, departure, arrival } = watcher
       const watcherLinks = createWatcherLinks(watcher, agencyParams)
       const destinationTextKey =
         watcher.flightType === 'return'
@@ -76,7 +77,7 @@ export class WatchersList extends React.Component<Props> {
       return (
         <div key={index} style={styles.emailBlock}>
           <div style={styles.headerLevel2}>
-            <Text name={destinationTextKey}>
+            <Text name={destinationTextKey} lang={lang}>
               <span style={styles.primaryColor}>
                 <LocationNameList locationList={originLocationList} />
               </span>
@@ -86,24 +87,27 @@ export class WatchersList extends React.Component<Props> {
             </Text>
           </div>
           <div style={styles.headerDates}>
-            <HeaderDates departure={watcher.departure} arrival={watcher.arrival} />
+            <HeaderDates departure={departure} arrival={arrival} lang={lang} />
           </div>
 
           <WatcherPriceHistory watchersFullInfo={watchersFullInfo} showSvg={showSvg} />
 
           <div style={styles.simpleText}>
-            <Text name={TranslationEnum.EmailPriceLimit}>{watcher.priceLimit.toString()}</Text>
+            <Text name={TranslationEnum.EmailPriceLimit} lang={lang}>
+              {priceLimit.toString()}
+            </Text>
           </div>
 
           <table>
             <tr>
               <td>
-                <EmailButton link={watcherLinks.resultLink} text={TranslationEnum.EmailButtonShowResult} />
+                <EmailButton link={watcherLinks.resultLink} text={TranslationEnum.EmailButtonShowResult} lang={lang} />
               </td>
               <td>
                 <EmailButton
                   link={watcherLinks.deleteLink}
                   text={TranslationEnum.EmailButtonDelete}
+                  lang={lang}
                   style={{
                     width: 'auto',
                     border: 'none',

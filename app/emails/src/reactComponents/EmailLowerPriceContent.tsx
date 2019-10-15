@@ -22,11 +22,12 @@ export class EmailLowerPriceContent extends React.Component<Props> {
   public render() {
     const { watcherFullInfo, price, showSvg, agencyParams } = this.props
     const { watcher } = watcherFullInfo
+    const { lang, priceLimit } = watcher
     const watcherLinks = createWatcherLinks(watcher, agencyParams)
     const { resultLink, continueLink, frontendUrl } = watcherLinks
 
-    const priceDiff = watcher.priceLimit.subtract(price)
-    const priceDiffPercent = watcher.priceLimit.diffPercent(price)
+    const priceDiff = priceLimit.subtract(price)
+    const priceDiffPercent = priceLimit.diffPercent(price)
 
     return (
       <div style={{ textAlign: 'center' }}>
@@ -40,46 +41,48 @@ export class EmailLowerPriceContent extends React.Component<Props> {
             <td style={{ backgroundColor: '#fff' }}>
               <div className="content" style={styles.emailTableContent}>
                 <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
-                  <Text name={TranslationEnum.EmailContentDescription}>
+                  <Text name={TranslationEnum.EmailContentDescription} lang={lang}>
                     <Price price={priceDiff} />
                     {priceDiffPercent.toString()}
                   </Text>
                 </div>
                 <div style={{ ...styles.simpleText, marginBottom: '5px' }}>
-                  <Text name={TranslationEnum.EmailPricePrefixText} />
+                  <Text name={TranslationEnum.EmailPricePrefixText} lang={lang} />
                 </div>
                 <div style={{ fontSize: '25px', lineHeight: '25px', marginBottom: '10px' }}>
-                  <Text name={TranslationEnum.EmailPrice}>
+                  <Text name={TranslationEnum.EmailPrice} lang={lang}>
                     <Price price={price} />
                   </Text>
                 </div>
                 <div style={{ ...styles.simpleText, marginBottom: '25px' }}>
-                  <Text name={TranslationEnum.EmailPriceSuffixText}>
+                  <Text name={TranslationEnum.EmailPriceSuffixText} lang={lang}>
                     <Price price={watcher.priceLimit} />
                   </Text>
                 </div>
 
                 <div style={{ ...styles.simpleText, marginBottom: '10px' }}>
-                  <Text name={TranslationEnum.EmailButtonShowResultPrefixText} />
+                  <Text name={TranslationEnum.EmailButtonShowResultPrefixText} lang={lang} />
                 </div>
                 <EmailButton
                   link={resultLink}
                   text={TranslationEnum.EmailButtonShowResult}
                   style={{ marginBottom: '20px' }}
+                  lang={lang}
                 />
 
                 <WatcherPriceHistory watchersFullInfo={watcherFullInfo} showSvg={showSvg} />
 
                 <div style={{ ...styles.simpleText, marginBottom: '10px', marginTop: '20px' }}>
-                  <Text name={TranslationEnum.EmailButtonContinueWatchingPrefixText} />
+                  <Text name={TranslationEnum.EmailButtonContinueWatchingPrefixText} lang={lang} />
                 </div>
                 <EmailButton
                   link={continueLink}
                   text={TranslationEnum.EmailButtonContinueWatching}
                   style={{ marginBottom: '50px' }}
+                  lang={lang}
                 />
                 <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
-                  <Text name={TranslationEnum.EmailFooter} />
+                  <Text name={TranslationEnum.EmailFooter} lang={lang} />
                 </div>
               </div>
             </td>

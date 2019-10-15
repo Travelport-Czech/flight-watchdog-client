@@ -25,13 +25,13 @@ export class RemoveWatcherPage extends React.Component<Props> {
         id="flight-watchdog-window-is-open-delete-and-create"
       >
         <p style={styles.simpleText}>
-          <Text name={TranslationEnum.ClientMessageWatcherAlreadyExists} />
+          <Text name={TranslationEnum.ClientMessageWatcherAlreadyExists} lang={appConfig.lang} />
         </p>
         <Button onClick={onDeleteAndCreateWatcher} id="flight-watchdog-window-clicked-ok">
-          <Text name={TranslationEnum.ClientButtonYes} />
+          <Text name={TranslationEnum.ClientButtonYes} lang={appConfig.lang} />
         </Button>
         <Button onClick={onClose} style={{ marginLeft: '5px' }} id="flight-watchdog-window-clicked-cancel">
-          <Text name={TranslationEnum.ClientButtonClose} />
+          <Text name={TranslationEnum.ClientButtonClose} lang={appConfig.lang} />
         </Button>
       </OpenedWindow>
     )

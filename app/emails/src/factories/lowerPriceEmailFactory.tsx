@@ -14,10 +14,10 @@ export const createLowerPriceEmailRaw = async (
   agencyParams: AgencyParams,
   price: ValidPrice
 ): Promise<string> => {
-  const { origin, destination } = watcherFullInfo.watcher
-  const subject = renderToStaticMarkup(<EmailLowerPriceSubject origin={origin} destination={destination} />)
+  const { origin, destination, lang } = watcherFullInfo.watcher
+  const subject = renderToStaticMarkup(<EmailLowerPriceSubject origin={origin} destination={destination} lang={lang} />)
   const content = await createLowerPriceEmail(watcherFullInfo, agencyParams, price, false)
-  const rawEmail = createEmailRawBegin(subject, content, watcherFullInfo.watcher.email, agencyParams.emailFrom)
+  const rawEmail = createEmailRawBegin(subject, content, watcherFullInfo.watcher.email, agencyParams.emailFrom, lang)
 
   const attachments = await createAttachmentRawFromWatcher(createImage, watcherFullInfo)
 

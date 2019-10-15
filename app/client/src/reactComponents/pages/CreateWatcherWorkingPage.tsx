@@ -23,7 +23,7 @@ export class CreateWatcherWorkingPage extends React.Component<Props> {
         id="flight-watchdog-window-is-open-creating"
       >
         <p style={styles.simpleText}>
-          <Text name={TranslationEnum.ClientMessageCreateWatcherWorking} />
+          <Text name={TranslationEnum.ClientMessageCreateWatcherWorking} lang={appConfig.lang} />
         </p>
       </OpenedWindow>
     )

@@ -23,7 +23,7 @@ export class EmailWatchersListContent extends React.Component<Props> {
     }
 
     const watcherLinks = createWatcherLinks(watchersFullInfoList[0].watcher, agencyParams)
-
+    const lang = watchersFullInfoList[0].watcher.lang
     const frontendUrl = watcherLinks.frontendUrl
 
     return (
@@ -33,10 +33,10 @@ export class EmailWatchersListContent extends React.Component<Props> {
             <td>
               <div style={styles.header}>
                 <div style={styles.headerText}>
-                  <Text name={TranslationEnum.EmailWatcherListHeader} />
+                  <Text name={TranslationEnum.EmailWatcherListHeader} lang={lang} />
                 </div>
                 <div style={styles.headerTextDescription}>
-                  <Text name={TranslationEnum.EmailWatcherListDescription}>
+                  <Text name={TranslationEnum.EmailWatcherListDescription} lang={lang}>
                     <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
                   </Text>
                 </div>
@@ -54,7 +54,7 @@ export class EmailWatchersListContent extends React.Component<Props> {
                   />
                 </div>
                 <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
-                  <Text name={TranslationEnum.EmailFooter} />
+                  <Text name={TranslationEnum.EmailFooter} lang={lang} />
                 </div>
               </div>
             </td>

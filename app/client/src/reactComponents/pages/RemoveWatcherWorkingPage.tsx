@@ -23,7 +23,7 @@ export class RemoveWatcherWorkingPage extends React.Component<Props> {
         id="flight-watchdog-window-is-deleting"
       >
         <p style={styles.simpleText}>
-          <Text name={TranslationEnum.ClientMessageDeleteWatcherWorking} />
+          <Text name={TranslationEnum.ClientMessageDeleteWatcherWorking} lang={appConfig.lang} />
         </p>
       </OpenedWindow>
     )
