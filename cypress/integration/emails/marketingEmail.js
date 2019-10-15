@@ -38,7 +38,7 @@ Hlídání cen letů zajišťuje aplikace Flight Watchdog.\
 `)
         })
         cy.get('a').eq(3).then((element) => {
-            expect(element.attr('href')).to.equal('https://example.cz/booking/api/search/v3?id_dealer=10&client_encoding=utf-8&lang=cs&id=airticket&ui_formtype=round_trip&arrival_destination_1_short=LON&arrival_destination_1=LON&departure_destination_1_short=PRG&departure_destination_1=PRG&departure_date_1=2018-12-16&departure_date_2=2018-12-25&passengers_adt=1&flightWatchdogAdditionalResult=')
+            expect(element.attr('href')).to.equal('https://example.cz/index.php?action=vWait&redirect=https%3A%2F%2Fexample.cz%2Findex.php%3Faction%3DvFlights%26flights%5B0%5D%5BdepartureDate%5D%3D2018-12-16%26flights%5B0%5D%5Bdestination%5D%3DLON%26flights%5B0%5D%5Borigin%5D%3DPRG%26flights%5B1%5D%5BdepartureDate%5D%3D2018-12-25%26flights%5B1%5D%5Bdestination%5D%3DPRG%26flights%5B1%5D%5Borigin%5D%3DLON%26lang%3Dcz%26travelers%5B0%5D%3DADT%26returnTicket%3Don%26dateVariants%3Dexact%26step%3DChooseFromFour%26flightWatchdogAdditionalResult%3D')
         })
         cy.screenshot()
     })
