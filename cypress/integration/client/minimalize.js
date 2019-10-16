@@ -1,10 +1,10 @@
-import { setOtpions } from '../../support/helper'
+import { golUrlReturn, setOtpions } from '../../support/helper'
 
 const createButtonSelector = '#flight-watchdog-window-clicked-create-watcher'
 
 describe('Minimalize', function() {
     it('Show minimalized after create and reload', function() {
-        cy.visit('')
+        cy.visit(golUrlReturn)
         setOtpions()
         cy.contains('Chcete hlídat cenu 2\u00a0000\u00a0CZK?')
         cy.get('.content input').type('michal@email.cz')
@@ -18,7 +18,7 @@ describe('Minimalize', function() {
     })
 
     it('Do not show minimalized after create and reload', function() {
-        cy.visit('')
+        cy.visit(golUrlReturn)
         setOtpions({keepMinimalisedInDays: 0})
         cy.contains('Chcete hlídat cenu 2\u00a0000\u00a0CZK?')
         cy.get('.content input').type('michal@email.cz')

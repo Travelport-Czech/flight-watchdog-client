@@ -1,85 +1,54 @@
-import {
-  ValidDate,
-  ValidEmail,
-  ValidIATALocationList,
-  ValidLanguage,
-  ValidObjectError,
-  ValidPrice,
-  ValidString
-} from '@ceesystems/valid-objects-ts'
+import { ValidEmail, ValidLanguage, ValidPrice } from '@ceesystems/valid-objects-ts'
 import { AppConfig } from '@client/types/AppConfig'
-import { getUrlParameterValue } from '@client/utils/getUrlParameterValue'
-import { AppError } from '@shared/errors/AppError'
-import { InvalidClientInputError } from '@shared/errors/InvalidClientInputError'
+import { parseGolUrl } from '@client/utils/parseGolUrl'
 import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
-import { urlParamsConst } from '@shared/utils/consts'
-
-// tslint:disable-next-line:no-any
-declare var dataLayer: any // global variable from html
 
 export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | undefined => {
-  try {
-    // tslint:disable-next-line:no-unsafe-any
-    if (!dataLayer || dataLayer.length === 0) {
-      throw new AppError('Empty dataLayer')
-    }
+  const appConfigPartFromUrl = parseGolUrl(url)
 
-    // tslint:disable-next-line:no-unsafe-any
-    if (!dataLayer[0].searchVariables) {
-      throw new AppError('DataLayer not contain searchVariables')
-    }
+  if (!appConfigPartFromUrl) {
+    // tslint:disable-next-line
+    console.log('Flight watchdog error', 'Bad url.')
 
-    const emailToContinueWatching = getUrlParameterValue(url, urlParamsConst.continue)
-    const watcherIdToDelete = getUrlParameterValue(url, urlParamsConst.delete)
-    const email = getUrlParameterValue(url, urlParamsConst.email)
-    const langElement = document.getElementsByTagName('html').item(0)
-    const lang = new ValidLanguage(
-      langElement && langElement.getAttribute('lang'),
-      Object.values(SupportedLanguageEnum)
-    )
+    return
+  }
 
-    const lowestPriceElement = doc.querySelector('#airticket-offer-list .airticketOfferItem .tariff-btn strong')
-    if (!lowestPriceElement) {
-      throw new AppError('Lowest price not found')
-    }
+  const lowestPriceHtmlElement = <HTMLSpanElement | null>doc.getElementsByClassName('AO3_TotalFareValue').item(0)
+  const lowestPrice =
+    lowestPriceHtmlElement && lowestPriceHtmlElement.getAttribute('data-default-price')
+      ? lowestPriceHtmlElement.getAttribute('data-default-price')
+      : ''
 
-    const lowestPrice = new ValidPrice(normalizeText(lowestPriceElement.innerHTML))
+  const lowestPriceCustomCurrency =
+    lowestPriceHtmlElement && lowestPriceHtmlElement.textContent ? lowestPriceHtmlElement.textContent : ''
 
-    const destinationElement = doc.querySelector('#top-infopanel div div div div strong')
-    if (!destinationElement) {
-      throw new AppError('Destination string not found')
-    }
+  if (!lowestPrice) {
+    // tslint:disable-next-line
+    console.log('Flight watchdog error', 'Price not found.')
 
-    const destination = new ValidString(destinationElement.innerHTML)
-    const destinationList = destination.toString().match(/\(([A-Z]{3})\)/g)
+    return
+  }
 
-    if (destinationList === null) {
-      throw new AppError('Destination IATA code not found')
-    }
+  const langElement = document.getElementsByTagName('html').item(0)
+  const lang = new ValidLanguage(langElement && langElement.getAttribute('lang'), Object.values(SupportedLanguageEnum))
 
-    // tslint:disable:no-unsafe-any
-    return {
-      arrival: dataLayer[0].searchVariables.roundTrip
-        ? new ValidDate(dataLayer[0].searchVariables.returnDate)
-        : undefined,
-      departure: new ValidDate(dataLayer[0].searchVariables.departureDate),
-      destination: new ValidIATALocationList(dataLayer[0].searchVariables.to),
-      emailForWatcherDelete: email ? new ValidEmail(email) : undefined,
-      emailToContinueWatching: emailToContinueWatching ? new ValidEmail(emailToContinueWatching) : undefined,
-      origin: new ValidIATALocationList(destinationList.join('/').replace(/(\(|\))/g, '')),
-      flightType: dataLayer[0].searchVariables.roundTrip ? 'return' : 'oneway',
-      watcherIdToDelete: watcherIdToDelete ? new ValidString(watcherIdToDelete) : undefined,
-      lowestPrice,
-      lowestPriceCustomCurrency: lowestPrice,
-      lang
-    }
-    // tslint:enable
-  } catch (e) {
-    if (e instanceof AppError || e instanceof ValidObjectError) {
-      throw new InvalidClientInputError(e.message)
-    }
-    throw e
+  return {
+    ...appConfigPartFromUrl,
+    customerEmail: getCustomerEmail(doc),
+    lowestPrice: new ValidPrice(lowestPrice),
+    lowestPriceCustomCurrency: new ValidPrice(lowestPriceCustomCurrency),
+    lang
   }
 }
 
-const normalizeText = (s: string) => s.replace(/&nbsp;/g, ' ')
+const getCustomerEmail = (doc: Document): ValidEmail | undefined => {
+  try {
+    const userEmailHtmlElement = <HTMLInputElement | null>doc.getElementById('fiUsername')
+
+    return userEmailHtmlElement && userEmailHtmlElement.value
+      ? new ValidEmail(userEmailHtmlElement.value, ['+'])
+      : undefined
+  } catch (err) {
+    return
+  }
+}
