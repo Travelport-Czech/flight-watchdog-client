@@ -201,11 +201,7 @@ export const isValidClientSettings = (data: UnknownNestedObject): ClientSettings
     typeof data.keepMinimalisedInDays === 'number' ? data.keepMinimalisedInDays : 7
   )
 
-  if (
-    data.initStep &&
-    typeof data.initStep === 'string' &&
-    !Object.values(<string>(<unknown>StepToShow)).includes(data.initStep)
-  ) {
+  if (data.initStep && !Object.values(StepToShow).includes(data.initStep)) {
     throw new Error('Flight Watchdog: Bad init step')
   }
 
