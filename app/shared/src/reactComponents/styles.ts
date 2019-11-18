@@ -99,7 +99,8 @@ export const crossButton: CSSProperties = {
   fontSize: '20px',
   position: 'absolute',
   right: '10px',
-  top: '5px'
+  top: '5px',
+  color: secondaryTextColor
 }
 
 export const errorText: CSSProperties = {
