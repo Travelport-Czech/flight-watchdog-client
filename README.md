@@ -94,22 +94,25 @@ var startFlightWatchdogClient = function () {
     document.getElementsByTagName('head')[0].appendChild(s);
   }
 }
-var started = 0;
-var mutationObserver = new MutationObserver(function(mutations) {
-  mutations.forEach(function(mutation) {
-    console.log('change')
-    if (document.querySelector('.airticketOfferItem')) {
-      if (started) {
-        console.log('already started')
-        return
+
+function onMouseOut(event) {
+  // If the mouse is near the top of the window, show the popup
+  // Also, do NOT trigger when hovering or clicking on selects
+  if (
+    event.clientY < 50 &&
+    event.relatedTarget == null &&
+    event.target.nodeName.toLowerCase() !== 'select') {
+      
+      console.log('on mouse out');
+
+      if (document.querySelector('.airticketOfferItem')) {
+        // Remove this event listener
+        document.removeEventListener("mouseout", onMouseOut);
+        // Show the popup
+        startFlightWatchdogClient();
       }
-      started = 1
-      startFlightWatchdogClient()
-    }
-  });
-});
-mutationObserver.observe(document.getElementsByTagName('body')[0], {
-  childList: true,
-  subtree: true
-});
+  }
+}
+
+document.addEventListener("mouseout", onMouseOut);
 ```
