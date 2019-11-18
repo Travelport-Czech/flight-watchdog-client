@@ -1,13 +1,13 @@
 import { ValidLanguage } from '@ceesystems/valid-objects-ts'
 import { createResultUrl, createWatcherLinks } from '@emails/factories/createWatcherLinks'
 import { EmailButton } from '@emails/reactComponents/EmailButton'
+import { HeaderDestination } from '@emails/reactComponents/HeaderDestination'
 import { WatcherPriceHistory } from '@emails/reactComponents/WatcherPriceHistory'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { FlightResult } from '@emails/types/FlightResult'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { AppLogicError } from '@shared/errors/AppLogicError'
 import { HeaderDates } from '@shared/reactComponents/HeaderDates'
-import { LocationNameList } from '@shared/reactComponents/LocationNameList'
 import { Price } from '@shared/reactComponents/Price'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
@@ -65,62 +65,40 @@ export class WatchersList extends React.Component<Props> {
 
     const lang = watchersFullInfoList[0].watcher.lang
 
-    const lines = watchersFullInfoList.map((watchersFullInfo: WatcherFullInfo, index) => {
-      const { watcher, originLocationList, destinationLocationList, additionalResults } = watchersFullInfo
-      const { priceLimit, departure, arrival } = watcher
+    const lines = watchersFullInfoList.map((watcherFullInfo: WatcherFullInfo, index) => {
+      const { watcher, additionalResults } = watcherFullInfo
+      const { priceLimit } = watcher
       const watcherLinks = createWatcherLinks(watcher, agencyParams)
-      const destinationTextKey =
-        watcher.flightType === 'return'
-          ? TranslationEnum.ClientDestinationsReturn
-          : TranslationEnum.ClientDestinationsOneway
 
       return (
-        <div key={index} style={styles.emailBlock}>
-          <div style={styles.headerLevel2}>
-            <Text name={destinationTextKey} lang={lang}>
-              <span style={styles.primaryColor}>
-                <LocationNameList locationList={originLocationList} />
-              </span>
-              <span style={styles.primaryColor}>
-                <LocationNameList locationList={destinationLocationList} />
-              </span>
-            </Text>
+        <div key={index}>
+          <HeaderDestination watcherFullInfo={watcherFullInfo} lang={lang} />
+          <div style={styles.section3}>
+            <WatcherPriceHistory watchersFullInfo={watcherFullInfo} showSvg={showSvg} />
+
+            <div style={styles.simpleText}>
+              <Text name={TranslationEnum.EmailPriceLimit} lang={lang}>
+                {priceLimit.toString()}
+              </Text>
+            </div>
+
+            <table style={{ display: 'inline-block' }}>
+              <tr>
+                <td>
+                  <EmailButton
+                    link={watcherLinks.resultLink}
+                    text={TranslationEnum.EmailButtonShowResult}
+                    lang={lang}
+                  />
+                </td>
+                <td>
+                  <EmailButton link={watcherLinks.deleteLink} text={TranslationEnum.EmailButtonDelete} lang={lang} />
+                </td>
+              </tr>
+            </table>
+
+            {additionalResults.length !== 0 && createAdditionalResults(additionalResults, lang, agencyParams)}
           </div>
-          <div style={styles.headerDates}>
-            <HeaderDates departure={departure} arrival={arrival} lang={lang} />
-          </div>
-
-          <WatcherPriceHistory watchersFullInfo={watchersFullInfo} showSvg={showSvg} />
-
-          <div style={styles.simpleText}>
-            <Text name={TranslationEnum.EmailPriceLimit} lang={lang}>
-              {priceLimit.toString()}
-            </Text>
-          </div>
-
-          <table>
-            <tr>
-              <td>
-                <EmailButton link={watcherLinks.resultLink} text={TranslationEnum.EmailButtonShowResult} lang={lang} />
-              </td>
-              <td>
-                <EmailButton
-                  link={watcherLinks.deleteLink}
-                  text={TranslationEnum.EmailButtonDelete}
-                  lang={lang}
-                  style={{
-                    width: 'auto',
-                    border: 'none',
-                    fontSize: '12px',
-                    fontWeight: 'normal',
-                    textDecoration: 'underline'
-                  }}
-                />
-              </td>
-            </tr>
-          </table>
-
-          {additionalResults.length !== 0 && createAdditionalResults(additionalResults, lang, agencyParams)}
         </div>
       )
     })

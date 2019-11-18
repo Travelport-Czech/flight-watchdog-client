@@ -24,6 +24,7 @@ export enum TranslationEnum {
   ClientDestinationsOneway = 'ClientDestinationsOneway',
   ClientDatesReturn = 'ClientDatesReturn',
   ClientDatesOneway = 'ClientDatesOneway',
+  ClientMerchantConditions = 'ClientMerchantConditions',
   EmailTitle = 'EmailTitle',
   EmailLowerPriceSubject = 'EmailLowerPriceSubject',
   EmailDescription = 'EmailDescription',

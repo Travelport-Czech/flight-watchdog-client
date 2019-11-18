@@ -26,6 +26,7 @@ export interface TranslationKeys {
   readonly [T.ClientDescription]: string
   readonly [T.ClientDatesReturn]: string
   readonly [T.ClientDatesOneway]: string
+  readonly [T.ClientMerchantConditions]: string
   readonly [T.EmailTitle]: string
   readonly [T.EmailLowerPriceSubject]: string
   readonly [T.EmailDescription]: string

@@ -23,28 +23,36 @@ export class EmailLowerPriceHeader extends React.Component<Props> {
         : TranslationEnum.ClientDestinationsOneway
 
     return (
-      <div style={styles.header}>
-        <div style={styles.headerText}>
-          <Text name={TranslationEnum.EmailTitle} lang={lang} />
+      <div>
+        <div style={styles.section1email}>
+          <div style={styles.section1textEmail}>
+            <Text name={TranslationEnum.EmailTitle} lang={lang} />
+          </div>
         </div>
-        <div style={styles.headerTextDescription}>
+        <div style={styles.section2}>
+          <div style={styles.section2locations}>
+            <div style={styles.section2box}>
+              <div style={styles.section2textLeft}>
+                <LocationNameList locationList={originLocationList} />
+              </div>
+            </div>
+            <div style={styles.section2box}>
+              <div style={styles.section2textRight}>
+                <LocationNameList locationList={destinationLocationList} />
+              </div>
+            </div>
+          </div>
+          <div style={styles.section2date}>
+            <Text name={destinationTextKey} lang={lang} />
+            <br />
+            <br />
+            <HeaderDates departure={departure} arrival={arrival} lang={lang} />
+          </div>
+        </div>
+        <div style={styles.section3}>
           <Text name={TranslationEnum.EmailDescription} lang={lang}>
             <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
           </Text>
-        </div>
-
-        <div style={styles.headerLevel2}>
-          <Text name={destinationTextKey} lang={lang}>
-            <span style={styles.primaryColor}>
-              <LocationNameList locationList={originLocationList} />
-            </span>
-            <span style={styles.primaryColor}>
-              <LocationNameList locationList={destinationLocationList} />
-            </span>
-          </Text>
-        </div>
-        <div style={styles.headerDates}>
-          <HeaderDates departure={departure} arrival={arrival} lang={lang} />
         </div>
       </div>
     )

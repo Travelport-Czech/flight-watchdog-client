@@ -75,8 +75,8 @@ var startFlightWatchdogClient = function () {
     return check;
   };
   if (!flightWatchdogClientMobileCheck()) { 
-    var font = document.createElement('script');
-    font.href = 'https://fonts.googleapis.com/css?family=Roboto';
+    var font = document.createElement('link');
+    font.href = 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap'
     font.rel = 'stylesheet'
     document.getElementsByTagName('head')[0].appendChild(font);
     var s = document.createElement('script');

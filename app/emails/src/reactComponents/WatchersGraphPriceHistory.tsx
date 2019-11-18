@@ -9,7 +9,7 @@ import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import { getActualDate } from '@shared/utils/timebased'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { Area, CartesianGrid, ComposedChart, Legend, Line, XAxis, YAxis } from 'recharts'
+import { Area, ComposedChart, Legend, Line, XAxis, YAxis } from 'recharts'
 
 interface Props {
   readonly searchResults: SearchResult[]
@@ -67,16 +67,15 @@ export class WatchersGraphPriceHistory extends React.Component<Props> {
     return (
       <div style={{ ...style }}>
         <ComposedChart width={600} height={200} data={data} margin={{ bottom: 20, top: 20 }}>
-          <XAxis dataKey="name" padding={{ left: 10, right: 10 }} tick={{ fontSize: 10 }} />
+          <XAxis dataKey="name" padding={{ left: 30, right: 30 }} tick={{ fontSize: 10 }} />
           <YAxis domain={['auto', 'auto']} tick={{ fontSize: 10 }} />
-          <CartesianGrid stroke="#eee" strokeDasharray="3 5" />
           <Legend verticalAlign="top" wrapperStyle={{ top: '170px', fontSize: '10px' }} iconType="line" />
           <Line
             name={priceLimitLabel}
             isAnimationActive={false}
             type="monotone"
             dataKey="limit"
-            stroke="#deaf1c"
+            stroke="#de251c"
             dot={<GraphPriceLimitDot />}
           />
           <Area
@@ -84,7 +83,7 @@ export class WatchersGraphPriceHistory extends React.Component<Props> {
             isAnimationActive={false}
             type="monotone"
             dataKey="price"
-            fillOpacity={0.2}
+            fillOpacity={0.5}
             fill="#5d92da"
             stroke="#3c68a5"
             dot={<GraphDot />}

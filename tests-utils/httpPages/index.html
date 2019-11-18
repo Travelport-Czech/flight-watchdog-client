@@ -33,7 +33,6 @@
           token: document.getElementById('option-token').value,
           initStep: document.getElementById('option-initStep').value,
           apiUrl: document.getElementById('option-apiUrl').value,
-          keepMinimalisedInDays: parseInt(document.getElementById('option-keepMinimalisedInDays').value),
           analyticsId: document.getElementById('option-analyticsId').value,
           sentryDns: document.getElementById('option-sentryDns').value
         }
@@ -77,7 +76,6 @@
         <option value="REMOVE_WATCHER">REMOVE_WATCHER</option>
         <option value="REMOVE_WATCHER_WORKING">REMOVE_WATCHER_WORKING</option>
         <option value="REMOVE_MORE_WATCHERS">REMOVE_MORE_WATCHERS</option>
-        <option value="MINIMALIZED">MINIMALIZED</option>
         <option value="CONTINUE_WATCHING">CONTINUE_WATCHING</option>
         <option value="ERROR">ERROR</option>
       </select><br/>
@@ -89,18 +87,23 @@
       token: <input name="token" value="token" id="option-token"><br/>
       analyticsId: <input name="analyticsId" value="false" id="option-analyticsId"><br/>
       sentryDns: <input name="sentryDns" value="false" id="option-sentryDns"><br/>
-      keepMinimalisedInDays: <input name="keepMinimalisedInDays" value="1" id="option-keepMinimalisedInDays"><br/>
       <button onclick="submit(this)" id="option-load-button">Load</button>
     </p>
 
     <script type="text/javascript">
-      var font = document.createElement('script')
-      font.href = 'https://fonts.googleapis.com/css?family=Roboto'
-      font.rel = 'stylesheet'
-      document.getElementsByTagName('head')[0].appendChild(font)
-      var s = document.createElement('script')
-      s.src = 'http://localhost:8080/client/index.js'
-      document.getElementsByTagName('head')[0].appendChild(s)
+      var font = document.createElement('link');
+      font.href = 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap';
+      font.rel = 'stylesheet';
+      document.getElementsByTagName('head')[0].appendChild(font);
+
+      font = document.createElement('link');
+      font.href = 'https://fonts.googleapis.com/css?family=Lato:700&display=swap" rel="stylesheet';
+      font.rel = 'stylesheet';
+      document.getElementsByTagName('head')[0].appendChild(font);
+
+      var s = document.createElement('script');
+      s.src = 'http://localhost:8080/client/index.js';
+      document.getElementsByTagName('head')[0].appendChild(s);
     </script>
   </body>
 </html>

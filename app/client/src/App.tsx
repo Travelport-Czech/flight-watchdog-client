@@ -1,8 +1,6 @@
 import * as actions from '@client/actions'
-import { Consts } from '@client/Consts'
 import { isAllowedToAddWatcher } from '@client/functions'
 import { Props } from '@client/Props'
-import { ClosedWindow } from '@client/reactComponents/ClosedWindow'
 import { ContinueWatchingPage } from '@client/reactComponents/pages/ContinueWatchingPage'
 import { CreateFormPage } from '@client/reactComponents/pages/CreateFormPage'
 import { CreateWatcherDonePage } from '@client/reactComponents/pages/CreateWatcherDonePage'
@@ -16,7 +14,6 @@ import { State } from '@client/State'
 import { StepToShow } from '@client/StepsToShow'
 import { FlightParams } from '@client/types/FlightParams'
 import { validateEmail } from '@shared/utils/validateEmail'
-import * as Cookies from 'js-cookie'
 import * as React from 'react'
 
 export class App extends React.Component<Props, State> {
@@ -38,7 +35,6 @@ export class App extends React.Component<Props, State> {
 
   public render() {
     const flightParams = this.createFlightParams()
-    const { lang } = this.props.appConfig
     if (!flightParams) {
       return ''
     }
@@ -79,10 +75,6 @@ export class App extends React.Component<Props, State> {
       return this.renderRemoveMoreWatchers(flightParams)
     }
 
-    if (this.state.stepToShow === StepToShow.minimalized) {
-      return <ClosedWindow handleOpen={this.handleOpen} lang={lang} />
-    }
-
     return ''
   }
 
@@ -101,16 +93,7 @@ export class App extends React.Component<Props, State> {
 
       return
     }
-
-    const keepMinimalisedInDays = this.props.clientSettings.keepMinimalisedInDays.value
-    if (keepMinimalisedInDays !== 0) {
-      Cookies.set(Consts.cookieName, 'true', { expires: keepMinimalisedInDays })
-    }
-    this.setState({ stepToShow: StepToShow.minimalized })
-  }
-
-  private readonly handleOpen = () => {
-    this.setState({ stepToShow: StepToShow.createWatcherAgree })
+    this.setState({ stepToShow: StepToShow.none })
   }
 
   private readonly handleCreateWatcher = async () => {

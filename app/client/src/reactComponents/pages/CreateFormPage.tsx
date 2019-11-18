@@ -40,15 +40,10 @@ export class CreateFormPage extends React.Component<Props> {
               <Text name={TranslationEnum.ClientBadEmailError} lang={appConfig.lang} />
             )}
           </span>
-          &nbsp;
-          <Button
-            onClick={onClose}
-            asLink
-            style={{ float: 'right' }}
-            id="flight-watchdog-window-clicked-not-interested"
-          >
-            <Text name={TranslationEnum.ClientButtonNotInterested} lang={appConfig.lang} />
-          </Button>
+          <br />
+        </div>
+        <div style={styles.smallText}>
+          <Text name={TranslationEnum.ClientMerchantConditions} lang={appConfig.lang} />
         </div>
       </OpenedWindow>
     )

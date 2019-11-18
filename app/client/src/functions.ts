@@ -197,10 +197,6 @@ export const isValidClientSettings = (data: UnknownNestedObject): ClientSettings
   }
   const token = new ValidString(data.token)
 
-  const keepMinimalisedInDays = new ValidNumber(
-    typeof data.keepMinimalisedInDays === 'number' ? data.keepMinimalisedInDays : 7
-  )
-
   if (
     data.initStep &&
     typeof data.initStep === 'string' &&
@@ -222,7 +218,6 @@ export const isValidClientSettings = (data: UnknownNestedObject): ClientSettings
     data.sentryDns === 'false' ? undefined : new ValidString(data.sentryDns ? data.sentryDns : process.env.SENTRY_DNS)
 
   return {
-    keepMinimalisedInDays,
     token: token.toString(),
     initStep,
     apiUrl,

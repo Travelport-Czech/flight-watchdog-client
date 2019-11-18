@@ -8,20 +8,20 @@ describe('Watchers at limit', function() {
         setOtpions({token: 'tokenLimit'})
         cy.get('.flight-watchdog-client_window').should(($window) => {
             expect(normalizeText($window.text()), 'content').to.equal(`\
-×Chcete hlídat cenu 2 000 CZK?\
-Budeme ji hlídat za Vás! Každý den pak dostanete informaci o jejím vývoji.\
-z Praha - Letište Václava Havla (PRG) do Londýn (LON) a zpět\
+×Hlídám cenu za vás!\
+Praha - Letište Václava Havla (PRG)\
+Londýn (LON)\
+a zpět\
 1. 11. 2018 až 5. 11. 2018\
-Hlídat Nemám zájem`)
+Hlídat cenu\
+Odesláním potvrzuji, že souhlasím se zpracováním mých osobních údajů a že jsem se seznámil/a se Zásadami ochrany osobních údajů společnosti STUDENT AGENCY TRAVEL.`)
         })
         cy.screenshot()
         cy.get('.content input').type('michal@email.cz')
         cy.get(createButtonSelector).click()
         cy.contains('Skvěle, hotovo. Až najdeme nižší cenu, pošleme Vám e-mail.')
         cy.get('.content button').click()
-        cy.get('#flight-watchdog-client-app').should(($window) => {
-            expect($window.text(), 'content').to.equal('')
-        })
+        cy.get('.flight-watchdog-client_window').should('not.exist')
     })
 
     it('Should disable after check limit', function() {

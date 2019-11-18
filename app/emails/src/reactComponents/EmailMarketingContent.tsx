@@ -31,28 +31,20 @@ export class EmailMarketingContent extends React.Component<Props> {
         <table style={{ width: '600px', margin: '0 auto' }}>
           <tr>
             <td>
-              <div style={styles.header}>
-                <div style={styles.headerText}>
+              <div style={styles.section1email}>
+                <div style={styles.section1textEmail}>
                   <Text name={TranslationEnum.EmailMarketingHeader} lang={lang} />
                 </div>
+              </div>
+              <div style={styles.section3}>
                 <div style={styles.headerTextDescription}>
                   <Text name={TranslationEnum.EmailMarketingDescription} lang={lang}>
                     <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
                   </Text>
                 </div>
               </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div className="content" style={styles.emailTableContent}>
-                <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
-                  <WatchersList
-                    watchersFullInfoList={watchersFullInfoList}
-                    agencyParams={agencyParams}
-                    showSvg={showSvg}
-                  />
-                </div>
+              <WatchersList watchersFullInfoList={watchersFullInfoList} agencyParams={agencyParams} showSvg={showSvg} />
+              <div style={styles.section3}>
                 <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
                   <Text name={TranslationEnum.EmailFooter} lang={lang} />
                 </div>

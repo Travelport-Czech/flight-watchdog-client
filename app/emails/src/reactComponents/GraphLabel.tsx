@@ -15,7 +15,7 @@ export class GraphLabel extends React.Component<Props> {
 
     const text = value === priceLimit.amount ? priceLimit.amount : value
 
-    const color = value ? (value >= priceLimit.amount ? '#888' : stroke) : stroke
+    const color = value ? (value >= priceLimit.amount ? '#000' : stroke) : stroke
 
     return (
       <text x={x} y={y} dy={-10} fill={color} fontSize={10} textAnchor="middle">
