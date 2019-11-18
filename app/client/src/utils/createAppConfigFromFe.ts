@@ -43,7 +43,7 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
       throw new AppError('Lowest price not found')
     }
 
-    const lowestPrice = new ValidPrice(normalizeText(lowestPriceElement.innerHTML))
+    const lowestPrice = new ValidPrice(normalizeText(lowestPriceElement.innerHTML).replace('Kč', 'CZK'))
 
     const destinationElement = doc.querySelector('#top-infopanel div div div div strong')
     if (!destinationElement) {
