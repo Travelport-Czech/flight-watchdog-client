@@ -1,6 +1,6 @@
 export enum urlParamsConst {
-  delete = 'flightWatchdogDelete',
-  continue = 'flightWatchdogContinue',
-  result = 'flightWatchdogResult',
-  email = 'email'
+  delete = 'utm_flightWatchdogDelete',
+  continue = 'utm_flightWatchdogContinue',
+  result = 'utm_flightWatchdogResult',
+  email = 'utm_email'
 }

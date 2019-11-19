@@ -5,7 +5,7 @@ describe('Marketing Email', function() {
         cy.visit('/marketingEmail')
         cy.get('tr').eq(0).should((tr) => {
             expect(`\
-Vývoj cen hlídačů letů\
+Vývoj cen Vašeho letu\
 Tento e-mail je odesílán každý den na základě Vašeho založení hlídače letu na webu https://example.cz.\
 Londýn (LON)Praha (PRG)\
 a zpět\

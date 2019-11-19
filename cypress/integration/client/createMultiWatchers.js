@@ -1,10 +1,10 @@
-import { golUrlReturn, setOtpions } from '../../support/helper'
+import { setOtpions } from '../../support/helper'
 
 const createButtonSelector = '#flight-watchdog-window-clicked-create-watcher'
 
 describe('Create watcher multiple', function() {
     it('Create success', function() {
-        cy.visit(golUrlReturn)
+        cy.visit('')
         setOtpions()
         cy.contains('Hlídám cenu za\u00a0vás!')
         cy.get('.content input').type('multiple@email.cz')
@@ -15,7 +15,7 @@ describe('Create watcher multiple', function() {
     })
 
     it('Create with delete question', function() {
-        cy.visit(golUrlReturn)
+        cy.visit('')
         setOtpions()
         cy.contains('Hlídám cenu za\u00a0vás!')
         cy.get('.content input').type('multiplefull@email.cz')

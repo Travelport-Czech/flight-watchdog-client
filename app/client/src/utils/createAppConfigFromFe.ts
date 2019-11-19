@@ -1,53 +1,85 @@
 import { AppConfig } from '@client/types/AppConfig'
-import { parseGolUrl } from '@client/utils/parseGolUrl'
+import { getUrlParameterValue } from '@client/utils/getUrlParameterValue'
+import { AppError } from '@shared/errors/AppError'
+import { InvalidClientInputError } from '@shared/errors/InvalidClientInputError'
 import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
-import { ValidEmail, ValidLanguage, ValidPrice } from '@travelport-czech/valid-objects-ts'
+import { urlParamsConst } from '@shared/utils/consts'
+import {
+  ValidDate,
+  ValidEmail,
+  ValidIATALocationList,
+  ValidLanguage,
+  ValidObjectError,
+  ValidPrice,
+  ValidString
+} from '@travelport-czech/valid-objects-ts'
+
+// tslint:disable-next-line:no-any
+declare var dataLayer: any // global variable from html
 
 export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | undefined => {
-  const appConfigPartFromUrl = parseGolUrl(url)
+  try {
+    // tslint:disable-next-line:no-unsafe-any
+    if (!dataLayer || dataLayer.length === 0) {
+      throw new AppError('Empty dataLayer')
+    }
 
-  if (!appConfigPartFromUrl) {
-    // tslint:disable-next-line
-    console.log('Flight watchdog error', 'Bad url.')
+    // tslint:disable-next-line:no-unsafe-any
+    if (!dataLayer[0].searchVariables) {
+      throw new AppError('DataLayer not contain searchVariables')
+    }
 
-    return
-  }
+    const emailToContinueWatching = getUrlParameterValue(url, urlParamsConst.continue)
+    const watcherIdToDelete = getUrlParameterValue(url, urlParamsConst.delete)
+    const email = getUrlParameterValue(url, urlParamsConst.email)
+    const langElement = document.getElementsByTagName('html').item(0)
+    const lang = new ValidLanguage(
+      langElement && langElement.getAttribute('lang'),
+      Object.values(SupportedLanguageEnum)
+    )
 
-  const lowestPriceHtmlElement = <HTMLSpanElement | null>doc.getElementsByClassName('AO3_TotalFareValue').item(0)
-  const lowestPrice =
-    lowestPriceHtmlElement && lowestPriceHtmlElement.getAttribute('data-default-price')
-      ? lowestPriceHtmlElement.getAttribute('data-default-price')
-      : ''
+    const lowestPriceElement = doc.querySelector('#airticket-offer-list .airticketOfferItem .tariff-btn strong')
+    if (!lowestPriceElement) {
+      throw new AppError('Lowest price not found')
+    }
 
     const lowestPrice = new ValidPrice(normalizeText(lowestPriceElement.innerHTML).replace('Kč', 'CZK'))
 
-  if (!lowestPrice) {
-    // tslint:disable-next-line
-    console.log('Flight watchdog error', 'Price not found.')
+    const destinationElement = doc.querySelector('#top-infopanel div div div div strong')
+    if (!destinationElement) {
+      throw new AppError('Destination string not found')
+    }
 
-    return
-  }
+    const destination = new ValidString(destinationElement.innerHTML)
+    const destinationList = destination.toString().match(/\(([A-Z]{3})\)/g)
 
-  const langElement = document.getElementsByTagName('html').item(0)
-  const lang = new ValidLanguage(langElement && langElement.getAttribute('lang'), Object.values(SupportedLanguageEnum))
+    if (destinationList === null) {
+      throw new AppError('Destination IATA code not found')
+    }
 
-  return {
-    ...appConfigPartFromUrl,
-    customerEmail: getCustomerEmail(doc),
-    lowestPrice: new ValidPrice(lowestPrice),
-    lowestPriceCustomCurrency: new ValidPrice(lowestPriceCustomCurrency),
-    lang
+    // tslint:disable:no-unsafe-any
+    return {
+      arrival: dataLayer[0].searchVariables.roundTrip
+        ? new ValidDate(dataLayer[0].searchVariables.returnDate)
+        : undefined,
+      departure: new ValidDate(dataLayer[0].searchVariables.departureDate),
+      destination: new ValidIATALocationList(dataLayer[0].searchVariables.to),
+      emailForWatcherDelete: email ? new ValidEmail(email) : undefined,
+      emailToContinueWatching: emailToContinueWatching ? new ValidEmail(emailToContinueWatching) : undefined,
+      origin: new ValidIATALocationList(destinationList.join('/').replace(/(\(|\))/g, '')),
+      flightType: dataLayer[0].searchVariables.roundTrip ? 'return' : 'oneway',
+      watcherIdToDelete: watcherIdToDelete ? new ValidString(watcherIdToDelete) : undefined,
+      lowestPrice,
+      lowestPriceCustomCurrency: lowestPrice,
+      lang
+    }
+    // tslint:enable
+  } catch (e) {
+    if (e instanceof AppError || e instanceof ValidObjectError) {
+      throw new InvalidClientInputError(e.message)
+    }
+    throw e
   }
 }
 
-const getCustomerEmail = (doc: Document): ValidEmail | undefined => {
-  try {
-    const userEmailHtmlElement = <HTMLInputElement | null>doc.getElementById('fiUsername')
-
-    return userEmailHtmlElement && userEmailHtmlElement.value
-      ? new ValidEmail(userEmailHtmlElement.value, ['+'])
-      : undefined
-  } catch (err) {
-    return
-  }
-}
+const normalizeText = (s: string) => s.replace(/&nbsp;/g, ' ')
