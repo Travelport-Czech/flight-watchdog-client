@@ -10,11 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - name: Node cache
+        id: node-cache
+        uses: actions/cache@v1
+        with:
+          path: .npm-cache/
+          key: node-cache
       - uses: actions/setup-node@v1
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
           scope: '@travelport-czech'
+      - run: npm config set cache "$(pwd)/.npm-cache" --global
       - run: npm ci
         env:
           CI: true
