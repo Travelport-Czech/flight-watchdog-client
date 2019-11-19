@@ -1,6 +1,6 @@
-import { ValidDate, ValidLanguage } from '@ceesystems/valid-objects-ts'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
+import { ValidDate, ValidLanguage } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 

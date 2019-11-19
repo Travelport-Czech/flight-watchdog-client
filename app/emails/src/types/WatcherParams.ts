@@ -1,5 +1,5 @@
-import { ValidDateTime, ValidEmail, ValidLanguage, ValidPrice, ValidString } from '@ceesystems/valid-objects-ts'
 import { FlightParams } from '@emails/types/FlightParams'
+import { ValidDateTime, ValidEmail, ValidLanguage, ValidPrice, ValidString } from '@travelport-czech/valid-objects-ts'
 
 export interface WatcherParams extends FlightParams {
   readonly id: ValidString

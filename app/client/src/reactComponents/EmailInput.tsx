@@ -1,7 +1,7 @@
-import { ValidLanguage } from '@ceesystems/valid-objects-ts'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
+import { ValidLanguage } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 import { renderToString } from 'react-dom/server'
 

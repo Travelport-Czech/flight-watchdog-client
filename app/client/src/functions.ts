@@ -1,11 +1,3 @@
-import {
-  ValidEmail,
-  ValidIATALocation,
-  ValidIATALocationList,
-  ValidLanguage,
-  ValidNumber,
-  ValidString
-} from '@ceesystems/valid-objects-ts'
 import { StepToShow } from '@client/StepsToShow'
 import { ClientSettings } from '@client/types/ClientSettings'
 import { UnknownNestedObject } from '@client/types/UnknownNestedObject'
@@ -13,6 +5,14 @@ import { WatcherClientCreateParams } from '@client/types/WatcherClientCreatePara
 import { createAuthorizationBasicToken } from '@client/utils/createAuthorizationBasicToken'
 import { parseJson } from '@client/utils/parseJson'
 import { Location } from '@shared/types/Location'
+import {
+  ValidEmail,
+  ValidIATALocation,
+  ValidIATALocationList,
+  ValidLanguage,
+  ValidNumber,
+  ValidString
+} from '@travelport-czech/valid-objects-ts'
 
 enum ResponseKeysEnum {
   Count = 'count',

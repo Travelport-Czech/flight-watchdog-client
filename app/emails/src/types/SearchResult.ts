@@ -1,5 +1,5 @@
-import { ValidDate, ValidDateTime, ValidIATALocationList, ValidPrice } from '@ceesystems/valid-objects-ts'
 import { FlightType } from '@emails/types/FlightType'
+import { ValidDate, ValidDateTime, ValidIATALocationList, ValidPrice } from '@travelport-czech/valid-objects-ts'
 
 export interface SearchResult {
   readonly price?: ValidPrice

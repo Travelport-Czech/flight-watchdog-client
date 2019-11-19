@@ -1,4 +1,4 @@
-import { ValidEmail, ValidNumber, ValidUrl } from '@ceesystems/valid-objects-ts'
+import { ValidEmail, ValidNumber, ValidUrl } from '@travelport-czech/valid-objects-ts'
 
 export interface AgencyParams {
   readonly emailFrom: ValidEmail

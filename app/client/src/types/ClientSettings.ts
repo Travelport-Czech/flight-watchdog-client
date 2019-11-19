@@ -1,5 +1,5 @@
-import { ValidNumber, ValidString } from '@ceesystems/valid-objects-ts'
 import { StepToShow } from '@client/StepsToShow'
+import { ValidNumber, ValidString } from '@travelport-czech/valid-objects-ts'
 
 export interface ClientSettings {
   readonly token: string

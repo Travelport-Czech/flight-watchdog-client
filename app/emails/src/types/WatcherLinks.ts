@@ -1,4 +1,4 @@
-import { ValidUrl } from '@ceesystems/valid-objects-ts'
+import { ValidUrl } from '@travelport-czech/valid-objects-ts'
 
 export interface WatcherLinks {
   readonly resultLink: ValidUrl

@@ -1,4 +1,4 @@
-import { formatSystemDate, formatSystemDateTime, ValidDate, ValidDateTime } from '@ceesystems/valid-objects-ts'
+import { formatSystemDate, formatSystemDateTime, ValidDate, ValidDateTime } from '@travelport-czech/valid-objects-ts'
 import * as dayjs from 'dayjs'
 
 const momentDateTime: string | undefined = process.env.STATIC_TIMEBASED === 'true' ? '2018-10-01 12:00:00' : undefined

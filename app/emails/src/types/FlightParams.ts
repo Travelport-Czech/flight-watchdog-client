@@ -1,5 +1,5 @@
-import { ValidDate, ValidIATALocationList } from '@ceesystems/valid-objects-ts'
 import { FlightType } from '@emails/types/FlightType'
+import { ValidDate, ValidIATALocationList } from '@travelport-czech/valid-objects-ts'
 
 export interface FlightParams {
   readonly origin: ValidIATALocationList

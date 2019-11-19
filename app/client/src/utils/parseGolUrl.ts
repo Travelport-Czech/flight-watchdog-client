@@ -1,6 +1,6 @@
-import { ValidDate, ValidEmail, ValidIATALocationList, ValidString } from '@ceesystems/valid-objects-ts'
 import { getUrlParameterValue } from '@client/utils/getUrlParameterValue'
 import { urlParamsConst } from '@shared/utils/consts'
+import { ValidDate, ValidEmail, ValidIATALocationList, ValidString } from '@travelport-czech/valid-objects-ts'
 
 interface FlightData {
   readonly flightType: 'return' | 'oneway'

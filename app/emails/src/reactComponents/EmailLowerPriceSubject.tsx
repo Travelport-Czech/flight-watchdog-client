@@ -1,6 +1,6 @@
-import { ValidIATALocationList, ValidLanguage } from '@ceesystems/valid-objects-ts'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
+import { ValidIATALocationList, ValidLanguage } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 
 interface Props {

@@ -5,7 +5,7 @@ import {
   ValidLanguage,
   ValidPrice,
   ValidString
-} from '@ceesystems/valid-objects-ts'
+} from '@travelport-czech/valid-objects-ts'
 
 export interface AppConfig {
   readonly flightType: 'return' | 'oneway'

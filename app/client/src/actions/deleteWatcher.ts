@@ -1,7 +1,7 @@
-import { ValidEmail } from '@ceesystems/valid-objects-ts'
 import * as functions from '@client/functions'
 import { Props } from '@client/Props'
 import { State } from '@client/State'
+import { ValidEmail } from '@travelport-czech/valid-objects-ts'
 
 export const deleteWatcherByEmail = async (props: Readonly<Props>, state: Readonly<State>): Promise<boolean> => {
   const apiUrl = props.clientSettings.apiUrl

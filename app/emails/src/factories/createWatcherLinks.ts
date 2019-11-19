@@ -1,10 +1,10 @@
-import { ValidLanguage, ValidUrl } from '@ceesystems/valid-objects-ts'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { FlightParams } from '@emails/types/FlightParams'
 import { WatcherLinks } from '@emails/types/WatcherLinks'
 import { WatcherParams } from '@emails/types/WatcherParams'
 import { AppLogicError } from '@shared/errors/AppLogicError'
 import { urlParamsConst } from '@shared/utils/consts'
+import { ValidLanguage, ValidUrl } from '@travelport-czech/valid-objects-ts'
 
 const langCodeMapToGolLangCode = {
   cs: 'cz',

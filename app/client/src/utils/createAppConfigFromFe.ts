@@ -1,7 +1,7 @@
-import { ValidEmail, ValidLanguage, ValidPrice } from '@ceesystems/valid-objects-ts'
 import { AppConfig } from '@client/types/AppConfig'
 import { parseGolUrl } from '@client/utils/parseGolUrl'
 import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
+import { ValidEmail, ValidLanguage, ValidPrice } from '@travelport-czech/valid-objects-ts'
 
 export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | undefined => {
   const appConfigPartFromUrl = parseGolUrl(url)
