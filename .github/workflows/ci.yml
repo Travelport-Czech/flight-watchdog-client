@@ -20,4 +20,5 @@ jobs:
         npm run lint
         npm test
       env:
+        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         CI: true
