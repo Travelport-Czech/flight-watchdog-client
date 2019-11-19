@@ -1,9 +1,9 @@
-name: "Test on no-master"
+name: "Test on no-sa"
 
 on: 
   push:
     branches-ignore:
-      - "master"
+      - "sa"
 
 jobs:
   test:
@@ -11,11 +11,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
     - name: Install ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
