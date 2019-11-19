@@ -1,3 +1,12 @@
+import { createLowerPriceEmail } from '@emails/factories/lowerPriceEmailFactory'
+import { createMarketingEmail } from '@emails/factories/marketingEmailFactory'
+import { createWatchersListEmail } from '@emails/factories/watcherListEmailFactory'
+import { AgencyParams } from '@emails/types/AgencyParams'
+import { FlightResult } from '@emails/types/FlightResult'
+import { SearchResult } from '@emails/types/SearchResult'
+import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
+import { WatcherParams } from '@emails/types/WatcherParams'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 import {
   ValidDate,
   ValidDateTime,
@@ -8,16 +17,7 @@ import {
   ValidPrice,
   ValidString,
   ValidUrl
-} from '@ceesystems/valid-objects-ts'
-import { createLowerPriceEmail } from '@emails/factories/lowerPriceEmailFactory'
-import { createMarketingEmail } from '@emails/factories/marketingEmailFactory'
-import { createWatchersListEmail } from '@emails/factories/watcherListEmailFactory'
-import { AgencyParams } from '@emails/types/AgencyParams'
-import { FlightResult } from '@emails/types/FlightResult'
-import { SearchResult } from '@emails/types/SearchResult'
-import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
-import { WatcherParams } from '@emails/types/WatcherParams'
-import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
+} from '@travelport-czech/valid-objects-ts'
 
 // tslint:disable-next-line:export-name
 export const showEmail = async (emailName: string) => {

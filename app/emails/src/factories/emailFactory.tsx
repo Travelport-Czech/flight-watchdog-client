@@ -1,9 +1,9 @@
-import { ValidEmail, ValidLanguage } from '@ceesystems/valid-objects-ts'
 import { rawEmailAttachmentPartTemplate, rawEmailTemplate } from '@emails/factories/emailTemplates'
 import { WatchersGraphPriceHistory } from '@emails/reactComponents/WatchersGraphPriceHistory'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
+import { ValidEmail, ValidLanguage } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 

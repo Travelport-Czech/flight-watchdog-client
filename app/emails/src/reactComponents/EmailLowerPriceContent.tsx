@@ -1,4 +1,3 @@
-import { ValidPrice } from '@ceesystems/valid-objects-ts'
 import { createWatcherLinks } from '@emails/factories/createWatcherLinks'
 import { EmailButton } from '@emails/reactComponents/EmailButton'
 import { HeaderDestination } from '@emails/reactComponents/HeaderDestination'
@@ -9,6 +8,7 @@ import { Price } from '@shared/reactComponents/Price'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
+import { ValidPrice } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 
 interface Props {

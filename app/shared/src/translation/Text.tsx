@@ -1,10 +1,10 @@
-import { ValidLanguage } from '@ceesystems/valid-objects-ts'
 import { AppLogicError } from '@shared/errors/AppLogicError'
 import { csTranslation } from '@shared/translation/csTranslation'
 import { enTranslation } from '@shared/translation/enTranslation'
 import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import { TranslationKeys } from '@shared/translation/TranslationKeys'
+import { ValidLanguage } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 
 const getTranslationTable = (language: ValidLanguage): TranslationKeys => {

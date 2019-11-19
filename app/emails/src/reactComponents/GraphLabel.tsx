@@ -1,4 +1,4 @@
-import { ValidPrice } from '@ceesystems/valid-objects-ts'
+import { ValidPrice } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 
 interface Props {

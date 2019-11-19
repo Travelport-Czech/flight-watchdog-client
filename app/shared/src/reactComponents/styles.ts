@@ -36,7 +36,7 @@ export const window: CSSProperties = {
 export const content: CSSProperties = {
   backgroundColor: '#f9f9f9',
   boxShadow: 'inset 0px 11px 8px -10px #CCC',
-  height: '170px',
+  height: '120px',
   padding: '20px',
   textAlign: 'left'
 }

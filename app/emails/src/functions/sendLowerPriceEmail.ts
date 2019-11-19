@@ -1,7 +1,7 @@
-import { ValidPrice } from '@ceesystems/valid-objects-ts'
 import { createLowerPriceEmailRaw } from '@emails/factories/lowerPriceEmailFactory'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
+import { ValidPrice } from '@travelport-czech/valid-objects-ts'
 
 /**
  * Do not delete this function!

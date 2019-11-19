@@ -1,6 +1,6 @@
-import { setOtpions } from '../../support/helper'
+import { golUrlReturn, setOtpions } from '../../support/helper'
 
-const url = '?utm_flightWatchdogDelete=generate-0000-0000-0000-000000000001&utm_email=email@email.cz'
+const url = golUrlReturn + '&flightWatchdogDelete=generate-0000-0000-0000-000000000001&email=email@email.cz'
 
 describe('Delete watcher', function() {
     it('Success delete', function() {

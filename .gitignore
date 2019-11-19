@@ -12,8 +12,8 @@ cypress/screenshots
 .idea
 
 # Build directory
-.dist-client
-.dist-emails
+dist-client
+dist-emails
 .dist-translation-scripts
 
 yarn-error.log

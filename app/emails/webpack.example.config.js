@@ -2,7 +2,7 @@ const path = require('path')
 const Dotenv = require('dotenv-webpack')
 
 const sourceFile = path.resolve(__dirname, 'src/example.tsx')
-const outputDir = path.resolve(__dirname, '../../.dist-emails')
+const outputDir = path.resolve(__dirname, '../../dist-emails')
 
 let entry = {
   index: ['@babel/polyfill', sourceFile]

@@ -1,6 +1,6 @@
-import { setOtpions } from '../../support/helper'
+import { golUrlReturn, setOtpions } from '../../support/helper'
 
-const url = '?utm_flightWatchdogContinue=email@email.cz'
+const url = golUrlReturn + '&flightWatchdogContinue=email@email.cz'
 
 describe('Continue watching', function() {
     it('Success', function() {
