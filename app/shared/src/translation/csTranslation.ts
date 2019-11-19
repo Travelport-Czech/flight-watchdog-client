@@ -45,7 +45,7 @@ export const csTranslation: TranslationKeys = {
   [T.EmailFooter]: `Hlídání cen letů zajišťuje aplikace Flight Watchdog.`,
   [T.EmailWatcherListHeader]: `Seznam hlídačů letů`,
   [T.EmailWatcherListDescription]: `Tento e-mail byl odeslán na základě Vašeho požadavku na smazání hlídače letu na webu {?}. Po kliknutí na tlačítko Smazat budete přesměrováni na výsledky vyhledávání daného letu a budete vyzváni k potrvzení smazání.`,
-  [T.EmailMarketingHeader]: `Vývoj cen hlídačů letů`,
+  [T.EmailMarketingHeader]: `Vývoj cen Vašeho letu`,
   [T.EmailMarketingDescription]: `Tento e-mail je odesílán každý den na základě Vašeho založení hlídače letu na webu {?}.`,
   [T.EmailNoReplyName]: `Hlídač letenek`,
   [T.EmailAdditionalResultsHeader]: `Podobné nabídky (lidé právě kupují)`,
