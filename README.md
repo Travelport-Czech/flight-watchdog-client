@@ -1,7 +1,5 @@
 # Flight Watchdog Client
 
-[![CircleCI](https://circleci.com/gh/Travelport-Czech/flight-watchdog-client/tree/master.svg?style=svg)](https://circleci.com/gh/Travelport-Czech/flight-watchdog-client/tree/master)
-
 The *Flight Watchdog Client* is frontend part built on the [Flight Watchdog API](https://cee-systems.gitbook.io/flight-watchdog-api/)  and designated for the online booking tool [GOL IBE](https://www.cee-systems.com/gol-ibe). 
 
 The Flight Watchdog is a tool for daily flight price tracking. The flight tracking is defined by origin and destination, and a price limit. It sends you a notification, if it finds a lower price than defined.
