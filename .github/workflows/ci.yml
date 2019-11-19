@@ -1,6 +1,9 @@
-name: CI
+name: "Test on no-master"
 
-on: [push]
+on: 
+  push:
+    branches-ignore:
+      - "master"
 
 jobs:
   test:

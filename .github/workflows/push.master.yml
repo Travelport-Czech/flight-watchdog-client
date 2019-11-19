@@ -1,4 +1,4 @@
-name: "Push master"
+name: "Test and publish on master"
 
 on:
   push:
@@ -16,7 +16,6 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: '@travelport-czech'
       - run: npm ci
-      - run: npm run lint
       - run: npm test
       - run: npm build-prod
       - name: "Automated Version Bump"
