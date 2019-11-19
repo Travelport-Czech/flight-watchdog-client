@@ -16,6 +16,9 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: '@travelport-czech'
       - run: npm ci
+        env:
+          CI: true
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - run: npm test
       - run: npm build-prod
       - name: "Automated Version Bump"
