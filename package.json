@@ -8,6 +8,11 @@
     "dist-emails/**/*",
     "dist-client/**/*"
   ],
+  "repository" : {
+    "type" : "git",
+    "url": "ssh://git@github.com/travelport-czech/flight-watchdog-client.git",
+    "directory": "@travelport-czech/flight-watchdog-client"
+  },
   "engines": {
     "node": ">=8.10"
   },
