@@ -95,6 +95,23 @@ var startFlightWatchdogClient = function () {
   }
 }
 
+var started = 0;
+var mutationObserver = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+    if (document.querySelector('.airticketOfferItem')) {
+      if (started) {
+        return
+      }
+      started = 1
+      startFlightWatchdogClient()
+    }
+  });
+});
+mutationObserver.observe(document.getElementsByTagName('body')[0], {
+  childList: true,
+  subtree: true
+});
+
 function onMouseOut(event) {
   // If the mouse is near the top of the window, show the popup
   // Also, do NOT trigger when hovering or clicking on selects
@@ -102,14 +119,13 @@ function onMouseOut(event) {
     event.clientY < 50 &&
     event.relatedTarget == null &&
     event.target.nodeName.toLowerCase() !== 'select') {
-      
-      console.log('on mouse out');
-
       if (document.querySelector('.airticketOfferItem')) {
         // Remove this event listener
         document.removeEventListener("mouseout", onMouseOut);
+        // Stop observe
+        mutationObserver.disconnect();
         // Show the popup
-        startFlightWatchdogClient();
+        document.getElementById('flight-watchdog-client-app').style.display = 'block';
       }
   }
 }
