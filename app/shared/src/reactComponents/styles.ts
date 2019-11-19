@@ -249,7 +249,7 @@ export const emailButton: CSSProperties = {
 }
 
 export const overlay: CSSProperties = {
-  opacity: '0.4',
+  opacity: 0.4,
   backgroundColor: '#444',
   position: 'fixed',
   left: '0px',
