@@ -1,4 +1,4 @@
-import { ValidLanguage } from '@ceesystems/valid-objects-ts'
+import { ValidLanguage } from '@travelport-czech/valid-objects-ts'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { HeaderDates } from '@shared/reactComponents/HeaderDates'
 import { LocationNameList } from '@shared/reactComponents/LocationNameList'
