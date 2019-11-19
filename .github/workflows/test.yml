@@ -16,7 +16,7 @@ jobs:
         node-version: 12
         registry-url: https://npm.pkg.github.com/
         scope: '@travelport-czech'
-      run: npm ci
+    - run: npm ci
       env:
         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         CI: true
