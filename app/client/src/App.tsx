@@ -13,6 +13,7 @@ import { RemoveWatcherWorkingPage } from '@client/reactComponents/pages/RemoveWa
 import { State } from '@client/State'
 import { StepToShow } from '@client/StepsToShow'
 import { FlightParams } from '@client/types/FlightParams'
+import * as styles from '@shared/reactComponents/styles'
 import { validateEmail } from '@shared/utils/validateEmail'
 import * as React from 'react'
 
@@ -216,15 +217,18 @@ export class App extends React.Component<Props, State> {
     const { email, showBadEmailError } = this.state
 
     return (
-      <CreateFormPage
-        email={email}
-        showBadEmailError={showBadEmailError}
-        flightParams={flightParams}
-        appConfig={this.props.appConfig}
-        onClose={this.handleClose}
-        onCreateWatcher={this.handleCreateWatcher}
-        onEmailChange={this.handleEmailChange}
-      />
+      <React.Fragment>
+        <div style={styles.overlay} />
+        <CreateFormPage
+          email={email}
+          showBadEmailError={showBadEmailError}
+          flightParams={flightParams}
+          appConfig={this.props.appConfig}
+          onClose={this.handleClose}
+          onCreateWatcher={this.handleCreateWatcher}
+          onEmailChange={this.handleEmailChange}
+        />
+      </React.Fragment>
     )
   }
 }

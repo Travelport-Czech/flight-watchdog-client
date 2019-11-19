@@ -34,7 +34,7 @@ export const initFlightWatchdogClient = async (settingsData: UnknownNestedObject
     const id = 'flight-watchdog-client-app'
     const node = document.createElement('div')
     node.setAttribute('id', id)
-    node.style.display = 'none'
+    node.setAttribute('style', 'display: none')
     document.body.appendChild(node)
 
     const appConfig = createAppConfigFromFe(document, golUrl)

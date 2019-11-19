@@ -38,6 +38,7 @@
         }
         dataLayer[0].searchVariables.roundTrip = document.getElementById('option-flighttype').value === 'return' ? true : false
         initFlightWatchdogClient(settings)
+        document.getElementById('flight-watchdog-client-app').style.display = 'block';
       }
     </script>
   </head>

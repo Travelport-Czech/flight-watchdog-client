@@ -247,3 +247,15 @@ export const emailButton: CSSProperties = {
   margin: '0 auto',
   fontSize: '15px'
 }
+
+export const overlay: CSSProperties = {
+  opacity: '0.4',
+  backgroundColor: '#444',
+  position: 'fixed',
+  left: '0px',
+  top: '0px',
+  width: '100%',
+  height: '100%',
+  textAlign: 'center',
+  zIndex: 5000
+}
