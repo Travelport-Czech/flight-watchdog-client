@@ -106,6 +106,5 @@
     "xlsx": "^0.14.4"
   },
   "author": "C.E.E. group Travelport a.s.",
-  "license": "ISC",
-  "private": true
+  "license": "MIT"
 }
