@@ -33,14 +33,6 @@ export const window: CSSProperties = {
   zIndex: 9999
 }
 
-export const content: CSSProperties = {
-  backgroundColor: '#f9f9f9',
-  boxShadow: 'inset 0px 11px 8px -10px #CCC',
-  height: '120px',
-  padding: '20px',
-  textAlign: 'left'
-}
-
 const defaultInputItem: CSSProperties = {
   ...secondaryColor,
   backgroundColor: 'white',
