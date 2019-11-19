@@ -20,7 +20,7 @@ jobs:
           CI: true
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - run: npm test
-      - run: npm build-prod
+      - run: npm run build-prod
       - name: "Automated Version Bump"
         uses: "phips28/gh-action-bump-version@master"
         env:
