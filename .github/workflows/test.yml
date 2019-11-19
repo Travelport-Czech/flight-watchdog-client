@@ -19,10 +19,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
         registry-url: https://npm.pkg.github.com/
         scope: '@travelport-czech'
-    - name: Run tests
-      run: |
-        npm ci
-        npm test
+    - run: npm ci
       env:
         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         CI: true
+    - run: npm test
