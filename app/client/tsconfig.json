@@ -19,7 +19,7 @@
     "noImplicitReturns": true,
     "suppressImplicitAnyIndexErrors": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "../../.dist-client",
+    "outDir": "../../dist-client",
     "jsx": "react"
   },
   "include": ["./src/**/*", "./../shared/src/**/*"],

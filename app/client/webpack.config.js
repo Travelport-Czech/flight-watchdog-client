@@ -3,7 +3,7 @@ const Dotenv = require('dotenv-webpack')
 const Visualizer = require('webpack-visualizer-plugin')
 
 const sourceFile = path.resolve(__dirname, 'src/index.tsx')
-const outputDir = path.resolve(__dirname, '../../.dist-client')
+const outputDir = path.resolve(__dirname, '../../dist-client')
 
 let entry = {
   index: ['@babel/polyfill', sourceFile]
