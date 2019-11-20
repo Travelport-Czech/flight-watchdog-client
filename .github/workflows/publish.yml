@@ -32,8 +32,8 @@ jobs:
         env:
           CYPRESS_CACHE_FOLDER: '~/.cypress'
       - run: npm run build-prod
-      - name: Bump version
-        uses: remorses/bump-version@js
+      - name: "Automated Version Bump"
+        uses: "travelport-czech/gh-action-bump-version@master"
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: "Publish"
