@@ -6,7 +6,8 @@
   "types": "dist-emails/emails/src/index.d.ts",
   "files": [
     "dist-emails/**/*",
-    "dist-client/**/*"
+    "dist-client/**/*",
+    "test-utils"
   ],
   "engines": {
     "node": ">=8.10"
