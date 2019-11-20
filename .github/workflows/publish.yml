@@ -33,7 +33,9 @@ jobs:
         env:
           CYPRESS_CACHE_FOLDER: '~/.cypress'
       - name: "Automated Version Bump"
-        uses: "phips28/gh-action-bump-version@master"
+        uses: "travelport-czech/gh-action-bump-version@master"
+        with:
+          tag-prefix: 'sa'
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: "Publish"
