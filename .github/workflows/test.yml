@@ -14,8 +14,10 @@ jobs:
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
+    - uses: actions/cache@v1
+      with:
+        path: ~/.cypress
+        key: ${{ runner.os }}-cypress
     - name: Install ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -25,5 +27,8 @@ jobs:
     - run: npm ci
       env:
         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        CYPRESS_CACHE_FOLDER: '~/.cypress'
         CI: true
     - run: npm test
+      env:
+        CYPRESS_CACHE_FOLDER: '~/.cypress'

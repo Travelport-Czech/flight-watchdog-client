@@ -14,14 +14,10 @@ jobs:
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
       - uses: actions/cache@v1
         with:
           path: ~/.cypress
           key: ${{ runner.os }}-cypress
-          restore-keys: |
-            ${{ runner.os }}-cypress-
       - uses: actions/setup-node@v1
         with:
           node-version: 12
