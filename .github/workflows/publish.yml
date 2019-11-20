@@ -33,7 +33,7 @@ jobs:
           CYPRESS_CACHE_FOLDER: '~/.cypress'
       - run: npm run build-prod
       - name: "Automated Version Bump"
-        uses: "travelport-czech/gh-action-bump-version@master"
+        uses: "travelport-czech/gh-action-bump-version@add_tag_prefix"
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: "Publish"
