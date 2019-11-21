@@ -71,7 +71,7 @@ export const createAttachmentRawFromWatcherHeader = async (
 
   return createAttachmentFromReact(
     createImage,
-    `cid:watcherheader-${watcherFullInfo.watcher.id.toString()}`,
+    `watcherheader-${watcherFullInfo.watcher.id.toString()}`,
     <HeaderDestination lang={lang} showHtml watcherFullInfo={watcherFullInfo} />,
     200,
     secondaryBackgroundColor

@@ -17,7 +17,7 @@ export class HeaderDestination extends React.Component<Props> {
   public render() {
     const { watcherFullInfo, lang, showHtml } = this.props
     if (!showHtml) {
-      const cid = `watcherheader-${watcherFullInfo.watcher.id.toString()}`
+      const cid = `cid:watcherheader-${watcherFullInfo.watcher.id.toString()}`
 
       return <img src={cid} alt="Watchdog header" />
     }

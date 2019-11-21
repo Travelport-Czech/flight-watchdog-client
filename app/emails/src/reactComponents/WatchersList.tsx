@@ -82,7 +82,7 @@ export class WatchersList extends React.Component<Props> {
               </Text>
             </div>
 
-            <table style={{ display: 'inline-block', background: styles.primaryBackgroundColor }}>
+            <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', background: styles.primaryBackgroundColor }}>
               <tr>
                 <td style={{ background: styles.buttonColor }}>
                   <EmailButton
