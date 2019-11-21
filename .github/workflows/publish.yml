@@ -33,7 +33,7 @@ jobs:
         env:
           CYPRESS_CACHE_FOLDER: '~/.cypress'
       - name: "Automated Version Bump"
-        uses: "travelport-czech/gh-action-bump-version@add_tag_prefix"
+        uses: "phips28/gh-action-bump-version@master"
         with:
           tag-prefix: 'sa-'
         env:
