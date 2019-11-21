@@ -149,7 +149,8 @@ export const section2: CSSProperties = {
   color: 'white',
   textTransform: 'uppercase',
   alignItems: 'center',
-  fontWeight: 'bold'
+  fontWeight: 'bold',
+  textAlign: 'center'
 }
 
 export const section2locations: CSSProperties = {
