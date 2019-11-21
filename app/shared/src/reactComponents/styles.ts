@@ -7,6 +7,7 @@ const secondaryTextColor = 'black'
 
 export const primaryBackgroundColor = '#ffb500'
 export const secondaryBackgroundColor = '#005baa'
+export const buttonColor = '#1e2d4d'
 
 export const primaryColor: CSSProperties = {
   color: primaryTextColor
@@ -53,7 +54,7 @@ export const input: CSSProperties = {
 export const button: CSSProperties = {
   ...defaultInputItem,
   color: 'white',
-  backgroundColor: '#1e2d4d',
+  backgroundColor: buttonColor,
   fontWeight: 'bold',
   transition: 'all 300ms linear',
   width: '95px',

@@ -82,16 +82,16 @@ export class WatchersList extends React.Component<Props> {
               </Text>
             </div>
 
-            <table style={{ display: 'inline-block' }}>
+            <table style={{ display: 'inline-block', background: styles.primaryBackgroundColor }}>
               <tr>
-                <td>
+                <td style={{ background: styles.buttonColor }}>
                   <EmailButton
                     link={watcherLinks.resultLink}
                     text={TranslationEnum.EmailButtonShowResult}
                     lang={lang}
                   />
                 </td>
-                <td>
+                <td style={{ background: styles.buttonColor }}>
                   <EmailButton link={watcherLinks.deleteLink} text={TranslationEnum.EmailButtonDelete} lang={lang} />
                 </td>
               </tr>
