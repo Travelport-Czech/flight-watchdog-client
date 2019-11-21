@@ -91,6 +91,7 @@ export class WatchersList extends React.Component<Props> {
                     lang={lang}
                   />
                 </td>
+                <td>&nbsp;</td>
                 <td style={{ background: styles.buttonColor }}>
                   <EmailButton link={watcherLinks.deleteLink} text={TranslationEnum.EmailButtonDelete} lang={lang} />
                 </td>
