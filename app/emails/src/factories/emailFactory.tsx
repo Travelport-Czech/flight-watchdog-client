@@ -76,3 +76,15 @@ export const createAttachmentRawFromWatcher = async (
 
   return createAttachmentPngRaw(watcherFullInfo.watcher.id.toString(), image)
 }
+
+export const createAttachmentFromReact = async (
+  createImage: (html: string, width: number, height: number) => Promise<string>,
+  name: string,
+  element: React.ReactElement,
+  heigh: number
+): Promise<string> => {
+  const html = renderToStaticMarkup(element)
+  const image = await createImage(html, 600, heigh)
+
+  return createAttachmentPngRaw(name, image)
+}

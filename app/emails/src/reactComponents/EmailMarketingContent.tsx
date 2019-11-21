@@ -1,4 +1,6 @@
 import { createWatcherLinks } from '@emails/factories/createWatcherLinks'
+import { EmailMarketingSection1 } from '@emails/reactComponents/EmailMarketingSection1'
+import { EmailMarketingSection2 } from '@emails/reactComponents/EmailMarketingSection2'
 import { WatchersList } from '@emails/reactComponents/WatchersList'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
@@ -31,18 +33,8 @@ export class EmailMarketingContent extends React.Component<Props> {
         <table style={{ width: '600px', margin: '0 auto' }}>
           <tr>
             <td>
-              <div style={styles.section1email}>
-                <div style={styles.section1textEmail}>
-                  <Text name={TranslationEnum.EmailMarketingHeader} lang={lang} />
-                </div>
-              </div>
-              <div style={styles.section3}>
-                <div style={styles.headerTextDescription}>
-                  <Text name={TranslationEnum.EmailMarketingDescription} lang={lang}>
-                    <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
-                  </Text>
-                </div>
-              </div>
+              <EmailMarketingSection1 lang={lang} showHtml={showSvg} />
+              <EmailMarketingSection2 lang={lang} showHtml={showSvg} frontendUrl={frontendUrl} />
               <WatchersList watchersFullInfoList={watchersFullInfoList} agencyParams={agencyParams} showSvg={showSvg} />
               <div style={styles.section3}>
                 <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
