@@ -82,23 +82,47 @@ export class WatchersList extends React.Component<Props> {
               </Text>
             </div>
 
-            <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', background: styles.primaryBackgroundColor, width: '600px' }}>
+            <br />
+
+            <table
+              cellSpacing="0"
+              cellPadding="0"
+              style={{ textAlign: 'center', background: styles.primaryBackgroundColor, width: '600px' }}
+            >
               <tr>
+                <td />
                 <td style={{ background: styles.buttonColor }}>
-                  <EmailButton
-                    link={watcherLinks.resultLink}
-                    text={TranslationEnum.EmailButtonShowResult}
-                    lang={lang}
-                  />
+                  <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center' }}>
+                    <tr>
+                      <td />
+                      <td style={{ background: styles.buttonColor }}>
+                        <EmailButton
+                          link={watcherLinks.resultLink}
+                          text={TranslationEnum.EmailButtonShowResult}
+                          lang={lang}
+                        />
+                      </td>
+                      <td>&nbsp;</td>
+                      <td style={{ background: styles.buttonColor }}>
+                        <EmailButton
+                          link={watcherLinks.deleteLink}
+                          text={TranslationEnum.EmailButtonDelete}
+                          lang={lang}
+                        />
+                      </td>
+                      <td />
+                    </tr>
+                  </table>
                 </td>
-                <td>&nbsp;</td>
-                <td style={{ background: styles.buttonColor }}>
-                  <EmailButton link={watcherLinks.deleteLink} text={TranslationEnum.EmailButtonDelete} lang={lang} />
-                </td>
+                <td />
               </tr>
             </table>
 
-            <table cellSpacing="0" cellPadding="0" style={{ background: styles.primaryBackgroundColor, width: '600px' }}>
+            <table
+              cellSpacing="0"
+              cellPadding="0"
+              style={{ background: styles.primaryBackgroundColor, width: '600px' }}
+            >
               <tr>
                 <td>
                   {additionalResults.length !== 0 && createAdditionalResults(additionalResults, lang, agencyParams)}

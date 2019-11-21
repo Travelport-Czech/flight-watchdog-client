@@ -36,11 +36,15 @@ export class EmailMarketingContent extends React.Component<Props> {
               <EmailMarketingSection1 lang={lang} showHtml={showSvg} />
               <EmailMarketingSection2 lang={lang} showHtml={showSvg} frontendUrl={frontendUrl} />
               <WatchersList watchersFullInfoList={watchersFullInfoList} agencyParams={agencyParams} showSvg={showSvg} />
+              <br />
+              <br />
               <div style={styles.section3}>
-                <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
+                <div style={{ ...styles.simpleText, textAlign: 'center' }}>
                   <Text name={TranslationEnum.EmailFooter} lang={lang} />
                 </div>
               </div>
+              <br />
+              <br />
             </td>
           </tr>
         </table>
