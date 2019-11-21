@@ -118,8 +118,9 @@ export class WatchersList extends React.Component<Props> {
               </tr>
             </table>
 
-            <table cellSpacing="5" cellPadding="5">
+            <table cellSpacing="0" cellPadding="0">
               <tr>
+                <td style={{ width: '10px' }}></td>
                 <td>
                   {additionalResults.length !== 0 && createAdditionalResults(additionalResults, lang, agencyParams)}
                 </td>

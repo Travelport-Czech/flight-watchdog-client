@@ -30,7 +30,7 @@ export class EmailMarketingContent extends React.Component<Props> {
 
     return (
       <div style={{ textAlign: 'center' }}>
-        <table style={{ width: '600px', margin: '0 auto' }}>
+        <table  cellSpacing="0" cellPadding="0" style={{ width: '600px', margin: '0 auto' }}>
           <tr>
             <td style={{ backgroundColor: styles.primaryBackgroundColor }}>
               <EmailMarketingSection1 lang={lang} showHtml={showSvg} />
