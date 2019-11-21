@@ -34,7 +34,9 @@ export class EmailMarketingContent extends React.Component<Props> {
           <tr>
             <td style={{ backgroundColor: styles.primaryBackgroundColor }}>
               <EmailMarketingSection1 lang={lang} showHtml={showSvg} />
-              <EmailMarketingSection2 lang={lang} showHtml={showSvg} frontendUrl={frontendUrl} />
+              <a href={frontendUrl.toString()}>
+                <EmailMarketingSection2 lang={lang} showHtml={showSvg} frontendUrl={frontendUrl} />
+              </a>  
               <WatchersList watchersFullInfoList={watchersFullInfoList} agencyParams={agencyParams} showSvg={showSvg} />
               <br />
               <br />
