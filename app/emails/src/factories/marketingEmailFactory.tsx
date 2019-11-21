@@ -29,13 +29,13 @@ export const createMarketingEmailRaw = async (
   const section1 = await createAttachmentFromReact(
     createImage,
     'watchdogsection1',
-    <EmailMarketingSection1 lang={lang} />,
+    <EmailMarketingSection1 lang={lang} showHtml />,
     200
   )
   const section2 = await createAttachmentFromReact(
     createImage,
     'watchdogsection2',
-    <EmailMarketingSection2 lang={lang} frontendUrl={watcherLinks.frontendUrl} />,
+    <EmailMarketingSection2 lang={lang} showHtml frontendUrl={watcherLinks.frontendUrl} />,
     200
   )
 
