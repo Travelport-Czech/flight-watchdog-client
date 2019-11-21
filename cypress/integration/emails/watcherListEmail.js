@@ -13,7 +13,7 @@ a zpět\
 19.9.20.9.21.9.22.9.23.9.4500500055006000650060004500581263215000\
 Hlídaná cenaVývoj ceny\
 Limit ceny 6000 CZK\
-Rezervovat\
+Rezervovat \
 Smazat\
 Podobné nabídky (lidé právě kupují)\
 3 500 CZK - 16. 12. 2018 až 25. 12. 2018 -> Zobrazit\
@@ -25,7 +25,7 @@ a zpět\
 19.9.20.9.21.9.22.9.23.9.4500500055006000650060004500581263215000\
 Hlídaná cenaVývoj ceny\
 Limit ceny 6000 CZK\
-Rezervovat\
+Rezervovat \
 Smazat\
 Podobné nabídky (lidé právě kupují)\
 3 500 CZK - 16. 12. 2018 až 25. 12. 2018 -> Zobrazit\
