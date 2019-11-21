@@ -1,3 +1,4 @@
+const os = require('os');
 const path = require('path')
 const Dotenv = require('dotenv-webpack')
 const Visualizer = require('webpack-visualizer-plugin')
@@ -29,28 +30,41 @@ if (process.env.NODE_ENV !== 'test') {
 const clientConfig = {
   devtool: 'source-map',
   entry: entry,
-  mode: 'production',
+  mode: process.env.NODE_ENV === 'test' ? 'development' : 'production',
   module: {
     rules: [
       {
-        loader: 'babel-loader?cacheDirectory=true',
-        options: {
-          plugins: [
-            '@babel/proposal-class-properties',
-            '@babel/proposal-object-rest-spread',
-            [
-              'module-resolver',
-              {
-                alias: {
-                  '@client': './app/client/src',
-                  '@shared': './app/shared/src'
-                },
-                root: ['./src']
-              }
-            ]
-          ],
-          presets: [['@babel/preset-env', { targets: '> 0.25%, not dead' }], '@babel/typescript', '@babel/preset-react']
-        },
+        use: [
+          {
+            loader: 'cache-loader',
+          },
+          {
+              loader: 'thread-loader',
+              options: {
+                  workers: os.cpus().length / 2,
+              },
+          },
+          {
+            loader: 'babel-loader?cacheDirectory=true',
+            options: {
+              plugins: [
+                '@babel/proposal-class-properties',
+                '@babel/proposal-object-rest-spread',
+                [
+                  'module-resolver',
+                  {
+                    alias: {
+                      '@client': './app/client/src',
+                      '@shared': './app/shared/src'
+                    },
+                    root: ['./src']
+                  }
+                ]
+              ],
+              presets: [['@babel/preset-env', { targets: '> 0.25%, not dead' }], '@babel/typescript', '@babel/preset-react']
+            },
+          },
+        ],
         test: /\.(ts|js)x?$/
       }
     ]
