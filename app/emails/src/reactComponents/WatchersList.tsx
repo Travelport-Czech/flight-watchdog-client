@@ -76,13 +76,13 @@ export class WatchersList extends React.Component<Props> {
           <div style={styles.section3}>
             <WatcherPriceHistory watchersFullInfo={watcherFullInfo} showSvg={showSvg} />
 
-            <div style={styles.simpleText}>
+            <div style={{ ...styles.simpleText, textAlign: 'center' }}>
               <Text name={TranslationEnum.EmailPriceLimit} lang={lang}>
                 {priceLimit.toString()}
               </Text>
             </div>
 
-            <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', background: styles.primaryBackgroundColor }}>
+            <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', background: styles.primaryBackgroundColor, width: '600px' }}>
               <tr>
                 <td style={{ background: styles.buttonColor }}>
                   <EmailButton
@@ -98,7 +98,13 @@ export class WatchersList extends React.Component<Props> {
               </tr>
             </table>
 
-            {additionalResults.length !== 0 && createAdditionalResults(additionalResults, lang, agencyParams)}
+            <table cellSpacing="0" cellPadding="0" style={{ background: styles.primaryBackgroundColor, width: '600px' }}>
+              <tr>
+                <td>
+                  {additionalResults.length !== 0 && createAdditionalResults(additionalResults, lang, agencyParams)}
+                </td>
+              </tr>
+            </table>
           </div>
         </div>
       )
