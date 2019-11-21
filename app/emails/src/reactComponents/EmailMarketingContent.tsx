@@ -32,7 +32,7 @@ export class EmailMarketingContent extends React.Component<Props> {
       <div style={{ textAlign: 'center' }}>
         <table style={{ width: '600px', margin: '0 auto' }}>
           <tr>
-            <td>
+            <td style={{ backgroundColor: styles.primaryBackgroundColor }}>
               <EmailMarketingSection1 lang={lang} showHtml={showSvg} />
               <EmailMarketingSection2 lang={lang} showHtml={showSvg} frontendUrl={frontendUrl} />
               <WatchersList watchersFullInfoList={watchersFullInfoList} agencyParams={agencyParams} showSvg={showSvg} />
