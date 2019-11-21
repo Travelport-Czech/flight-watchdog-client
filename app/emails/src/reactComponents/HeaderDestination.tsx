@@ -8,13 +8,20 @@ import { ValidLanguage } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 
 interface Props {
+  readonly showHtml?: boolean
   readonly watcherFullInfo: WatcherFullInfo
   readonly lang: ValidLanguage
 }
 
 export class HeaderDestination extends React.Component<Props> {
   public render() {
-    const { watcherFullInfo, lang } = this.props
+    const { watcherFullInfo, lang, showHtml } = this.props
+    if (!showHtml) {
+      const cid = `cid:watcherheader-${watcherFullInfo.watcher.id.toString()}`
+
+      return <img src={cid} alt="Watchdog header" />
+    }
+
     const { watcher, originLocationList, destinationLocationList } = watcherFullInfo
     const destinationTextKey =
       watcher.flightType === 'return'

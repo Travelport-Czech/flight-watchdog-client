@@ -72,7 +72,7 @@ export class WatchersList extends React.Component<Props> {
 
       return (
         <div key={index}>
-          <HeaderDestination watcherFullInfo={watcherFullInfo} lang={lang} />
+          <HeaderDestination watcherFullInfo={watcherFullInfo} lang={lang} showHtml={showSvg} />
           <div style={styles.section3}>
             <WatcherPriceHistory watchersFullInfo={watcherFullInfo} showSvg={showSvg} />
 

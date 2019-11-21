@@ -5,6 +5,9 @@ import { CSSProperties } from 'react'
 const primaryTextColor = 'white'
 const secondaryTextColor = 'black'
 
+export const primaryBackgroundColor = '#ffb500'
+export const secondaryBackgroundColor = '#005baa'
+
 export const primaryColor: CSSProperties = {
   color: primaryTextColor
 }
@@ -58,7 +61,7 @@ export const button: CSSProperties = {
 }
 
 export const buttonHovered: CSSProperties = {
-  backgroundColor: '#005baa',
+  backgroundColor: secondaryBackgroundColor,
   cursor: 'pointer',
   transition: 'all 300ms linear'
 }
@@ -140,7 +143,7 @@ export const section1textClient: CSSProperties = {
 }
 
 export const section2: CSSProperties = {
-  backgroundColor: '#005baa',
+  backgroundColor: secondaryBackgroundColor,
   minHeight: '35px',
   color: 'white',
   textTransform: 'uppercase',
@@ -186,7 +189,7 @@ export const section2date: CSSProperties = {
 }
 
 export const section3: CSSProperties = {
-  backgroundColor: '#ffb500',
+  backgroundColor: primaryBackgroundColor,
   padding: '20px'
 }
 

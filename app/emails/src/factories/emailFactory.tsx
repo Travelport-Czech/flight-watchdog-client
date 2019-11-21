@@ -1,6 +1,9 @@
 import { rawEmailAttachmentPartTemplate, rawEmailTemplate } from '@emails/factories/emailTemplates'
+import { HeaderDestination } from '@emails/reactComponents/HeaderDestination'
 import { WatchersGraphPriceHistory } from '@emails/reactComponents/WatchersGraphPriceHistory'
+import { CreateImageCallback } from '@emails/types/CreateImageCallback'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
+import { primaryBackgroundColor, secondaryBackgroundColor } from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import { ValidEmail, ValidLanguage } from '@travelport-czech/valid-objects-ts'
@@ -44,12 +47,15 @@ const createAttachmentPngRaw = (name: string, contentBase64: string) => {
 }
 
 export const createAttachmentRawFromWatcherList = async (
-  createImage: (html: string, width: number, height: number) => Promise<string>,
+  createImage: CreateImageCallback,
   watcherFullInfoList: WatcherFullInfo[]
 ): Promise<string> => {
   const promiseList = watcherFullInfoList.map(
     async (watcherFullInfo: WatcherFullInfo): Promise<string> => {
-      return createAttachmentRawFromWatcher(createImage, watcherFullInfo)
+      const priceHitory = await createAttachmentRawFromWatcherPriceHistory(createImage, watcherFullInfo)
+      const header = await createAttachmentRawFromWatcherHeader(createImage, watcherFullInfo)
+
+      return priceHitory + header
     }
   )
   const results = await Promise.all(promiseList)
@@ -57,8 +63,23 @@ export const createAttachmentRawFromWatcherList = async (
   return results.join('')
 }
 
-export const createAttachmentRawFromWatcher = async (
-  createImage: (html: string, width: number, height: number) => Promise<string>,
+export const createAttachmentRawFromWatcherHeader = async (
+  createImage: CreateImageCallback,
+  watcherFullInfo: WatcherFullInfo
+): Promise<string> => {
+  const { lang } = watcherFullInfo.watcher
+
+  return createAttachmentFromReact(
+    createImage,
+    `cid:watcherheader-${watcherFullInfo.watcher.id.toString()}`,
+    <HeaderDestination lang={lang} showHtml watcherFullInfo={watcherFullInfo} />,
+    200,
+    secondaryBackgroundColor
+  )
+}
+
+export const createAttachmentRawFromWatcherPriceHistory = async (
+  createImage: CreateImageCallback,
   watcherFullInfo: WatcherFullInfo
 ): Promise<string> => {
   const image = await createImage(
@@ -71,20 +92,22 @@ export const createAttachmentRawFromWatcher = async (
       />
     ),
     600,
-    200
+    200,
+    primaryBackgroundColor
   )
 
   return createAttachmentPngRaw(watcherFullInfo.watcher.id.toString(), image)
 }
 
 export const createAttachmentFromReact = async (
-  createImage: (html: string, width: number, height: number) => Promise<string>,
+  createImage: CreateImageCallback,
   name: string,
   element: React.ReactElement,
-  heigh: number
+  heigh: number,
+  backgroundColor: string
 ): Promise<string> => {
   const html = renderToStaticMarkup(element)
-  const image = await createImage(html, 600, heigh)
+  const image = await createImage(html, 600, heigh, backgroundColor)
 
   return createAttachmentPngRaw(name, image)
 }

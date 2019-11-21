@@ -39,7 +39,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                   <Text name={TranslationEnum.EmailTitle} lang={lang} />
                 </div>
               </div>
-              <HeaderDestination watcherFullInfo={watcherFullInfo} lang={lang} />
+              <HeaderDestination watcherFullInfo={watcherFullInfo} lang={lang} showHtml={showSvg} />
               <div style={styles.section3}>
                 <div style={styles.headerTextDescription}>
                   <Text name={TranslationEnum.EmailDescription} lang={lang}>

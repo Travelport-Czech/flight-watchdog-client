@@ -1,4 +1,4 @@
-import { createAttachmentRawFromWatcher, createEmailRawBegin } from '@emails/factories/emailFactory'
+import { createAttachmentRawFromWatcherPriceHistory, createEmailRawBegin } from '@emails/factories/emailFactory'
 import { emailTemplate, rawEmailEndPart } from '@emails/factories/emailTemplates'
 import { EmailLowerPriceContent } from '@emails/reactComponents/EmailLowerPriceContent'
 import { EmailLowerPriceSubject } from '@emails/reactComponents/EmailLowerPriceSubject'
@@ -19,7 +19,7 @@ export const createLowerPriceEmailRaw = async (
   const content = await createLowerPriceEmail(watcherFullInfo, agencyParams, price, false)
   const rawEmail = createEmailRawBegin(subject, content, watcherFullInfo.watcher.email, agencyParams.emailFrom, lang)
 
-  const attachments = await createAttachmentRawFromWatcher(createImage, watcherFullInfo)
+  const attachments = await createAttachmentRawFromWatcherPriceHistory(createImage, watcherFullInfo)
 
   return rawEmail + attachments + rawEmailEndPart
 }
