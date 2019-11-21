@@ -27,7 +27,7 @@ Content-Transfer-Encoding: base64
 --NextPart`
 
 export const rawEmailAttachmentPartTemplate = `
-Content-Type: image/png; name="price-history.png"
+Content-Type: image/png; name="{name}.png"
 Content-ID: <{name}>
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment
