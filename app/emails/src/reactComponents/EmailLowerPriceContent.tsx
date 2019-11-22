@@ -45,8 +45,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
           </tr>
           <tr>
             <td>
-              <table cellSpacing="0" cellPadding="0" style={{ margin: '0 auto' }}>
-                <td style={{ width: '10px' }}>{' '}</td>
+              <table cellSpacing="0" cellPadding="5" style={{ margin: '0 auto' }}>
                 <td>
                   <div style={styles.section3email}>
                     <div style={styles.headerTextDescription}>
@@ -120,7 +119,6 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                     </div>
                   </div>
                 </td>
-                <td style={{ width: '10px' }}>{' '}</td>
               </table>
             </td>
           </tr>
