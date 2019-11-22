@@ -34,8 +34,10 @@ export class EmailLowerPriceContent extends React.Component<Props> {
         <table style={{ width: '600px', margin: '0 auto' }}>
           <tr>
             <td>
-              <div style={styles.section1textEmail}>
-                <Text name={TranslationEnum.EmailTitle} lang={lang} />
+              <div style={styles.section1email}>
+                <div style={styles.section1textEmail}>
+                  <Text name={TranslationEnum.EmailTitle} lang={lang} />
+                </div>
               </div>
               <HeaderDestination watcherFullInfo={watcherFullInfo} lang={lang} showHtml={showSvg} />
               <div style={styles.section3}>
