@@ -48,7 +48,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                   </Text>
                 </div>
               </div>
-              <div style={styles.section3email}>
+              <div style={{ ...styles.section3email, textAlign: 'center' }}>
                 <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
                   <Text name={TranslationEnum.EmailContentDescription} lang={lang}>
                     <Price price={priceDiff} />
@@ -72,24 +72,42 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                 <div style={{ ...styles.simpleText, marginBottom: '10px' }}>
                   <Text name={TranslationEnum.EmailButtonShowResultPrefixText} lang={lang} />
                 </div>
-                <EmailButton
-                  link={resultLink}
-                  text={TranslationEnum.EmailButtonShowResult}
-                  style={{ marginBottom: '20px' }}
-                  lang={lang}
-                />
+                <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', margin: '0px auto' }}>
+                  <tr>
+                    <td style={{ background: styles.buttonColor }}>
+                      <EmailButton
+                        link={resultLink}
+                        text={TranslationEnum.EmailButtonShowResult}
+                        style={{ marginBottom: '20px' }}
+                        lang={lang}
+                      />
+                    </td>
+                  </tr>
+                </table>
+
+                <br />
 
                 <WatcherPriceHistory watchersFullInfo={watcherFullInfo} showSvg={showSvg} />
 
                 <div style={{ ...styles.simpleText, marginBottom: '10px', marginTop: '20px' }}>
                   <Text name={TranslationEnum.EmailButtonContinueWatchingPrefixText} lang={lang} />
                 </div>
-                <EmailButton
-                  link={continueLink}
-                  text={TranslationEnum.EmailButtonContinueWatching}
-                  style={{ marginBottom: '50px' }}
-                  lang={lang}
-                />
+
+                <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', margin: '0px auto' }}>
+                  <tr>
+                    <td style={{ background: styles.buttonColor }}>
+                      <EmailButton
+                        link={continueLink}
+                        text={TranslationEnum.EmailButtonContinueWatching}
+                        style={{ marginBottom: '50px' }}
+                        lang={lang}
+                      />
+                    </td>
+                  </tr>
+                </table>
+
+                <br />
+
                 <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
                   <Text name={TranslationEnum.EmailFooter} lang={lang} />
                 </div>
