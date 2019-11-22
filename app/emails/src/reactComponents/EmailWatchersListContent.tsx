@@ -32,7 +32,7 @@ export class EmailWatchersListContent extends React.Component<Props> {
       <div style={{ textAlign: 'center' }}>
         <table cellSpacing="0" cellPadding="0" style={{ width: '600px', margin: '0 auto' }}>
           <tr>
-            <td>
+            <td style={{ backgroundColor: styles.primaryBackgroundColor }}>
               <EmailWatchersListSection1 lang={lang} showHtml={showSvg} />
               <a href={frontendUrl.toString()}>
                 <EmailWatchersListSection2 lang={lang} showHtml={showSvg} frontendUrl={frontendUrl} />
