@@ -38,10 +38,12 @@ export class EmailLowerPriceContent extends React.Component<Props> {
           style={{ width: '600px', margin: '0 auto', background: styles.primaryBackgroundColor }}
         >
           <tr>
+            <td />
             <td>
               <EmailLowerPriceSection1 lang={lang} showHtml={showSvg} />
               <HeaderDestination watcherFullInfo={watcherFullInfo} lang={lang} showHtml={showSvg} />
             </td>
+            <td />
           </tr>
           <tr>
             <td style={{ width: '10px' }} />
