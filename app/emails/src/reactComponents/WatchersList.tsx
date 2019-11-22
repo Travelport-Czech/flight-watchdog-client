@@ -117,9 +117,14 @@ export class WatchersList extends React.Component<Props> {
                 </td>
                 <td />
               </tr>
+              <tr style={{ height: '10px' }} />
             </table>
 
-            <table cellSpacing="0" cellPadding="0">
+            <table
+              cellSpacing="0"
+              cellPadding="0"
+              style={{ textAlign: 'center', background: styles.primaryBackgroundColor, width: '600px' }}
+            >
               <tr>
                 <td style={{ width: '10px' }} />
                 <td>

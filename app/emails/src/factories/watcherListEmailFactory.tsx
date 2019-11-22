@@ -1,4 +1,4 @@
-import { createAttachmentRawFromWatcherList, createEmailRawBegin } from '@emails/factories/emailFactory'
+import { createAttachmentRawFromWatcherList, createEmailRawBegin, createAttachmentFromReact } from '@emails/factories/emailFactory'
 import { emailTemplate, rawEmailEndPart } from '@emails/factories/emailTemplates'
 import { EmailWatchersListContent } from '@emails/reactComponents/EmailWatchersListContent'
 import { AgencyParams } from '@emails/types/AgencyParams'
@@ -7,6 +7,10 @@ import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
+import { EmailWatchersListSection1 } from '@emails/reactComponents/EmailWatchersListSection1'
+import { EmailWatchersListSection2 } from '@emails/reactComponents/EmailWatchersListSection2'
+import { primaryBackgroundColor } from '@shared/reactComponents/styles'
+import { createWatcherLinks } from './createWatcherLinks'
 
 export const createWatcherListEmailRaw = async (
   createImage: (html: string, width: number, height: number) => Promise<string>,
@@ -14,11 +18,27 @@ export const createWatcherListEmailRaw = async (
   agencyParams: AgencyParams
 ): Promise<string> => {
   const { email, lang } = watcherFullInfoList[0].watcher
+  const watcherLinks = createWatcherLinks(watcherFullInfoList[0].watcher, agencyParams)
   const subject = renderToStaticMarkup(<Text name={TranslationEnum.EmailWatcherListHeader} lang={lang} />)
   const content = await createWatchersListEmail(watcherFullInfoList, agencyParams, false)
   const rawEmail = createEmailRawBegin(subject, content, email, agencyParams.emailFrom, lang)
 
-  const attachments = await createAttachmentRawFromWatcherList(createImage, watcherFullInfoList)
+  const section1 = await createAttachmentFromReact(
+    createImage,
+    'watchdogsection1',
+    <EmailWatchersListSection1 lang={lang} showHtml />,
+    200,
+    'white'
+  )
+  const section2 = await createAttachmentFromReact(
+    createImage,
+    'watchdogsection2',
+    <EmailWatchersListSection2 lang={lang} showHtml frontendUrl={watcherLinks.frontendUrl} />,
+    90,
+    primaryBackgroundColor
+  )
+
+  const attachments = await createAttachmentRawFromWatcherList(createImage, watcherFullInfoList) + section1 + section2
 
   return rawEmail + attachments + rawEmailEndPart
 }
