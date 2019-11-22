@@ -10,6 +10,7 @@ import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import { ValidPrice } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
+import { EmailLowerPriceSection1 } from './EmailLowerPriceSection1'
 
 interface Props {
   readonly watcherFullInfo: WatcherFullInfo
@@ -31,14 +32,10 @@ export class EmailLowerPriceContent extends React.Component<Props> {
 
     return (
       <div style={{ textAlign: 'center' }}>
-        <table style={{ width: '600px', margin: '0 auto' }}>
+        <table cellSpacing="0" cellPadding="0" style={{ width: '600px', margin: '0 auto' }}>
           <tr>
             <td>
-              <div style={styles.section1email}>
-                <div style={styles.section1textEmail}>
-                  <Text name={TranslationEnum.EmailTitle} lang={lang} />
-                </div>
-              </div>
+              <EmailLowerPriceSection1 lang={lang} showHtml={showSvg} />
               <HeaderDestination watcherFullInfo={watcherFullInfo} lang={lang} showHtml={showSvg} />
               <div style={styles.section3email}>
                 <div style={styles.headerTextDescription}>
