@@ -1,5 +1,6 @@
 import { createWatcherLinks } from '@emails/factories/createWatcherLinks'
 import { EmailButton } from '@emails/reactComponents/EmailButton'
+import { EmailLowerPriceSection1 } from '@emails/reactComponents/EmailLowerPriceSection1'
 import { HeaderDestination } from '@emails/reactComponents/HeaderDestination'
 import { WatcherPriceHistory } from '@emails/reactComponents/WatcherPriceHistory'
 import { AgencyParams } from '@emails/types/AgencyParams'
@@ -10,7 +11,6 @@ import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import { ValidPrice } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
-import { EmailLowerPriceSection1 } from './EmailLowerPriceSection1'
 
 interface Props {
   readonly watcherFullInfo: WatcherFullInfo
@@ -32,7 +32,11 @@ export class EmailLowerPriceContent extends React.Component<Props> {
 
     return (
       <div style={{ textAlign: 'center' }}>
-        <table cellSpacing="0" cellPadding="0" style={{ width: '600px', margin: '0 auto' }}>
+        <table
+          cellSpacing="0"
+          cellPadding="0"
+          style={{ width: '600px', margin: '0 auto', background: styles.primaryBackgroundColor }}
+        >
           <tr>
             <td>
               <EmailLowerPriceSection1 lang={lang} showHtml={showSvg} />

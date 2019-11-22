@@ -17,12 +17,12 @@ export class EmailWatchersListSection2 extends React.Component<Props> {
     if (showHtml) {
       return (
         <div style={{ ...styles.section3email, padding: '20px' }}>
-        <div style={styles.headerTextDescription}>
-          <Text name={TranslationEnum.EmailWatcherListDescription} lang={lang}>
-            <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
-          </Text>
+          <div style={styles.headerTextDescription}>
+            <Text name={TranslationEnum.EmailWatcherListDescription} lang={lang}>
+              <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
+            </Text>
+          </div>
         </div>
-      </div>
       )
     }
 

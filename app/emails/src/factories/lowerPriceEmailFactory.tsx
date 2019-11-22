@@ -1,7 +1,13 @@
-import { createAttachmentRawFromWatcherPriceHistory, createEmailRawBegin } from '@emails/factories/emailFactory'
+import {
+  createAttachmentFromReact,
+  createAttachmentRawFromWatcherHeader,
+  createAttachmentRawFromWatcherPriceHistory,
+  createEmailRawBegin
+} from '@emails/factories/emailFactory'
 import { emailTemplate, rawEmailEndPart } from '@emails/factories/emailTemplates'
 import { EmailLowerPriceContent } from '@emails/reactComponents/EmailLowerPriceContent'
 import { EmailLowerPriceSubject } from '@emails/reactComponents/EmailLowerPriceSubject'
+import { EmailMarketingSection1 } from '@emails/reactComponents/EmailMarketingSection1'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { ValidPrice } from '@travelport-czech/valid-objects-ts'
@@ -19,7 +25,18 @@ export const createLowerPriceEmailRaw = async (
   const content = await createLowerPriceEmail(watcherFullInfo, agencyParams, price, false)
   const rawEmail = createEmailRawBegin(subject, content, watcherFullInfo.watcher.email, agencyParams.emailFrom, lang)
 
-  const attachments = await createAttachmentRawFromWatcherPriceHistory(createImage, watcherFullInfo)
+  const section1 = await createAttachmentFromReact(
+    createImage,
+    'watchdogsection1',
+    <EmailMarketingSection1 lang={lang} showHtml />,
+    200,
+    'white'
+  )
+
+  const header = await createAttachmentRawFromWatcherHeader(createImage, watcherFullInfo)
+
+  const attachments =
+    (await createAttachmentRawFromWatcherPriceHistory(createImage, watcherFullInfo)) + section1 + header
 
   return rawEmail + attachments + rawEmailEndPart
 }

@@ -1,4 +1,6 @@
 import { createWatcherLinks } from '@emails/factories/createWatcherLinks'
+import { EmailWatchersListSection1 } from '@emails/reactComponents/EmailWatchersListSection1'
+import { EmailWatchersListSection2 } from '@emails/reactComponents/EmailWatchersListSection2'
 import { WatchersList } from '@emails/reactComponents/WatchersList'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
@@ -7,8 +9,6 @@ import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import * as React from 'react'
-import { EmailWatchersListSection1 } from './EmailWatchersListSection1'
-import { EmailWatchersListSection2 } from './EmailWatchersListSection2'
 
 interface Props {
   readonly watchersFullInfoList: WatcherFullInfo[]

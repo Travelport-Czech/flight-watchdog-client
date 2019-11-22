@@ -1,16 +1,20 @@
-import { createAttachmentRawFromWatcherList, createEmailRawBegin, createAttachmentFromReact } from '@emails/factories/emailFactory'
+import {
+  createAttachmentFromReact,
+  createAttachmentRawFromWatcherList,
+  createEmailRawBegin
+} from '@emails/factories/emailFactory'
 import { emailTemplate, rawEmailEndPart } from '@emails/factories/emailTemplates'
 import { EmailWatchersListContent } from '@emails/reactComponents/EmailWatchersListContent'
+import { EmailWatchersListSection1 } from '@emails/reactComponents/EmailWatchersListSection1'
+import { EmailWatchersListSection2 } from '@emails/reactComponents/EmailWatchersListSection2'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
+import { primaryBackgroundColor } from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { EmailWatchersListSection1 } from '@emails/reactComponents/EmailWatchersListSection1'
-import { EmailWatchersListSection2 } from '@emails/reactComponents/EmailWatchersListSection2'
-import { primaryBackgroundColor } from '@shared/reactComponents/styles'
-import { createWatcherLinks } from './createWatcherLinks'
+import { createWatcherLinks } from '@emails/factories/createWatcherLinks'
 
 export const createWatcherListEmailRaw = async (
   createImage: (html: string, width: number, height: number) => Promise<string>,
@@ -38,7 +42,7 @@ export const createWatcherListEmailRaw = async (
     primaryBackgroundColor
   )
 
-  const attachments = await createAttachmentRawFromWatcherList(createImage, watcherFullInfoList) + section1 + section2
+  const attachments = (await createAttachmentRawFromWatcherList(createImage, watcherFullInfoList)) + section1 + section2
 
   return rawEmail + attachments + rawEmailEndPart
 }
