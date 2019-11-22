@@ -47,11 +47,19 @@ export class EmailLowerPriceContent extends React.Component<Props> {
             <td>
               <table cellSpacing="0" cellPadding="0">
                 <td>
-                  <div style={{ ...styles.section3email, margin: '0 auto', textAlign: 'center', width: '580px' }}>
+                  <div style={styles.section3email}>
                     <div style={styles.headerTextDescription}>
-                      <Text name={TranslationEnum.EmailDescription} lang={lang}>
-                        <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
-                      </Text>
+                      <table>
+                        <tr>
+                          <td style={{ width: '10px' }} />
+                          <td>
+                            <Text name={TranslationEnum.EmailDescription} lang={lang}>
+                              <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
+                            </Text>
+                          </td>
+                          <td style={{ width: '10px' }} />
+                        </tr>
+                      </table>
                     </div>
                   </div>
                   <div style={{ ...styles.section3email, textAlign: 'center' }}>
