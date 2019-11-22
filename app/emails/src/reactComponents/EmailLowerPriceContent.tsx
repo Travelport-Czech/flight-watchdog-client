@@ -49,7 +49,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                 <td>
                   <div style={styles.section3email}>
                     <div style={styles.headerTextDescription}>
-                      <table>
+                      <table cellSpacing="0" cellPadding="0">
                         <tr>
                           <td style={{ width: '10px' }} />
                           <td style={{ textAlign: 'center' }}>
@@ -104,7 +104,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
 
                     <WatcherPriceHistory watchersFullInfo={watcherFullInfo} showSvg={showSvg} />
 
-                    <table>
+                    <table cellSpacing="0" cellPadding="0">
                       <tr>
                         <td style={{ width: '10px' }} />
                         <td style={{ textAlign: 'center' }}>
