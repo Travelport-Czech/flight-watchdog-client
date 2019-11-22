@@ -34,7 +34,7 @@ export const createWatcherListEmailRaw = async (
     createImage,
     'watchdogsection2',
     <EmailWatchersListSection2 lang={lang} showHtml frontendUrl={watcherLinks.frontendUrl} />,
-    90,
+    130,
     primaryBackgroundColor
   )
 
