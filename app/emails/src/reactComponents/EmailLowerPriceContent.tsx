@@ -41,6 +41,11 @@ export class EmailLowerPriceContent extends React.Component<Props> {
             <td>
               <EmailLowerPriceSection1 lang={lang} showHtml={showSvg} />
               <HeaderDestination watcherFullInfo={watcherFullInfo} lang={lang} showHtml={showSvg} />
+            </td>
+          </tr>
+          <tr>
+            <td style={{ width: '10px' }} />
+            <td>
               <div style={styles.section3email}>
                 <div style={styles.headerTextDescription}>
                   <Text name={TranslationEnum.EmailDescription} lang={lang}>
@@ -113,6 +118,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                 </div>
               </div>
             </td>
+            <td style={{ width: '10px' }} />
           </tr>
         </table>
       </div>
