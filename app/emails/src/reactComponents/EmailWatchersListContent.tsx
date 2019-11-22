@@ -7,6 +7,8 @@ import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import * as React from 'react'
+import { EmailWatchersListSection1 } from './EmailWatchersListSection1'
+import { EmailWatchersListSection2 } from './EmailWatchersListSection2'
 
 interface Props {
   readonly watchersFullInfoList: WatcherFullInfo[]
@@ -28,27 +30,21 @@ export class EmailWatchersListContent extends React.Component<Props> {
 
     return (
       <div style={{ textAlign: 'center' }}>
-        <table style={{ width: '600px', margin: '0 auto' }}>
+        <table cellSpacing="0" cellPadding="0" style={{ width: '600px', margin: '0 auto' }}>
           <tr>
             <td>
-              <div style={styles.section1email}>
-                <div style={styles.section1textEmail}>
-                  <Text name={TranslationEnum.EmailWatcherListHeader} lang={lang} />
-                </div>
-              </div>
-              <div style={styles.section3email}>
-                <div style={styles.headerTextDescription}>
-                  <Text name={TranslationEnum.EmailWatcherListDescription} lang={lang}>
-                    <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
-                  </Text>
-                </div>
-              </div>
+              <EmailWatchersListSection1 lang={lang} showHtml={showSvg} />
+              <a href={frontendUrl.toString()}>
+                <EmailWatchersListSection2 lang={lang} showHtml={showSvg} frontendUrl={frontendUrl} />
+              </a>
               <WatchersList watchersFullInfoList={watchersFullInfoList} agencyParams={agencyParams} showSvg={showSvg} />
-              <div style={styles.section3email}>
-                <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
-                  <Text name={TranslationEnum.EmailFooter} lang={lang} />
-                </div>
+              <br />
+              <br />
+              <div style={{ ...styles.simpleText, textAlign: 'center' }}>
+                <Text name={TranslationEnum.EmailFooter} lang={lang} />
               </div>
+              <br />
+              <br />
             </td>
           </tr>
         </table>
