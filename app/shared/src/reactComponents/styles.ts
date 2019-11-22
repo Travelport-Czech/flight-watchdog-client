@@ -196,7 +196,7 @@ export const section3: CSSProperties = {
 }
 
 export const section3email: CSSProperties = {
-  backgroundColor: primaryBackgroundColor,
+  backgroundColor: primaryBackgroundColor
 }
 
 export const headerTextDescription: CSSProperties = {

@@ -36,7 +36,7 @@ export class EmailMarketingContent extends React.Component<Props> {
               <EmailMarketingSection1 lang={lang} showHtml={showSvg} />
               <a href={frontendUrl.toString()}>
                 <EmailMarketingSection2 lang={lang} showHtml={showSvg} frontendUrl={frontendUrl} />
-              </a>  
+              </a>
               <WatchersList watchersFullInfoList={watchersFullInfoList} agencyParams={agencyParams} showSvg={showSvg} />
               <br />
               <br />
