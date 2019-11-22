@@ -23,6 +23,5 @@ Hlídání cen letů zajišťuje aplikace Flight Watchdog.\
 `, 'header')
             .to.equal(normalizeText(tr.text()))
         })
-        cy.screenshot()
     })
 })

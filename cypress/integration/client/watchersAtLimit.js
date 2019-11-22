@@ -16,7 +16,6 @@ a zpět\
 Hlídat cenu\
 Odesláním potvrzuji, že souhlasím se zpracováním mých osobních údajů a že jsem se seznámil/a se Zásadami ochrany osobních údajů společnosti STUDENT AGENCY TRAVEL.`)
         })
-        cy.screenshot()
         cy.get('.content input').type('michal@email.cz')
         cy.get(createButtonSelector).click()
         cy.contains('Skvěle, hotovo. Až najdeme nižší cenu, pošleme Vám e-mail.')
