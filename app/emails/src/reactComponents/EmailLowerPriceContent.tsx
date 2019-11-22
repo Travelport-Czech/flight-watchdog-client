@@ -35,7 +35,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
         <table
           cellSpacing="0"
           cellPadding="0"
-          style={{ width: '600px', margin: '0 auto', background: styles.primaryBackgroundColor }}
+          style={{ width: '600px', textAlign: 'center', margin: '0 auto', background: styles.primaryBackgroundColor }}
         >
           <tr>
             <td>
@@ -45,7 +45,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
           </tr>
           <tr>
             <td>
-              <table cellSpacing="0" cellPadding="5" style={{ margin: '0 auto' }}>
+              <table cellSpacing="0" cellPadding="0" style={{ margin: '0 auto', textAlign: 'center', width: '580px' }}>
                 <td>
                   <div style={styles.section3email}>
                     <div style={styles.headerTextDescription}>
