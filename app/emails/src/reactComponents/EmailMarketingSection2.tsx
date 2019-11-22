@@ -16,7 +16,7 @@ export class EmailMarketingSection2 extends React.Component<Props> {
 
     if (showHtml) {
       return (
-        <div style={styles.section3}>
+        <div style={styles.section3email}>
           <div style={styles.headerTextDescription}>
             <Text name={TranslationEnum.EmailMarketingDescription} lang={lang}>
               <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>

@@ -49,7 +49,7 @@ export class EmailLowerPriceHeader extends React.Component<Props> {
             <HeaderDates departure={departure} arrival={arrival} lang={lang} />
           </div>
         </div>
-        <div style={styles.section3}>
+        <div style={styles.section3email}>
           <Text name={TranslationEnum.EmailDescription} lang={lang}>
             <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
           </Text>

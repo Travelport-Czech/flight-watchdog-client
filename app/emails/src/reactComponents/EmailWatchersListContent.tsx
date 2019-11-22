@@ -36,7 +36,7 @@ export class EmailWatchersListContent extends React.Component<Props> {
                   <Text name={TranslationEnum.EmailWatcherListHeader} lang={lang} />
                 </div>
               </div>
-              <div style={styles.section3}>
+              <div style={styles.section3email}>
                 <div style={styles.headerTextDescription}>
                   <Text name={TranslationEnum.EmailWatcherListDescription} lang={lang}>
                     <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
@@ -44,7 +44,7 @@ export class EmailWatchersListContent extends React.Component<Props> {
                 </div>
               </div>
               <WatchersList watchersFullInfoList={watchersFullInfoList} agencyParams={agencyParams} showSvg={showSvg} />
-              <div style={styles.section3}>
+              <div style={styles.section3email}>
                 <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
                   <Text name={TranslationEnum.EmailFooter} lang={lang} />
                 </div>

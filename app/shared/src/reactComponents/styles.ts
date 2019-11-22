@@ -195,6 +195,10 @@ export const section3: CSSProperties = {
   padding: '20px'
 }
 
+export const section3email: CSSProperties = {
+  backgroundColor: primaryBackgroundColor,
+}
+
 export const headerTextDescription: CSSProperties = {
   lineHeight: '25px',
   textAlign: 'left'

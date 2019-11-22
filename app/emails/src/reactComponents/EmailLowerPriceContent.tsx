@@ -40,14 +40,14 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                 </div>
               </div>
               <HeaderDestination watcherFullInfo={watcherFullInfo} lang={lang} showHtml={showSvg} />
-              <div style={styles.section3}>
+              <div style={styles.section3email}>
                 <div style={styles.headerTextDescription}>
                   <Text name={TranslationEnum.EmailDescription} lang={lang}>
                     <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
                   </Text>
                 </div>
               </div>
-              <div style={styles.section3}>
+              <div style={styles.section3email}>
                 <div className="content" style={styles.emailTableContent}>
                   <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
                     <Text name={TranslationEnum.EmailContentDescription} lang={lang}>
