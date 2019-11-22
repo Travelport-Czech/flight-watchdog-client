@@ -52,7 +52,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                       <table>
                         <tr>
                           <td style={{ width: '10px' }} />
-                          <td>
+                          <td style={{ textAlign: 'center' }}>
                             <Text name={TranslationEnum.EmailDescription} lang={lang}>
                               <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
                             </Text>
@@ -107,7 +107,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                     <table>
                       <tr>
                         <td style={{ width: '10px' }} />
-                        <td>
+                        <td style={{ textAlign: 'center' }}>
                           <div style={{ ...styles.simpleText, marginBottom: '10px', marginTop: '20px' }}>
                             <Text name={TranslationEnum.EmailButtonContinueWatchingPrefixText} lang={lang} />
                           </div>
