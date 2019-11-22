@@ -59,6 +59,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                           </td>
                           <td style={{ width: '10px' }} />
                         </tr>
+                        <tr style={{ height: '20px' }} />
                       </table>
                     </div>
                   </div>
@@ -103,10 +104,18 @@ export class EmailLowerPriceContent extends React.Component<Props> {
 
                     <WatcherPriceHistory watchersFullInfo={watcherFullInfo} showSvg={showSvg} />
 
-                    <div style={{ ...styles.simpleText, marginBottom: '10px', marginTop: '20px' }}>
-                      <Text name={TranslationEnum.EmailButtonContinueWatchingPrefixText} lang={lang} />
-                    </div>
-
+                    <table>
+                      <tr>
+                        <td style={{ width: '10px' }} />
+                        <td>
+                          <div style={{ ...styles.simpleText, marginBottom: '10px', marginTop: '20px' }}>
+                            <Text name={TranslationEnum.EmailButtonContinueWatchingPrefixText} lang={lang} />
+                          </div>
+                        </td>
+                        <td style={{ width: '10px' }} />
+                        </tr>
+                    </table>
+                    
                     <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', margin: '0px auto' }}>
                       <tr>
                         <td style={{ background: styles.buttonColor }}>
