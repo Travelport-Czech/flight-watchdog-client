@@ -120,9 +120,9 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                     </div>
                   </div>
                 </td>
+                <td style={{ width: '10px' }} />
               </table>
             </td>
-            <td style={{ width: '10px' }} />
           </tr>
         </table>
       </div>
