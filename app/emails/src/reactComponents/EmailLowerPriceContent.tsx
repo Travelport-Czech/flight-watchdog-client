@@ -93,7 +93,6 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                           <EmailButton
                             link={resultLink}
                             text={TranslationEnum.EmailButtonShowResult}
-                            style={{ marginBottom: '20px' }}
                             lang={lang}
                           />
                         </td>
@@ -122,7 +121,6 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                           <EmailButton
                             link={continueLink}
                             text={TranslationEnum.EmailButtonContinueWatching}
-                            style={{ marginBottom: '50px' }}
                             lang={lang}
                           />
                         </td>

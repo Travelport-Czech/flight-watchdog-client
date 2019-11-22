@@ -17,7 +17,7 @@ export class EmailLowerPriceSection1 extends React.Component<Props> {
       return (
         <div style={styles.section1email}>
           <div style={styles.section1textEmail}>
-            <Text name={TranslationEnum.EmailTitle} lang={lang} />
+            <Text name={TranslationEnum.EmailLowerPriceSubject} lang={lang} />
           </div>
         </div>
       )
