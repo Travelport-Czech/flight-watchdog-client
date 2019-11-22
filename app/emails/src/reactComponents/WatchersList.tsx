@@ -28,7 +28,8 @@ const createAdditionalResults = (
   const additionalResultsLimited = additionalResults.slice(0, 5)
 
   return (
-    <div style={{ marginTop: '20px' }}>
+    <div style={{ textAlign: 'left' }}>
+      <br />
       <div style={styles.headerLevel2}>
         <Text name={TranslationEnum.EmailAdditionalResultsHeader} lang={lang} />
       </div>
@@ -92,7 +93,7 @@ export class WatchersList extends React.Component<Props> {
               <tr>
                 <td />
                 <td>
-                  <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center' }}>
+                  <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', margin: '0px auto' }}>
                     <tr>
                       <td />
                       <td style={{ background: styles.buttonColor }}>

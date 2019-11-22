@@ -15,10 +15,8 @@ export class EmailMarketingSection1 extends React.Component<Props> {
 
     if (showHtml) {
       return (
-        <div style={styles.section1email}>
-          <div style={styles.section1textEmail}>
-            <Text name={TranslationEnum.EmailMarketingHeader} lang={lang} />
-          </div>
+        <div style={styles.section1textEmail}>
+          <Text name={TranslationEnum.EmailMarketingHeader} lang={lang} />
         </div>
       )
     }

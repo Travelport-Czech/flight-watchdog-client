@@ -31,10 +31,8 @@ export class EmailWatchersListContent extends React.Component<Props> {
         <table style={{ width: '600px', margin: '0 auto' }}>
           <tr>
             <td>
-              <div style={styles.section1email}>
-                <div style={styles.section1textEmail}>
-                  <Text name={TranslationEnum.EmailWatcherListHeader} lang={lang} />
-                </div>
+              <div style={styles.section1textEmail}>
+                <Text name={TranslationEnum.EmailWatcherListHeader} lang={lang} />
               </div>
               <div style={styles.section3}>
                 <div style={styles.headerTextDescription}>

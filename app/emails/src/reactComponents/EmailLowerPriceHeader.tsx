@@ -24,10 +24,8 @@ export class EmailLowerPriceHeader extends React.Component<Props> {
 
     return (
       <div>
-        <div style={styles.section1email}>
-          <div style={styles.section1textEmail}>
-            <Text name={TranslationEnum.EmailTitle} lang={lang} />
-          </div>
+        <div style={styles.section1textEmail}>
+          <Text name={TranslationEnum.EmailTitle} lang={lang} />
         </div>
         <div style={styles.section2}>
           <div style={styles.section2locations}>

@@ -108,11 +108,6 @@ const section1: CSSProperties = {
   height: '210px'
 }
 
-export const section1email: CSSProperties = {
-  ...section1,
-  backgroundPositionX: 'right'
-}
-
 export const section1client: CSSProperties = {
   ...section1,
   backgroundPositionX: '140px'

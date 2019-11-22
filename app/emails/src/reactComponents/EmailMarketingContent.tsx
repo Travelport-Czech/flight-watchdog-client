@@ -30,7 +30,7 @@ export class EmailMarketingContent extends React.Component<Props> {
 
     return (
       <div style={{ textAlign: 'center' }}>
-        <table  cellSpacing="0" cellPadding="0" style={{ width: '600px', margin: '0 auto' }}>
+        <table cellSpacing="0" cellPadding="0" style={{ width: '600px', margin: '0 auto' }}>
           <tr>
             <td style={{ backgroundColor: styles.primaryBackgroundColor }}>
               <EmailMarketingSection1 lang={lang} showHtml={showSvg} />
@@ -40,10 +40,8 @@ export class EmailMarketingContent extends React.Component<Props> {
               <WatchersList watchersFullInfoList={watchersFullInfoList} agencyParams={agencyParams} showSvg={showSvg} />
               <br />
               <br />
-              <div style={styles.section3}>
-                <div style={{ ...styles.simpleText, textAlign: 'center' }}>
-                  <Text name={TranslationEnum.EmailFooter} lang={lang} />
-                </div>
+              <div style={{ ...styles.simpleText, textAlign: 'center' }}>
+                <Text name={TranslationEnum.EmailFooter} lang={lang} />
               </div>
               <br />
               <br />
