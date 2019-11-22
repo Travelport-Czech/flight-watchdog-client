@@ -38,87 +38,89 @@ export class EmailLowerPriceContent extends React.Component<Props> {
           style={{ width: '600px', margin: '0 auto', background: styles.primaryBackgroundColor }}
         >
           <tr>
-            <td />
             <td>
               <EmailLowerPriceSection1 lang={lang} showHtml={showSvg} />
               <HeaderDestination watcherFullInfo={watcherFullInfo} lang={lang} showHtml={showSvg} />
             </td>
-            <td />
           </tr>
           <tr>
-            <td style={{ width: '10px' }} />
             <td>
-              <div style={styles.section3email}>
-                <div style={styles.headerTextDescription}>
-                  <Text name={TranslationEnum.EmailDescription} lang={lang}>
-                    <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
-                  </Text>
-                </div>
-              </div>
-              <div style={{ ...styles.section3email, textAlign: 'center' }}>
-                <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
-                  <Text name={TranslationEnum.EmailContentDescription} lang={lang}>
-                    <Price price={priceDiff} />
-                    {priceDiffPercent.toString()}
-                  </Text>
-                </div>
-                <div style={{ ...styles.simpleText, marginBottom: '5px' }}>
-                  <Text name={TranslationEnum.EmailPricePrefixText} lang={lang} />
-                </div>
-                <div style={{ fontSize: '25px', lineHeight: '25px', marginBottom: '10px' }}>
-                  <Text name={TranslationEnum.EmailPrice} lang={lang}>
-                    <Price price={price} />
-                  </Text>
-                </div>
-                <div style={{ ...styles.simpleText, marginBottom: '25px' }}>
-                  <Text name={TranslationEnum.EmailPriceSuffixText} lang={lang}>
-                    <Price price={watcher.priceLimit} />
-                  </Text>
-                </div>
+              <table cellSpacing="0" cellPadding="0">
+                <td style={{ width: '10px' }} />
+                <td>
+                  <div style={styles.section3email}>
+                    <div style={styles.headerTextDescription}>
+                      <Text name={TranslationEnum.EmailDescription} lang={lang}>
+                        <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
+                      </Text>
+                    </div>
+                  </div>
+                  <div style={{ ...styles.section3email, textAlign: 'center' }}>
+                    <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
+                      <Text name={TranslationEnum.EmailContentDescription} lang={lang}>
+                        <Price price={priceDiff} />
+                        {priceDiffPercent.toString()}
+                      </Text>
+                    </div>
+                    <div style={{ ...styles.simpleText, marginBottom: '5px' }}>
+                      <Text name={TranslationEnum.EmailPricePrefixText} lang={lang} />
+                    </div>
+                    <div style={{ fontSize: '25px', lineHeight: '25px', marginBottom: '10px' }}>
+                      <Text name={TranslationEnum.EmailPrice} lang={lang}>
+                        <Price price={price} />
+                      </Text>
+                    </div>
+                    <div style={{ ...styles.simpleText, marginBottom: '25px' }}>
+                      <Text name={TranslationEnum.EmailPriceSuffixText} lang={lang}>
+                        <Price price={watcher.priceLimit} />
+                      </Text>
+                    </div>
 
-                <div style={{ ...styles.simpleText, marginBottom: '10px' }}>
-                  <Text name={TranslationEnum.EmailButtonShowResultPrefixText} lang={lang} />
-                </div>
-                <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', margin: '0px auto' }}>
-                  <tr>
-                    <td style={{ background: styles.buttonColor }}>
-                      <EmailButton
-                        link={resultLink}
-                        text={TranslationEnum.EmailButtonShowResult}
-                        style={{ marginBottom: '20px' }}
-                        lang={lang}
-                      />
-                    </td>
-                  </tr>
-                </table>
+                    <div style={{ ...styles.simpleText, marginBottom: '10px' }}>
+                      <Text name={TranslationEnum.EmailButtonShowResultPrefixText} lang={lang} />
+                    </div>
+                    <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', margin: '0px auto' }}>
+                      <tr>
+                        <td style={{ background: styles.buttonColor }}>
+                          <EmailButton
+                            link={resultLink}
+                            text={TranslationEnum.EmailButtonShowResult}
+                            style={{ marginBottom: '20px' }}
+                            lang={lang}
+                          />
+                        </td>
+                      </tr>
+                    </table>
 
-                <br />
+                    <br />
 
-                <WatcherPriceHistory watchersFullInfo={watcherFullInfo} showSvg={showSvg} />
+                    <WatcherPriceHistory watchersFullInfo={watcherFullInfo} showSvg={showSvg} />
 
-                <div style={{ ...styles.simpleText, marginBottom: '10px', marginTop: '20px' }}>
-                  <Text name={TranslationEnum.EmailButtonContinueWatchingPrefixText} lang={lang} />
-                </div>
+                    <div style={{ ...styles.simpleText, marginBottom: '10px', marginTop: '20px' }}>
+                      <Text name={TranslationEnum.EmailButtonContinueWatchingPrefixText} lang={lang} />
+                    </div>
 
-                <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', margin: '0px auto' }}>
-                  <tr>
-                    <td style={{ background: styles.buttonColor }}>
-                      <EmailButton
-                        link={continueLink}
-                        text={TranslationEnum.EmailButtonContinueWatching}
-                        style={{ marginBottom: '50px' }}
-                        lang={lang}
-                      />
-                    </td>
-                  </tr>
-                </table>
+                    <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', margin: '0px auto' }}>
+                      <tr>
+                        <td style={{ background: styles.buttonColor }}>
+                          <EmailButton
+                            link={continueLink}
+                            text={TranslationEnum.EmailButtonContinueWatching}
+                            style={{ marginBottom: '50px' }}
+                            lang={lang}
+                          />
+                        </td>
+                      </tr>
+                    </table>
 
-                <br />
+                    <br />
 
-                <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
-                  <Text name={TranslationEnum.EmailFooter} lang={lang} />
-                </div>
-              </div>
+                    <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
+                      <Text name={TranslationEnum.EmailFooter} lang={lang} />
+                    </div>
+                  </div>
+                </td>
+              </table>
             </td>
             <td style={{ width: '10px' }} />
           </tr>
