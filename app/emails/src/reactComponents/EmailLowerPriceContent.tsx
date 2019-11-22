@@ -45,9 +45,9 @@ export class EmailLowerPriceContent extends React.Component<Props> {
           </tr>
           <tr>
             <td>
-              <table cellSpacing="0" cellPadding="0" style={{ margin: '0 auto', textAlign: 'center', width: '580px' }}>
+              <table cellSpacing="0" cellPadding="0">
                 <td>
-                  <div style={styles.section3email}>
+                  <div style={{ ...styles.section3email, margin: '0 auto', textAlign: 'center', width: '580px' }}>
                     <div style={styles.headerTextDescription}>
                       <Text name={TranslationEnum.EmailDescription} lang={lang}>
                         <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
