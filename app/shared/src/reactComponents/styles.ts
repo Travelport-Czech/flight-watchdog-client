@@ -232,12 +232,6 @@ export const smallText: CSSProperties = {
   marginTop: '0px'
 }
 
-export const emailTableContent: CSSProperties = {
-  borderTop: '1px solid black',
-  padding: '20px',
-  textAlign: 'center'
-}
-
 export const emailButton: CSSProperties = {
   ...button,
   width: '100px',
