@@ -21,14 +21,11 @@ interface Props {
 
 export class EmailLowerPriceContent extends React.Component<Props> {
   public render() {
-    const { watcherFullInfo, price, showSvg, agencyParams } = this.props
+    const { watcherFullInfo, showSvg, agencyParams } = this.props
     const { watcher } = watcherFullInfo
-    const { lang, priceLimit } = watcher
+    const { lang } = watcher
     const watcherLinks = createWatcherLinks(watcher, agencyParams)
-    const { resultLink, continueLink, frontendUrl } = watcherLinks
-
-    const priceDiff = priceLimit.subtract(price)
-    const priceDiffPercent = priceLimit.diffPercent(price)
+    const { resultLink, continueLink } = watcherLinks
 
     return (
       <div style={{ textAlign: 'center' }}>
@@ -47,46 +44,9 @@ export class EmailLowerPriceContent extends React.Component<Props> {
             <td>
               <table cellSpacing="0" cellPadding="0">
                 <td>
-                  <div style={styles.section3email}>
-                    <div style={styles.headerTextDescription}>
-                      <table cellSpacing="0" cellPadding="0">
-                        <tr>
-                          <td style={{ width: '10px' }} />
-                          <td style={{ textAlign: 'center' }}>
-                            <Text name={TranslationEnum.EmailDescription} lang={lang}>
-                              <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
-                            </Text>
-                          </td>
-                          <td style={{ width: '10px' }} />
-                        </tr>
-                        <tr style={{ height: '20px' }} />
-                      </table>
-                    </div>
-                  </div>
+                  {this.renderDescription()}
                   <div style={{ ...styles.section3email, textAlign: 'center' }}>
-                    <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
-                      <Text name={TranslationEnum.EmailContentDescription} lang={lang}>
-                        <Price price={priceDiff} />
-                        {priceDiffPercent.toString()}
-                      </Text>
-                    </div>
-                    <div style={{ ...styles.simpleText, marginBottom: '5px' }}>
-                      <Text name={TranslationEnum.EmailPricePrefixText} lang={lang} />
-                    </div>
-                    <div style={{ fontSize: '25px', lineHeight: '25px', marginBottom: '10px' }}>
-                      <Text name={TranslationEnum.EmailPrice} lang={lang}>
-                        <Price price={price} />
-                      </Text>
-                    </div>
-                    <div style={{ ...styles.simpleText, marginBottom: '25px' }}>
-                      <Text name={TranslationEnum.EmailPriceSuffixText} lang={lang}>
-                        <Price price={watcher.priceLimit} />
-                      </Text>
-                    </div>
-
-                    <div style={{ ...styles.simpleText, marginBottom: '10px' }}>
-                      <Text name={TranslationEnum.EmailButtonShowResultPrefixText} lang={lang} />
-                    </div>
+                    {this.renderText()}
                     <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', margin: '0px auto' }}>
                       <tr>
                         <td style={{ background: styles.buttonColor }}>
@@ -135,6 +95,69 @@ export class EmailLowerPriceContent extends React.Component<Props> {
           </tr>
         </table>
       </div>
+    )
+  }
+  private renderDescription() {
+    const { watcherFullInfo, agencyParams } = this.props
+    const { watcher } = watcherFullInfo
+    const { lang } = watcher
+    const watcherLinks = createWatcherLinks(watcher, agencyParams)
+    const { frontendUrl } = watcherLinks
+
+    return (
+      <div style={styles.section3email}>
+        <div style={styles.headerTextDescription}>
+          <table cellSpacing="0" cellPadding="0">
+            <tr>
+              <td style={{ width: '10px' }} />
+              <td style={{ textAlign: 'center' }}>
+                <Text name={TranslationEnum.EmailDescription} lang={lang}>
+                  <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
+                </Text>
+              </td>
+              <td style={{ width: '10px' }} />
+            </tr>
+            <tr style={{ height: '20px' }} />
+          </table>
+        </div>
+      </div>
+    )
+  }
+
+  private renderText() {
+    const { watcherFullInfo, price } = this.props
+    const { watcher } = watcherFullInfo
+    const { lang, priceLimit } = watcher
+
+    const priceDiff = priceLimit.subtract(price)
+    const priceDiffPercent = priceLimit.diffPercent(price)
+
+    return (
+      <React.Fragment>
+        <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
+          <Text name={TranslationEnum.EmailContentDescription} lang={lang}>
+            <Price price={priceDiff} />
+            {priceDiffPercent.toString()}
+          </Text>
+        </div>
+        <div style={{ ...styles.simpleText, marginBottom: '5px' }}>
+          <Text name={TranslationEnum.EmailPricePrefixText} lang={lang} />
+        </div>
+        <div style={{ fontSize: '25px', lineHeight: '25px', marginBottom: '10px' }}>
+          <Text name={TranslationEnum.EmailPrice} lang={lang}>
+            <Price price={price} />
+          </Text>
+        </div>
+        <div style={{ ...styles.simpleText, marginBottom: '25px' }}>
+          <Text name={TranslationEnum.EmailPriceSuffixText} lang={lang}>
+            <Price price={watcher.priceLimit} />
+          </Text>
+        </div>
+
+        <div style={{ ...styles.simpleText, marginBottom: '10px' }}>
+          <Text name={TranslationEnum.EmailButtonShowResultPrefixText} lang={lang} />
+        </div>
+      </React.Fragment>
     )
   }
 }
