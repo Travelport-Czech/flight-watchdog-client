@@ -23,7 +23,6 @@ export const createMarketingEmailRaw = async (
   agencyParams: AgencyParams
 ): Promise<string> => {
   const { email, lang } = watcherFullInfoList[0].watcher
-  const watcherLinks = createWatcherLinks(watcherFullInfoList[0].watcher, agencyParams)
   const subject = renderToStaticMarkup(<Text name={TranslationEnum.EmailMarketingHeader} lang={lang} />)
   const content = await createMarketingEmail(watcherFullInfoList, agencyParams, false)
   const rawEmail = createEmailRawBegin(subject, content, email, agencyParams.emailFrom, lang)
@@ -35,15 +34,8 @@ export const createMarketingEmailRaw = async (
     200,
     'white'
   )
-  const section2 = await createAttachmentFromReact(
-    createImage,
-    'watchdogsection2',
-    <EmailMarketingSection2 lang={lang} showHtml frontendUrl={watcherLinks.frontendUrl} />,
-    90,
-    primaryBackgroundColor
-  )
 
-  const attachments = (await createAttachmentRawFromWatcherList(createImage, watcherFullInfoList)) + section1 + section2
+  const attachments = (await createAttachmentRawFromWatcherList(createImage, watcherFullInfoList)) + section1
 
   return rawEmail + attachments + rawEmailEndPart
 }

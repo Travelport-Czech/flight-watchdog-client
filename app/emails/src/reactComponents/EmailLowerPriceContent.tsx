@@ -35,6 +35,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
           style={{ width: '600px', textAlign: 'center', margin: '0 auto', background: styles.primaryBackgroundColor }}
         >
           <tr>
+            <td style={{ background: styles.secondaryBackgroundColor, width: '10px' }} />
             <td style={{ background: styles.secondaryBackgroundColor }}>
               <EmailLowerPriceSection1 lang={lang} showHtml={showSvg} />
               <HeaderDestination watcherFullInfo={watcherFullInfo} lang={lang} showHtml={showSvg} />
