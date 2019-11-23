@@ -34,9 +34,7 @@ export class EmailWatchersListContent extends React.Component<Props> {
           <tr>
             <td style={{ backgroundColor: styles.primaryBackgroundColor }}>
               <EmailWatchersListSection1 lang={lang} showHtml={showSvg} />
-              <a href={frontendUrl.toString()}>
-                <EmailWatchersListSection2 lang={lang} showHtml={showSvg} frontendUrl={frontendUrl} />
-              </a>
+              <EmailWatchersListSection2 lang={lang} frontendUrl={frontendUrl} />
               <WatchersList watchersFullInfoList={watchersFullInfoList} agencyParams={agencyParams} showSvg={showSvg} />
               <br />
               <br />
