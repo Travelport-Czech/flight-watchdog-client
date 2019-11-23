@@ -1,4 +1,3 @@
-import { createWatcherLinks } from '@emails/factories/createWatcherLinks'
 import {
   createAttachmentFromReact,
   createAttachmentRawFromWatcherList,
@@ -7,11 +6,9 @@ import {
 import { emailTemplate, rawEmailEndPart } from '@emails/factories/emailTemplates'
 import { EmailMarketingContent } from '@emails/reactComponents/EmailMarketingContent'
 import { EmailMarketingSection1 } from '@emails/reactComponents/EmailMarketingSection1'
-import { EmailMarketingSection2 } from '@emails/reactComponents/EmailMarketingSection2'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { CreateImageCallback } from '@emails/types/CreateImageCallback'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
-import { primaryBackgroundColor } from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import * as React from 'react'

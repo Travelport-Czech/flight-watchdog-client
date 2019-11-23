@@ -17,7 +17,7 @@ export class EmailMarketingSection2 extends React.Component<Props> {
       <div style={styles.section3email}>
         <div style={styles.headerTextDescription}>
           <table cellSpacing="0" cellPadding="0">
-          <tr style={{ height: '10px' }} />
+            <tr style={{ height: '10px' }} />
             <tr>
               <td style={{ width: '10px' }} />
               <td>
