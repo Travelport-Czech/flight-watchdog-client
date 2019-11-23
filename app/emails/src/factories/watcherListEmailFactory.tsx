@@ -1,3 +1,4 @@
+import { createWatcherLinks } from '@emails/factories/createWatcherLinks'
 import {
   createAttachmentFromReact,
   createAttachmentRawFromWatcherList,
@@ -14,7 +15,6 @@ import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { createWatcherLinks } from '@emails/factories/createWatcherLinks'
 
 export const createWatcherListEmailRaw = async (
   createImage: (html: string, width: number, height: number) => Promise<string>,

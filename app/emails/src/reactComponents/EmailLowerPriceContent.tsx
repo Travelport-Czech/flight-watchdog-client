@@ -38,7 +38,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
           style={{ width: '600px', textAlign: 'center', margin: '0 auto', background: styles.primaryBackgroundColor }}
         >
           <tr>
-            <td>
+            <td style={{ background: styles.secondaryBackgroundColor }}>
               <EmailLowerPriceSection1 lang={lang} showHtml={showSvg} />
               <HeaderDestination watcherFullInfo={watcherFullInfo} lang={lang} showHtml={showSvg} />
             </td>
@@ -90,11 +90,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                     <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', margin: '0px auto' }}>
                       <tr>
                         <td style={{ background: styles.buttonColor }}>
-                          <EmailButton
-                            link={resultLink}
-                            text={TranslationEnum.EmailButtonShowResult}
-                            lang={lang}
-                          />
+                          <EmailButton link={resultLink} text={TranslationEnum.EmailButtonShowResult} lang={lang} />
                         </td>
                       </tr>
                     </table>
@@ -112,9 +108,9 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                           </div>
                         </td>
                         <td style={{ width: '10px' }} />
-                        </tr>
+                      </tr>
                     </table>
-                    
+
                     <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', margin: '0px auto' }}>
                       <tr>
                         <td style={{ background: styles.buttonColor }}>
