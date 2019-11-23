@@ -3,7 +3,7 @@ import { normalizeText} from '../../support/helper'
 describe('Lower Price Email', function() {
     it('Default', function() {
         cy.visit('/lowerPriceEmail')
-        cy.get('tr').eq(0).should((tr) => {
+        cy.get('table').eq(0).should((tr) => {
             expect(`\
 Nalezli jsme lepší cenu letu, který jste hledali!\
 Londýn (LON)Praha (PRG)\
