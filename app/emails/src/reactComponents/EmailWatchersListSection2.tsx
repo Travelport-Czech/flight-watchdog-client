@@ -14,13 +14,13 @@ export class EmailWatchersListSection2 extends React.Component<Props> {
     const { lang, frontendUrl } = this.props
 
     return (
-      <div style={{ ...styles.section3email, padding: '20px' }}>
+      <div style={styles.section3email}>
         <div style={styles.headerTextDescription}>
           <table cellSpacing="0" cellPadding="0">
             <tr style={{ height: '10px' }} />
             <tr>
               <td style={{ width: '10px' }} />
-              <td>
+              <td style={{ textAlign: 'center' }}>
                 <Text name={TranslationEnum.EmailWatcherListDescription} lang={lang}>
                   <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
                 </Text>

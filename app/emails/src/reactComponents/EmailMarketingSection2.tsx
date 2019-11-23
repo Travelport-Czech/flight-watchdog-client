@@ -20,7 +20,7 @@ export class EmailMarketingSection2 extends React.Component<Props> {
             <tr style={{ height: '10px' }} />
             <tr>
               <td style={{ width: '10px' }} />
-              <td>
+              <td style={{ textAlign: 'center' }}>
                 <Text name={TranslationEnum.EmailMarketingDescription} lang={lang}>
                   <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
                 </Text>
