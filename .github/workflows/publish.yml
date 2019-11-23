@@ -29,9 +29,9 @@ jobs:
           CI: true
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
           CYPRESS_CACHE_FOLDER: '~/.cypress'
-      #- run: npm test
-      #  env:
-      #    CYPRESS_CACHE_FOLDER: '~/.cypress'
+      - run: npm test
+        env:
+          CYPRESS_CACHE_FOLDER: '~/.cypress'
       - name: "Automated Version Bump"
         uses: "phips28/gh-action-bump-version@master"
         with:
