@@ -40,15 +40,15 @@ export class HeaderDestination extends React.Component<Props> {
           <tr style={{ height: '10px' }} />
           <tr>
             <td style={{ width: '10px' }} />
-            <td style={{ width: '40%' }}>
+            <td style={{ width: '40%', textAlign: 'center' }}>
               <LocationNameList locationList={originLocationList} />
             </td>
             <td style={{ width: '5px' }} />
-            <td style={{ width: '10px' }}>
+            <td style={{ width: '10px', textAlign: 'center' }}>
               <ArrowImage showHtml={showHtml} />
             </td>
             <td style={{ width: '5px' }} />
-            <td style={{ width: '40%' }}>
+            <td style={{ width: '40%', textAlign: 'center' }}>
               <LocationNameList locationList={destinationLocationList} />
             </td>
             <td style={{ width: '10px' }} />
@@ -57,7 +57,7 @@ export class HeaderDestination extends React.Component<Props> {
         </table>
         <table cellSpacing="0" cellPadding="0" style={tableStyle}>
           <tr>
-            <td>
+            <td style={{ width: '100%', textAlign: 'center' }}>
               <Text name={destinationTextKey} lang={lang} />
             </td>
           </tr>
@@ -65,7 +65,7 @@ export class HeaderDestination extends React.Component<Props> {
         </table>
         <table cellSpacing="0" cellPadding="0" style={tableStyle}>
           <tr>
-            <td>
+            <td style={{ width: '100%', textAlign: 'center' }}>
               <HeaderDates departure={watcher.departure} arrival={watcher.arrival} lang={lang} />
             </td>
           </tr>
