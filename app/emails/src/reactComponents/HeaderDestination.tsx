@@ -34,7 +34,7 @@ export class HeaderDestination extends React.Component<Props> {
     }
 
     return (
-      <React.Fragment>
+      <div style={{ background: styles.secondaryBackgroundColor }}>
         <table cellSpacing="0" cellPadding="0" style={tableStyle}>
           <tr style={{ height: '10px' }}><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
           <tr>
@@ -70,7 +70,7 @@ export class HeaderDestination extends React.Component<Props> {
           </tr>
           <tr style={{ height: '10px' }} />
         </table>
-      </React.Fragment>
+      </div>
     )
   }
 }
