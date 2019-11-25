@@ -14,23 +14,27 @@ export class EmailMarketingSection2 extends React.Component<Props> {
     const { lang, frontendUrl } = this.props
 
     return (
-      <div style={styles.section3email}>
-        <div style={styles.headerTextDescription}>
-          <table cellSpacing="0" cellPadding="0">
-            <tr style={{ height: '10px' }}><td></td><td></td><td></td></tr>
-            <tr>
-              <td style={{ width: '10px' }} />
-              <td style={{ textAlign: 'center' }}>
-                <Text name={TranslationEnum.EmailMarketingDescription} lang={lang}>
-                  <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
-                </Text>
-              </td>
-              <td style={{ width: '10px' }} />
-            </tr>
-            <tr style={{ height: '10px' }}><td></td><td></td><td></td></tr>
-          </table>
-        </div>
-      </div>
+      <table cellSpacing="0" cellPadding="0" style={{ lineHeight: '25px', background: styles.primaryBackgroundColor }}>
+        <tr style={{ height: '10px' }}>
+          <td />
+          <td />
+          <td />
+        </tr>
+        <tr>
+          <td style={{ width: '10px' }} />
+          <td style={{ textAlign: 'center' }}>
+            <Text name={TranslationEnum.EmailMarketingDescription} lang={lang}>
+              <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
+            </Text>
+          </td>
+          <td style={{ width: '10px' }} />
+        </tr>
+        <tr style={{ height: '10px' }}>
+          <td />
+          <td />
+          <td />
+        </tr>
+      </table>
     )
   }
 }
