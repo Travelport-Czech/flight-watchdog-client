@@ -23,51 +23,55 @@ export class HeaderDestination extends React.Component<Props> {
         ? TranslationEnum.ClientDestinationsReturn
         : TranslationEnum.ClientDestinationsOneway
 
+    const tableStyle: React.CSSProperties = {
+      width: '600px',
+      margin: '0 auto',
+      background: styles.secondaryBackgroundColor,
+      color: 'white',
+      textTransform: 'uppercase',
+      fontWeight: 'bold',
+      fontSize: '1.4em',
+      lineHeight: '1.4em'
+    }
+
     return (
-      <table
-        cellSpacing="0"
-        cellPadding="0"
-        style={{
-          width: '600px',
-          margin: '0 auto',
-          background: styles.secondaryBackgroundColor,
-          color: 'white',
-          textTransform: 'uppercase',
-          fontWeight: 'bold',
-          fontSize: '1.4em',
-          lineHeight: '1.4em'
-        }}
-      >
-        <tr style={{ height: '10px' }} />
-        <tr>
-          <td style={{ width: '10px' }} />
-          <td style={{ width: '40%' }}>
-            <LocationNameList locationList={originLocationList} />
-          </td>
-          <td style={{ width: '5px' }} />
-          <td style={{ width: '10px' }}>
-            <ArrowImage showHtml={showHtml} />
-          </td>
-          <td style={{ width: '5px' }} />
-          <td style={{ width: '40%' }}>
-            <LocationNameList locationList={destinationLocationList} />
-          </td>
-          <td style={{ width: '10px' }} />
-        </tr>
-        <tr style={{ height: '10px' }} />
-        <tr>
-          <td colSpan={7}>
-            <Text name={destinationTextKey} lang={lang} />
-          </td>
-        </tr>
-        <tr style={{ height: '10px' }} />
-        <tr>
-          <td colSpan={7}>
-            <HeaderDates departure={watcher.departure} arrival={watcher.arrival} lang={lang} />
-          </td>
-        </tr>
-        <tr style={{ height: '10px' }} />
-      </table>
+      <React.Fragment>
+        <table cellSpacing="0" cellPadding="0" style={tableStyle}>
+          <tr style={{ height: '10px' }} />
+          <tr>
+            <td style={{ width: '10px' }} />
+            <td style={{ width: '40%' }}>
+              <LocationNameList locationList={originLocationList} />
+            </td>
+            <td style={{ width: '5px' }} />
+            <td style={{ width: '10px' }}>
+              <ArrowImage showHtml={showHtml} />
+            </td>
+            <td style={{ width: '5px' }} />
+            <td style={{ width: '40%' }}>
+              <LocationNameList locationList={destinationLocationList} />
+            </td>
+            <td style={{ width: '10px' }} />
+          </tr>
+          <tr style={{ height: '10px' }} />
+        </table>
+        <table cellSpacing="0" cellPadding="0" style={tableStyle}>
+          <tr>
+            <td>
+              <Text name={destinationTextKey} lang={lang} />
+            </td>
+          </tr>
+          <tr style={{ height: '10px' }} />
+        </table>
+        <table cellSpacing="0" cellPadding="0" style={tableStyle}>
+          <tr>
+            <td>
+              <HeaderDates departure={watcher.departure} arrival={watcher.arrival} lang={lang} />
+            </td>
+          </tr>
+          <tr style={{ height: '10px' }} />
+        </table>
+      </React.Fragment>
     )
   }
 }
