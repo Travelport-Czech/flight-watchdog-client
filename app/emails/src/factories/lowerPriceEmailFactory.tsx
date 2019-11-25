@@ -1,15 +1,16 @@
 import {
   createAttachmentFromReact,
-  createAttachmentRawFromWatcherHeader,
   createAttachmentRawFromWatcherPriceHistory,
   createEmailRawBegin
 } from '@emails/factories/emailFactory'
 import { emailTemplate, rawEmailEndPart } from '@emails/factories/emailTemplates'
+import { ArrowImage } from '@emails/reactComponents/ArrowImage'
 import { EmailLowerPriceContent } from '@emails/reactComponents/EmailLowerPriceContent'
 import { EmailLowerPriceSubject } from '@emails/reactComponents/EmailLowerPriceSubject'
 import { EmailMarketingSection1 } from '@emails/reactComponents/EmailMarketingSection1'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
+import { secondaryBackgroundColor } from '@shared/reactComponents/styles'
 import { ValidPrice } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
@@ -29,14 +30,22 @@ export const createLowerPriceEmailRaw = async (
     createImage,
     'watchdogsection1',
     <EmailMarketingSection1 lang={lang} showHtml />,
+    600,
     200,
     'white'
   )
 
-  const header = await createAttachmentRawFromWatcherHeader(createImage, watcherFullInfo)
+  const arrow = await createAttachmentFromReact(
+    createImage,
+    'arrow',
+    <ArrowImage showHtml />,
+    18,
+    30,
+    secondaryBackgroundColor
+  )
 
   const attachments =
-    (await createAttachmentRawFromWatcherPriceHistory(createImage, watcherFullInfo)) + section1 + header
+    (await createAttachmentRawFromWatcherPriceHistory(createImage, watcherFullInfo)) + section1 + arrow
 
   return rawEmail + attachments + rawEmailEndPart
 }

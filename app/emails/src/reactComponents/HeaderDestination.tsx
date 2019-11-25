@@ -6,6 +6,7 @@ import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import { ValidLanguage } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
+import { ArrowImage } from '@emails/reactComponents/ArrowImage'
 
 interface Props {
   readonly showHtml?: boolean
@@ -16,12 +17,6 @@ interface Props {
 export class HeaderDestination extends React.Component<Props> {
   public render() {
     const { watcherFullInfo, lang, showHtml } = this.props
-    if (!showHtml) {
-      const cid = `cid:watcherheader-${watcherFullInfo.watcher.id.toString()}`
-
-      return <img src={cid} alt="Watchdog header" />
-    }
-
     const { watcher, originLocationList, destinationLocationList } = watcherFullInfo
     const destinationTextKey =
       watcher.flightType === 'return'
@@ -29,26 +24,50 @@ export class HeaderDestination extends React.Component<Props> {
         : TranslationEnum.ClientDestinationsOneway
 
     return (
-      <div style={styles.section2}>
-        <div style={styles.section2locations}>
-          <div style={styles.section2box}>
-            <div style={styles.section2textLeft}>
-              <LocationNameList locationList={originLocationList} />
-            </div>
-          </div>
-          <div style={styles.section2box}>
-            <div style={styles.section2textRight}>
-              <LocationNameList locationList={destinationLocationList} />
-            </div>
-          </div>
-        </div>
-        <div style={styles.section2date}>
-          <Text name={destinationTextKey} lang={lang} />
-          <br />
-          <br />
-          <HeaderDates departure={watcher.departure} arrival={watcher.arrival} lang={lang} />
-        </div>
-      </div>
+      <table
+        cellSpacing="0"
+        cellPadding="0"
+        style={{
+          width: '600px',
+          margin: '0 auto',
+          background: styles.secondaryBackgroundColor,
+          color: 'white',
+          textTransform: 'uppercase',
+          fontWeight: 'bold',
+          fontSize: '1.4em',
+          lineHeight: '1.4em'
+        }}
+      >
+        <tr style={{ height: '10px' }} />
+        <tr>
+          <td style={{ width: '10px' }} />
+          <td style={{ width: '40%' }}>
+            <LocationNameList locationList={originLocationList} />
+          </td>
+          <td style={{ width: '5px' }} />
+          <td style={{ width: '10px' }}>
+            <ArrowImage showHtml={showHtml} />
+          </td>
+          <td style={{ width: '5px' }} />
+          <td style={{ width: '40%' }}>
+            <LocationNameList locationList={destinationLocationList} />
+          </td>
+          <td style={{ width: '10px' }} />
+        </tr>
+        <tr style={{ height: '10px' }} />
+        <tr>
+          <td colSpan={7}>
+            <Text name={destinationTextKey} lang={lang} />
+          </td>
+        </tr>
+        <tr style={{ height: '10px' }} />
+        <tr>
+          <td colSpan={7}>
+            <HeaderDates departure={watcher.departure} arrival={watcher.arrival} lang={lang} />
+          </td>
+        </tr>
+        <tr style={{ height: '10px' }} />
+      </table>
     )
   }
 }

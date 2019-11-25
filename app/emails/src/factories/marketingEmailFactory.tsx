@@ -4,11 +4,13 @@ import {
   createEmailRawBegin
 } from '@emails/factories/emailFactory'
 import { emailTemplate, rawEmailEndPart } from '@emails/factories/emailTemplates'
+import { ArrowImage } from '@emails/reactComponents/ArrowImage'
 import { EmailMarketingContent } from '@emails/reactComponents/EmailMarketingContent'
 import { EmailMarketingSection1 } from '@emails/reactComponents/EmailMarketingSection1'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { CreateImageCallback } from '@emails/types/CreateImageCallback'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
+import { secondaryBackgroundColor } from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import * as React from 'react'
@@ -28,11 +30,21 @@ export const createMarketingEmailRaw = async (
     createImage,
     'watchdogsection1',
     <EmailMarketingSection1 lang={lang} showHtml />,
+    600,
     200,
     'white'
   )
 
-  const attachments = (await createAttachmentRawFromWatcherList(createImage, watcherFullInfoList)) + section1
+  const arrow = await createAttachmentFromReact(
+    createImage,
+    'arrow',
+    <ArrowImage showHtml />,
+    18,
+    30,
+    secondaryBackgroundColor
+  )
+
+  const attachments = (await createAttachmentRawFromWatcherList(createImage, watcherFullInfoList)) + section1 + arrow
 
   return rawEmail + attachments + rawEmailEndPart
 }
