@@ -25,7 +25,6 @@ export class HeaderDestination extends React.Component<Props> {
 
     const tableStyle: React.CSSProperties = {
       width: '600px',
-      margin: '0 auto',
       background: styles.secondaryBackgroundColor,
       color: 'white',
       textTransform: 'uppercase',
@@ -37,7 +36,7 @@ export class HeaderDestination extends React.Component<Props> {
     return (
       <React.Fragment>
         <table cellSpacing="0" cellPadding="0" style={tableStyle}>
-          <tr style={{ height: '10px' }} />
+          <tr style={{ height: '10px' }}><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
           <tr>
             <td style={{ width: '10px' }} />
             <td style={{ width: '40%', textAlign: 'center' }}>
@@ -53,7 +52,7 @@ export class HeaderDestination extends React.Component<Props> {
             </td>
             <td style={{ width: '10px' }} />
           </tr>
-          <tr style={{ height: '10px' }} />
+          <tr style={{ height: '10px' }}><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
         </table>
         <table cellSpacing="0" cellPadding="0" style={tableStyle}>
           <tr>
