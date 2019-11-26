@@ -57,6 +57,48 @@ const createAdditionalResults = (
 }
 
 export class WatchersList extends React.Component<Props> {
+  public renderSection1(watcherFullInfo: WatcherFullInfo, lang: ValidLanguage, showHtml?: boolean) {
+    const { watcher } = watcherFullInfo
+    const { priceLimit } = watcher
+
+    return (
+      <React.Fragment>
+        <table
+          cellSpacing="0"
+          cellPadding="0"
+          style={{ textAlign: 'center', background: styles.primaryBackgroundColor, width: '600px' }}
+        >
+          <tr>
+            <td style={{ background: styles.secondaryBackgroundColor }}>
+              <HeaderDestination watcherFullInfo={watcherFullInfo} lang={lang} showHtml={showHtml} />
+            </td>
+            <td style={{ background: styles.primaryBackgroundColor }}>
+              <WatcherPriceHistory watchersFullInfo={watcherFullInfo} showSvg={showHtml} />
+            </td>
+          </tr>
+        </table>
+
+        <table
+          cellSpacing="0"
+          cellPadding="0"
+          style={{ textAlign: 'center', background: styles.primaryBackgroundColor, width: '600px' }}
+        >
+          <tr>
+            <td style={{ width: '10px' }} />
+            <td>
+              <div style={{ ...styles.simpleText, textAlign: 'center' }}>
+                <Text name={TranslationEnum.EmailPriceLimit} lang={lang}>
+                  {priceLimit.toString()}
+                </Text>
+              </div>
+            </td>
+            <td style={{ width: '10px' }} />
+          </tr>
+        </table>
+      </React.Fragment>
+    )
+  }
+
   public render() {
     const { watchersFullInfoList, agencyParams, showSvg } = this.props
 
@@ -68,75 +110,63 @@ export class WatchersList extends React.Component<Props> {
 
     const lines = watchersFullInfoList.map((watcherFullInfo: WatcherFullInfo, index) => {
       const { watcher, additionalResults } = watcherFullInfo
-      const { priceLimit } = watcher
       const watcherLinks = createWatcherLinks(watcher, agencyParams)
 
       return (
         <div key={index}>
-          <HeaderDestination watcherFullInfo={watcherFullInfo} lang={lang} showHtml={showSvg} />
-          <div style={styles.section3email}>
-            <WatcherPriceHistory watchersFullInfo={watcherFullInfo} showSvg={showSvg} />
+          {this.renderSection1(watcherFullInfo, lang, showSvg)}
 
-            <div style={{ ...styles.simpleText, textAlign: 'center' }}>
-              <Text name={TranslationEnum.EmailPriceLimit} lang={lang}>
-                {priceLimit.toString()}
-              </Text>
-            </div>
+          <table
+            cellSpacing="0"
+            cellPadding="0"
+            style={{ textAlign: 'center', background: styles.primaryBackgroundColor, width: '600px' }}
+          >
+            <tr>
+              <td>
+                <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', margin: '0px auto' }}>
+                  <tr>
+                    <td />
+                    <td style={{ background: styles.buttonColor }}>
+                      <EmailButton
+                        link={watcherLinks.resultLink}
+                        text={TranslationEnum.EmailButtonShowResult}
+                        lang={lang}
+                      />
+                    </td>
+                    <td>&nbsp;</td>
+                    <td style={{ background: styles.buttonColor }}>
+                      <EmailButton
+                        link={watcherLinks.deleteLink}
+                        text={TranslationEnum.EmailButtonDelete}
+                        lang={lang}
+                      />
+                    </td>
+                    <td />
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr style={{ height: '10px' }}>
+              <td />
+            </tr>
+          </table>
 
-            <br />
-
-            <table
-              cellSpacing="0"
-              cellPadding="0"
-              style={{ textAlign: 'center', background: styles.primaryBackgroundColor, width: '600px' }}
-            >
-              <tr>
-                <td>
-                  <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', margin: '0px auto' }}>
-                    <tr>
-                      <td />
-                      <td style={{ background: styles.buttonColor }}>
-                        <EmailButton
-                          link={watcherLinks.resultLink}
-                          text={TranslationEnum.EmailButtonShowResult}
-                          lang={lang}
-                        />
-                      </td>
-                      <td>&nbsp;</td>
-                      <td style={{ background: styles.buttonColor }}>
-                        <EmailButton
-                          link={watcherLinks.deleteLink}
-                          text={TranslationEnum.EmailButtonDelete}
-                          lang={lang}
-                        />
-                      </td>
-                      <td />
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr style={{ height: '10px' }}>
-                <td />
-              </tr>
-            </table>
-
-            <table
-              cellSpacing="0"
-              cellPadding="0"
-              style={{ textAlign: 'center', background: styles.primaryBackgroundColor, width: '600px' }}
-            >
-              <tr>
-                <td style={{ width: '10px' }} />
-                <td>
-                  {additionalResults.length !== 0 && createAdditionalResults(additionalResults, lang, agencyParams)}
-                </td>
-              </tr>
-              <tr style={{ height: '10px' }}>
-                <td />
-                <td />
-              </tr>
-            </table>
-          </div>
+          <table
+            cellSpacing="0"
+            cellPadding="0"
+            style={{ textAlign: 'center', background: styles.primaryBackgroundColor, width: '600px' }}
+          >
+            <tr>
+              <td style={{ width: '10px' }} />
+              <td>
+                {additionalResults.length !== 0 && createAdditionalResults(additionalResults, lang, agencyParams)}
+              </td>
+            </tr>
+            <tr style={{ height: '10px' }}>
+              <td />
+              <td />
+            </tr>
+          </table>
         </div>
       )
     })

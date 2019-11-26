@@ -34,7 +34,7 @@ export class HeaderDestination extends React.Component<Props> {
     }
 
     return (
-      <div style={{ background: styles.secondaryBackgroundColor }}>
+      <React.Fragment>
         <table cellSpacing="0" cellPadding="0" style={tableStyle}>
           <tr style={{ height: '10px' }}>
             <td />
@@ -76,7 +76,9 @@ export class HeaderDestination extends React.Component<Props> {
               <Text name={destinationTextKey} lang={lang} />
             </td>
           </tr>
-          <tr style={{ height: '10px' }} />
+          <tr style={{ height: '10px' }}>
+            <td />
+          </tr>
         </table>
         <table cellSpacing="0" cellPadding="0" style={tableStyle}>
           <tr>
@@ -84,9 +86,11 @@ export class HeaderDestination extends React.Component<Props> {
               <HeaderDates departure={watcher.departure} arrival={watcher.arrival} lang={lang} />
             </td>
           </tr>
-          <tr style={{ height: '10px' }} />
+          <tr style={{ height: '10px' }}>
+            <td />
+          </tr>
         </table>
-      </div>
+      </React.Fragment>
     )
   }
 }
