@@ -4,9 +4,16 @@ describe('Marketing Email', function() {
     it('Default', function() {
         cy.visit('/marketingEmail')
         cy.get('tr').eq(0).should((tr) => {
+            expect(`Vývoj cen Vašeho letu`, 'header').to.equal(normalizeText(tr.text()))
+        })
+        cy.get('tr').eq(1).should((tr) => {
             expect(`\
-Vývoj cen Vašeho letu\
 Tento e-mail je odesílán každý den na základě Vašeho založení hlídače letu na webu https://example.cz.\
+`, 'header')
+            .to.equal(normalizeText(tr.text()))
+        })
+        cy.get('tr').eq(5).should((tr) => {
+            expect(`\
 Londýn (LON)Praha (PRG)\
 a zpět\
 16. 12. 2018 až 25. 12. 2018\
@@ -31,6 +38,11 @@ Podobné nabídky (lidé právě kupují)\
 3 500 CZK - 16. 12. 2018 až 25. 12. 2018 -> Zobrazit\
 3 500 CZK - 16. 12. 2018 až 25. 12. 2018 -> Zobrazit\
 3 500 CZK - 16. 12. 2018 až 25. 12. 2018 -> Zobrazit\
+`, 'header')
+            .to.equal(normalizeText(tr.text()))
+        })
+        cy.get('tr').eq(37).should((tr) => {
+            expect(`\
 Hlídání cen letů zajišťuje aplikace Flight Watchdog.\
 `, 'header')
             .to.equal(normalizeText(tr.text()))

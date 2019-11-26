@@ -4,9 +4,16 @@ describe('Watcher List Email', function() {
     it('Default', function() {
         cy.visit('/watcherListEmail')
         cy.get('tr').eq(0).should((tr) => {
+            expect(`Seznam hlídačů letů`, 'header').to.equal(normalizeText(tr.text()))
+        })
+        cy.get('tr').eq(1).should((tr) => {
             expect(`\
-Seznam hlídačů letů\
 Tento e-mail byl odeslán na základě Vašeho požadavku na smazání hlídače letu na webu https://example.cz. Po kliknutí na tlačítko Smazat budete přesměrováni na výsledky vyhledávání daného letu a budete vyzváni k potrvzení smazání.\
+`, 'header')
+            .to.equal(normalizeText(tr.text()))
+        })
+        cy.get('tr').eq(5).should((tr) => {
+            expect(`\
 Londýn (LON)Praha (PRG)\
 a zpět\
 16. 12. 2018 až 25. 12. 2018\
@@ -31,6 +38,11 @@ Podobné nabídky (lidé právě kupují)\
 3 500 CZK - 16. 12. 2018 až 25. 12. 2018 -> Zobrazit\
 3 500 CZK - 16. 12. 2018 až 25. 12. 2018 -> Zobrazit\
 3 500 CZK - 16. 12. 2018 až 25. 12. 2018 -> Zobrazit\
+`, 'header')
+            .to.equal(normalizeText(tr.text()))
+        })
+        cy.get('tr').eq(37).should((tr) => {
+            expect(`\
 Hlídání cen letů zajišťuje aplikace Flight Watchdog.\
 `, 'header')
             .to.equal(normalizeText(tr.text()))
