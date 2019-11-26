@@ -31,17 +31,21 @@ export const initFlightWatchdogClient = async (settingsData: UnknownNestedObject
       createTagManagerSnippet(settings.analyticsId.toString())
     }
 
-    const id = 'flight-watchdog-client-app'
-    const node = document.createElement('div')
-    node.setAttribute('id', id)
-    node.setAttribute('style', 'display: none')
-    document.body.appendChild(node)
-
     const appConfig = createAppConfigFromFe(document, golUrl)
 
     if (!appConfig) {
       return
     }
+
+    const isVisible = appConfig.emailForWatcherDelete || appConfig.emailForWatcherDelete
+
+    const id = 'flight-watchdog-client-app'
+    const node = document.createElement('div')
+    node.setAttribute('id', id)
+    if (!isVisible) {
+      node.setAttribute('style', 'display: none')
+    }
+    document.body.appendChild(node)
 
     ReactDOM.render(
       <App appConfig={appConfig} clientSettings={settings} handleError={handleError} />,
