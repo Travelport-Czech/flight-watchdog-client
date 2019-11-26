@@ -72,6 +72,8 @@ export class WatchersList extends React.Component<Props> {
             <td style={{ background: styles.secondaryBackgroundColor }}>
               <HeaderDestination watcherFullInfo={watcherFullInfo} lang={lang} showHtml={showHtml} />
             </td>
+          </tr>
+          <tr>
             <td style={{ background: styles.primaryBackgroundColor }}>
               <WatcherPriceHistory watchersFullInfo={watcherFullInfo} showSvg={showHtml} />
             </td>
