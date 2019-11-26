@@ -91,7 +91,6 @@ export class WatchersList extends React.Component<Props> {
               style={{ textAlign: 'center', background: styles.primaryBackgroundColor, width: '600px' }}
             >
               <tr>
-                <td />
                 <td>
                   <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', margin: '0px auto' }}>
                     <tr>
@@ -115,9 +114,10 @@ export class WatchersList extends React.Component<Props> {
                     </tr>
                   </table>
                 </td>
+              </tr>
+              <tr style={{ height: '10px' }}>
                 <td />
               </tr>
-              <tr style={{ height: '10px' }} />
             </table>
 
             <table
@@ -131,7 +131,10 @@ export class WatchersList extends React.Component<Props> {
                   {additionalResults.length !== 0 && createAdditionalResults(additionalResults, lang, agencyParams)}
                 </td>
               </tr>
-              <tr style={{ height: '10px' }} />
+              <tr style={{ height: '10px' }}>
+                <td />
+                <td />
+              </tr>
             </table>
           </div>
         </div>
