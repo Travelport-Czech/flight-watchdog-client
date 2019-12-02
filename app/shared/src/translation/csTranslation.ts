@@ -40,7 +40,7 @@ export const csTranslation: TranslationKeys = {
   [T.EmailButtonShowResult]: `Rezervovat`,
   [T.EmailButtonContinueWatchingPrefixText]: `Důležité: Sledování letu je ukončeno při nalezení nižší ceny. Pokud chcete cenu hlídat dál, potvrďte znovu hlídání letu:`,
   [T.EmailButtonContinueWatching]: `Hlídat dál`,
-  [T.EmailButtonDelete]: `Smazat`,
+  [T.EmailButtonDelete]: `Přestat sledovat`,
   [T.EmailFooter]: `Hlídání cen letů zajišťuje aplikace Flight Watchdog.`,
   [T.EmailWatcherListHeader]: `Seznam hlídačů letů`,
   [T.EmailWatcherListDescription]: `Tento e-mail byl odeslán na základě Vašeho požadavku na smazání hlídače letu na webu {?}. Po kliknutí na tlačítko Smazat budete přesměrováni na výsledky vyhledávání daného letu a budete vyzváni k potrvzení smazání.`,

@@ -17,7 +17,7 @@ z Londýn (LON) do Praha (PRG) a zpět\
 Hlídaná cena\
 Vývoj cenyLimit ceny 6000 CZK\
 Rezervovat\
-Smazat\
+Přestat sledovat\
 Podobné nabídky (lidé právě kupují)\
 3 500 CZK - 16. 12. 2018 až 25. 12. 2018 -> Zobrazit\
 3 500 CZK - 16. 12. 2018 až 25. 12. 2018 -> Zobrazit\
@@ -29,7 +29,7 @@ Hlídaná cena\
 Vývoj ceny\
 Limit ceny 6000 CZK\
 Rezervovat\
-Smazat\
+Přestat sledovat\
 Podobné nabídky (lidé právě kupují)\
 3 500 CZK - 16. 12. 2018 až 25. 12. 2018 -> Zobrazit\
 3 500 CZK - 16. 12. 2018 až 25. 12. 2018 -> Zobrazit\

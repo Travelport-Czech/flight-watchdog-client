@@ -40,7 +40,7 @@ export const enTranslation: TranslationKeys = {
   [T.EmailButtonShowResult]: `Book`,
   [T.EmailButtonContinueWatchingPrefixText]: `Important: Flight tracking is stopped once we find a lower price. If you want to keep tracking the price, please confirm here:`,
   [T.EmailButtonContinueWatching]: `Continue tracking`,
-  [T.EmailButtonDelete]: `Delete`,
+  [T.EmailButtonDelete]: `Stop watching`,
   [T.EmailFooter]: `Provided by Flight Watchdog.`,
   [T.EmailWatcherListHeader]: `List of your flight watchdogs`,
   [T.EmailWatcherListDescription]: `This email was sent to you based on your request to delete the flight watcher on {?}. When you click Delete, you will be redirected to flight search results and you will be prompted to delete the flight.`,
