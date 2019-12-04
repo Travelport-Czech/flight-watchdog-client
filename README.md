@@ -7,7 +7,6 @@ The Flight Watchdog is a tool for daily flight price tracking. The flight tracki
 ## Requirements
 
 * Node (>8.10)
-* [Yarn](https://yarnpkg.com)
 
 ## Prepare development environment
 
@@ -17,7 +16,7 @@ Clone project
 ```
 Install dependencies
 ```bash
-> yarn install
+> npm install
 ```
 Run tests
 ```bash
@@ -75,7 +74,7 @@ var flightWatchdogClientMobileCheck = function() {
   return check;
 };
 if (!flightWatchdogClientMobileCheck()) { 
-  var font = document.createElement('script');
+  var font = document.createElement('link');
   font.href = 'https://fonts.googleapis.com/css?family=Roboto';
   font.rel = 'stylesheet'
   document.getElementsByTagName('head')[0].appendChild(font);
