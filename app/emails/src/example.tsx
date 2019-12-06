@@ -45,6 +45,7 @@ export const showEmail = async (emailName: string) => {
 
 const agencySettings: AgencyParams = {
   emailFrom: new ValidEmail('agency@example.cz'),
+  emailReplyTo: new ValidEmail('agencyReplyTo@example.cz'),
   dealerId: undefined,
   frontendUrl: new ValidUrl('https://example.cz')
 }
