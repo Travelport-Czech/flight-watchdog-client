@@ -30,14 +30,7 @@
     "no-let": false,
     "no-object-mutation": true,
     "no-delete": true,
-    "prettier": [
-      true,
-      {
-        "singleQuote": true,
-        "semi": false,
-        "printWidth": 120
-      }
-    ]
+    "prettier": true
   },
   "rulesDirectory": ["../../node_modules/tslint-eslint-rules/dist/rules", "../../node_modules/tslint-microsoft-contrib"]
 }
