@@ -14,6 +14,7 @@ export const createEmailRawBegin = (
   content: string,
   emailTo: ValidEmail,
   emailFrom: ValidEmail,
+  emailReplyTo: ValidEmail,
   lang: ValidLanguage
 ): string => {
   // tslint:disable-next-line:no-let
@@ -30,6 +31,7 @@ export const createEmailRawBegin = (
   raw = raw.replace(/\{subject\}/g, '=?utf-8?B?' + subjectBase64 + '?=')
   raw = raw.replace(/\{emailFromName\}/g, '=?utf-8?B?' + noReplyName + '?=')
   raw = raw.replace(/\{emailFrom\}/g, emailFrom.toString())
+  raw = raw.replace(/\{emailReplyTo\}/g, emailReplyTo.toString())
   raw = raw.replace(/\{content\}/g, htmlBase64)
 
   return raw

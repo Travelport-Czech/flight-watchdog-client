@@ -1,4 +1,4 @@
-const os = require('os');
+const os = require('os')
 const path = require('path')
 const Dotenv = require('dotenv-webpack')
 
@@ -27,13 +27,13 @@ const config = {
       {
         use: [
           {
-            loader: 'cache-loader',
+            loader: 'cache-loader'
           },
           {
-              loader: 'thread-loader',
-              options: {
-                  workers: os.cpus().length / 2,
-              },
+            loader: 'thread-loader',
+            options: {
+              workers: os.cpus().length / 2
+            }
           },
           {
             loader: 'babel-loader?cacheDirectory=true',
@@ -53,8 +53,8 @@ const config = {
                 ]
               ],
               presets: [['@babel/preset-env'], '@babel/typescript', '@babel/preset-react']
-            },
-          },
+            }
+          }
         ],
         test: /\.(ts|js)x?$/
       }

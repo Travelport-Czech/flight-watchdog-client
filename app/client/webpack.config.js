@@ -1,4 +1,4 @@
-const os = require('os');
+const os = require('os')
 const path = require('path')
 const Dotenv = require('dotenv-webpack')
 const Visualizer = require('webpack-visualizer-plugin')
@@ -36,13 +36,13 @@ const clientConfig = {
       {
         use: [
           {
-            loader: 'cache-loader',
+            loader: 'cache-loader'
           },
           {
-              loader: 'thread-loader',
-              options: {
-                  workers: os.cpus().length / 2,
-              },
+            loader: 'thread-loader',
+            options: {
+              workers: os.cpus().length / 2
+            }
           },
           {
             loader: 'babel-loader?cacheDirectory=true',
@@ -61,9 +61,13 @@ const clientConfig = {
                   }
                 ]
               ],
-              presets: [['@babel/preset-env', { targets: '> 0.25%, not dead' }], '@babel/typescript', '@babel/preset-react']
-            },
-          },
+              presets: [
+                ['@babel/preset-env', { targets: '> 0.25%, not dead' }],
+                '@babel/typescript',
+                '@babel/preset-react'
+              ]
+            }
+          }
         ],
         test: /\.(ts|js)x?$/
       }

@@ -2,6 +2,7 @@ import { ValidEmail, ValidNumber, ValidUrl } from '@travelport-czech/valid-objec
 
 export interface AgencyParams {
   readonly emailFrom: ValidEmail
+  readonly emailReplyTo: ValidEmail
   readonly dealerId?: ValidNumber
   readonly frontendUrl: ValidUrl
 }
