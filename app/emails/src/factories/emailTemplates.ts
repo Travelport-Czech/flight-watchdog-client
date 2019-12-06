@@ -14,6 +14,8 @@ export const emailTemplate = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Trans
 
 export const rawEmailTemplate = `From: {emailFromName} <{emailFrom}>
 To: {emailTo}
+Reply-To: {emailReplyTo}
+Return-Path: {emailFrom}
 Subject: {subject}
 MIME-Version: 1.0
 Content-Type: multipart/mixed; boundary="NextPart"

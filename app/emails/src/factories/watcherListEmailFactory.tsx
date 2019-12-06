@@ -16,7 +16,7 @@ export const createWatcherListEmailRaw = async (
   const { email, lang } = watcherFullInfoList[0].watcher
   const subject = renderToStaticMarkup(<Text name={TranslationEnum.EmailWatcherListHeader} lang={lang} />)
   const content = await createWatchersListEmail(watcherFullInfoList, agencyParams, false)
-  const rawEmail = createEmailRawBegin(subject, content, email, agencyParams.emailFrom, lang)
+  const rawEmail = createEmailRawBegin(subject, content, email, agencyParams.emailFrom, agencyParams.emailReplyTo, lang)
 
   const attachments = await createAttachmentRawFromWatcherList(createImage, watcherFullInfoList)
 
