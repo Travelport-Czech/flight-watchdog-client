@@ -90,7 +90,8 @@ export const buttonLinkHovered: CSSProperties = {
 export const crossButton: CSSProperties = {
   cursor: 'pointer',
   display: 'block',
-  fontSize: '20px',
+  fontSize: '40px',
+  lineHeight: '33px',
   position: 'absolute',
   right: '10px',
   top: '5px',
