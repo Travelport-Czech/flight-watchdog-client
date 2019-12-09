@@ -1,5 +1,4 @@
 import * as actions from '@client/actions'
-import { isAllowedToAddWatcher } from '@client/functions'
 import { Props } from '@client/Props'
 import { ContinueWatchingPage } from '@client/reactComponents/pages/ContinueWatchingPage'
 import { CreateFormPage } from '@client/reactComponents/pages/CreateFormPage'
@@ -28,6 +27,11 @@ export class App extends React.Component<Props, State> {
 
   public readonly componentDidMount = async () => {
     await this.init(this.props)
+    document.addEventListener('scroll', this.handleClose)
+  }
+
+  public componentWillUnmount() {
+    document.removeEventListener('scroll', this.handleClose)
   }
 
   public readonly componentWillReceiveProps = async (nextProps: Readonly<Props>) => {
@@ -87,13 +91,6 @@ export class App extends React.Component<Props, State> {
   }
 
   private readonly handleClose = async () => {
-    const { token, apiUrl } = this.props.clientSettings
-    const canCreateWatcher = await isAllowedToAddWatcher(token, apiUrl)
-    if (!canCreateWatcher) {
-      this.setState({ stepToShow: StepToShow.none })
-
-      return
-    }
     this.setState({ stepToShow: StepToShow.none })
   }
 
@@ -218,7 +215,7 @@ export class App extends React.Component<Props, State> {
 
     return (
       <React.Fragment>
-        <div style={styles.overlay} />
+        <div style={styles.overlay} onClick={this.handleClose} role="button" tabIndex={-1} />
         <CreateFormPage
           email={email}
           showBadEmailError={showBadEmailError}
