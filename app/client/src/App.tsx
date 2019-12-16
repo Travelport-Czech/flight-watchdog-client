@@ -215,7 +215,7 @@ export class App extends React.Component<Props, State> {
 
     return (
       <React.Fragment>
-        <div style={styles.overlay} onClick={this.handleClose} role="button" tabIndex={-1} />
+        <div style={styles.overlay} role="button" tabIndex={-1} />
         <CreateFormPage
           email={email}
           showBadEmailError={showBadEmailError}
