@@ -73,7 +73,8 @@ id_dealer=10\
 export const createWatcherLinks = (watcher: WatcherParams, agencyParams: AgencyParams): WatcherLinks => {
   const { dealerId, frontendUrl } = agencyParams
   const dealerIdUrlPart = dealerId ? '&dealer_id=' + dealerId.toString() : ''
-  const resultLinkString = frontendUrl.toString() + createResultLink(watcher, watcher.lang) + dealerIdUrlPart
+  const utmPart = `&utm_source=watchdog&utm_medium=email&utm_campaign=watchdog-sa`
+  const resultLinkString = frontendUrl.toString() + createResultLink(watcher, watcher.lang) + dealerIdUrlPart + utmPart
 
   const resultLink = new ValidUrl(`${resultLinkString}&${urlParamsConst.result}=`)
 
