@@ -27,11 +27,6 @@ export class App extends React.Component<Props, State> {
 
   public readonly componentDidMount = async () => {
     await this.init(this.props)
-    document.addEventListener('scroll', this.handleClose)
-  }
-
-  public componentWillUnmount() {
-    document.removeEventListener('scroll', this.handleClose)
   }
 
   public readonly componentWillReceiveProps = async (nextProps: Readonly<Props>) => {
