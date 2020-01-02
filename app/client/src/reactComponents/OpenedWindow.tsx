@@ -29,6 +29,8 @@ export class OpenedWindow extends React.Component<Props> {
       arrival
     } = this.props.flightParams
 
+    const section1textClientStyle = lang.toString() === 'en' ? styles.section1textClientEn : styles.section1textClient
+
     return (
       <div style={styles.windowWrapper}>
         <div
@@ -42,7 +44,7 @@ export class OpenedWindow extends React.Component<Props> {
         >
           <div style={styles.section1client}>
             <CrossButton onClick={this.props.handleClose} />
-            <div style={styles.section1textClient}>
+            <div style={section1textClientStyle}>
               <Text name={TranslationEnum.ClientTitle} lang={lang} />
             </div>
           </div>

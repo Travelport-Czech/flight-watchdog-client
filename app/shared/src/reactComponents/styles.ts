@@ -144,6 +144,14 @@ export const section1textClient: CSSProperties = {
   paddingTop: '30px'
 }
 
+export const section1textClientEn: CSSProperties = {
+  ...section1textClient,
+  fontSize: '1.7em',
+  lineHeight: '2.2em',
+  width: '100px',
+  marginLeft: '20px'
+}
+
 export const section2: CSSProperties = {
   backgroundColor: secondaryBackgroundColor,
   minHeight: '35px',
