@@ -52,7 +52,7 @@ export class Text extends React.Component<Props> {
     const result = parts.reduce((acc: React.ReactNode[], current: string, index: number): React.ReactNode[] => {
       acc.push(
         <React.Fragment key={index}>
-          {current.replace('{_}', '\u00a0')}
+          {current.replace(/{_}/g, '\u00a0')}
           {children[index]}
         </React.Fragment>
       )
