@@ -6,7 +6,7 @@ describe('Change language', function() {
     it('English', function() {
         cy.visit('')
         setOtpions({lang: 'en'})
-        cy.contains('Watching the price for you!')
+        cy.contains('Keep an')
         cy.contains('Prague - Ruzyne')
         cy.contains('London')
         cy.get('.content input').type('michal@email.cz')
