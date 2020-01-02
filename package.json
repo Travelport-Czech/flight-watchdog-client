@@ -108,7 +108,7 @@
     "tslint-react": "^4.0.0",
     "typescript": "^3.7.3",
     "wait-on": "^3.3.0",
-    "webpack": "^4.41.2",
+    "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-visualizer-plugin": "^0.1.11",
     "xlsx": "^0.14.4"
