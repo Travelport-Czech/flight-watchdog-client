@@ -10,6 +10,9 @@ The Flight Watchdog is a tool for daily flight price tracking. The flight tracki
 
 ## Prepare development environment
 
+Authenticating to GitHub Packages
+see [there](https://help.github.com/en/github/managing-packages-with-github-packages/configuring-npm-for-use-with-github-packages#authenticating-to-github-packages)
+
 Clone project
 ```bash
 > git clone git@github.com:Travelport-Czech/flight-watchdog-client.git
