@@ -119,6 +119,10 @@ const createWatcherFullInfo = (lang: ValidLanguage): WatcherFullInfo => {
   }
 }
 
+const createLinkToPageWatcherDelete = (watcherId: ValidString) => {
+  return new ValidUrl('https://www.testWatcherDeleted.url')
+}
+
 const createLowerPriceEmailContent = async (lang: ValidLanguage): Promise<string> => {
   const price = new ValidPrice('5000 CZK')
 
@@ -130,13 +134,18 @@ const createLowerPriceEmailContent = async (lang: ValidLanguage): Promise<string
 const createMarketingEmailContent = async (lang: ValidLanguage): Promise<string> => {
   const watcherFullInfo = createWatcherFullInfo(lang)
 
-  return createMarketingEmail([watcherFullInfo, watcherFullInfo], agencySettings, true)
+  return createMarketingEmail(createLinkToPageWatcherDelete, [watcherFullInfo, watcherFullInfo], agencySettings, true)
 }
 
 const createWatcherListEmailContent = async (lang: ValidLanguage): Promise<string> => {
   const watcherFullInfo = createWatcherFullInfo(lang)
 
-  return createWatchersListEmail([watcherFullInfo, watcherFullInfo], agencySettings, true)
+  return createWatchersListEmail(
+    createLinkToPageWatcherDelete,
+    [watcherFullInfo, watcherFullInfo],
+    agencySettings,
+    true
+  )
 }
 
 // set as global function

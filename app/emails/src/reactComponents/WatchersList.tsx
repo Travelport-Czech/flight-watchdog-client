@@ -11,13 +11,14 @@ import { Price } from '@shared/reactComponents/Price'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidLanguage } from '@travelport-czech/valid-objects-ts'
+import { ValidLanguage, ValidString, ValidUrl } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 
 interface Props {
   readonly watchersFullInfoList: WatcherFullInfo[]
   readonly agencyParams: AgencyParams
   readonly showSvg?: boolean
+  createLinkToPageWatcherDelete(watcherId: ValidString): ValidUrl
 }
 
 const createAdditionalResults = (
@@ -57,7 +58,7 @@ const createAdditionalResults = (
 
 export class WatchersList extends React.Component<Props> {
   public render() {
-    const { watchersFullInfoList, agencyParams, showSvg } = this.props
+    const { watchersFullInfoList, agencyParams, showSvg, createLinkToPageWatcherDelete } = this.props
 
     if (watchersFullInfoList.length === 0) {
       throw new AppLogicError('Empty watcher list')
@@ -105,7 +106,7 @@ export class WatchersList extends React.Component<Props> {
               </td>
               <td>
                 <EmailButton
-                  link={watcherLinks.deleteLink}
+                  link={createLinkToPageWatcherDelete(watcher.id)}
                   text={TranslationEnum.EmailButtonDelete}
                   lang={lang}
                   style={{

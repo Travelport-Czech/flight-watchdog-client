@@ -5,17 +5,19 @@ import { AgencyParams } from '@emails/types/AgencyParams'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
+import { ValidString, ValidUrl } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
 export const createWatcherListEmailRaw = async (
   createImage: (html: string, width: number, height: number) => Promise<string>,
+  createLinkToPageWatcherDelete: (watcherId: ValidString) => ValidUrl,
   watcherFullInfoList: WatcherFullInfo[],
   agencyParams: AgencyParams
 ): Promise<string> => {
   const { email, lang } = watcherFullInfoList[0].watcher
   const subject = renderToStaticMarkup(<Text name={TranslationEnum.EmailWatcherListHeader} lang={lang} />)
-  const content = await createWatchersListEmail(watcherFullInfoList, agencyParams, false)
+  const content = await createWatchersListEmail(createLinkToPageWatcherDelete, watcherFullInfoList, agencyParams, false)
   const rawEmail = createEmailRawBegin(subject, content, email, agencyParams.emailFrom, agencyParams.emailReplyTo, lang)
 
   const attachments = await createAttachmentRawFromWatcherList(createImage, watcherFullInfoList)
@@ -24,6 +26,7 @@ export const createWatcherListEmailRaw = async (
 }
 
 export const createWatchersListEmail = async (
+  createLinkToPageWatcherDelete: (watcherId: ValidString) => ValidUrl,
   watcherFullInfoList: WatcherFullInfo[],
   agencyParams: AgencyParams,
   showSvg: boolean
@@ -33,6 +36,7 @@ export const createWatchersListEmail = async (
       watchersFullInfoList={watcherFullInfoList}
       agencyParams={agencyParams}
       showSvg={showSvg}
+      createLinkToPageWatcherDelete={createLinkToPageWatcherDelete}
     />
   )
 

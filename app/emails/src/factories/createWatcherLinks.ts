@@ -85,20 +85,8 @@ export const createWatcherLinks = (watcher: WatcherParams, agencyParams: AgencyP
       )
   )
 
-  const deleteLink = new ValidUrl(
-    waitPageString +
-      encodeURIComponent(
-        resultLinkString +
-          `&${urlParamsConst.delete}=` +
-          encodeURIComponent(watcher.id.toString()) +
-          `&${urlParamsConst.email}=` +
-          encodeURIComponent(watcher.email.toString())
-      )
-  )
-
   return {
     continueLink,
-    deleteLink,
     frontendUrl,
     resultLink
   }
