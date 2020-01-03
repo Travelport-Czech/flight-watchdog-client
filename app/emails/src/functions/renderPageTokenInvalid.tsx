@@ -9,6 +9,6 @@ import { renderToStaticMarkup } from 'react-dom/server'
  *
  * Is used by backend server
  */
-export const renderPageTokenInvalid = async (agencyParams: AgencyParams, watcherFullInfo: WatcherFullInfo) => {
+export const renderPageTokenInvalid = (agencyParams: AgencyParams, watcherFullInfo: WatcherFullInfo): string => {
   return renderToStaticMarkup(<PageTokenInvalid link={agencyParams.frontendUrl} lang={watcherFullInfo.watcher.lang} />)
 }

@@ -9,7 +9,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
  *
  * Is used by backend server
  */
-export const renderPageWatcherDeleted = async (agencyParams: AgencyParams, watcherFullInfo: WatcherFullInfo) => {
+export const renderPageWatcherDeleted = (agencyParams: AgencyParams, watcherFullInfo: WatcherFullInfo): string => {
   return renderToStaticMarkup(
     <PageWatcherDeleted link={agencyParams.frontendUrl} lang={watcherFullInfo.watcher.lang} />
   )
