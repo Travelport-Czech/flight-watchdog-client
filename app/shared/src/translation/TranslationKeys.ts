@@ -49,4 +49,7 @@ export interface TranslationKeys {
   readonly [T.EmailAdditionalResultsShow]: string
   readonly [T.GraphLegendPriceLimit]: string
   readonly [T.GraphLegendPriceTrend]: string
+  readonly [T.PageTokenNotValid]: string
+  readonly [T.PageContinueToWeb]: string
+  readonly [T.PageWatcherDeletedSuccess]: string
 }

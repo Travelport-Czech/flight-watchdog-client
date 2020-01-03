@@ -50,5 +50,8 @@ export const enTranslation: TranslationKeys = {
   [T.EmailAdditionalResultsHeader]: `Similar offers (people just buying)`,
   [T.EmailAdditionalResultsShow]: `Show`,
   [T.GraphLegendPriceLimit]: `Tracked price`,
-  [T.GraphLegendPriceTrend]: `Price trend`
+  [T.GraphLegendPriceTrend]: `Price trend`,
+  [T.PageTokenNotValid]: `Platnost odkazu již vypršela.`,
+  [T.PageWatcherDeletedSuccess]: `Hlídání letu bylo ukončeno.`,
+  [T.PageContinueToWeb]: `Kliknutím zde pokračujte na web {?}`
 }

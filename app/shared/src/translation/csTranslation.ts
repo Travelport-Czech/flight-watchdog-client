@@ -50,5 +50,8 @@ export const csTranslation: TranslationKeys = {
   [T.EmailAdditionalResultsHeader]: `Podobné nabídky (lidé právě kupují)`,
   [T.EmailAdditionalResultsShow]: `Zobrazit`,
   [T.GraphLegendPriceLimit]: `Hlídaná cena`,
-  [T.GraphLegendPriceTrend]: `Vývoj ceny`
+  [T.GraphLegendPriceTrend]: `Vývoj ceny`,
+  [T.PageTokenNotValid]: `Platnost odkazu již vypršela.`,
+  [T.PageWatcherDeletedSuccess]: `Hlídání letu bylo ukončeno.`,
+  [T.PageContinueToWeb]: `Kliknutím zde pokračujte na web {?}`
 }
