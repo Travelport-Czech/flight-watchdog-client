@@ -1,3 +1,4 @@
+const os = require('os')
 const path = require('path')
 const Dotenv = require('dotenv-webpack')
 
@@ -20,9 +21,18 @@ let plugins = [
 const config = {
   devtool: 'source-map',
   entry: entry,
-  mode: 'production',
+  mode: 'development',
   module: {
     rules: [
+      {
+        loader: 'cache-loader'
+      },
+      {
+        loader: 'thread-loader',
+        options: {
+          workers: os.cpus().length / 2
+        }
+      },
       {
         loader: 'babel-loader?cacheDirectory=true',
         options: {
@@ -40,14 +50,14 @@ const config = {
               }
             ]
           ],
-          presets: [['@babel/preset-env', { targets: '> 0.25%, not dead' }], '@babel/typescript', '@babel/preset-react']
+          presets: ['@babel/preset-env', '@babel/typescript', '@babel/preset-react']
         },
         test: /\.(ts|js)x?$/
       }
     ]
   },
   optimization: {
-    minimize: process.env.NODE_ENV === 'prod'
+    minimize: false
   },
   output: {
     filename: '[name].js',

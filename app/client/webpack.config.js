@@ -1,3 +1,4 @@
+const os = require('os')
 const path = require('path')
 const Dotenv = require('dotenv-webpack')
 const Visualizer = require('webpack-visualizer-plugin')
@@ -29,11 +30,20 @@ if (process.env.NODE_ENV !== 'test') {
 const clientConfig = {
   devtool: 'source-map',
   entry: entry,
-  mode: 'production',
+  mode: process.env.NODE_ENV === 'test' ? 'development' : 'production',
   module: {
     rules: [
       {
-        loader: 'babel-loader?cacheDirectory=true',
+        loader: 'cache-loader'
+      },
+      {
+        loader: 'thread-loader',
+        options: {
+          workers: os.cpus().length / 2
+        }
+      },
+      {
+        loader: 'babel-loader',
         options: {
           plugins: [
             '@babel/proposal-class-properties',
