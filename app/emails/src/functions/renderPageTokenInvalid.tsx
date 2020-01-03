@@ -1,6 +1,6 @@
 import { PageTokenInvalid } from '@emails/reactComponents/PageTokenInvalid'
-import { AgencyParams } from '@emails/types/AgencyParams'
-import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
+import { ValidLanguage } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
@@ -9,6 +9,8 @@ import { renderToStaticMarkup } from 'react-dom/server'
  *
  * Is used by backend server
  */
-export const renderPageTokenInvalid = (agencyParams: AgencyParams, watcherFullInfo: WatcherFullInfo): string => {
-  return renderToStaticMarkup(<PageTokenInvalid link={agencyParams.frontendUrl} lang={watcherFullInfo.watcher.lang} />)
+export const renderPageTokenInvalid = (): string => {
+  const lang = new ValidLanguage(SupportedLanguageEnum.en, Object.values(SupportedLanguageEnum))
+
+  return renderToStaticMarkup(<PageTokenInvalid lang={lang} />)
 }
