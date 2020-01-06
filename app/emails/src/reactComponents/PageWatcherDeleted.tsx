@@ -20,7 +20,7 @@ export class PageWatcherDeleted extends React.Component<Props> {
         <p>
           <a href={link.toString()}>
             <Text name={TranslationEnum.PageContinueToWeb} lang={lang}>
-              {link}
+              {link.toString()}
             </Text>
           </a>
         </p>
