@@ -10,5 +10,9 @@ import { renderToStaticMarkup } from 'react-dom/server'
  * Is used by backend server
  */
 export const renderPageWatcherDeleted = (agencyParams: AgencyParams, watcher: WatcherParams): string => {
-  return renderToStaticMarkup(<PageWatcherDeleted link={agencyParams.frontendUrl} lang={watcher.lang} />)
+  return renderToStaticMarkup(
+    <PageWatcherDeleted link={agencyParams.frontendUrl} lang={watcher.lang}>
+      {agencyParams.frontendUrl}
+    </PageWatcherDeleted>
+  )
 }
