@@ -1,6 +1,6 @@
 {
   "name": "@travelport-czech/flight-watchdog-client",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "CEE Systems Watchdog Client",
   "main": "dist-emails/emails/src/index.js",
   "types": "dist-emails/emails/src/index.d.ts",
