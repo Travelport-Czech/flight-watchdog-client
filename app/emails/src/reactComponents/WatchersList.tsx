@@ -102,13 +102,19 @@ export class WatchersList extends React.Component<Props> {
           <table>
             <tr>
               <td>
-                <EmailButton link={watcherLinks.resultLink} text={TranslationEnum.EmailButtonShowResult} lang={lang} />
+                <EmailButton
+                  link={watcherLinks.resultLink}
+                  text={TranslationEnum.EmailButtonShowResult}
+                  lang={lang}
+                  name="reserve"
+                />
               </td>
               <td>
                 <EmailButton
                   link={createLinkToPageWatcherDelete(watcher.id)}
                   text={TranslationEnum.EmailButtonDelete}
                   lang={lang}
+                  name="delete"
                   style={{
                     width: 'auto',
                     border: 'none',

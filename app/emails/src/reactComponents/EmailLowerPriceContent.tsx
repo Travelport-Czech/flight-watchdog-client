@@ -68,6 +68,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                   text={TranslationEnum.EmailButtonShowResult}
                   style={{ marginBottom: '20px' }}
                   lang={lang}
+                  name="reserve"
                 />
 
                 <WatcherPriceHistory watchersFullInfo={watcherFullInfo} showSvg={showSvg} />
@@ -80,6 +81,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                   text={TranslationEnum.EmailButtonContinueWatching}
                   style={{ marginBottom: '50px' }}
                   lang={lang}
+                  name="continue"
                 />
                 <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
                   <Text name={TranslationEnum.EmailFooter} lang={lang} />
