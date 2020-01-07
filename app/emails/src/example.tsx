@@ -119,8 +119,8 @@ const createWatcherFullInfo = (lang: ValidLanguage): WatcherFullInfo => {
   }
 }
 
-const createLinkToPageWatcherDelete = (watcherId: ValidString) => {
-  return new ValidUrl('https://www.testWatcherDeleted.url')
+const createLinkToPageWatcherDelete = (watcherId: ValidString): Promise<ValidUrl> => {
+  return Promise.resolve(new ValidUrl('https://www.testWatcherDeleted.url'))
 }
 
 const createLowerPriceEmailContent = async (lang: ValidLanguage): Promise<string> => {

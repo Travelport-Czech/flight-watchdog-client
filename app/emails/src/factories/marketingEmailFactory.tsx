@@ -11,7 +11,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 
 export const createMarketingEmailRaw = async (
   createImage: (html: string, width: number, height: number) => Promise<string>,
-  createLinkToPageWatcherDelete: (watcherId: ValidString) => ValidUrl,
+  createLinkToPageWatcherDelete: (watcherId: ValidString) => Promise<ValidUrl>,
   watcherFullInfoList: WatcherFullInfo[],
   agencyParams: AgencyParams
 ): Promise<string> => {
@@ -26,17 +26,24 @@ export const createMarketingEmailRaw = async (
 }
 
 export const createMarketingEmail = async (
-  createLinkToPageWatcherDelete: (watcherId: ValidString) => ValidUrl,
+  createLinkToPageWatcherDelete: (watcherId: ValidString) => Promise<ValidUrl>,
   watcherFullInfoList: WatcherFullInfo[],
   agencyParams: AgencyParams,
   showSvg: boolean
 ): Promise<string> => {
+  const linksToDeleteMap = new Map<string, ValidUrl>()
+  watcherFullInfoList.map(async item => {
+    linksToDeleteMap.set(item.watcher.id.toString(), await createLinkToPageWatcherDelete(item.watcher.id))
+  })
+
+  await Promise.all(watcherFullInfoList)
+
   const content = (
     <EmailMarketingContent
       watchersFullInfoList={watcherFullInfoList}
       showSvg={showSvg}
       agencyParams={agencyParams}
-      createLinkToPageWatcherDelete={createLinkToPageWatcherDelete}
+      linksToDeleteMap={linksToDeleteMap}
     />
   )
 

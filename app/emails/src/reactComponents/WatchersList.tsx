@@ -11,14 +11,14 @@ import { Price } from '@shared/reactComponents/Price'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidLanguage, ValidString, ValidUrl } from '@travelport-czech/valid-objects-ts'
+import { ValidLanguage, ValidUrl } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 
 interface Props {
   readonly watchersFullInfoList: WatcherFullInfo[]
   readonly agencyParams: AgencyParams
   readonly showSvg?: boolean
-  createLinkToPageWatcherDelete(watcherId: ValidString): ValidUrl
+  readonly linksToDeleteMap: Map<string, ValidUrl>
 }
 
 const createAdditionalResults = (
@@ -58,7 +58,7 @@ const createAdditionalResults = (
 
 export class WatchersList extends React.Component<Props> {
   public render() {
-    const { watchersFullInfoList, agencyParams, showSvg, createLinkToPageWatcherDelete } = this.props
+    const { watchersFullInfoList, agencyParams, showSvg, linksToDeleteMap } = this.props
 
     if (watchersFullInfoList.length === 0) {
       throw new AppLogicError('Empty watcher list')
@@ -74,6 +74,11 @@ export class WatchersList extends React.Component<Props> {
         watcher.flightType === 'return'
           ? TranslationEnum.ClientDestinationsReturn
           : TranslationEnum.ClientDestinationsOneway
+
+      const linkToDelete = linksToDeleteMap.get(watcher.id.toString())
+      if (!linkToDelete) {
+        throw new AppLogicError('Missing link to delete in Map.')
+      }
 
       return (
         <div key={index} style={styles.emailBlock}>
@@ -111,7 +116,7 @@ export class WatchersList extends React.Component<Props> {
               </td>
               <td>
                 <EmailButton
-                  link={createLinkToPageWatcherDelete(watcher.id)}
+                  link={linkToDelete}
                   text={TranslationEnum.EmailButtonDelete}
                   lang={lang}
                   name="delete"

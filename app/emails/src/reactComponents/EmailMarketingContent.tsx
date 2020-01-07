@@ -6,19 +6,19 @@ import { AppLogicError } from '@shared/errors/AppLogicError'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidString, ValidUrl } from '@travelport-czech/valid-objects-ts'
+import { ValidUrl } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 
 interface Props {
   readonly watchersFullInfoList: WatcherFullInfo[]
   readonly agencyParams: AgencyParams
   readonly showSvg?: boolean
-  createLinkToPageWatcherDelete(watcherId: ValidString): ValidUrl
+  readonly linksToDeleteMap: Map<string, ValidUrl>
 }
 
 export class EmailMarketingContent extends React.Component<Props> {
   public render() {
-    const { watchersFullInfoList, agencyParams, showSvg, createLinkToPageWatcherDelete } = this.props
+    const { watchersFullInfoList, agencyParams, showSvg, linksToDeleteMap } = this.props
 
     if (watchersFullInfoList.length === 0) {
       throw new AppLogicError('Empty watcher list')
@@ -53,7 +53,7 @@ export class EmailMarketingContent extends React.Component<Props> {
                     watchersFullInfoList={watchersFullInfoList}
                     agencyParams={agencyParams}
                     showSvg={showSvg}
-                    createLinkToPageWatcherDelete={createLinkToPageWatcherDelete}
+                    linksToDeleteMap={linksToDeleteMap}
                   />
                 </div>
                 <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
