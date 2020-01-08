@@ -6,7 +6,7 @@ The Flight Watchdog is a tool for daily flight price tracking. The flight tracki
 
 ## Requirements
 
-* Node (>8.10)
+* Node (>10)
 
 ## Prepare development environment
 
