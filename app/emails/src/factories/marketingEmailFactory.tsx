@@ -13,17 +13,19 @@ import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { secondaryBackgroundColor } from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
+import { ValidString, ValidUrl } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
 export const createMarketingEmailRaw = async (
   createImage: CreateImageCallback,
+  createLinkToPageWatcherDelete: (watcherId: ValidString) => Promise<ValidUrl>,
   watcherFullInfoList: WatcherFullInfo[],
   agencyParams: AgencyParams
 ): Promise<string> => {
   const { email, lang } = watcherFullInfoList[0].watcher
   const subject = renderToStaticMarkup(<Text name={TranslationEnum.EmailMarketingHeader} lang={lang} />)
-  const content = await createMarketingEmail(watcherFullInfoList, agencyParams, false)
+  const content = await createMarketingEmail(createLinkToPageWatcherDelete, watcherFullInfoList, agencyParams, false)
   const rawEmail = createEmailRawBegin(subject, content, email, agencyParams.emailFrom, agencyParams.emailReplyTo, lang)
 
   const section1 = await createAttachmentFromReact(
@@ -50,12 +52,25 @@ export const createMarketingEmailRaw = async (
 }
 
 export const createMarketingEmail = async (
+  createLinkToPageWatcherDelete: (watcherId: ValidString) => Promise<ValidUrl>,
   watcherFullInfoList: WatcherFullInfo[],
   agencyParams: AgencyParams,
   showSvg: boolean
 ): Promise<string> => {
+  const linksToDeleteMap = new Map<string, ValidUrl>()
+  const promises = watcherFullInfoList.map(async item => {
+    linksToDeleteMap.set(item.watcher.id.toString(), await createLinkToPageWatcherDelete(item.watcher.id))
+  })
+
+  await Promise.all(promises)
+
   const content = (
-    <EmailMarketingContent watchersFullInfoList={watcherFullInfoList} showSvg={showSvg} agencyParams={agencyParams} />
+    <EmailMarketingContent
+      watchersFullInfoList={watcherFullInfoList}
+      showSvg={showSvg}
+      agencyParams={agencyParams}
+      linksToDeleteMap={linksToDeleteMap}
+    />
   )
 
   return emailTemplate.replace(/\{content\}/g, renderToStaticMarkup(content))

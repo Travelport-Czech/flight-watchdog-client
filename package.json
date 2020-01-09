@@ -14,7 +14,7 @@
     "directory": "@travelport-czech/flight-watchdog-client"
   },
   "engines": {
-    "node": ">=8.10"
+    "node": ">=10"
   },
   "scripts": {
     "prepublishOnly": "npm run build-prod",
@@ -42,24 +42,22 @@
     "open": "concurrently \"npm:build-client-test-watch\" \"npm:build-emails-test-watch\" \"npm:http-server\" \"npm:api-server\" \"opn http://localhost:8080\""
   },
   "dependencies": {
-    "@sentry/browser": "^5.3.0",
+    "@sentry/browser": "^5.11.0",
     "@travelport-czech/valid-objects-ts": "^1.1.4",
     "bufferutil": "^4.0.1",
-    "dayjs": "^1.8.16",
+    "dayjs": "^1.8.17",
     "email-validator": "^2.0.4",
     "extendable-error": "^0.1.5",
     "hash-files": "^1.1.1",
     "js-cookie": "^2.2.0",
-    "number-format.js": "^2.0.8",
-    "numeral": "^2.0.6",
+    "number-format.js": "^2.0.9",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "recharts": "^1.6.2",
+    "recharts": "^1.8.5",
     "request": "^2.88.0",
-    "request-promise-native": "^1.0.7",
+    "request-promise-native": "^1.0.8",
     "utf-8-validate": "^5.0.2",
-    "uuid": "^3.3.2",
-    "valid-url": "^1.0.9"
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.5",

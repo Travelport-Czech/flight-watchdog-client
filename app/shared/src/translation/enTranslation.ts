@@ -13,13 +13,13 @@ export const enTranslation: TranslationKeys = {
   [T.ClientButtonYes]: `Yes`,
   [T.ClientButtonClose]: `Close`,
   [T.ClientMessageCreateWatcherDone]: `Done. When we find a lower price, we will send you an email.`,
-  [T.ClientMessageCreateWatcherWorking]: `I'm creating a record with a new watcher, please wait...`,
+  [T.ClientMessageCreateWatcherWorking]: `I'm creating a record with a new tracking, please wait...`,
   [T.ClientMessageDeleteWatcherWorking]: `I'm deleting a record with the watcher, please wait...`,
   [T.ClientMessageError]: `Ooops, something went wrong.`,
   [T.ClientMessageWatcherDeleteById]: `Do you want to delete the watcher?`,
   [T.ClientMessageContinueWatching]: `Do you want to keep tracking the price of this flight?`,
-  [T.ClientMessageWatcherAlreadyExists]: `There is already one watcher for this email. Do you want to delete it and create a new watcher?`,
-  [T.ClientMessageMoreWatchersAlreadyExists]: `You have reached the limit of watchers for this email. If you want to track this flight, you have to delete one of the existing watchers. A list of watchers has been sent to your email and you can edit it.`,
+  [T.ClientMessageWatcherAlreadyExists]: `There is already one flight tracking for this email. Do you want to delete it and create a new tracking?`,
+  [T.ClientMessageMoreWatchersAlreadyExists]: `You have reached the limit of flight trackings for this email. If you want to track this flight, you have to delete one of the existing trackings. A list of watchers has been sent to your email and you can edit it.`,
   [T.ClientMessageMinimalizedWindow]: `Looking for a cheaper flight? Click here.`,
   [T.ClientInputEmailPlaceholder]: `enter your email...`,
   [T.ClientTitle]: `Keep an{_}eye on{_}the{_}best ticket price!`,
@@ -51,5 +51,8 @@ export const enTranslation: TranslationKeys = {
   [T.EmailAdditionalResultsHeader]: `Similar offers (people just buying)`,
   [T.EmailAdditionalResultsShow]: `Show`,
   [T.GraphLegendPriceLimit]: `Tracked price`,
-  [T.GraphLegendPriceTrend]: `Price trend`
+  [T.GraphLegendPriceTrend]: `Price trend`,
+  [T.PageTokenNotValid]: `Link validity has expired.`,
+  [T.PageWatcherDeletedSuccess]: `Flight tracking has been cancel.`,
+  [T.PageContinueToWeb]: `Click to continue to {?}`
 }

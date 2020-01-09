@@ -12,17 +12,19 @@ import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { secondaryBackgroundColor } from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
+import { ValidString, ValidUrl } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
 export const createWatcherListEmailRaw = async (
   createImage: (html: string, width: number, height: number) => Promise<string>,
+  createLinkToPageWatcherDelete: (watcherId: ValidString) => Promise<ValidUrl>,
   watcherFullInfoList: WatcherFullInfo[],
   agencyParams: AgencyParams
 ): Promise<string> => {
   const { email, lang } = watcherFullInfoList[0].watcher
   const subject = renderToStaticMarkup(<Text name={TranslationEnum.EmailWatcherListHeader} lang={lang} />)
-  const content = await createWatchersListEmail(watcherFullInfoList, agencyParams, false)
+  const content = await createWatchersListEmail(createLinkToPageWatcherDelete, watcherFullInfoList, agencyParams, false)
   const rawEmail = createEmailRawBegin(subject, content, email, agencyParams.emailFrom, agencyParams.emailReplyTo, lang)
 
   const section1 = await createAttachmentFromReact(
@@ -49,15 +51,24 @@ export const createWatcherListEmailRaw = async (
 }
 
 export const createWatchersListEmail = async (
+  createLinkToPageWatcherDelete: (watcherId: ValidString) => Promise<ValidUrl>,
   watcherFullInfoList: WatcherFullInfo[],
   agencyParams: AgencyParams,
   showSvg: boolean
 ): Promise<string> => {
+  const linksToDeleteMap = new Map<string, ValidUrl>()
+  const promises = watcherFullInfoList.map(async item => {
+    linksToDeleteMap.set(item.watcher.id.toString(), await createLinkToPageWatcherDelete(item.watcher.id))
+  })
+
+  await Promise.all(promises)
+
   const content = (
     <EmailWatchersListContent
       watchersFullInfoList={watcherFullInfoList}
       agencyParams={agencyParams}
       showSvg={showSvg}
+      linksToDeleteMap={linksToDeleteMap}
     />
   )
 

@@ -1,4 +1,3 @@
-const os = require('os')
 const path = require('path')
 const Dotenv = require('dotenv-webpack')
 const Visualizer = require('webpack-visualizer-plugin')
@@ -27,6 +26,27 @@ if (process.env.NODE_ENV !== 'test') {
   )
 }
 
+const babelOptions = {
+  plugins: [
+    '@babel/proposal-class-properties',
+    '@babel/proposal-object-rest-spread',
+    [
+      'module-resolver',
+      {
+        alias: {
+          '@client': './app/client/src',
+          '@shared': './app/shared/src'
+        },
+        root: ['./src']
+      }
+    ]
+  ],
+  presets: [
+    ['@babel/preset-env', { targets: '> 0.25%, not dead' }],
+    '@babel/preset-react'
+  ]
+}
+
 const clientConfig = {
   devtool: 'source-map',
   entry: entry,
@@ -34,42 +54,33 @@ const clientConfig = {
   module: {
     rules: [
       {
+        test: /\.(ts)x?$/,
+        exclude: process.env.NODE_ENV === 'test' ? /node_modules/ : undefined,
         use: [
           {
             loader: 'cache-loader'
           },
           {
-            loader: 'thread-loader',
-            options: {
-              workers: os.cpus().length / 2
-            }
+            loader: 'babel-loader',
+            options: babelOptions
           },
           {
-            loader: 'babel-loader?cacheDirectory=true',
-            options: {
-              plugins: [
-                '@babel/proposal-class-properties',
-                '@babel/proposal-object-rest-spread',
-                [
-                  'module-resolver',
-                  {
-                    alias: {
-                      '@client': './app/client/src',
-                      '@shared': './app/shared/src'
-                    },
-                    root: ['./src']
-                  }
-                ]
-              ],
-              presets: [
-                ['@babel/preset-env', { targets: '> 0.25%, not dead' }],
-                '@babel/typescript',
-                '@babel/preset-react'
-              ]
-            }
+            loader: 'ts-loader'
           }
-        ],
-        test: /\.(ts|js)x?$/
+        ]
+      },
+      {
+        test: /\.(js)x?$/,
+        exclude: process.env.NODE_ENV === 'test' ? /node_modules/ : undefined,
+        use: [
+          {
+            loader: 'cache-loader'
+          },
+          {
+            loader: 'babel-loader',
+            options: babelOptions
+          }
+        ]
       }
     ]
   },

@@ -50,7 +50,12 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                     <table cellSpacing="0" cellPadding="0" style={{ textAlign: 'center', margin: '0px auto' }}>
                       <tr>
                         <td style={{ background: styles.buttonColor }}>
-                          <EmailButton link={resultLink} text={TranslationEnum.EmailButtonShowResult} lang={lang} />
+                          <EmailButton
+                            link={resultLink}
+                            text={TranslationEnum.EmailButtonShowResult}
+                            lang={lang}
+                            name="reserve"
+                          />
                         </td>
                       </tr>
                     </table>
@@ -78,6 +83,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                             link={continueLink}
                             text={TranslationEnum.EmailButtonContinueWatching}
                             lang={lang}
+                            name="continue"
                           />
                         </td>
                       </tr>

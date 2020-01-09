@@ -11,13 +11,14 @@ import { Price } from '@shared/reactComponents/Price'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidLanguage } from '@travelport-czech/valid-objects-ts'
+import { ValidLanguage, ValidUrl } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 
 interface Props {
   readonly watchersFullInfoList: WatcherFullInfo[]
   readonly agencyParams: AgencyParams
   readonly showSvg?: boolean
+  readonly linksToDeleteMap: Map<string, ValidUrl>
 }
 
 const createAdditionalResults = (
@@ -102,7 +103,7 @@ export class WatchersList extends React.Component<Props> {
   }
 
   public render() {
-    const { watchersFullInfoList, agencyParams, showSvg } = this.props
+    const { watchersFullInfoList, agencyParams, showSvg, linksToDeleteMap } = this.props
 
     if (watchersFullInfoList.length === 0) {
       throw new AppLogicError('Empty watcher list')
@@ -113,6 +114,11 @@ export class WatchersList extends React.Component<Props> {
     const lines = watchersFullInfoList.map((watcherFullInfo: WatcherFullInfo, index) => {
       const { watcher, additionalResults } = watcherFullInfo
       const watcherLinks = createWatcherLinks(watcher, agencyParams)
+
+      const linkToDelete = linksToDeleteMap.get(watcher.id.toString())
+      if (!linkToDelete) {
+        throw new AppLogicError('Missing link to delete in Map.')
+      }
 
       return (
         <div key={index}>
@@ -133,14 +139,16 @@ export class WatchersList extends React.Component<Props> {
                         link={watcherLinks.resultLink}
                         text={TranslationEnum.EmailButtonShowResult}
                         lang={lang}
+                        name="reserve"
                       />
                     </td>
                     <td>&nbsp;</td>
                     <td style={{ background: styles.buttonColor }}>
                       <EmailButton
-                        link={watcherLinks.deleteLink}
+                        link={linkToDelete}
                         text={TranslationEnum.EmailButtonDelete}
                         lang={lang}
+                        name="delete"
                       />
                     </td>
                     <td />

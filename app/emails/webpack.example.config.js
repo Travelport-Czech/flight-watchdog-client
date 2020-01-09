@@ -18,6 +18,24 @@ let plugins = [
   })
 ]
 
+const babelOptions = {
+  plugins: [
+    '@babel/proposal-class-properties',
+    '@babel/proposal-object-rest-spread',
+    [
+      'module-resolver',
+      {
+        alias: {
+          '@emails': './app/emails/src',
+          '@shared': './app/shared/src'
+        },
+        root: ['./src']
+      }
+    ]
+  ],
+  presets: ['@babel/preset-env', '@babel/preset-react']
+}
+
 const config = {
   devtool: 'source-map',
   entry: entry,
@@ -25,40 +43,38 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.(ts)x?$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'cache-loader'
           },
           {
-            loader: 'thread-loader',
-            options: {
-              workers: os.cpus().length / 2
-            }
+            loader: 'babel-loader',
+            options: babelOptions
           },
           {
-            loader: 'babel-loader?cacheDirectory=true',
-            options: {
-              plugins: [
-                '@babel/proposal-class-properties',
-                '@babel/proposal-object-rest-spread',
-                [
-                  'module-resolver',
-                  {
-                    alias: {
-                      '@emails': './app/emails/src',
-                      '@shared': './app/shared/src'
-                    },
-                    root: ['./src']
-                  }
-                ]
-              ],
-              presets: [['@babel/preset-env'], '@babel/typescript', '@babel/preset-react']
-            }
+            loader: 'ts-loader'
           }
-        ],
-        test: /\.(ts|js)x?$/
+        ]
+      },
+      {
+        test: /\.(js)x?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'cache-loader'
+          },
+          {
+            loader: 'babel-loader',
+            options: babelOptions
+          }
+        ]
       }
     ]
+  },
+  optimization: {
+    minimize: false
   },
   output: {
     filename: '[name].js',

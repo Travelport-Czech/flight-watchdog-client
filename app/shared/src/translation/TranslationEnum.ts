@@ -47,5 +47,8 @@ export enum TranslationEnum {
   EmailAdditionalResultsHeader = 'EmailAdditionalResultsHeader',
   EmailAdditionalResultsShow = 'EmailAdditionalResultsShow',
   GraphLegendPriceLimit = 'GraphLegendPriceLimit',
-  GraphLegendPriceTrend = 'GraphLegendPriceTrend'
+  GraphLegendPriceTrend = 'GraphLegendPriceTrend',
+  PageTokenNotValid = 'PageTokenNotValid',
+  PageContinueToWeb = 'PageContinueToWeb',
+  PageWatcherDeletedSuccess = 'PageWatcherDeletedSuccess'
 }
