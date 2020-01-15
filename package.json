@@ -69,7 +69,7 @@
     "@hapi/inert": "^5.2.2",
     "@types/fs-extra": "^7.0.0",
     "@types/google.analytics": "^0.0.39",
-    "@types/js-cookie": "^2.2.2",
+    "@types/js-cookie": "^2.2.4",
     "@types/node": "^12.0.2",
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.4",
