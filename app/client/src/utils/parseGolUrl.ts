@@ -1,6 +1,6 @@
 import { getUrlParameterValue } from '@client/utils/getUrlParameterValue'
 import { urlParamsConst } from '@shared/utils/consts'
-import { ValidDate, ValidEmail, ValidIATALocationList, ValidString } from '@travelport-czech/valid-objects-ts'
+import { ValidDate, ValidEmail, ValidIATALocationList } from '@travelport-czech/valid-objects-ts'
 
 interface FlightData {
   readonly flightType: 'return' | 'oneway'
@@ -9,8 +9,6 @@ interface FlightData {
   readonly departure: ValidDate
   readonly arrival?: ValidDate
   readonly emailToContinueWatching?: ValidEmail
-  readonly watcherIdToDelete?: ValidString
-  readonly emailForWatcherDelete?: ValidEmail
 }
 
 export const parseGolUrl = (url: string): undefined | FlightData => {
@@ -31,8 +29,6 @@ const parseOneWayFlight = (url: string): undefined | FlightData => {
   const departure = getUrlParameterValue(url, 'flights[0][departureDate]=')
   const step = getUrlParameterValue(url, 'step').toLowerCase() === 'choosefromfour'
   const emailToContinueWatching = getUrlParameterValue(url, urlParamsConst.continue)
-  const watcherIdToDelete = getUrlParameterValue(url, urlParamsConst.delete)
-  const email = getUrlParameterValue(url, urlParamsConst.email)
 
   if (!origin || !destination || !departure || !step) {
     return
@@ -46,11 +42,9 @@ const parseOneWayFlight = (url: string): undefined | FlightData => {
   return {
     departure: new ValidDate(departure),
     destination: new ValidIATALocationList(destination),
-    emailForWatcherDelete: email ? new ValidEmail(email) : undefined,
     emailToContinueWatching: emailToContinueWatching ? new ValidEmail(emailToContinueWatching) : undefined,
     origin: new ValidIATALocationList(origin),
-    flightType: 'oneway',
-    watcherIdToDelete: watcherIdToDelete ? new ValidString(watcherIdToDelete) : undefined
+    flightType: 'oneway'
   }
 }
 
@@ -61,8 +55,6 @@ const parseReturnFlight = (url: string): undefined | FlightData => {
   const arrival = getUrlParameterValue(url, 'flights[1][departureDate]=')
   const step = getUrlParameterValue(url, 'step').toLowerCase() === 'choosefromfour'
   const emailToContinueWatching = getUrlParameterValue(url, 'flightWatchdogContinue')
-  const watcherIdToDelete = getUrlParameterValue(url, 'flightWatchdogDelete')
-  const email = getUrlParameterValue(url, 'email')
 
   if (!origin || !destination || !departure || !arrival || !step) {
     return
@@ -77,10 +69,8 @@ const parseReturnFlight = (url: string): undefined | FlightData => {
     arrival: new ValidDate(arrival),
     departure: new ValidDate(departure),
     destination: new ValidIATALocationList(destination),
-    emailForWatcherDelete: email ? new ValidEmail(email) : undefined,
     emailToContinueWatching: emailToContinueWatching ? new ValidEmail(emailToContinueWatching) : undefined,
     origin: new ValidIATALocationList(origin),
-    flightType: 'return',
-    watcherIdToDelete: watcherIdToDelete ? new ValidString(watcherIdToDelete) : undefined
+    flightType: 'return'
   }
 }

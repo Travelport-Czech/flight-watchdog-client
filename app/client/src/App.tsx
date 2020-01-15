@@ -9,7 +9,6 @@ import { CreateWatcherDonePage } from '@client/reactComponents/pages/CreateWatch
 import { CreateWatcherWorkingPage } from '@client/reactComponents/pages/CreateWatcherWorkingPage'
 import { ErrorPage } from '@client/reactComponents/pages/ErrorPage'
 import { RemoveMoreWatchersPage } from '@client/reactComponents/pages/RemoveMoreWatchersPage'
-import { RemoveWatcherByIdPage } from '@client/reactComponents/pages/RemoveWatcherByIdPage'
 import { RemoveWatcherPage } from '@client/reactComponents/pages/RemoveWatcherPage'
 import { RemoveWatcherWorkingPage } from '@client/reactComponents/pages/RemoveWatcherWorkingPage'
 import { State } from '@client/State'
@@ -61,10 +60,6 @@ export class App extends React.Component<Props, State> {
 
     if (this.state.stepToShow === StepToShow.createWatcherDone) {
       return this.renderCreateWatcherDone(flightParams)
-    }
-
-    if (this.state.stepToShow === StepToShow.removeWatcherById) {
-      return this.renderRemoveWatcherById(flightParams)
     }
 
     if (this.state.stepToShow === StepToShow.error) {
@@ -126,24 +121,12 @@ export class App extends React.Component<Props, State> {
 
   private readonly handleDeleteAndCreateWatcher = async () => {
     this.setState({ stepToShow: StepToShow.createWatcherWorking })
-    const deleteIsSuccessful = await actions.deleteWatcherByEmail(this.props, this.state)
+    const deleteIsSuccessful = await actions.deleteWatcher(this.props, this.state)
     if (!deleteIsSuccessful) {
       this.props.handleError(new Error('API delete watcher error.'), { props: this.props, state: this.state })
       this.setState({ stepToShow: StepToShow.error })
     }
     this.setState(await actions.createWatcher(this.props, this.state))
-  }
-
-  private readonly handleDeleteById = async () => {
-    this.setState({ stepToShow: StepToShow.removeWatcherWorking })
-    const deleteIsSuccessful = await actions.deleteWatcherById(this.props)
-    if (!deleteIsSuccessful) {
-      this.props.handleError(new Error('API delete watcher error.'), { props: this.props, state: this.state })
-      this.setState({ stepToShow: StepToShow.error })
-
-      return
-    }
-    this.setState({ stepToShow: StepToShow.createWatcherAgree })
   }
 
   private readonly handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -162,17 +145,6 @@ export class App extends React.Component<Props, State> {
       originLocationList: this.state.originLocationList,
       flightType
     }
-  }
-
-  private readonly renderRemoveWatcherById = (flightParams: FlightParams): JSX.Element => {
-    return (
-      <RemoveWatcherByIdPage
-        flightParams={flightParams}
-        appConfig={this.props.appConfig}
-        onClose={this.handleClose}
-        onDelete={this.handleDeleteById}
-      />
-    )
   }
 
   private readonly renderCreateWatcherDone = (flightParams: FlightParams): JSX.Element => {

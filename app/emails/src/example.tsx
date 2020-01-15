@@ -119,7 +119,7 @@ const createWatcherFullInfo = (lang: ValidLanguage): WatcherFullInfo => {
   }
 }
 
-const createLinkToPageWatcherDelete = (watcherId: ValidString): Promise<ValidUrl> => {
+const createLinkToPageWatcherDelete = async (watcherId: ValidString): Promise<ValidUrl> => {
   return Promise.resolve(new ValidUrl('https://www.testWatcherDeleted.url'))
 }
 

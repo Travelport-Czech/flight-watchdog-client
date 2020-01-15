@@ -3,8 +3,7 @@ import {
   ValidEmail,
   ValidIATALocationList,
   ValidLanguage,
-  ValidPrice,
-  ValidString
+  ValidPrice
 } from '@travelport-czech/valid-objects-ts'
 
 export interface AppConfig {
@@ -14,8 +13,6 @@ export interface AppConfig {
   readonly departure: ValidDate
   readonly arrival?: ValidDate
   readonly emailToContinueWatching?: ValidEmail
-  readonly watcherIdToDelete?: ValidString
-  readonly emailForWatcherDelete?: ValidEmail
   readonly customerEmail?: ValidEmail
   readonly lowestPrice: ValidPrice
   readonly lowestPriceCustomCurrency: ValidPrice

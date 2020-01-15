@@ -3,7 +3,7 @@ import { Props } from '@client/Props'
 import { State } from '@client/State'
 import { ValidEmail } from '@travelport-czech/valid-objects-ts'
 
-export const deleteWatcherByEmail = async (props: Readonly<Props>, state: Readonly<State>): Promise<boolean> => {
+export const deleteWatcher = async (props: Readonly<Props>, state: Readonly<State>): Promise<boolean> => {
   const apiUrl = props.clientSettings.apiUrl
   const email = new ValidEmail(state.email)
   const idList = await functions.getWatchersOnEmail(props.clientSettings.token, apiUrl, email)
@@ -16,21 +16,4 @@ export const deleteWatcherByEmail = async (props: Readonly<Props>, state: Readon
   }
 
   return false
-}
-
-export const deleteWatcherById = async (props: Readonly<Props>): Promise<boolean> => {
-  const apiUrl = props.clientSettings.apiUrl
-  if (!props.appConfig.watcherIdToDelete) {
-    return false
-  }
-  if (!props.appConfig.emailForWatcherDelete) {
-    return false
-  }
-
-  return functions.deleteWatcher(
-    props.clientSettings.token,
-    apiUrl,
-    props.appConfig.watcherIdToDelete,
-    props.appConfig.emailForWatcherDelete
-  )
 }
