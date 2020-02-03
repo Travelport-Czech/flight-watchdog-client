@@ -9,7 +9,7 @@ export const initialize = async (props: Readonly<Props>, state: Readonly<State>)
     throw new Error('Initialize must call once at start.')
   }
   const token = props.clientSettings.token
-  const { origin, destination, emailToContinueWatching, watcherIdToDelete, lang, customerEmail } = props.appConfig
+  const { origin, destination, emailToContinueWatching, lang, customerEmail } = props.appConfig
 
   if (!token) {
     return
@@ -44,13 +44,6 @@ export const initialize = async (props: Readonly<Props>, state: Readonly<State>)
       ...defaultState,
       email: emailToContinueWatching.toString(),
       stepToShow: StepToShow.continueWatching
-    }
-  }
-
-  if (watcherIdToDelete) {
-    return {
-      ...defaultState,
-      stepToShow: StepToShow.removeWatcherById
     }
   }
 

@@ -37,7 +37,7 @@ export const initFlightWatchdogClient = async (settingsData: UnknownNestedObject
       return
     }
 
-    const isVisible = appConfig.emailForWatcherDelete || appConfig.emailForWatcherDelete
+    const isVisible = appConfig.emailToContinueWatching
 
     const id = 'flight-watchdog-client-app'
     const node = document.createElement('div')

@@ -30,8 +30,6 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
     }
 
     const emailToContinueWatching = getUrlParameterValue(url, urlParamsConst.continue)
-    const watcherIdToDelete = getUrlParameterValue(url, urlParamsConst.delete)
-    const email = getUrlParameterValue(url, urlParamsConst.email)
     const langElement = document.getElementsByTagName('html').item(0)
     const lang = new ValidLanguage(
       langElement && langElement.getAttribute('lang'),
@@ -64,11 +62,9 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
         : undefined,
       departure: new ValidDate(dataLayer[0].searchVariables.departureDate),
       destination: new ValidIATALocationList(dataLayer[0].searchVariables.to),
-      emailForWatcherDelete: email ? new ValidEmail(email) : undefined,
       emailToContinueWatching: emailToContinueWatching ? new ValidEmail(emailToContinueWatching) : undefined,
       origin: new ValidIATALocationList(destinationList.join('/').replace(/(\(|\))/g, '')),
       flightType: dataLayer[0].searchVariables.roundTrip ? 'return' : 'oneway',
-      watcherIdToDelete: watcherIdToDelete ? new ValidString(watcherIdToDelete) : undefined,
       lowestPrice,
       lowestPriceCustomCurrency: lowestPrice,
       lang
