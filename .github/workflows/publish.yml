@@ -28,6 +28,7 @@ jobs:
           CI: true
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
           CYPRESS_CACHE_FOLDER: '~/.cypress'
+      - run: npm run lint
       - run: npm test
         env:
           CYPRESS_CACHE_FOLDER: '~/.cypress'
