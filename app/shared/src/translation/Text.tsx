@@ -1,15 +1,8 @@
-import { csTranslation } from '@shared/translation/csTranslation'
-import { enTranslation } from '@shared/translation/enTranslation'
-import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
+import { translations } from '@shared/translation/translations'
 import { TranslatedText } from '@travelport-czech/ss-translations'
 import { ValidLanguage } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
-
-const translations = {
-  [SupportedLanguageEnum.cs]: csTranslation,
-  [SupportedLanguageEnum.en]: enTranslation
-}
 
 interface Props {
   readonly name: TranslationEnum
