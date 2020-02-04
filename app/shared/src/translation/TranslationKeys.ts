@@ -1,6 +1,7 @@
 import { TranslationEnum as T } from '@shared/translation/TranslationEnum'
+import { TranslationKeysBase } from '@travelport-czech/ss-translations'
 
-export interface TranslationKeys {
+export interface TranslationKeys extends TranslationKeysBase {
   readonly [T.FormatDate]: string
   readonly [T.FormatDateDayMonth]: string
   readonly [T.FormatDateWithDayName]: string

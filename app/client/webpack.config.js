@@ -27,6 +27,27 @@ if (process.env.NODE_ENV !== 'test') {
   )
 }
 
+const babelOptions = {
+  plugins: [
+    '@babel/proposal-class-properties',
+    '@babel/proposal-object-rest-spread',
+    [
+      'module-resolver',
+      {
+        alias: {
+          '@client': './app/client/src',
+          '@shared': './app/shared/src'
+        },
+        root: ['./src']
+      }
+    ]
+  ],
+  presets: [
+    ['@babel/preset-env', { targets: '> 0.25%, not dead' }],
+    '@babel/preset-react'
+  ]
+}
+
 const clientConfig = {
   devtool: 'source-map',
   entry: entry,
@@ -34,34 +55,33 @@ const clientConfig = {
   module: {
     rules: [
       {
-        loader: 'cache-loader'
+        test: /\.(ts)x?$/,
+        exclude: process.env.NODE_ENV === 'test' ? /node_modules/ : undefined,
+        use: [
+          {
+            loader: 'cache-loader'
+          },
+          {
+            loader: 'babel-loader',
+            options: babelOptions
+          },
+          {
+            loader: 'ts-loader'
+          }
+        ]
       },
       {
-        loader: 'thread-loader',
-        options: {
-          workers: os.cpus().length / 2
-        }
-      },
-      {
-        loader: 'babel-loader',
-        options: {
-          plugins: [
-            '@babel/proposal-class-properties',
-            '@babel/proposal-object-rest-spread',
-            [
-              'module-resolver',
-              {
-                alias: {
-                  '@client': './app/client/src',
-                  '@shared': './app/shared/src'
-                },
-                root: ['./src']
-              }
-            ]
-          ],
-          presets: [['@babel/preset-env', { targets: '> 0.25%, not dead' }], '@babel/typescript', '@babel/preset-react']
-        },
-        test: /\.(ts|js)x?$/
+        test: /\.(js)x?$/,
+        exclude: process.env.NODE_ENV === 'test' ? /node_modules/ : undefined,
+        use: [
+          {
+            loader: 'cache-loader'
+          },
+          {
+            loader: 'babel-loader',
+            options: babelOptions
+          }
+        ]
       }
     ]
   },

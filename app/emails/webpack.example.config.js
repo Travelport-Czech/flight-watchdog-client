@@ -18,6 +18,24 @@ let plugins = [
   })
 ]
 
+const babelOptions = {
+  plugins: [
+    '@babel/proposal-class-properties',
+    '@babel/proposal-object-rest-spread',
+    [
+      'module-resolver',
+      {
+        alias: {
+          '@emails': './app/emails/src',
+          '@shared': './app/shared/src'
+        },
+        root: ['./src']
+      }
+    ]
+  ],
+  presets: ['@babel/preset-env', '@babel/typescript', '@babel/preset-react']
+}
+
 const config = {
   devtool: 'source-map',
   entry: entry,
@@ -25,34 +43,33 @@ const config = {
   module: {
     rules: [
       {
-        loader: 'cache-loader'
+        test: /\.(ts)x?$/,
+        exclude: process.env.NODE_ENV === 'test' ? /node_modules/ : undefined,
+        use: [
+          {
+            loader: 'cache-loader'
+          },
+          {
+            loader: 'babel-loader',
+            options: babelOptions
+          },
+          {
+            loader: 'ts-loader'
+          }
+        ]
       },
       {
-        loader: 'thread-loader',
-        options: {
-          workers: os.cpus().length / 2
-        }
-      },
-      {
-        loader: 'babel-loader?cacheDirectory=true',
-        options: {
-          plugins: [
-            '@babel/proposal-class-properties',
-            '@babel/proposal-object-rest-spread',
-            [
-              'module-resolver',
-              {
-                alias: {
-                  '@emails': './app/emails/src',
-                  '@shared': './app/shared/src'
-                },
-                root: ['./src']
-              }
-            ]
-          ],
-          presets: ['@babel/preset-env', '@babel/typescript', '@babel/preset-react']
-        },
-        test: /\.(ts|js)x?$/
+        test: /\.(js)x?$/,
+        exclude: process.env.NODE_ENV === 'test' ? /node_modules/ : undefined,
+        use: [
+          {
+            loader: 'cache-loader'
+          },
+          {
+            loader: 'babel-loader',
+            options: babelOptions
+          }
+        ]
       }
     ]
   },
