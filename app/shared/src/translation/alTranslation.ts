@@ -32,7 +32,7 @@ export const alTranslation: TranslationKeys = {
   [T.EmailLowerPriceSubject]: `Ju kemi gjetur një çmim më të mirë për fluturimin {?} - {?}`,
   [T.EmailDescription]: `Bazuar në njoftimet për çmimet më të lira prej faqes web {?}, ky e-mail është dërguar menjëherë sapo u gjet një çmim më I lirë.`,
   [T.EmailContentDescription]: `Ne kemi gjetur një çmim më të lirë prej {?}, I cili është {?} % më pak. `,
-  [T.EmailPricePrefixText]: `{?}`,
+  [T.EmailPricePrefixText]: `The found price is`,
   [T.EmailPriceSuffixText]: `Çmimi origjinal ishte {?}`,
   [T.EmailPrice]: `{?}`,
   [T.EmailPriceLimit]: `Limiti i çmimit është {?}`,
