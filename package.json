@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "@sentry/browser": "^5.11.0",
+    "@travelport-czech/ss-translations": "^1.1.1",
     "@travelport-czech/valid-objects-ts": "^1.1.4",
     "bufferutil": "^4.0.1",
     "dayjs": "^1.8.17",
@@ -71,6 +72,7 @@
     "@hapi/hapi": "^18.4.0",
     "@hapi/hoek": "^8.5.0",
     "@hapi/inert": "^5.2.2",
+    "@travelport-czech/ss-translations-tools": "^1.0.7",
     "@types/fs-extra": "^8.0.1",
     "@types/google.analytics": "^0.0.40",
     "@types/node": "^12.12.14",
@@ -87,7 +89,6 @@
     "cross-env": "^6.0.3",
     "cypress": "^3.8.3",
     "dotenv-webpack": "^1.7.0",
-    "fs-extra": "7.0.1",
     "gulp": "^4.0.2",
     "html-loader": "^0.5.5",
     "opn-cli": "^4.1.0",
@@ -108,8 +109,7 @@
     "wait-on": "^3.3.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
-    "webpack-visualizer-plugin": "^0.1.11",
-    "xlsx": "^0.14.4"
+    "webpack-visualizer-plugin": "^0.1.11"
   },
   "author": "C.E.E. group Travelport a.s.",
   "license": "MIT"
