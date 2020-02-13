@@ -18,9 +18,10 @@ export const secondaryColor: CSSProperties = {
 }
 
 export const windowWrapper: CSSProperties = {
-  position: 'absolute',
+  position: 'fixed',
   left: '50%',
-  top: '10%'
+  top: '10%',
+  zIndex: 10000
 }
 
 export const window: CSSProperties = {
