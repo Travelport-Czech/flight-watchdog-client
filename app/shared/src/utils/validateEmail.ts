@@ -13,5 +13,9 @@ export const validateEmail = (email: string | undefined): boolean => {
     return false
   }
 
+  if (email.includes('#')) {
+    return false
+  }
+
   return true
 }
