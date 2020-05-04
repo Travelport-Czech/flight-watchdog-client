@@ -3,12 +3,15 @@ import { FlightParams } from '@emails/types/FlightParams'
 import { WatcherLinks } from '@emails/types/WatcherLinks'
 import { WatcherParams } from '@emails/types/WatcherParams'
 import { AppLogicError } from '@shared/errors/AppLogicError'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 import { urlParamsConst } from '@shared/utils/consts'
 import { ValidLanguage, ValidUrl } from '@travelport-czech/valid-objects-ts'
 
 const langCodeMapToGolLangCode = {
-  cs: 'cz',
-  en: 'en'
+  [SupportedLanguageEnum.cs]: 'cz',
+  [SupportedLanguageEnum.en]: 'en',
+  [SupportedLanguageEnum.al]: 'al',
+  [SupportedLanguageEnum.sk]: 'sk'
 }
 
 export const createResultUrl = (

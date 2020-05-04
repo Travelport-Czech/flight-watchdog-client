@@ -1,5 +1,6 @@
 export enum SupportedLanguageEnum {
   al = 'al',
   cs = 'cs',
-  en = 'en'
+  en = 'en',
+  sk = 'sk'
 }

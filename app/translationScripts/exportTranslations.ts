@@ -1,4 +1,4 @@
-import { translations } from '@shared/src/translation/translations'
+import { translations } from '@shared/translation/translations'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import { translateExport } from '@travelport-czech/ss-translations-tools'
 
