@@ -12,7 +12,7 @@ let tokenLimitCount = false
 
 server.route({
     method: 'POST',
-    path:'/client/count-all',
+    path:'/count-all',
     handler: function (request, h) {
         const headers = request.headers
 
@@ -43,7 +43,7 @@ server.route({
 
 server.route({
     method: 'POST',
-    path:'/client/count',
+    path:'/count',
     handler: function (request, h) {
         let count = 0
         let limit = 1
@@ -69,7 +69,7 @@ server.route({
 
 server.route({
     method: 'POST',
-    path:'/client/create',
+    path:'/create',
     handler: function (request, h) {
         return h.response({
             "result": "Success",
@@ -85,7 +85,7 @@ server.route({
 
 server.route({
     method: 'POST',
-    path:'/client/send-watcher-list',
+    path:'/send-watcher-list',
     handler: function (request, h) {
         return h.response({
             "message": "Sent.",
@@ -96,7 +96,7 @@ server.route({
 
 server.route({
     method: 'POST',
-    path:'/client/delete',
+    path:'/delete',
     handler: function (request, h) {
         return h.response({
             "message": "Deleted.",
@@ -107,7 +107,7 @@ server.route({
 
 server.route({
     method: 'POST',
-    path:'/client/destination-name',
+    path:'/destination-name',
     handler: function (request, h) {
         let code = 'LON'
         let name = 'Londýn'
