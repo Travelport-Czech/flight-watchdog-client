@@ -21,7 +21,7 @@ enum ResponseKeysEnum {
 }
 
 export const isAllowedToAddWatcher = async (token: string, apiUrl: ValidString): Promise<boolean> => {
-  const json = await sendRequest(token, apiUrl, '/client/count-all', {})
+  const json = await sendRequest(token, apiUrl, '/count-all', {})
   if (json.result !== 'Success') {
     return false
   }
@@ -46,7 +46,7 @@ export const getDestinationNames = async (
   locationCodeList: ValidIATALocationList,
   lang: ValidLanguage
 ): Promise<Location[]> => {
-  const json = await sendRequest(token, apiUrl, '/client/destination-name', {
+  const json = await sendRequest(token, apiUrl, '/destination-name', {
     lang: lang.toString(),
     locationCode: locationCodeList.toString()
   })
@@ -77,7 +77,7 @@ export const getWatchersCountOnEmail = async (
   apiUrl: ValidString,
   email: string
 ): Promise<{ readonly limit: number; readonly count: number } | undefined> => {
-  const json = await sendRequest(token, apiUrl, '/client/count', { email })
+  const json = await sendRequest(token, apiUrl, '/count', { email })
   if (json.result !== 'Success') {
     return
   }
@@ -100,7 +100,7 @@ export const getWatchersOnEmail = async (
   apiUrl: ValidString,
   email: ValidEmail
 ): Promise<ValidString[] | undefined> => {
-  const json = await sendRequest(token, apiUrl, '/client/detail', { email: email.toString() })
+  const json = await sendRequest(token, apiUrl, '/watchers', { email: email.toString() })
   if (json.result !== 'Success') {
     return
   }
@@ -124,7 +124,7 @@ export const createWatcher = async (
   data: WatcherClientCreateParams
 ): Promise<boolean> => {
   try {
-    const json = await sendRequest(token, apiUrl, '/client/create', { ...data })
+    const json = await sendRequest(token, apiUrl, '/create', { ...data })
     if (json.result !== 'Success') {
       return false
     }
@@ -142,7 +142,7 @@ export const sendWatchersList = async (
   lang: ValidLanguage
 ): Promise<boolean> => {
   try {
-    const json = await sendRequest(token, apiUrl, '/client/send-watcher-list', { email, lang: lang.toString() })
+    const json = await sendRequest(token, apiUrl, '/send-watcher-list', { email, lang: lang.toString() })
     if (json.result !== 'Success') {
       return false
     }
@@ -160,7 +160,7 @@ export const deleteWatcher = async (
   email: ValidEmail
 ): Promise<boolean> => {
   try {
-    const json = await sendRequest(token, apiUrl, '/client/delete', { id: id.toString(), email: email.toString() })
+    const json = await sendRequest(token, apiUrl, '/delete', { id: id.toString(), email: email.toString() })
     if (json.result !== 'Success') {
       return false
     }
