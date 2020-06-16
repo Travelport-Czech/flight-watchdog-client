@@ -82,7 +82,7 @@ if (!flightWatchdogClientMobileCheck()) {
   font.rel = 'stylesheet'
   document.getElementsByTagName('head')[0].appendChild(font);
   var s = document.createElement('script');
-  s.src = 'https://d33mffcdbk5uwb.cloudfront.net/index.js';
+  s.src = 'https://flight-watchdog-client.cee-systems.com/index.js';
   s.onload = function() {
     if (!initFlightWatchdogClient) {
       return;
