@@ -3,7 +3,6 @@ import { createMarketingEmail } from '@emails/factories/marketingEmailFactory'
 import { createWatchersListEmail } from '@emails/factories/watcherListEmailFactory'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { FlightResult } from '@emails/types/FlightResult'
-import { SearchResult } from '@emails/types/SearchResult'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { WatcherParams } from '@emails/types/WatcherParams'
 import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
@@ -64,16 +63,6 @@ const createWatcherFullInfo = (lang: ValidLanguage): WatcherFullInfo => {
     flightType: 'return'
   }
 
-  const searchResult: SearchResult = {
-    price: new ValidPrice('4500 CZK'),
-    created: new ValidDateTime('2018-09-20 12:00:00'),
-    origin: new ValidIATALocationList('PRG'),
-    destination: new ValidIATALocationList('LON'),
-    departure: new ValidDate('2018-12-16'),
-    arrival: new ValidDate('2018-12-25'),
-    flightType: 'return'
-  }
-
   const flightResult: FlightResult = {
     price: new ValidPrice('3500 CZK'),
     origin: new ValidIATALocationList('PRG'),
@@ -98,20 +87,20 @@ const createWatcherFullInfo = (lang: ValidLanguage): WatcherFullInfo => {
     ],
     watcher,
     additionalResults: [flightResult, flightResult, flightResult],
-    searchResults: [
-      searchResult,
+    priceHistory: [
       {
-        ...searchResult,
+        price: new ValidPrice('4500 CZK'),
+        created: new ValidDateTime('2018-09-20 12:00:00')
+      },
+      {
         price: new ValidPrice('5812 CZK'),
         created: new ValidDateTime('2018-09-21 12:00:00')
       },
       {
-        ...searchResult,
         price: new ValidPrice('6321 CZK'),
         created: new ValidDateTime('2018-09-22 12:00:00')
       },
       {
-        ...searchResult,
         price: new ValidPrice('5000 CZK'),
         created: new ValidDateTime('2018-09-23 12:00:00')
       }

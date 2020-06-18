@@ -1,7 +1,7 @@
 import { GraphDot } from '@emails/reactComponents/GraphDot'
 import { GraphLabel } from '@emails/reactComponents/GraphLabel'
 import { GraphPriceLimitDot } from '@emails/reactComponents/GraphPriceLimitDot'
-import { SearchResult } from '@emails/types/SearchResult'
+import { PriceHistoryRecord } from '@emails/types/PriceHistory'
 import { WatcherParams } from '@emails/types/WatcherParams'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
@@ -12,7 +12,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { Area, ComposedChart, Legend, Line, XAxis, YAxis } from 'recharts'
 
 interface Props {
-  readonly searchResults: SearchResult[]
+  readonly priceHistory: PriceHistoryRecord[]
   readonly priceLimit: ValidPrice
   readonly watcher: WatcherParams
   readonly absolutePosition?: boolean
@@ -20,11 +20,11 @@ interface Props {
 
 export class WatchersGraphPriceHistory extends React.Component<Props> {
   public render() {
-    const { priceLimit, searchResults, watcher, absolutePosition } = this.props
+    const { priceLimit, priceHistory, watcher, absolutePosition } = this.props
     const dateFormat = renderToStaticMarkup(<Text name={TranslationEnum.FormatDateDayMonth} lang={watcher.lang} />)
     const actualDate = getActualDate()
     const actualDateMinus15 = actualDate.subtractDays(15)
-    const last15Results = searchResults.filter((item: SearchResult): boolean => {
+    const last15Results = priceHistory.filter(item => {
       return item.created.getValidDate().isAfter(actualDateMinus15)
     })
     const priceLimitLabel = renderToStaticMarkup(
@@ -34,22 +34,17 @@ export class WatchersGraphPriceHistory extends React.Component<Props> {
       <Text name={TranslationEnum.GraphLegendPriceTrend} lang={watcher.lang} />
     )
 
-    const firstSearchResult: SearchResult = {
-      origin: watcher.origin,
-      destination: watcher.destination,
-      flightType: watcher.flightType,
-      departure: watcher.departure,
-      arrival: watcher.arrival ? watcher.arrival : undefined,
+    const firstPriceHistoryRecord: PriceHistoryRecord = {
       created: watcher.created,
       price: watcher.priceLimit
     }
 
-    const last15ResultsWithFirst: SearchResult[] =
-      searchResults.length > 1 && searchResults[0].price && searchResults[0].price.amount !== watcher.priceLimit.amount
-        ? [firstSearchResult, ...last15Results]
+    const last15ResultsWithFirst: PriceHistoryRecord[] =
+      priceHistory.length > 1 && priceHistory[0].price && priceHistory[0].price.amount !== watcher.priceLimit.amount
+        ? [firstPriceHistoryRecord, ...last15Results]
         : last15Results
 
-    const data = last15ResultsWithFirst.map((item: SearchResult) => {
+    const data = last15ResultsWithFirst.map(item => {
       return {
         datetime: item.created.getValidDate().formatToSystem(),
         limit: priceLimit.amount,
