@@ -1,7 +1,7 @@
 import { GraphDot } from '@emails/reactComponents/GraphDot'
 import { GraphLabel } from '@emails/reactComponents/GraphLabel'
 import { GraphPriceLimitDot } from '@emails/reactComponents/GraphPriceLimitDot'
-import { PriceHistoryRecord } from '@emails/types/PriceHistory'
+import { PriceHistoryRecord } from '@emails/types/PriceHistoryRecord'
 import { WatcherParams } from '@emails/types/WatcherParams'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'

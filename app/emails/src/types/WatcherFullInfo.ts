@@ -1,5 +1,5 @@
 import { FlightResult } from '@emails/types/FlightResult'
-import { PriceHistoryRecord } from '@emails/types/PriceHistory'
+import { PriceHistoryRecord } from '@emails/types/PriceHistoryRecord'
 import { WatcherParams } from '@emails/types/WatcherParams'
 import { Location } from '@shared/types/Location'
 
