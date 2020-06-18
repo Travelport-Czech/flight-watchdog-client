@@ -11,12 +11,12 @@ export class WatcherPriceHistory extends React.Component<Props> {
   public render() {
     const { watchersFullInfo, showSvg } = this.props
 
-    const { watcher, searchResults } = watchersFullInfo
+    const { watcher, priceHistory } = watchersFullInfo
 
     const imageSrc = 'cid:' + watcher.id.toString()
 
     return showSvg ? (
-      <WatchersGraphPriceHistory searchResults={searchResults} priceLimit={watcher.priceLimit} watcher={watcher} />
+      <WatchersGraphPriceHistory priceHistory={priceHistory} priceLimit={watcher.priceLimit} watcher={watcher} />
     ) : (
       <img src={imageSrc} alt="Price history" />
     )

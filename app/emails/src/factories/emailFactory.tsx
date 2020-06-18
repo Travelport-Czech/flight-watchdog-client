@@ -66,7 +66,7 @@ export const createAttachmentRawFromWatcher = async (
   const image = await createImage(
     renderToStaticMarkup(
       <WatchersGraphPriceHistory
-        searchResults={watcherFullInfo.searchResults}
+        priceHistory={watcherFullInfo.priceHistory}
         priceLimit={watcherFullInfo.watcher.priceLimit}
         watcher={watcherFullInfo.watcher}
         absolutePosition
