@@ -110,7 +110,14 @@ server.route({
     path:'/destination-name',
     handler: function (request, h) {
         let code = 'LON'
-        let name = 'Londýn'
+        let name = 'London'
+        if (request.payload.locationCode === 'PRG') {
+            code = 'PRG'
+            name = 'Prague - Ruzyne'
+        }
+        if (request.payload.lang === 'cs' && request.payload.locationCode === 'LON') {
+            name = 'Londýn'
+        }
         if (request.payload.lang === 'en' && request.payload.locationCode === 'LON') {
             name = 'London'
         }
