@@ -10,7 +10,7 @@ interface Props {
 }
 
 // tslint:disable-next-line:variable-name
-export const Text: React.FunctionComponent<Props> = props => {
+export const Text: React.FunctionComponent<Props> = (props) => {
   const newProps = {
     ...props,
     language: props.lang.toString(),
