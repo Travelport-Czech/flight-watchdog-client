@@ -52,5 +52,5 @@ export const csTranslation: TranslationKeys = {
   GraphLegendPriceTrend: `Vývoj ceny`,
   PageTokenNotValid: `Platnost odkazu již vypršela.`,
   PageWatcherDeletedSuccess: `Hlídání letu bylo ukončeno.`,
-  PageContinueToWeb: `Kliknutím zde pokračujte na web {?}`
+  PageContinueToWeb: `Kliknutím zde pokračujte na web {?}`,
 }

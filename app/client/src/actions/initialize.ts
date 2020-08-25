@@ -31,13 +31,13 @@ export const initialize = async (props: Readonly<Props>, state: Readonly<State>)
     golUrlParams: props.appConfig,
     originLocationList,
     showBadEmailError: false,
-    stepToShow: StepToShow.none
+    stepToShow: StepToShow.none,
   }
 
   if (props.clientSettings.initStep) {
     return {
       ...defaultState,
-      stepToShow: props.clientSettings.initStep
+      stepToShow: props.clientSettings.initStep,
     }
   }
 
@@ -45,7 +45,7 @@ export const initialize = async (props: Readonly<Props>, state: Readonly<State>)
     return {
       ...defaultState,
       email: emailToContinueWatching.toString(),
-      stepToShow: StepToShow.continueWatching
+      stepToShow: StepToShow.continueWatching,
     }
   }
 
@@ -54,12 +54,12 @@ export const initialize = async (props: Readonly<Props>, state: Readonly<State>)
   if (startMinimalized) {
     return {
       ...defaultState,
-      stepToShow: StepToShow.minimalized
+      stepToShow: StepToShow.minimalized,
     }
   }
 
   return {
     ...defaultState,
-    stepToShow: StepToShow.createWatcherAgree
+    stepToShow: StepToShow.createWatcherAgree,
   }
 }

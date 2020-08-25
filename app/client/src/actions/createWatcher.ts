@@ -22,7 +22,7 @@ export const createWatcher = async (
     destination,
     flightType,
     lang,
-    lowestPrice
+    lowestPrice,
   } = props.appConfig
 
   const token = props.clientSettings.token
@@ -55,7 +55,7 @@ export const createWatcher = async (
     departure: departure.toString(),
     destination: destination.toString(),
     origin: origin.toString(),
-    flightType: flightType
+    flightType: flightType,
   }
   const createResult = await functions.createWatcher(token, apiUrl, watcherCreateParams)
   if (!createResult) {

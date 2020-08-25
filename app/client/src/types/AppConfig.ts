@@ -3,7 +3,7 @@ import {
   ValidEmail,
   ValidIATALocationList,
   ValidLanguage,
-  ValidPrice
+  ValidPrice,
 } from '@travelport-czech/valid-objects-ts'
 
 export interface AppConfig {

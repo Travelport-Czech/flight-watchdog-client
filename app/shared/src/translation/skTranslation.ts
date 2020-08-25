@@ -52,5 +52,5 @@ export const skTranslation: TranslationKeys = {
   GraphLegendPriceTrend: `Vývoj ceny`,
   PageTokenNotValid: `Platnosť odkazu vypršala.`,
   PageWatcherDeletedSuccess: `Sledovanie letu bolo ukončené.`,
-  PageContinueToWeb: `Kliknutím sem pokračujte na web {?}`
+  PageContinueToWeb: `Kliknutím sem pokračujte na web {?}`,
 }

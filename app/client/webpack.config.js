@@ -7,7 +7,7 @@ const sourceFile = path.resolve(__dirname, 'src/index.tsx')
 const outputDir = path.resolve(__dirname, '../../dist-client')
 
 let entry = {
-  index: ['@babel/polyfill', sourceFile]
+  index: ['@babel/polyfill', sourceFile],
 }
 
 let plugins = [
@@ -15,14 +15,14 @@ let plugins = [
     path: path.resolve(__dirname, '.env'), // load this now instead of the ones in '.env'
     safe: false, // load '.env.example' to verify the '.env' variables are all set. Can also be a string to a different file.
     silent: false, // hide any errors
-    systemvars: true // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
-  })
+    systemvars: true, // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
+  }),
 ]
 
 if (process.env.NODE_ENV !== 'test') {
   plugins.push(
     new Visualizer({
-      filename: './statistics.html'
+      filename: './statistics.html',
     })
   )
 }
@@ -36,16 +36,13 @@ const babelOptions = {
       {
         alias: {
           '@client': './app/client/src',
-          '@shared': './app/shared/src'
+          '@shared': './app/shared/src',
         },
-        root: ['./src']
-      }
-    ]
+        root: ['./src'],
+      },
+    ],
   ],
-  presets: [
-    ['@babel/preset-env', { targets: '> 0.25%, not dead' }],
-    '@babel/preset-react'
-  ]
+  presets: [['@babel/preset-env', { targets: '> 0.25%, not dead' }], '@babel/preset-react'],
 }
 
 const clientConfig = {
@@ -59,48 +56,48 @@ const clientConfig = {
         exclude: process.env.NODE_ENV === 'test' ? /node_modules/ : undefined,
         use: [
           {
-            loader: 'cache-loader'
+            loader: 'cache-loader',
           },
           {
             loader: 'babel-loader',
-            options: babelOptions
+            options: babelOptions,
           },
           {
-            loader: 'ts-loader'
-          }
-        ]
+            loader: 'ts-loader',
+          },
+        ],
       },
       {
         test: /\.(js)x?$/,
         exclude: process.env.NODE_ENV === 'test' ? /node_modules/ : undefined,
         use: [
           {
-            loader: 'cache-loader'
+            loader: 'cache-loader',
           },
           {
             loader: 'babel-loader',
-            options: babelOptions
-          }
-        ]
-      }
-    ]
+            options: babelOptions,
+          },
+        ],
+      },
+    ],
   },
   optimization: {
-    minimize: process.env.NODE_ENV === 'production'
+    minimize: process.env.NODE_ENV === 'production',
   },
   output: {
     filename: '[name].js',
-    path: outputDir
+    path: outputDir,
   },
   performance: {
-    hints: false
+    hints: false,
   },
   plugins: plugins,
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
   },
   stats: 'minimal',
-  target: 'web'
+  target: 'web',
 }
 
 module.exports = clientConfig

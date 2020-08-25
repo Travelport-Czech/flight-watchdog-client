@@ -44,7 +44,7 @@ const parseOneWayFlight = (url: string): undefined | FlightData => {
     destination: new ValidIATALocationList(destination),
     emailToContinueWatching: emailToContinueWatching ? new ValidEmail(emailToContinueWatching) : undefined,
     origin: new ValidIATALocationList(origin),
-    flightType: 'oneway'
+    flightType: 'oneway',
   }
 }
 
@@ -71,6 +71,6 @@ const parseReturnFlight = (url: string): undefined | FlightData => {
     destination: new ValidIATALocationList(destination),
     emailToContinueWatching: emailToContinueWatching ? new ValidEmail(emailToContinueWatching) : undefined,
     origin: new ValidIATALocationList(origin),
-    flightType: 'return'
+    flightType: 'return',
   }
 }

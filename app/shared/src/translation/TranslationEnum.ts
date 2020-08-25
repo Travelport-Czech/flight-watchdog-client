@@ -49,5 +49,5 @@ export enum TranslationEnum {
   GraphLegendPriceTrend = 'GraphLegendPriceTrend',
   PageTokenNotValid = 'PageTokenNotValid',
   PageContinueToWeb = 'PageContinueToWeb',
-  PageWatcherDeletedSuccess = 'PageWatcherDeletedSuccess'
+  PageWatcherDeletedSuccess = 'PageWatcherDeletedSuccess',
 }

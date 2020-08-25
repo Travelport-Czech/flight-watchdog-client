@@ -14,7 +14,7 @@ interface State {
 
 export class Button extends React.Component<Props, State> {
   public readonly state: Readonly<State> = {
-    hovered: false
+    hovered: false,
   }
 
   public render() {

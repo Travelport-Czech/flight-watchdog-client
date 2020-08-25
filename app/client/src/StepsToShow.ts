@@ -8,5 +8,5 @@ export enum StepToShow {
   removeMoreWatchers = 'REMOVE_MORE_WATCHERS',
   minimalized = 'MINIMALIZED',
   continueWatching = 'CONTINUE_WATCHING',
-  error = 'ERROR'
+  error = 'ERROR',
 }

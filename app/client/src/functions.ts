@@ -11,13 +11,13 @@ import {
   ValidIATALocationList,
   ValidLanguage,
   ValidNumber,
-  ValidString
+  ValidString,
 } from '@travelport-czech/valid-objects-ts'
 
 enum ResponseKeysEnum {
   Count = 'count',
   Limit = 'limit',
-  EmailLimit = 'emailLimit'
+  EmailLimit = 'emailLimit',
 }
 
 export const isAllowedToAddWatcher = async (token: string, apiUrl: ValidString): Promise<boolean> => {
@@ -48,7 +48,7 @@ export const getDestinationNames = async (
 ): Promise<Location[]> => {
   const json = await sendRequest(token, apiUrl, '/destination-name', {
     lang: lang.toString(),
-    locationCode: locationCodeList.toString()
+    locationCode: locationCodeList.toString(),
   })
   if (json.result !== 'Success') {
     return []
@@ -66,7 +66,7 @@ export const getDestinationNames = async (
     (item: UnknownNestedObject): Location => {
       return {
         code: new ValidIATALocation(item.code),
-        name: item.name ? new ValidString(item.name).toString() : undefined
+        name: item.name ? new ValidString(item.name).toString() : undefined,
       }
     }
   )
@@ -91,7 +91,7 @@ export const getWatchersCountOnEmail = async (
 
   return {
     count: count.value,
-    limit: limit.value
+    limit: limit.value,
   }
 }
 
@@ -182,9 +182,9 @@ export const sendRequest = async (
     body: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json',
-      authorization: createAuthorizationBasicToken('', token)
+      authorization: createAuthorizationBasicToken('', token),
     },
-    method: 'POST'
+    method: 'POST',
   })
 
   return parseJson(await response.text())
@@ -227,6 +227,6 @@ export const isValidClientSettings = (data: UnknownNestedObject): ClientSettings
     initStep,
     apiUrl,
     analyticsId,
-    sentryDns
+    sentryDns,
   }
 }

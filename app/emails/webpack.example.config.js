@@ -6,7 +6,7 @@ const sourceFile = path.resolve(__dirname, 'src/example.tsx')
 const outputDir = path.resolve(__dirname, '../../dist-emails')
 
 let entry = {
-  index: ['@babel/polyfill', sourceFile]
+  index: ['@babel/polyfill', sourceFile],
 }
 
 let plugins = [
@@ -14,8 +14,8 @@ let plugins = [
     path: path.resolve(__dirname, '.env'), // load this now instead of the ones in '.env'
     safe: false, // load '.env.example' to verify the '.env' variables are all set. Can also be a string to a different file.
     silent: false, // hide any errors
-    systemvars: true // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
-  })
+    systemvars: true, // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
+  }),
 ]
 
 const babelOptions = {
@@ -27,13 +27,13 @@ const babelOptions = {
       {
         alias: {
           '@emails': './app/emails/src',
-          '@shared': './app/shared/src'
+          '@shared': './app/shared/src',
         },
-        root: ['./src']
-      }
-    ]
+        root: ['./src'],
+      },
+    ],
   ],
-  presets: ['@babel/preset-env', '@babel/typescript', '@babel/preset-react']
+  presets: ['@babel/preset-env', '@babel/typescript', '@babel/preset-react'],
 }
 
 const config = {
@@ -47,48 +47,48 @@ const config = {
         exclude: process.env.NODE_ENV === 'test' ? /node_modules/ : undefined,
         use: [
           {
-            loader: 'cache-loader'
+            loader: 'cache-loader',
           },
           {
             loader: 'babel-loader',
-            options: babelOptions
+            options: babelOptions,
           },
           {
-            loader: 'ts-loader'
-          }
-        ]
+            loader: 'ts-loader',
+          },
+        ],
       },
       {
         test: /\.(js)x?$/,
         exclude: process.env.NODE_ENV === 'test' ? /node_modules/ : undefined,
         use: [
           {
-            loader: 'cache-loader'
+            loader: 'cache-loader',
           },
           {
             loader: 'babel-loader',
-            options: babelOptions
-          }
-        ]
-      }
-    ]
+            options: babelOptions,
+          },
+        ],
+      },
+    ],
   },
   optimization: {
-    minimize: false
+    minimize: false,
   },
   output: {
     filename: '[name].js',
-    path: outputDir
+    path: outputDir,
   },
   performance: {
-    hints: false
+    hints: false,
   },
   plugins: plugins,
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
   },
   stats: 'minimal',
-  target: 'web'
+  target: 'web',
 }
 
 module.exports = config

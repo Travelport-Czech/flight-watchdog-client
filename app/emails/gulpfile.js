@@ -7,7 +7,7 @@ gulp.task('default', () => {
     .pipe(
       alias('.', {
         '@emails': './../../emails/src',
-        '@shared': './../../shared/src'
+        '@shared': './../../shared/src',
       })
     )
     .pipe(gulp.dest('./../../dist-emails'))

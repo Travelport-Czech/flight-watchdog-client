@@ -32,7 +32,7 @@ export const createMarketingEmail = async (
   showSvg: boolean
 ): Promise<string> => {
   const linksToDeleteMap = new Map<string, ValidUrl>()
-  const promises = watcherFullInfoList.map(async item => {
+  const promises = watcherFullInfoList.map(async (item) => {
     linksToDeleteMap.set(item.watcher.id.toString(), await createLinkToPageWatcherDelete(item.watcher.id))
   })
 

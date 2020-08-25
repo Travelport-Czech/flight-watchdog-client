@@ -11,7 +11,7 @@ const langCodeMapToGolLangCode = {
   [SupportedLanguageEnum.cs]: 'cz',
   [SupportedLanguageEnum.en]: 'en',
   [SupportedLanguageEnum.al]: 'al',
-  [SupportedLanguageEnum.sk]: 'sk'
+  [SupportedLanguageEnum.sk]: 'sk',
 }
 
 export const createResultUrl = (
@@ -24,7 +24,7 @@ export const createResultUrl = (
   const dealerIdUrlPart = dealerId ? '&dealer_id=' + dealerId.toString() : ''
   const waitPageString = `${frontendUrl.toString()}/index.php?action=vWait&redirect=`
 
-  const addParamsPart = Object.entries(addParams).map(item => {
+  const addParamsPart = Object.entries(addParams).map((item) => {
     return `&${item[0]}=${item[1]}`
   })
 
@@ -91,6 +91,6 @@ export const createWatcherLinks = (watcher: WatcherParams, agencyParams: AgencyP
   return {
     continueLink,
     frontendUrl,
-    resultLink
+    resultLink,
   }
 }

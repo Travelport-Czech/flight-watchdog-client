@@ -24,7 +24,7 @@ export class App extends React.Component<Props, State> {
     email: '',
     originLocationList: [],
     showBadEmailError: false,
-    stepToShow: StepToShow.none
+    stepToShow: StepToShow.none,
   }
 
   public readonly componentDidMount = async () => {
@@ -143,7 +143,7 @@ export class App extends React.Component<Props, State> {
       destinationLocationList: this.state.destinationLocationList,
       origin,
       originLocationList: this.state.originLocationList,
-      flightType
+      flightType,
     }
   }
 

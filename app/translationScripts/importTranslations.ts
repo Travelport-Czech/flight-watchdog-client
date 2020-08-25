@@ -13,7 +13,7 @@ const translationFilePaths = {
   cs: csFilePath,
   en: enFilePath,
   sk: skFilePath,
-  vn: vnFilePath
+  vn: vnFilePath,
 }
 
 translateImport(fileName, translationFilePaths)

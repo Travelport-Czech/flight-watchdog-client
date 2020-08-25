@@ -27,7 +27,7 @@ export class OpenedWindow extends React.Component<Props> {
       originLocationList,
       flightType,
       departure,
-      arrival
+      arrival,
     } = this.props.flightParams
     const destinationTextKey =
       flightType === 'return' ? TranslationEnum.ClientDestinationsReturn : TranslationEnum.ClientDestinationsOneway

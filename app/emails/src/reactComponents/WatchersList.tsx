@@ -125,7 +125,7 @@ export class WatchersList extends React.Component<Props> {
                     border: 'none',
                     fontSize: '12px',
                     fontWeight: 'normal',
-                    textDecoration: 'underline'
+                    textDecoration: 'underline',
                   }}
                 />
               </td>

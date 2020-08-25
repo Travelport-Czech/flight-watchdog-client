@@ -10,5 +10,5 @@ export const translations = {
   [SupportedLanguageEnum.cs]: csTranslation,
   [SupportedLanguageEnum.en]: enTranslation,
   [SupportedLanguageEnum.sk]: skTranslation,
-  [SupportedLanguageEnum.vn]: vnTranslation
+  [SupportedLanguageEnum.vn]: vnTranslation,
 }

@@ -24,7 +24,7 @@ export class WatchersGraphPriceHistory extends React.Component<Props> {
     const dateFormat = renderToStaticMarkup(<Text name={TranslationEnum.FormatDateDayMonth} lang={watcher.lang} />)
     const actualDate = getActualDate()
     const actualDateMinus15 = actualDate.subtractDays(15)
-    const last15Results = priceHistory.filter(item => {
+    const last15Results = priceHistory.filter((item) => {
       return item.created.getValidDate().isAfter(actualDateMinus15)
     })
     const priceLimitLabel = renderToStaticMarkup(
@@ -36,7 +36,7 @@ export class WatchersGraphPriceHistory extends React.Component<Props> {
 
     const firstPriceHistoryRecord: PriceHistoryRecord = {
       created: watcher.created,
-      price: watcher.priceLimit
+      price: watcher.priceLimit,
     }
 
     const last15ResultsWithFirst: PriceHistoryRecord[] =
@@ -44,12 +44,12 @@ export class WatchersGraphPriceHistory extends React.Component<Props> {
         ? [firstPriceHistoryRecord, ...last15Results]
         : last15Results
 
-    const data = last15ResultsWithFirst.map(item => {
+    const data = last15ResultsWithFirst.map((item) => {
       return {
         datetime: item.created.getValidDate().formatToSystem(),
         limit: priceLimit.amount,
         name: item.created.getValidDate().formatToLocal(dateFormat),
-        price: item.price ? item.price.amount : priceLimit.amount
+        price: item.price ? item.price.amount : priceLimit.amount,
       }
     })
 

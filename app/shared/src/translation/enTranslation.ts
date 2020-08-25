@@ -52,5 +52,5 @@ export const enTranslation: TranslationKeys = {
   GraphLegendPriceTrend: `Price trend`,
   PageTokenNotValid: `Link validity has expired.`,
   PageWatcherDeletedSuccess: `Flight tracking has been cancel.`,
-  PageContinueToWeb: `Click to continue to {?}`
+  PageContinueToWeb: `Click to continue to {?}`,
 }

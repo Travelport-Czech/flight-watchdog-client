@@ -14,7 +14,7 @@ export const Text: React.FunctionComponent<Props> = (props) => {
   const newProps = {
     ...props,
     language: props.lang.toString(),
-    translations
+    translations,
   }
 
   return TranslatedText(newProps)

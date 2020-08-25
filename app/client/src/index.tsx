@@ -15,7 +15,7 @@ export const initFlightWatchdogClient = async (settingsData: UnknownNestedObject
     ? new Hub(
         new BrowserClient({
           dsn: settings.sentryDns.toString(),
-          release: process.env.RELEASE_HASH
+          release: process.env.RELEASE_HASH,
         })
       )
     : undefined

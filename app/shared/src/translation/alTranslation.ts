@@ -52,5 +52,5 @@ export const alTranslation: TranslationKeys = {
   GraphLegendPriceTrend: `Trendi çmimit`,
   PageTokenNotValid: `Vlefshmëria e lidhjes ka skaduar.`,
   PageWatcherDeletedSuccess: `Gjurmimi i fluturimit është anulluar.`,
-  PageContinueToWeb: `Kliko për të vazhduar tek {?}`
+  PageContinueToWeb: `Kliko për të vazhduar tek {?}`,
 }

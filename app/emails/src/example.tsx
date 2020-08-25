@@ -15,7 +15,7 @@ import {
   ValidLanguage,
   ValidPrice,
   ValidString,
-  ValidUrl
+  ValidUrl,
 } from '@travelport-czech/valid-objects-ts'
 
 // tslint:disable-next-line:export-name
@@ -46,7 +46,7 @@ const agencySettings: AgencyParams = {
   emailFrom: new ValidEmail('agency@example.cz'),
   emailReplyTo: new ValidEmail('agencyReplyTo@example.cz'),
   dealerId: undefined,
-  frontendUrl: new ValidUrl('https://example.cz')
+  frontendUrl: new ValidUrl('https://example.cz'),
 }
 
 const createWatcherFullInfo = (lang: ValidLanguage): WatcherFullInfo => {
@@ -60,7 +60,7 @@ const createWatcherFullInfo = (lang: ValidLanguage): WatcherFullInfo => {
     lang,
     origin: new ValidIATALocationList('PRG'),
     priceLimit: new ValidPrice('6000 CZK'),
-    flightType: 'return'
+    flightType: 'return',
   }
 
   const flightResult: FlightResult = {
@@ -69,42 +69,42 @@ const createWatcherFullInfo = (lang: ValidLanguage): WatcherFullInfo => {
     destination: new ValidIATALocationList('LON'),
     departure: new ValidDate('2018-12-16'),
     arrival: new ValidDate('2018-12-25'),
-    flightType: 'return'
+    flightType: 'return',
   }
 
   return {
     destinationLocationList: [
       {
         code: new ValidIATALocation('PRG'),
-        name: 'Praha'
-      }
+        name: 'Praha',
+      },
     ],
     originLocationList: [
       {
         code: new ValidIATALocation('LON'),
-        name: 'Londýn'
-      }
+        name: 'Londýn',
+      },
     ],
     watcher,
     additionalResults: [flightResult, flightResult, flightResult],
     priceHistory: [
       {
         price: new ValidPrice('4500 CZK'),
-        created: new ValidDateTime('2018-09-20 12:00:00')
+        created: new ValidDateTime('2018-09-20 12:00:00'),
       },
       {
         price: new ValidPrice('5812 CZK'),
-        created: new ValidDateTime('2018-09-21 12:00:00')
+        created: new ValidDateTime('2018-09-21 12:00:00'),
       },
       {
         price: new ValidPrice('6321 CZK'),
-        created: new ValidDateTime('2018-09-22 12:00:00')
+        created: new ValidDateTime('2018-09-22 12:00:00'),
       },
       {
         price: new ValidPrice('5000 CZK'),
-        created: new ValidDateTime('2018-09-23 12:00:00')
-      }
-    ]
+        created: new ValidDateTime('2018-09-23 12:00:00'),
+      },
+    ],
   }
 }
 

@@ -52,5 +52,5 @@ export const vnTranslation: TranslationKeys = {
   GraphLegendPriceTrend: `Xu hướng giá cả`,
   PageTokenNotValid: `Hiệu lực liên kết đã hết hạn.`,
   PageWatcherDeletedSuccess: `Theo dõi chuyến bay đã bị hủy.`,
-  PageContinueToWeb: `Nhấp để tiếp tục đến {?}`
+  PageContinueToWeb: `Nhấp để tiếp tục đến {?}`,
 }
