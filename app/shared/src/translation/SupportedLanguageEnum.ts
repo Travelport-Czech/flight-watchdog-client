@@ -3,5 +3,5 @@ export enum SupportedLanguageEnum {
   cs = 'cs',
   en = 'en',
   sk = 'sk',
-  vn = 'vn',
+  vi = 'vi',
 }

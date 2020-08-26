@@ -1,7 +1,7 @@
 import { TranslationKeys } from '@shared/translation/TranslationKeys'
 
 // tslint:disable:max-line-length
-export const vnTranslation: TranslationKeys = {
+export const viTranslation: TranslationKeys = {
   FormatDate: `D. M. YYYY`,
   FormatDateDayMonth: `D.M.`,
   FormatDateWithDayName: `dddd D. M. YYYY`,

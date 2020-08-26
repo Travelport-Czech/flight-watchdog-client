@@ -42,9 +42,9 @@ describe('Change language', function() {
         cy.contains('Hľadáte lacnejšiu letenku? Kliknite sem.')
     })
 
-    it('vn', function() {
+    it('vi', function() {
         cy.visit(golUrlReturn)
-        setOtpions({lang: 'vn'})
+        setOtpions({lang: 'vi'})
         cy.contains('Bạn muốn theo dõi giá 2\u00a0000\u00a0CZK?')
         cy.contains('Prague - Ruzyne')
         cy.contains('London')
