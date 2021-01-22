@@ -1,0 +1,4 @@
+**/node_modules/
+.dist-translation-scripts
+dist-client
+dist-emails
