@@ -30,7 +30,11 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
   }
 
   const langElement = document.getElementsByTagName('html').item(0)
-  const lang = new ValidLanguage(langElement && langElement.getAttribute('lang'), Object.values(SupportedLanguageEnum))
+  const lang = new ValidLanguage(
+    langElement && langElement.getAttribute('lang'),
+    undefined,
+    Object.values(SupportedLanguageEnum)
+  )
 
   return {
     ...appConfigPartFromUrl,
@@ -46,7 +50,7 @@ const getCustomerEmail = (doc: Document): ValidEmail | undefined => {
     const userEmailHtmlElement = <HTMLInputElement | null>doc.getElementById('fiUsername')
 
     return userEmailHtmlElement && userEmailHtmlElement.value
-      ? new ValidEmail(userEmailHtmlElement.value, ['+'])
+      ? new ValidEmail(userEmailHtmlElement.value, undefined, ['+'])
       : undefined
   } catch (err) {
     return

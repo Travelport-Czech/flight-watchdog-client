@@ -33,7 +33,7 @@ export const isAllowedToAddWatcher = async (token: string, apiUrl: ValidString):
   const count = new ValidNumber(json.context[ResponseKeysEnum.Count])
   const limit = new ValidNumber(json.context[ResponseKeysEnum.Limit])
 
-  if (count.value >= limit.value) {
+  if (count.getNumber() >= limit.getNumber()) {
     return false
   }
 
@@ -90,8 +90,8 @@ export const getWatchersCountOnEmail = async (
   const limit = new ValidNumber(json.context[ResponseKeysEnum.EmailLimit])
 
   return {
-    count: count.value,
-    limit: limit.value,
+    count: count.getNumber(),
+    limit: limit.getNumber(),
   }
 }
 

@@ -97,7 +97,7 @@ export class App extends React.Component<Props, State> {
       return
     }
 
-    const keepMinimalisedInDays = this.props.clientSettings.keepMinimalisedInDays.value
+    const keepMinimalisedInDays = this.props.clientSettings.keepMinimalisedInDays.getNumber()
     if (keepMinimalisedInDays !== 0) {
       Cookies.set(Consts.cookieName, 'true', { expires: keepMinimalisedInDays })
     }
