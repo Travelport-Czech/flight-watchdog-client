@@ -1,6 +1,5 @@
 import { App } from '@client/App'
 import { isValidClientSettings } from '@client/functions'
-import { UnknownNestedObject } from '@client/types/UnknownNestedObject'
 import { createAppConfigFromFe } from '@client/utils/createAppConfigFromFe'
 import { createTagManagerSnippet } from '@client/utils/createTagManagerSnippet'
 import { BrowserClient, Hub, Scope } from '@sentry/browser'
@@ -8,7 +7,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 // tslint:disable-next-line:export-name no-any
-export const initFlightWatchdogClient = async (settingsData: UnknownNestedObject) => {
+export const initFlightWatchdogClient = async (settingsData: unknown) => {
   const settings = isValidClientSettings(settingsData)
 
   const sentryClient = settings.sentryDns

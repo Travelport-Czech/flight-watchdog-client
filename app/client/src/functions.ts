@@ -1,6 +1,5 @@
 import { StepToShow } from '@client/StepsToShow'
 import { ClientSettings } from '@client/types/ClientSettings'
-import { UnknownNestedObject } from '@client/types/UnknownNestedObject'
 import { WatcherClientCreateParams } from '@client/types/WatcherClientCreateParams'
 import { createAuthorizationBasicToken } from '@client/utils/createAuthorizationBasicToken'
 import { parseJson } from '@client/utils/parseJson'
@@ -13,27 +12,20 @@ import {
   ValidNumber,
   ValidString,
 } from '@travelport-czech/valid-objects-ts'
-
-enum ResponseKeysEnum {
-  Count = 'count',
-  Limit = 'limit',
-  EmailLimit = 'emailLimit',
-}
+import * as z from 'zod'
 
 export const isAllowedToAddWatcher = async (token: string, apiUrl: ValidString): Promise<boolean> => {
-  const json = await sendRequest(token, apiUrl, '/count-all', {})
-  if (json.result !== 'Success') {
-    return false
-  }
+  const schema = z.object({
+    result: z.enum(['Success']),
+    context: z.object({
+      limit: z.number().int().nonnegative(),
+      count: z.number().int().nonnegative(),
+    }),
+  })
+  const response = await sendRequest(token, apiUrl, '/count-all', {})
+  const result = schema.parse(response)
 
-  if (!json.context) {
-    return false
-  }
-
-  const count = new ValidNumber(json.context[ResponseKeysEnum.Count])
-  const limit = new ValidNumber(json.context[ResponseKeysEnum.Limit])
-
-  if (count.getNumber() >= limit.getNumber()) {
+  if (result.context.count >= result.context.limit) {
     return false
   }
 
@@ -46,52 +38,54 @@ export const getDestinationNames = async (
   locationCodeList: ValidIATALocationList,
   lang: ValidLanguage
 ): Promise<Location[]> => {
-  const json = await sendRequest(token, apiUrl, '/destination-name', {
+  const schema = z.object({
+    result: z.string(),
+    context: z.array(
+      z.object({
+        code: z.string().length(3),
+        name: z.string().optional(),
+      })
+    ),
+  })
+  const response = await sendRequest(token, apiUrl, '/destination-name', {
     lang: lang.toString(),
     locationCode: locationCodeList.toString(),
   })
-  if (json.result !== 'Success') {
+
+  const result = schema.parse(response)
+
+  if (result.result !== 'Success') {
     return []
   }
 
-  if (!json.context) {
-    throw new Error('Flight Watchdog: Bad api response')
-  }
-
-  if (!Array.isArray(json.context)) {
-    throw new Error('Flight Watchdog: Bad api response')
-  }
-
-  return json.context.map(
-    (item: UnknownNestedObject): Location => {
-      return {
-        code: new ValidIATALocation(item.code),
-        name: item.name ? new ValidString(item.name).toString() : undefined,
-      }
+  return result.context.map((item) => {
+    return {
+      code: new ValidIATALocation(item.code),
+      name: item.name ? new ValidString(item.name).toString() : undefined,
     }
-  )
+  })
 }
 
 export const getWatchersCountOnEmail = async (
   token: string,
   apiUrl: ValidString,
   email: string
-): Promise<{ readonly limit: number; readonly count: number } | undefined> => {
-  const json = await sendRequest(token, apiUrl, '/count', { email })
-  if (json.result !== 'Success') {
-    return
-  }
+): Promise<{ readonly limit: number; readonly count: number }> => {
+  const schema = z.object({
+    result: z.enum(['Success']),
+    context: z.object({
+      emailLimit: z.number().int().nonnegative(),
+      count: z.number().int().nonnegative(),
+    }),
+  })
 
-  if (!json.context) {
-    throw new Error('Flight Watchdog: Bad api response')
-  }
+  const response = await sendRequest(token, apiUrl, '/count', { email })
 
-  const count = new ValidNumber(json.context[ResponseKeysEnum.Count])
-  const limit = new ValidNumber(json.context[ResponseKeysEnum.EmailLimit])
+  const result = schema.parse(response)
 
   return {
-    count: count.getNumber(),
-    limit: limit.getNumber(),
+    count: result.context.count,
+    limit: result.context.emailLimit,
   }
 }
 
@@ -100,20 +94,20 @@ export const getWatchersOnEmail = async (
   apiUrl: ValidString,
   email: ValidEmail
 ): Promise<ValidString[] | undefined> => {
-  const json = await sendRequest(token, apiUrl, '/watchers', { email: email.toString() })
-  if (json.result !== 'Success') {
-    return
-  }
+  const schema = z.object({
+    result: z.enum(['Success']),
+    context: z.array(
+      z.object({
+        id: z.string().min(1),
+      })
+    ),
+  })
 
-  if (!json.context) {
-    throw new Error('Flight Watchdog: Bad api response')
-  }
+  const response = await sendRequest(token, apiUrl, '/watchers', { email: email.toString() })
 
-  if (!Array.isArray(json.context)) {
-    throw new Error('Flight Watchdog: Bad api response')
-  }
+  const result = schema.parse(response)
 
-  return json.context.map((item: UnknownNestedObject) => {
+  return result.context.map((item) => {
     return new ValidString(item.id)
   })
 }
@@ -124,15 +118,18 @@ export const createWatcher = async (
   data: WatcherClientCreateParams
 ): Promise<boolean> => {
   try {
-    const json = await sendRequest(token, apiUrl, '/create', { ...data })
-    if (json.result !== 'Success') {
-      return false
-    }
-  } catch (err) {
+    const schema = z.object({
+      result: z.enum(['Success']),
+    })
+
+    const response = await sendRequest(token, apiUrl, '/create', { ...data })
+
+    schema.parse(response)
+
+    return true
+  } catch (e) {
     return false
   }
-
-  return true
 }
 
 export const sendWatchersList = async (
@@ -142,15 +139,18 @@ export const sendWatchersList = async (
   lang: ValidLanguage
 ): Promise<boolean> => {
   try {
-    const json = await sendRequest(token, apiUrl, '/send-watcher-list', { email, lang: lang.toString() })
-    if (json.result !== 'Success') {
-      return false
-    }
+    const schema = z.object({
+      result: z.enum(['Success']),
+    })
+
+    const response = await sendRequest(token, apiUrl, '/send-watcher-list', { email, lang: lang.toString() })
+
+    schema.parse(response)
+
+    return true
   } catch (err) {
     return false
   }
-
-  return true
 }
 
 export const deleteWatcher = async (
@@ -160,23 +160,21 @@ export const deleteWatcher = async (
   email: ValidEmail
 ): Promise<boolean> => {
   try {
-    const json = await sendRequest(token, apiUrl, '/delete', { id: id.toString(), email: email.toString() })
-    if (json.result !== 'Success') {
-      return false
-    }
+    const schema = z.object({
+      result: z.enum(['Success']),
+    })
+
+    const response = await sendRequest(token, apiUrl, '/delete', { id: id.toString(), email: email.toString() })
+
+    schema.parse(response)
+
+    return true
   } catch (err) {
     return false
   }
-
-  return true
 }
 
-export const sendRequest = async (
-  token: string,
-  apiUrl: ValidString,
-  url: string,
-  data: UnknownNestedObject
-): Promise<UnknownNestedObject> => {
+export const sendRequest = async (token: string, apiUrl: ValidString, url: string, data: unknown): Promise<unknown> => {
   const endpoint = apiUrl.toString() + url
   const response = await fetch(endpoint, {
     body: JSON.stringify(data),
@@ -191,40 +189,30 @@ export const sendRequest = async (
 }
 
 // tslint:disable-next-line:no-any
-export const isValidClientSettings = (data: UnknownNestedObject): ClientSettings => {
-  if (!data) {
-    throw new Error('Flight Watchdog: Missing settings')
-  }
-  const token = new ValidString(data.token)
+export const isValidClientSettings = (data: unknown): ClientSettings => {
+  console.log('michal', data)
+  const schema = z.object({
+    token: z.string().min(1),
+    keepMinimalisedInDays: z.number().int().nonnegative().default(7),
+    initStep: z.nativeEnum(StepToShow).optional(),
+    apiUrl: z.string().default(process.env.API_URL as string),
+    analyticsId: z.string().default(process.env.ANALYTICS_ID as string),
+    sentryDns: z.string().default(process.env.SENTRY_DNS as string),
+  })
 
-  const keepMinimalisedInDays = new ValidNumber(
-    typeof data.keepMinimalisedInDays === 'number' ? data.keepMinimalisedInDays : 7
-  )
+  const result = schema.parse(data)
 
-  if (
-    data.initStep &&
-    typeof data.initStep === 'string' &&
-    !Object.values(<string>(<unknown>StepToShow)).includes(data.initStep)
-  ) {
-    throw new Error('Flight Watchdog: Bad init step')
-  }
+  const keepMinimalisedInDays = new ValidNumber(result.keepMinimalisedInDays)
+  const apiUrl = new ValidString(result.apiUrl)
 
-  const initStep = data.initStep ? <StepToShow>data.initStep : undefined
+  const analyticsId = result.analyticsId === 'false' ? undefined : new ValidString(result.analyticsId)
 
-  const apiUrl = new ValidString(data.apiUrl ? data.apiUrl : process.env.API_URL)
-
-  const analyticsId =
-    data.analyticsId === 'false'
-      ? undefined
-      : new ValidString(data.analyticsId ? data.analyticsId : process.env.ANALYTICS_ID)
-
-  const sentryDns =
-    data.sentryDns === 'false' ? undefined : new ValidString(data.sentryDns ? data.sentryDns : process.env.SENTRY_DNS)
+  const sentryDns = result.sentryDns === 'false' ? undefined : new ValidString(result.sentryDns)
 
   return {
     keepMinimalisedInDays,
-    token: token.toString(),
-    initStep,
+    token: result.token,
+    initStep: result.initStep,
     apiUrl,
     analyticsId,
     sentryDns,

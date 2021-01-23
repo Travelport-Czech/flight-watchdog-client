@@ -15,7 +15,7 @@
         document.getElementsByClassName('AO3_TotalFareValue')[0].setAttribute('data-default-price', document.getElementById('option-defaultPrice').value)
         var settings = {
           token: document.getElementById('option-token').value,
-          initStep: document.getElementById('option-initStep').value,
+          initStep: document.getElementById('option-initStep').value ? document.getElementById('option-initStep').value : undefined,
           apiUrl: document.getElementById('option-apiUrl').value,
           keepMinimalisedInDays: parseInt(document.getElementById('option-keepMinimalisedInDays').value),
           analyticsId: document.getElementById('option-analyticsId').value,
