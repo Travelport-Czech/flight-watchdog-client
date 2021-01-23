@@ -1,7 +1,6 @@
 const os = require('os')
 const path = require('path')
 const Dotenv = require('dotenv-webpack')
-const Visualizer = require('webpack-visualizer-plugin')
 
 const sourceFile = path.resolve(__dirname, 'src/index.tsx')
 const outputDir = path.resolve(__dirname, '../../dist-client')
@@ -18,14 +17,6 @@ let plugins = [
     systemvars: true, // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
   }),
 ]
-
-if (process.env.NODE_ENV !== 'test') {
-  plugins.push(
-    new Visualizer({
-      filename: './statistics.html',
-    })
-  )
-}
 
 const babelOptions = {
   plugins: [
