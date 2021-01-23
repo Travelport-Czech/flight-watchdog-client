@@ -63,12 +63,12 @@ Hlídat Nemám zájem`)
     it('Return flight url with lower case step', function() {
         cy.visit('/')
         setOtpions({url: golUrlReturn.replace('ChooseFromFour', 'chooseFromFour')})
-        cy.contains('Chcete hlídat cenu 2\u00a0000\u00a0CZK?')
+        cy.contains('Chcete hlídat cenu 2 000 CZK?')
     })
 
     it('Oneway flight url with lower case step', function() {
         cy.visit('/')
         setOtpions({url: golUrlOneway.replace('ChooseFromFour', 'chooseFromFour')})
-        cy.contains('Chcete hlídat cenu 2\u00a0000\u00a0CZK?')
+        cy.contains('Chcete hlídat cenu 2 000 CZK?')
     })
 })

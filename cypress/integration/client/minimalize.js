@@ -6,7 +6,7 @@ describe('Minimalize', function() {
     it('Show minimalized after create and reload', function() {
         cy.visit(golUrlReturn)
         setOtpions()
-        cy.contains('Chcete hlídat cenu 2\u00a0000\u00a0CZK?')
+        cy.contains('Chcete hlídat cenu 2 000 CZK?')
         cy.get('.content input').type('michal@email.cz')
         cy.get(createButtonSelector).click()
         cy.contains('Skvěle, hotovo. Až najdeme nižší cenu, pošleme Vám e-mail.')
@@ -20,7 +20,7 @@ describe('Minimalize', function() {
     it('Do not show minimalized after create and reload', function() {
         cy.visit(golUrlReturn)
         setOtpions({keepMinimalisedInDays: 0})
-        cy.contains('Chcete hlídat cenu 2\u00a0000\u00a0CZK?')
+        cy.contains('Chcete hlídat cenu 2 000 CZK?')
         cy.get('.content input').type('michal@email.cz')
         cy.get(createButtonSelector).click()
         cy.contains('Skvěle, hotovo. Až najdeme nižší cenu, pošleme Vám e-mail.')
@@ -28,6 +28,6 @@ describe('Minimalize', function() {
         cy.contains('Hledáte levnější letenku? Klikněte zde.')
         cy.reload()
         setOtpions({keepMinimalisedInDays: 0})
-        cy.contains('Chcete hlídat cenu 2\u00a0000\u00a0CZK?')
+        cy.contains('Chcete hlídat cenu 2 000 CZK?')
     })
 })

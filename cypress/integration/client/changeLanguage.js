@@ -6,7 +6,7 @@ describe('Change language', function() {
     it('en', function() {
         cy.visit(golUrlReturn)
         setOtpions({lang: 'en'})
-        cy.contains('Track the price 2\u00a0000\u00a0CZK?')
+        cy.contains('Track the price 2 000 CZK?')
         cy.contains('Prague - Ruzyne')
         cy.contains('London')
         cy.get('.content input').type('michal@email.cz')
@@ -19,7 +19,7 @@ describe('Change language', function() {
     it('al', function() {
         cy.visit(golUrlReturn)
         setOtpions({lang: 'al'})
-        cy.contains('Gjurmo çmimin 2\u00a0000\u00a0CZK?')
+        cy.contains('Gjurmo çmimin 2 000 CZK?')
         cy.contains('Prague - Ruzyne')
         cy.contains('London')
         cy.get('.content input').type('michal@email.cz')
@@ -32,7 +32,7 @@ describe('Change language', function() {
     it('sk', function() {
         cy.visit(golUrlReturn)
         setOtpions({lang: 'sk'})
-        cy.contains('Chcete sledovať cenu 2\u00a0000\u00a0CZK?')
+        cy.contains('Chcete sledovať cenu 2 000 CZK?')
         cy.contains('Prague - Ruzyne')
         cy.contains('London')
         cy.get('.content input').type('michal@email.cz')
@@ -45,7 +45,7 @@ describe('Change language', function() {
     it('vi', function() {
         cy.visit(golUrlReturn)
         setOtpions({lang: 'vi'})
-        cy.contains('Bạn muốn theo dõi giá 2\u00a0000\u00a0CZK?')
+        cy.contains('Bạn muốn theo dõi giá 2 000 CZK?')
         cy.contains('Prague - Ruzyne')
         cy.contains('London')
         cy.get('.content input').type('michal@email.cz')
