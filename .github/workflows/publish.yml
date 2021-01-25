@@ -29,10 +29,23 @@ jobs:
       - run: npm test
         env:
           CYPRESS_CACHE_FOLDER: '~/.cypress'
-  publish-npm:
+  bump-version:
     runs-on: ubuntu-latest
     needs:
       - test
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: "Automated Version Bump"
+        uses: "phips28/gh-action-bump-version@master"
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  publish-npm:
+    runs-on: ubuntu-latest
+    needs:
+      - bump-version
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v1
@@ -43,19 +56,19 @@ jobs:
         with:
           path: ~/.cypress
           key: ${{ runner.os }}-cypress
-      - name: "Automated Version Bump"
-        uses: "phips28/gh-action-bump-version@master"
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - uses: actions/setup-node@v1
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org
       - run: npm ci
-        env:
-          CI: true
-          CYPRESS_CACHE_FOLDER: '~/.cypress'
       - name: Publish to NPM registry
         run: npm publish --access public
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - uses: actions/setup-node@v1
+        with:
+          registry-url: https://npm.pkg.github.com
+      - name: Publish to GitHub registry
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
