@@ -42,7 +42,7 @@ export const getDestinationNames = async (
     result: z.string(),
     context: z.array(
       z.object({
-        code: z.string().length(3),
+        code: z.string().min(1),
         name: z.string().optional(),
       })
     ),
