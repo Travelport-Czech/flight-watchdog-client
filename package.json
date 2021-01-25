@@ -12,6 +12,9 @@
   "engines": {
     "node": ">=10"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "prepublishOnly": "npm run build-prod",
     "lang-export": "webpack-cli --config app/translationScripts/webpack.config.js && node .dist-translation-scripts/export.js",
