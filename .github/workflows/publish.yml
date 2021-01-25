@@ -52,6 +52,10 @@ jobs:
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cypress
+          key: ${{ runner.os }}-cypress
       - uses: actions/setup-node@v1
         with:
           node-version: 12
