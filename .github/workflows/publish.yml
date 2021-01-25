@@ -52,6 +52,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - run: npm ci
+        env:
+          CI: true
+          CYPRESS_CACHE_FOLDER: '~/.cypress'
       - name: Publish to NPM registry
         run: npm publish --access public
         env:
