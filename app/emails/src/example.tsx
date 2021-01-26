@@ -21,7 +21,11 @@ import {
 // tslint:disable-next-line:export-name
 export const showEmail = async (emailName: string) => {
   const langElement = document.getElementsByTagName('html').item(0)
-  const lang = new ValidLanguage(langElement && langElement.getAttribute('lang'), Object.values(SupportedLanguageEnum))
+  const lang = new ValidLanguage(
+    langElement && langElement.getAttribute('lang'),
+    undefined,
+    Object.values(SupportedLanguageEnum)
+  )
 
   let content = ''
   if (emailName === 'lower-price') {

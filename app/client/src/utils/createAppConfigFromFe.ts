@@ -9,7 +9,6 @@ import {
   ValidEmail,
   ValidIATALocationList,
   ValidLanguage,
-  ValidObjectError,
   ValidPrice,
   ValidString
 } from '@travelport-czech/valid-objects-ts'
@@ -33,6 +32,7 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
     const langElement = document.getElementsByTagName('html').item(0)
     const lang = new ValidLanguage(
       langElement && langElement.getAttribute('lang'),
+      undefined,
       Object.values(SupportedLanguageEnum)
     )
 
@@ -71,7 +71,7 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
     }
     // tslint:enable
   } catch (e) {
-    if (e instanceof AppError || e instanceof ValidObjectError) {
+    if (e instanceof Error) {
       throw new InvalidClientInputError(e.message)
     }
     throw e
