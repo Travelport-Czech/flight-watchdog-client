@@ -49,7 +49,7 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: "Automated Version Bump"
         uses: "phips28/gh-action-bump-version@master"
-        env:
+        with:
           tag-prefix: 'sa-'
       - run: npm ci
         env:
