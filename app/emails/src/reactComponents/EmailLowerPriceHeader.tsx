@@ -4,12 +4,11 @@ import { LocationNameList } from '@shared/reactComponents/LocationNameList'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidUrl } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 
 interface Props {
   readonly watcherFullInfo: WatcherFullInfo
-  readonly frontendUrl: ValidUrl
+  readonly frontendUrl: string
 }
 
 export class EmailLowerPriceHeader extends React.Component<Props> {

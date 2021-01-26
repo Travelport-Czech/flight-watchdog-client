@@ -14,18 +14,19 @@ import {
   ValidIATALocationList,
   ValidLanguage,
   ValidPrice,
-  ValidString,
-  ValidUrl,
 } from '@travelport-czech/valid-objects-ts'
 
 // tslint:disable-next-line:export-name
 export const showEmail = async (emailName: string) => {
   const langElement = document.getElementsByTagName('html').item(0)
-  const lang = new ValidLanguage(
-    langElement && langElement.getAttribute('lang'),
-    undefined,
-    Object.values(SupportedLanguageEnum)
-  )
+  const lang =
+    SupportedLanguageEnum[
+      new ValidLanguage(
+        langElement && langElement.getAttribute('lang'),
+        undefined,
+        Object.values(SupportedLanguageEnum)
+      ).getString()
+    ]
 
   let content = ''
   if (emailName === 'lower-price') {
@@ -50,17 +51,17 @@ const agencySettings: AgencyParams = {
   emailFrom: new ValidEmail('agency@example.cz'),
   emailReplyTo: new ValidEmail('agencyReplyTo@example.cz'),
   dealerId: undefined,
-  frontendUrl: new ValidUrl('https://example.cz'),
+  frontendUrl: 'https://example.cz',
 }
 
-const createWatcherFullInfo = (lang: ValidLanguage): WatcherFullInfo => {
+const createWatcherFullInfo = (lang: SupportedLanguageEnum): WatcherFullInfo => {
   const watcher: WatcherParams = {
     arrival: new ValidDate('2018-12-25'),
     created: new ValidDateTime('2018-09-19 12:00:00'),
     departure: new ValidDate('2018-12-16'),
     destination: new ValidIATALocationList('LON'),
     email: new ValidEmail('none@email.cz'),
-    id: new ValidString('example'),
+    id: 'example',
     lang,
     origin: new ValidIATALocationList('PRG'),
     priceLimit: new ValidPrice('6000 CZK'),
@@ -112,11 +113,11 @@ const createWatcherFullInfo = (lang: ValidLanguage): WatcherFullInfo => {
   }
 }
 
-const createLinkToPageWatcherDelete = async (watcherId: ValidString): Promise<ValidUrl> => {
-  return Promise.resolve(new ValidUrl('https://www.testWatcherDeleted.url'))
+const createLinkToPageWatcherDelete = async (watcherId: string): Promise<string> => {
+  return Promise.resolve('https://www.testWatcherDeleted.url')
 }
 
-const createLowerPriceEmailContent = async (lang: ValidLanguage): Promise<string> => {
+const createLowerPriceEmailContent = async (lang: SupportedLanguageEnum): Promise<string> => {
   const price = new ValidPrice('5000 CZK')
 
   const watcherFullInfo = createWatcherFullInfo(lang)
@@ -124,13 +125,13 @@ const createLowerPriceEmailContent = async (lang: ValidLanguage): Promise<string
   return createLowerPriceEmail(watcherFullInfo, agencySettings, price, true)
 }
 
-const createMarketingEmailContent = async (lang: ValidLanguage): Promise<string> => {
+const createMarketingEmailContent = async (lang: SupportedLanguageEnum): Promise<string> => {
   const watcherFullInfo = createWatcherFullInfo(lang)
 
   return createMarketingEmail(createLinkToPageWatcherDelete, [watcherFullInfo, watcherFullInfo], agencySettings, true)
 }
 
-const createWatcherListEmailContent = async (lang: ValidLanguage): Promise<string> => {
+const createWatcherListEmailContent = async (lang: SupportedLanguageEnum): Promise<string> => {
   const watcherFullInfo = createWatcherFullInfo(lang)
 
   return createWatchersListEmail(

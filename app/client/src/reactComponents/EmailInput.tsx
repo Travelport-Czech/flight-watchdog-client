@@ -1,13 +1,13 @@
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidLanguage } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 import { renderToString } from 'react-dom/server'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 interface Props {
   readonly value?: string
-  readonly lang: ValidLanguage
+  readonly lang: SupportedLanguageEnum
   onChange(event: React.ChangeEvent<HTMLInputElement>): void
 }
 

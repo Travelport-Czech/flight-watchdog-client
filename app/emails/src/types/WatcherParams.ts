@@ -1,10 +1,11 @@
 import { FlightParams } from '@emails/types/FlightParams'
-import { ValidDateTime, ValidEmail, ValidLanguage, ValidPrice, ValidString } from '@travelport-czech/valid-objects-ts'
+import { ValidDateTime, ValidEmail, ValidPrice } from '@travelport-czech/valid-objects-ts'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 export interface WatcherParams extends FlightParams {
-  readonly id: ValidString
+  readonly id: string
   readonly email: ValidEmail
   readonly priceLimit: ValidPrice
-  readonly lang: ValidLanguage
+  readonly lang: SupportedLanguageEnum
   readonly created: ValidDateTime
 }

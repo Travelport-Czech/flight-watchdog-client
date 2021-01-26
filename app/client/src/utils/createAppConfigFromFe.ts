@@ -34,14 +34,14 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
     langElement && langElement.getAttribute('lang'),
     undefined,
     Object.values(SupportedLanguageEnum)
-  )
+  ).getString()
 
   return {
     ...appConfigPartFromUrl,
     customerEmail: getCustomerEmail(doc),
     lowestPrice: new ValidPrice(lowestPrice),
     lowestPriceCustomCurrency: new ValidPrice(lowestPriceCustomCurrency),
-    lang,
+    lang: SupportedLanguageEnum[lang],
   }
 }
 

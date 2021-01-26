@@ -1,13 +1,13 @@
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidLanguage, ValidUrl } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 interface Props {
-  readonly link: ValidUrl
+  readonly link: string
   readonly text: TranslationEnum
-  readonly lang: ValidLanguage
+  readonly lang: SupportedLanguageEnum
   readonly name: string
   readonly style?: React.CSSProperties
 }

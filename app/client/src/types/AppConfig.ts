@@ -1,10 +1,5 @@
-import {
-  ValidDate,
-  ValidEmail,
-  ValidIATALocationList,
-  ValidLanguage,
-  ValidPrice,
-} from '@travelport-czech/valid-objects-ts'
+import { ValidDate, ValidEmail, ValidIATALocationList, ValidPrice } from '@travelport-czech/valid-objects-ts'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 export interface AppConfig {
   readonly flightType: 'return' | 'oneway'
@@ -16,5 +11,5 @@ export interface AppConfig {
   readonly customerEmail?: ValidEmail
   readonly lowestPrice: ValidPrice
   readonly lowestPriceCustomCurrency: ValidPrice
-  readonly lang: ValidLanguage
+  readonly lang: SupportedLanguageEnum
 }

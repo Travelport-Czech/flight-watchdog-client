@@ -3,9 +3,10 @@ import { WatchersGraphPriceHistory } from '@emails/reactComponents/WatchersGraph
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidEmail, ValidLanguage } from '@travelport-czech/valid-objects-ts'
+import { ValidEmail } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 export const createEmailRawBegin = (
   subject: string,
@@ -13,7 +14,7 @@ export const createEmailRawBegin = (
   emailTo: ValidEmail,
   emailFrom: ValidEmail,
   emailReplyTo: ValidEmail,
-  lang: ValidLanguage
+  lang: SupportedLanguageEnum
 ): string => {
   // tslint:disable-next-line:no-let
   let raw: string

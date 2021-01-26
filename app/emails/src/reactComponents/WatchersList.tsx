@@ -11,19 +11,19 @@ import { Price } from '@shared/reactComponents/Price'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidLanguage, ValidUrl } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 interface Props {
   readonly watchersFullInfoList: WatcherFullInfo[]
   readonly agencyParams: AgencyParams
   readonly showSvg?: boolean
-  readonly linksToDeleteMap: Map<string, ValidUrl>
+  readonly linksToDeleteMap: Map<string, string>
 }
 
 const createAdditionalResults = (
   additionalResults: FlightResult[],
-  lang: ValidLanguage,
+  lang: SupportedLanguageEnum,
   agencyParams: AgencyParams
 ) => {
   const additionalResultsLimited = additionalResults.slice(0, 5)

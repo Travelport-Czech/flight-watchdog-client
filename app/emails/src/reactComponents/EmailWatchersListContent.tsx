@@ -6,14 +6,13 @@ import { AppLogicError } from '@shared/errors/AppLogicError'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidUrl } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 
 interface Props {
   readonly watchersFullInfoList: WatcherFullInfo[]
   readonly agencyParams: AgencyParams
   readonly showSvg?: boolean
-  readonly linksToDeleteMap: Map<string, ValidUrl>
+  readonly linksToDeleteMap: Map<string, string>
 }
 
 export class EmailWatchersListContent extends React.Component<Props> {

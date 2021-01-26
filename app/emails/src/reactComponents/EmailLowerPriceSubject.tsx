@@ -1,12 +1,13 @@
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidIATALocationList, ValidLanguage } from '@travelport-czech/valid-objects-ts'
+import { ValidIATALocationList } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 interface Props {
   readonly origin: ValidIATALocationList
   readonly destination: ValidIATALocationList
-  readonly lang: ValidLanguage
+  readonly lang: SupportedLanguageEnum
 }
 
 export class EmailLowerPriceSubject extends React.Component<Props> {

@@ -8,11 +8,11 @@ import {
   ValidEmail,
   ValidIATALocation,
   ValidIATALocationList,
-  ValidLanguage,
   ValidNumber,
   ValidString,
 } from '@travelport-czech/valid-objects-ts'
 import * as z from 'zod'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 export const isAllowedToAddWatcher = async (token: string, apiUrl: ValidString): Promise<boolean> => {
   const schema = z.object({
@@ -36,7 +36,7 @@ export const getDestinationNames = async (
   token: string,
   apiUrl: ValidString,
   locationCodeList: ValidIATALocationList,
-  lang: ValidLanguage
+  lang: SupportedLanguageEnum
 ): Promise<Location[]> => {
   const schema = z.object({
     result: z.string(),
@@ -48,7 +48,7 @@ export const getDestinationNames = async (
     ),
   })
   const response = await sendRequest(token, apiUrl, '/destination-name', {
-    lang: lang.toString(),
+    lang,
     locationCode: locationCodeList.toString(),
   })
 
@@ -136,7 +136,7 @@ export const sendWatchersList = async (
   token: string,
   apiUrl: ValidString,
   email: string,
-  lang: ValidLanguage
+  lang: SupportedLanguageEnum
 ): Promise<boolean> => {
   try {
     const schema = z.object({

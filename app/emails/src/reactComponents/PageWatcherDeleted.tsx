@@ -1,11 +1,11 @@
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidLanguage, ValidUrl } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 interface Props {
-  readonly link: ValidUrl
-  readonly lang: ValidLanguage
+  readonly link: string
+  readonly lang: SupportedLanguageEnum
 }
 
 export class PageWatcherDeleted extends React.Component<Props> {

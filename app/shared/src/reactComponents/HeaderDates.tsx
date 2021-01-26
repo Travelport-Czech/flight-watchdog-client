@@ -1,13 +1,14 @@
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidDate, ValidLanguage } from '@travelport-czech/valid-objects-ts'
+import { ValidDate } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 interface Props {
   readonly departure: ValidDate
   readonly arrival?: ValidDate
-  readonly lang: ValidLanguage
+  readonly lang: SupportedLanguageEnum
 }
 
 export class HeaderDates extends React.Component<Props> {
