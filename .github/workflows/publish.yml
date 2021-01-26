@@ -1,15 +1,15 @@
-name: "Test and publish on sa"
+name: "Test and publish on master"
 
 on:
   push:
     branches:
-      - "sa"
+      - "master"
 
 jobs:
-  publish-npm:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -21,24 +21,48 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-          registry-url: https://npm.pkg.github.com/
-          scope: '@travelport-czech'
       - run: npm ci
         env:
           CI: true
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
           CYPRESS_CACHE_FOLDER: '~/.cypress'
       - run: npm run lint
       - run: npm test
         env:
           CYPRESS_CACHE_FOLDER: '~/.cypress'
+  publish-npm:
+    runs-on: ubuntu-latest
+    needs:
+      - test
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cypress
+          key: ${{ runner.os }}-cypress
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org
       - name: "Automated Version Bump"
         uses: "phips28/gh-action-bump-version@master"
-        with:
-          tag-prefix: 'sa-'
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      - name: "Publish"
+          tag-prefix: 'sa-'
+      - run: npm ci
+        env:
+          CI: true
+          CYPRESS_CACHE_FOLDER: '~/.cypress'
+      - name: Publish to NPM registry
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - uses: actions/setup-node@v1
+        with:
+          registry-url: https://npm.pkg.github.com
+      - name: Publish to GitHub registry
         run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
