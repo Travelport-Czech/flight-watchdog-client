@@ -8,13 +8,13 @@ import {
   ValidEmail,
   ValidIATALocation,
   ValidIATALocationList,
+  ValidNotEmptyString,
   ValidNumber,
-  ValidString,
 } from '@travelport-czech/valid-objects-ts'
 import * as z from 'zod'
 import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
-export const isAllowedToAddWatcher = async (token: string, apiUrl: ValidString): Promise<boolean> => {
+export const isAllowedToAddWatcher = async (token: string, apiUrl: ValidNotEmptyString): Promise<boolean> => {
   const schema = z.object({
     result: z.enum(['Success']),
     context: z.object({
@@ -34,7 +34,7 @@ export const isAllowedToAddWatcher = async (token: string, apiUrl: ValidString):
 
 export const getDestinationNames = async (
   token: string,
-  apiUrl: ValidString,
+  apiUrl: ValidNotEmptyString,
   locationCodeList: ValidIATALocationList,
   lang: SupportedLanguageEnum
 ): Promise<Location[]> => {
@@ -61,14 +61,14 @@ export const getDestinationNames = async (
   return result.context.map((item) => {
     return {
       code: new ValidIATALocation(item.code),
-      name: item.name ? new ValidString(item.name).toString() : undefined,
+      name: item.name ? new ValidNotEmptyString(item.name).toString() : undefined,
     }
   })
 }
 
 export const getWatchersCountOnEmail = async (
   token: string,
-  apiUrl: ValidString,
+  apiUrl: ValidNotEmptyString,
   email: string
 ): Promise<{ readonly limit: number; readonly count: number }> => {
   const schema = z.object({
@@ -91,9 +91,9 @@ export const getWatchersCountOnEmail = async (
 
 export const getWatchersOnEmail = async (
   token: string,
-  apiUrl: ValidString,
+  apiUrl: ValidNotEmptyString,
   email: ValidEmail
-): Promise<ValidString[] | undefined> => {
+): Promise<ValidNotEmptyString[] | undefined> => {
   const schema = z.object({
     result: z.enum(['Success']),
     context: z.array(
@@ -108,13 +108,13 @@ export const getWatchersOnEmail = async (
   const result = schema.parse(response)
 
   return result.context.map((item) => {
-    return new ValidString(item.id)
+    return new ValidNotEmptyString(item.id)
   })
 }
 
 export const createWatcher = async (
   token: string,
-  apiUrl: ValidString,
+  apiUrl: ValidNotEmptyString,
   data: WatcherClientCreateParams
 ): Promise<boolean> => {
   try {
@@ -134,7 +134,7 @@ export const createWatcher = async (
 
 export const sendWatchersList = async (
   token: string,
-  apiUrl: ValidString,
+  apiUrl: ValidNotEmptyString,
   email: string,
   lang: SupportedLanguageEnum
 ): Promise<boolean> => {
@@ -155,8 +155,8 @@ export const sendWatchersList = async (
 
 export const deleteWatcher = async (
   token: string,
-  apiUrl: ValidString,
-  id: ValidString,
+  apiUrl: ValidNotEmptyString,
+  id: ValidNotEmptyString,
   email: ValidEmail
 ): Promise<boolean> => {
   try {
@@ -174,7 +174,12 @@ export const deleteWatcher = async (
   }
 }
 
-export const sendRequest = async (token: string, apiUrl: ValidString, url: string, data: unknown): Promise<unknown> => {
+export const sendRequest = async (
+  token: string,
+  apiUrl: ValidNotEmptyString,
+  url: string,
+  data: unknown
+): Promise<unknown> => {
   const endpoint = apiUrl.toString() + url
   const response = await fetch(endpoint, {
     body: JSON.stringify(data),
@@ -203,11 +208,11 @@ export const isValidClientSettings = (data: unknown): ClientSettings => {
   const result = schema.parse(data)
 
   const keepMinimalisedInDays = new ValidNumber(result.keepMinimalisedInDays)
-  const apiUrl = new ValidString(result.apiUrl)
+  const apiUrl = new ValidNotEmptyString(result.apiUrl)
 
-  const analyticsId = result.analyticsId === 'false' ? undefined : new ValidString(result.analyticsId)
+  const analyticsId = result.analyticsId === 'false' ? undefined : new ValidNotEmptyString(result.analyticsId)
 
-  const sentryDns = result.sentryDns === 'false' ? undefined : new ValidString(result.sentryDns)
+  const sentryDns = result.sentryDns === 'false' ? undefined : new ValidNotEmptyString(result.sentryDns)
 
   return {
     keepMinimalisedInDays,
