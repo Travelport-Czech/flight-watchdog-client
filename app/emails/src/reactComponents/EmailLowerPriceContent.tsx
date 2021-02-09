@@ -51,7 +51,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                       <tr>
                         <td style={{ background: styles.buttonColor }}>
                           <EmailButton
-                            link={resultLink}
+                            link={resultLink.getString()}
                             text={TranslationEnum.EmailButtonShowResult}
                             lang={lang}
                             name="reserve"
@@ -80,7 +80,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                       <tr>
                         <td style={{ background: styles.buttonColor }}>
                           <EmailButton
-                            link={continueLink}
+                            link={continueLink.getString()}
                             text={TranslationEnum.EmailButtonContinueWatching}
                             lang={lang}
                             name="continue"

@@ -13,13 +13,13 @@ import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { secondaryBackgroundColor } from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidNotEmptyString, ValidUrl } from '@travelport-czech/valid-objects-ts'
+import { ValidNotEmptyString } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
 export const createMarketingEmailRaw = async (
   createImage: CreateImageCallback,
-  createLinkToPageWatcherDelete: (watcherId: ValidNotEmptyString) => Promise<ValidUrl>,
+  createLinkToPageWatcherDelete: (watcherId: ValidNotEmptyString) => Promise<string>,
   watcherFullInfoList: WatcherFullInfo[],
   agencyParams: AgencyParams
 ): Promise<string> => {
@@ -52,12 +52,12 @@ export const createMarketingEmailRaw = async (
 }
 
 export const createMarketingEmail = async (
-  createLinkToPageWatcherDelete: (watcherId: ValidNotEmptyString) => Promise<ValidUrl>,
+  createLinkToPageWatcherDelete: (watcherId: ValidNotEmptyString) => Promise<string>,
   watcherFullInfoList: WatcherFullInfo[],
   agencyParams: AgencyParams,
   showSvg: boolean
 ): Promise<string> => {
-  const linksToDeleteMap = new Map<string, ValidUrl>()
+  const linksToDeleteMap = new Map<string, string>()
   const promises = watcherFullInfoList.map(async item => {
     linksToDeleteMap.set(item.watcher.id.toString(), await createLinkToPageWatcherDelete(item.watcher.id))
   })

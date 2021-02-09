@@ -11,14 +11,14 @@ import { Price } from '@shared/reactComponents/Price'
 import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
-import { ValidLanguage, ValidUrl } from '@travelport-czech/valid-objects-ts'
+import { ValidLanguage } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
 
 interface Props {
   readonly watchersFullInfoList: WatcherFullInfo[]
   readonly agencyParams: AgencyParams
   readonly showSvg?: boolean
-  readonly linksToDeleteMap: Map<string, ValidUrl>
+  readonly linksToDeleteMap: Map<string, string>
 }
 
 const createAdditionalResults = (
@@ -136,7 +136,7 @@ export class WatchersList extends React.Component<Props> {
                     <td />
                     <td style={{ background: styles.buttonColor }}>
                       <EmailButton
-                        link={watcherLinks.resultLink}
+                        link={watcherLinks.resultLink.toString()}
                         text={TranslationEnum.EmailButtonShowResult}
                         lang={lang}
                         name="reserve"

@@ -1,7 +1,7 @@
 import { createWatcherListEmailRaw } from '@emails/factories/watcherListEmailFactory'
 import { AgencyParams } from '@emails/types/AgencyParams'
 import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
-import { ValidNotEmptyString, ValidUrl } from '@travelport-czech/valid-objects-ts'
+import { ValidNotEmptyString } from '@travelport-czech/valid-objects-ts'
 
 /**
  * Do not delete this function!
@@ -11,7 +11,7 @@ import { ValidNotEmptyString, ValidUrl } from '@travelport-czech/valid-objects-t
 export const sendWatcherListEmail = async (
   sendEmail: (content: string) => Promise<void>,
   createImage: (html: string, width: number, height: number) => Promise<string>,
-  createLinkToPageWatcherDelete: (watcherId: ValidNotEmptyString) => Promise<ValidUrl>,
+  createLinkToPageWatcherDelete: (watcherId: ValidNotEmptyString) => Promise<string>,
   watcherFullInfoList: WatcherFullInfo[],
   agencyParams: AgencyParams
 ) => {
