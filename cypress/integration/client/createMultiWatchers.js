@@ -6,7 +6,7 @@ describe('Create watcher multiple', function() {
     it('Create success', function() {
         cy.visit('')
         setOtpions()
-        cy.contains('Hlídám cenu za\u00a0vás!')
+        cy.contains('Hlídám cenu za vás!')
         cy.get('.content input').type('multiple@email.cz')
         cy.get(createButtonSelector).click()
         cy.contains('Skvěle, hotovo. Až najdeme nižší cenu, pošleme Vám e-mail.')
@@ -17,7 +17,7 @@ describe('Create watcher multiple', function() {
     it('Create with delete question', function() {
         cy.visit('')
         setOtpions()
-        cy.contains('Hlídám cenu za\u00a0vás!')
+        cy.contains('Hlídám cenu za vás!')
         cy.get('.content input').type('multiplefull@email.cz')
         cy.get(createButtonSelector).click()
         cy.contains('Na tento e-mail jste dosáhli limitu hlídačů. Pokud chcete sledovat tento let musíte smazat jeden z již existujících hlídačů. Na Váš e-mail vám byl odeslán seznam hlídačů, který můžete upravit.')

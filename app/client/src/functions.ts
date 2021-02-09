@@ -10,8 +10,8 @@ import {
   ValidIATALocation,
   ValidIATALocationList,
   ValidLanguage,
-  ValidNumber,
-  ValidString
+  ValidNotEmptyString,
+  ValidNumber
 } from '@travelport-czech/valid-objects-ts'
 
 enum ResponseKeysEnum {
@@ -20,7 +20,7 @@ enum ResponseKeysEnum {
   EmailLimit = 'emailLimit'
 }
 
-export const isAllowedToAddWatcher = async (token: string, apiUrl: ValidString): Promise<boolean> => {
+export const isAllowedToAddWatcher = async (token: string, apiUrl: ValidNotEmptyString): Promise<boolean> => {
   const json = await sendRequest(token, apiUrl, '/count-all', {})
   if (json.result !== 'Success') {
     return false
@@ -42,7 +42,7 @@ export const isAllowedToAddWatcher = async (token: string, apiUrl: ValidString):
 
 export const getDestinationNames = async (
   token: string,
-  apiUrl: ValidString,
+  apiUrl: ValidNotEmptyString,
   locationCodeList: ValidIATALocationList,
   lang: ValidLanguage
 ): Promise<Location[]> => {
@@ -66,7 +66,7 @@ export const getDestinationNames = async (
     (item: UnknownNestedObject): Location => {
       return {
         code: new ValidIATALocation(item.code),
-        name: item.name ? new ValidString(item.name).toString() : undefined
+        name: item.name ? new ValidNotEmptyString(item.name).toString() : undefined
       }
     }
   )
@@ -74,7 +74,7 @@ export const getDestinationNames = async (
 
 export const getWatchersCountOnEmail = async (
   token: string,
-  apiUrl: ValidString,
+  apiUrl: ValidNotEmptyString,
   email: string
 ): Promise<{ readonly limit: number; readonly count: number } | undefined> => {
   const json = await sendRequest(token, apiUrl, '/count', { email })
@@ -97,9 +97,9 @@ export const getWatchersCountOnEmail = async (
 
 export const getWatchersOnEmail = async (
   token: string,
-  apiUrl: ValidString,
+  apiUrl: ValidNotEmptyString,
   email: ValidEmail
-): Promise<ValidString[] | undefined> => {
+): Promise<ValidNotEmptyString[] | undefined> => {
   const json = await sendRequest(token, apiUrl, '/watchers', { email: email.toString() })
   if (json.result !== 'Success') {
     return
@@ -114,13 +114,13 @@ export const getWatchersOnEmail = async (
   }
 
   return json.context.map((item: UnknownNestedObject) => {
-    return new ValidString(item.id)
+    return new ValidNotEmptyString(item.id)
   })
 }
 
 export const createWatcher = async (
   token: string,
-  apiUrl: ValidString,
+  apiUrl: ValidNotEmptyString,
   data: WatcherClientCreateParams
 ): Promise<boolean> => {
   try {
@@ -137,7 +137,7 @@ export const createWatcher = async (
 
 export const sendWatchersList = async (
   token: string,
-  apiUrl: ValidString,
+  apiUrl: ValidNotEmptyString,
   email: string,
   lang: ValidLanguage
 ): Promise<boolean> => {
@@ -155,8 +155,8 @@ export const sendWatchersList = async (
 
 export const deleteWatcher = async (
   token: string,
-  apiUrl: ValidString,
-  id: ValidString,
+  apiUrl: ValidNotEmptyString,
+  id: ValidNotEmptyString,
   email: ValidEmail
 ): Promise<boolean> => {
   try {
@@ -173,7 +173,7 @@ export const deleteWatcher = async (
 
 export const sendRequest = async (
   token: string,
-  apiUrl: ValidString,
+  apiUrl: ValidNotEmptyString,
   url: string,
   data: UnknownNestedObject
 ): Promise<UnknownNestedObject> => {
@@ -195,7 +195,7 @@ export const isValidClientSettings = (data: UnknownNestedObject): ClientSettings
   if (!data) {
     throw new Error('Flight Watchdog: Missing settings')
   }
-  const token = new ValidString(data.token)
+  const token = new ValidNotEmptyString(data.token)
 
   if (
     data.initStep &&
@@ -207,15 +207,17 @@ export const isValidClientSettings = (data: UnknownNestedObject): ClientSettings
 
   const initStep = data.initStep ? <StepToShow>data.initStep : undefined
 
-  const apiUrl = new ValidString(data.apiUrl ? data.apiUrl : process.env.API_URL)
+  const apiUrl = new ValidNotEmptyString(data.apiUrl ? data.apiUrl : process.env.API_URL)
 
   const analyticsId =
     data.analyticsId === 'false'
       ? undefined
-      : new ValidString(data.analyticsId ? data.analyticsId : process.env.ANALYTICS_ID)
+      : new ValidNotEmptyString(data.analyticsId ? data.analyticsId : process.env.ANALYTICS_ID)
 
   const sentryDns =
-    data.sentryDns === 'false' ? undefined : new ValidString(data.sentryDns ? data.sentryDns : process.env.SENTRY_DNS)
+    data.sentryDns === 'false'
+      ? undefined
+      : new ValidNotEmptyString(data.sentryDns ? data.sentryDns : process.env.SENTRY_DNS)
 
   return {
     token: token.toString(),

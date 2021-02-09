@@ -9,8 +9,8 @@ import {
   ValidEmail,
   ValidIATALocationList,
   ValidLanguage,
-  ValidPrice,
-  ValidString
+  ValidNotEmptyString,
+  ValidPrice
 } from '@travelport-czech/valid-objects-ts'
 
 // tslint:disable-next-line:no-any
@@ -48,7 +48,7 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
       throw new AppError('Destination string not found')
     }
 
-    const destination = new ValidString(destinationElement.innerHTML)
+    const destination = new ValidNotEmptyString(destinationElement.innerHTML)
     const destinationList = destination.toString().match(/\(([A-Z]{3})\)/g)
 
     if (destinationList === null) {

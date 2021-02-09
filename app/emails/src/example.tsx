@@ -13,8 +13,8 @@ import {
   ValidIATALocation,
   ValidIATALocationList,
   ValidLanguage,
+  ValidNotEmptyString,
   ValidPrice,
-  ValidString,
   ValidUrl
 } from '@travelport-czech/valid-objects-ts'
 
@@ -60,7 +60,7 @@ const createWatcherFullInfo = (lang: ValidLanguage): WatcherFullInfo => {
     departure: new ValidDate('2018-12-16'),
     destination: new ValidIATALocationList('LON'),
     email: new ValidEmail('none@email.cz'),
-    id: new ValidString('example'),
+    id: new ValidNotEmptyString('example'),
     lang,
     origin: new ValidIATALocationList('PRG'),
     priceLimit: new ValidPrice('6000 CZK'),
@@ -112,7 +112,7 @@ const createWatcherFullInfo = (lang: ValidLanguage): WatcherFullInfo => {
   }
 }
 
-const createLinkToPageWatcherDelete = async (watcherId: ValidString): Promise<ValidUrl> => {
+const createLinkToPageWatcherDelete = async (watcherId: ValidNotEmptyString): Promise<ValidUrl> => {
   return Promise.resolve(new ValidUrl('https://www.testWatcherDeleted.url'))
 }
 
