@@ -7,14 +7,16 @@ import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 export const createMarketingEmailRaw = async (
   createImage: (html: string, width: number, height: number) => Promise<string>,
   createLinkToPageWatcherDelete: (watcherId: string) => Promise<string>,
   watcherFullInfoList: WatcherFullInfo[],
+  lang: SupportedLanguageEnum,
   agencyParams: AgencyParams
 ): Promise<string> => {
-  const { email, lang } = watcherFullInfoList[0].watcher
+  const { email } = watcherFullInfoList[0].watcher
   const subject = renderToStaticMarkup(<Text name={TranslationEnum.EmailMarketingHeader} lang={lang} />)
   const content = await createMarketingEmail(createLinkToPageWatcherDelete, watcherFullInfoList, agencyParams, false)
   const rawEmail = createEmailRawBegin(subject, content, email, agencyParams.emailFrom, agencyParams.emailReplyTo, lang)
