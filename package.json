@@ -39,7 +39,7 @@
   "dependencies": {
     "@sentry/browser": "^5.10.1",
     "@travelport-czech/ss-translations": "^1.1.9",
-    "@travelport-czech/valid-objects-ts": "^5.0.2",
+    "@travelport-czech/valid-objects-ts": "^6.0.0",
     "bufferutil": "^4.0.1",
     "dayjs": "^1.8.34",
     "email-validator": "^2.0.4",
