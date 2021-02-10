@@ -7,9 +7,11 @@ import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import * as React from 'react'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 interface Props {
   readonly watchersFullInfoList: WatcherFullInfo[]
+  readonly lang: SupportedLanguageEnum
   readonly agencyParams: AgencyParams
   readonly showSvg?: boolean
   readonly linksToDeleteMap: Map<string, string>
@@ -17,14 +19,13 @@ interface Props {
 
 export class EmailMarketingContent extends React.Component<Props> {
   public render() {
-    const { watchersFullInfoList, agencyParams, showSvg, linksToDeleteMap } = this.props
+    const { watchersFullInfoList, agencyParams, showSvg, linksToDeleteMap, lang } = this.props
 
     if (watchersFullInfoList.length === 0) {
       throw new AppLogicError('Empty watcher list')
     }
 
-    const watcherLinks = createWatcherLinks(watchersFullInfoList[0].watcher, agencyParams)
-    const { lang } = watchersFullInfoList[0].watcher
+    const watcherLinks = createWatcherLinks(watchersFullInfoList[0].watcher, agencyParams, lang)
     const frontendUrl = watcherLinks.frontendUrl
 
     return (
@@ -53,6 +54,7 @@ export class EmailMarketingContent extends React.Component<Props> {
                     agencyParams={agencyParams}
                     showSvg={showSvg}
                     linksToDeleteMap={linksToDeleteMap}
+                    lang={lang}
                   />
                 </div>
                 <div style={{ ...styles.simpleText, marginBottom: '15px' }}>

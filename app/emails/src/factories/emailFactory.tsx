@@ -48,11 +48,12 @@ const createAttachmentPngRaw = (name: string, contentBase64: string) => {
 
 export const createAttachmentRawFromWatcherList = async (
   createImage: (html: string, width: number, height: number) => Promise<string>,
-  watcherFullInfoList: WatcherFullInfo[]
+  watcherFullInfoList: WatcherFullInfo[],
+  lang: SupportedLanguageEnum
 ): Promise<string> => {
   const promiseList = watcherFullInfoList.map(
     async (watcherFullInfo: WatcherFullInfo): Promise<string> => {
-      return createAttachmentRawFromWatcher(createImage, watcherFullInfo)
+      return createAttachmentRawFromWatcher(createImage, watcherFullInfo, lang)
     }
   )
   const results = await Promise.all(promiseList)
@@ -62,7 +63,8 @@ export const createAttachmentRawFromWatcherList = async (
 
 export const createAttachmentRawFromWatcher = async (
   createImage: (html: string, width: number, height: number) => Promise<string>,
-  watcherFullInfo: WatcherFullInfo
+  watcherFullInfo: WatcherFullInfo,
+  lang: SupportedLanguageEnum
 ): Promise<string> => {
   const image = await createImage(
     renderToStaticMarkup(
@@ -70,6 +72,7 @@ export const createAttachmentRawFromWatcher = async (
         priceHistory={watcherFullInfo.priceHistory}
         priceLimit={watcherFullInfo.watcher.priceLimit}
         watcher={watcherFullInfo.watcher}
+        lang={lang}
         absolutePosition
       />
     ),

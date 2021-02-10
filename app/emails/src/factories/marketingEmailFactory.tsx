@@ -18,10 +18,16 @@ export const createMarketingEmailRaw = async (
 ): Promise<string> => {
   const { email } = watcherFullInfoList[0].watcher
   const subject = renderToStaticMarkup(<Text name={TranslationEnum.EmailMarketingHeader} lang={lang} />)
-  const content = await createMarketingEmail(createLinkToPageWatcherDelete, watcherFullInfoList, agencyParams, false)
+  const content = await createMarketingEmail(
+    createLinkToPageWatcherDelete,
+    watcherFullInfoList,
+    lang,
+    agencyParams,
+    false
+  )
   const rawEmail = createEmailRawBegin(subject, content, email, agencyParams.emailFrom, agencyParams.emailReplyTo, lang)
 
-  const attachments = await createAttachmentRawFromWatcherList(createImage, watcherFullInfoList)
+  const attachments = await createAttachmentRawFromWatcherList(createImage, watcherFullInfoList, lang)
 
   return rawEmail + attachments + rawEmailEndPart
 }
@@ -29,6 +35,7 @@ export const createMarketingEmailRaw = async (
 export const createMarketingEmail = async (
   createLinkToPageWatcherDelete: (watcherId: string) => Promise<string>,
   watcherFullInfoList: WatcherFullInfo[],
+  lang: SupportedLanguageEnum,
   agencyParams: AgencyParams,
   showSvg: boolean
 ): Promise<string> => {
@@ -45,6 +52,7 @@ export const createMarketingEmail = async (
       showSvg={showSvg}
       agencyParams={agencyParams}
       linksToDeleteMap={linksToDeleteMap}
+      lang={lang}
     />
   )
 

@@ -16,6 +16,7 @@ import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum
 
 interface Props {
   readonly watchersFullInfoList: WatcherFullInfo[]
+  readonly lang: SupportedLanguageEnum
   readonly agencyParams: AgencyParams
   readonly showSvg?: boolean
   readonly linksToDeleteMap: Map<string, string>
@@ -58,18 +59,16 @@ const createAdditionalResults = (
 
 export class WatchersList extends React.Component<Props> {
   public render() {
-    const { watchersFullInfoList, agencyParams, showSvg, linksToDeleteMap } = this.props
+    const { watchersFullInfoList, agencyParams, showSvg, linksToDeleteMap, lang } = this.props
 
     if (watchersFullInfoList.length === 0) {
       throw new AppLogicError('Empty watcher list')
     }
 
-    const lang = watchersFullInfoList[0].watcher.lang
-
     const lines = watchersFullInfoList.map((watchersFullInfo: WatcherFullInfo, index) => {
       const { watcher, originLocationList, destinationLocationList, additionalResults } = watchersFullInfo
       const { priceLimit, departure, arrival } = watcher
-      const watcherLinks = createWatcherLinks(watcher, agencyParams)
+      const watcherLinks = createWatcherLinks(watcher, agencyParams, lang)
       const destinationTextKey =
         watcher.flightType === 'return'
           ? TranslationEnum.ClientDestinationsReturn
@@ -96,7 +95,7 @@ export class WatchersList extends React.Component<Props> {
             <HeaderDates departure={departure} arrival={arrival} lang={lang} />
           </div>
 
-          <WatcherPriceHistory watchersFullInfo={watchersFullInfo} showSvg={showSvg} />
+          <WatcherPriceHistory watchersFullInfo={watchersFullInfo} showSvg={showSvg} lang={lang} />
 
           <div style={styles.simpleText}>
             <Text name={TranslationEnum.EmailPriceLimit} lang={lang}>

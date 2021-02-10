@@ -54,7 +54,7 @@ const agencySettings: AgencyParams = {
   frontendUrl: 'https://example.cz',
 }
 
-const createWatcherFullInfo = (lang: SupportedLanguageEnum): WatcherFullInfo => {
+const createWatcherFullInfo = (): WatcherFullInfo => {
   const watcher: WatcherParams = {
     arrival: new ValidDate('2018-12-25'),
     created: new ValidDateTime('2018-09-19 12:00:00'),
@@ -62,7 +62,6 @@ const createWatcherFullInfo = (lang: SupportedLanguageEnum): WatcherFullInfo => 
     destination: new ValidIATALocationList('LON'),
     email: new ValidEmail('none@email.cz'),
     id: 'example',
-    lang,
     origin: new ValidIATALocationList('PRG'),
     priceLimit: new ValidPrice('6000 CZK'),
     flightType: 'return',
@@ -120,23 +119,30 @@ const createLinkToPageWatcherDelete = async (watcherId: string): Promise<string>
 const createLowerPriceEmailContent = async (lang: SupportedLanguageEnum): Promise<string> => {
   const price = new ValidPrice('5000 CZK')
 
-  const watcherFullInfo = createWatcherFullInfo(lang)
+  const watcherFullInfo = createWatcherFullInfo()
 
-  return createLowerPriceEmail(watcherFullInfo, agencySettings, price, true)
+  return createLowerPriceEmail(watcherFullInfo, lang, agencySettings, price, true)
 }
 
 const createMarketingEmailContent = async (lang: SupportedLanguageEnum): Promise<string> => {
-  const watcherFullInfo = createWatcherFullInfo(lang)
+  const watcherFullInfo = createWatcherFullInfo()
 
-  return createMarketingEmail(createLinkToPageWatcherDelete, [watcherFullInfo, watcherFullInfo], agencySettings, true)
+  return createMarketingEmail(
+    createLinkToPageWatcherDelete,
+    [watcherFullInfo, watcherFullInfo],
+    lang,
+    agencySettings,
+    true
+  )
 }
 
 const createWatcherListEmailContent = async (lang: SupportedLanguageEnum): Promise<string> => {
-  const watcherFullInfo = createWatcherFullInfo(lang)
+  const watcherFullInfo = createWatcherFullInfo()
 
   return createWatchersListEmail(
     createLinkToPageWatcherDelete,
     [watcherFullInfo, watcherFullInfo],
+    lang,
     agencySettings,
     true
   )

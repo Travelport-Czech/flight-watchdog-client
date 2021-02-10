@@ -5,17 +5,19 @@ import * as styles from '@shared/reactComponents/styles'
 import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import * as React from 'react'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 interface Props {
   readonly watcherFullInfo: WatcherFullInfo
   readonly frontendUrl: string
+  readonly lang: SupportedLanguageEnum
 }
 
 export class EmailLowerPriceHeader extends React.Component<Props> {
   public render() {
-    const { watcherFullInfo, frontendUrl } = this.props
+    const { watcherFullInfo, frontendUrl, lang } = this.props
     const { watcher, originLocationList, destinationLocationList } = watcherFullInfo
-    const { lang, departure, arrival } = watcher
+    const { departure, arrival } = watcher
     const destinationTextKey =
       watcher.flightType === 'return'
         ? TranslationEnum.ClientDestinationsReturn

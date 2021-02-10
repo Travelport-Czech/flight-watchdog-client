@@ -10,20 +10,22 @@ import { Text } from '@shared/translation/Text'
 import { TranslationEnum } from '@shared/translation/TranslationEnum'
 import { ValidPrice } from '@travelport-czech/valid-objects-ts'
 import * as React from 'react'
+import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 interface Props {
   readonly watcherFullInfo: WatcherFullInfo
   readonly agencyParams: AgencyParams
   readonly price: ValidPrice
   readonly showSvg?: boolean
+  readonly lang: SupportedLanguageEnum
 }
 
 export class EmailLowerPriceContent extends React.Component<Props> {
   public render() {
-    const { watcherFullInfo, price, showSvg, agencyParams } = this.props
+    const { watcherFullInfo, price, showSvg, agencyParams, lang } = this.props
     const { watcher } = watcherFullInfo
-    const { lang, priceLimit } = watcher
-    const watcherLinks = createWatcherLinks(watcher, agencyParams)
+    const { priceLimit } = watcher
+    const watcherLinks = createWatcherLinks(watcher, agencyParams, lang)
     const { resultLink, continueLink, frontendUrl } = watcherLinks
 
     const priceDiff = priceLimit.subtract(price)
@@ -34,7 +36,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
         <table style={{ width: '600px', margin: '0 auto' }}>
           <tr>
             <td>
-              <EmailLowerPriceHeader watcherFullInfo={watcherFullInfo} frontendUrl={frontendUrl} />
+              <EmailLowerPriceHeader watcherFullInfo={watcherFullInfo} frontendUrl={frontendUrl} lang={lang} />
             </td>
           </tr>
           <tr>
@@ -71,7 +73,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                   name="reserve"
                 />
 
-                <WatcherPriceHistory watchersFullInfo={watcherFullInfo} showSvg={showSvg} />
+                <WatcherPriceHistory watchersFullInfo={watcherFullInfo} showSvg={showSvg} lang={lang} />
 
                 <div style={{ ...styles.simpleText, marginBottom: '10px', marginTop: '20px' }}>
                   <Text name={TranslationEnum.EmailButtonContinueWatchingPrefixText} lang={lang} />

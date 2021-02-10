@@ -71,13 +71,15 @@ const createResultLink = (flight: FlightParams, lang: SupportedLanguageEnum): st
   throw new AppLogicError('Bad flight type')
 }
 
-export const createWatcherLinks = (watcher: WatcherParams, agencyParams: AgencyParams): WatcherLinks => {
+export const createWatcherLinks = (
+  watcher: WatcherParams,
+  agencyParams: AgencyParams,
+  lang: SupportedLanguageEnum
+): WatcherLinks => {
   const { dealerId, frontendUrl } = agencyParams
-  const waitPageString = `${frontendUrl}/index.php?lang=${
-    langCodeMapToGolLangCode[watcher.lang]
-  }&action=vWait&redirect=`
+  const waitPageString = `${frontendUrl}/index.php?lang=${langCodeMapToGolLangCode[lang]}&action=vWait&redirect=`
   const dealerIdUrlPart = dealerId ? '&dealer_id=' + dealerId.toString() : ''
-  const resultLinkString = frontendUrl + createResultLink(watcher, watcher.lang) + dealerIdUrlPart
+  const resultLinkString = frontendUrl + createResultLink(watcher, lang) + dealerIdUrlPart
 
   const resultLink = waitPageString + encodeURIComponent(resultLinkString) + `&${urlParamsConst.result}=`
 
