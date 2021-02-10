@@ -16,10 +16,15 @@ const langCodeMapToGolLangCode = {
 
 export const createResultUrl = (
   flight: FlightParams,
-  lang: SupportedLanguageEnum,
+  lang: string,
   agencyParams: AgencyParams,
   addParams: { readonly [key: string]: string }
 ): string => {
+  const validatedLang = SupportedLanguageEnum[lang]
+  if (!validatedLang) {
+    throw new AppLogicError(`Not supported language ${lang}`)
+  }
+
   const { dealerId, frontendUrl } = agencyParams
   const dealerIdUrlPart = dealerId ? '&dealer_id=' + dealerId.toString() : ''
   const waitPageString = `${frontendUrl.toString()}/index.php?action=vWait&redirect=`
@@ -31,7 +36,7 @@ export const createResultUrl = (
   return (
     waitPageString +
     encodeURIComponent(
-      frontendUrl.toString() + createResultLink(flight, lang) + dealerIdUrlPart + addParamsPart.join('')
+      frontendUrl.toString() + createResultLink(flight, validatedLang) + dealerIdUrlPart + addParamsPart.join('')
     )
   )
 }
