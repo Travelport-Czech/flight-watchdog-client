@@ -193,7 +193,6 @@ export const sendRequest = async (
     return parseJson(await response.text())
 }
 
-// tslint:disable-next-line:no-any
 export const isValidClientSettings = (data: unknown): ClientSettings => {
     const schema = z.object({
         token: z.string().min(1),
