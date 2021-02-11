@@ -6,7 +6,6 @@ import { BrowserClient, Hub, Scope } from '@sentry/browser'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-// tslint:disable-next-line:export-name no-any
 export const initFlightWatchdogClient = async (settingsData: unknown) => {
     const settings = isValidClientSettings(settingsData)
 
