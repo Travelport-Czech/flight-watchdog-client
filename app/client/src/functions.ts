@@ -195,7 +195,6 @@ export const sendRequest = async (
 
 // tslint:disable-next-line:no-any
 export const isValidClientSettings = (data: unknown): ClientSettings => {
-    console.log('michal', data)
     const schema = z.object({
         token: z.string().min(1),
         keepMinimalisedInDays: z.number().int().nonnegative().default(7),
