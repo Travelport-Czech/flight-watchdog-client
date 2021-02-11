@@ -1,9 +1,9 @@
-name: "Test and publish on master"
+name: "Test and publish on d4"
 
 on:
   push:
     branches:
-      - "master"
+      - "d4"
 
 jobs:
   test:
@@ -13,7 +13,7 @@ jobs:
       - uses: actions/cache@v1
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-d4-${{ hashFiles('**/package-lock.json') }}
       - uses: actions/cache@v1
         with:
           path: ~/.cypress
@@ -38,7 +38,7 @@ jobs:
       - uses: actions/cache@v1
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-d4-${{ hashFiles('**/package-lock.json') }}
       - uses: actions/cache@v1
         with:
           path: ~/.cypress
@@ -49,6 +49,8 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: "Automated Version Bump"
         uses: "phips28/gh-action-bump-version@master"
+        with:
+          tag-prefix: 'd4-'
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - run: npm ci

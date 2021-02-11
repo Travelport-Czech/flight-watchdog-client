@@ -1,5 +1,5 @@
 {
-  "name": "@travelport-czech/flight-watchdog-client",
+  "name": "@travelport-czech/flight-watchdog-client-d4",
   "version": "10.0.3",
   "description": "CEE Systems Watchdog Client",
   "main": "dist-emails/emails/src/index.js",
