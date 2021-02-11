@@ -6,9 +6,9 @@ import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum
 import { viTranslation } from '@shared/translation/viTranslation'
 
 export const translations = {
-  [SupportedLanguageEnum.al]: alTranslation,
-  [SupportedLanguageEnum.cs]: csTranslation,
-  [SupportedLanguageEnum.en]: enTranslation,
-  [SupportedLanguageEnum.sk]: skTranslation,
-  [SupportedLanguageEnum.vi]: viTranslation,
+    [SupportedLanguageEnum.al]: alTranslation,
+    [SupportedLanguageEnum.cs]: csTranslation,
+    [SupportedLanguageEnum.en]: enTranslation,
+    [SupportedLanguageEnum.sk]: skTranslation,
+    [SupportedLanguageEnum.vi]: viTranslation,
 }

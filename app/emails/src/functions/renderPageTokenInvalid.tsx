@@ -10,9 +10,9 @@ import { AppLogicError } from '@shared/errors/AppLogicError'
  * Is used by backend server
  */
 export const renderPageTokenInvalid = (lang: string): string => {
-  const validatedLang = SupportedLanguageEnum[lang]
-  if (!validatedLang) {
-    throw new AppLogicError(`Not supported language ${lang}`)
-  }
-  return renderToStaticMarkup(<PageTokenInvalid lang={validatedLang} />)
+    const validatedLang = SupportedLanguageEnum[lang]
+    if (!validatedLang) {
+        throw new AppLogicError(`Not supported language ${lang}`)
+    }
+    return renderToStaticMarkup(<PageTokenInvalid lang={validatedLang} />)
 }

@@ -9,11 +9,11 @@ const skFilePath = 'app/shared/src/translation/skTranslation.ts'
 const viFilePath = 'app/shared/src/translation/viTranslation.ts'
 
 const translationFilePaths = {
-  al: alFilePath,
-  cs: csFilePath,
-  en: enFilePath,
-  sk: skFilePath,
-  vi: viFilePath,
+    al: alFilePath,
+    cs: csFilePath,
+    en: enFilePath,
+    sk: skFilePath,
+    vi: viFilePath,
 }
 
 translateImport(fileName, translationFilePaths)

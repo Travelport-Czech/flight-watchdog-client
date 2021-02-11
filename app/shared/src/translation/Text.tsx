@@ -5,17 +5,17 @@ import * as React from 'react'
 import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 interface Props {
-  readonly name: TranslationEnum
-  readonly lang: SupportedLanguageEnum
+    readonly name: TranslationEnum
+    readonly lang: SupportedLanguageEnum
 }
 
 // tslint:disable-next-line:variable-name
 export const Text: React.FunctionComponent<Props> = (props) => {
-  const newProps = {
-    ...props,
-    language: props.lang,
-    translations,
-  }
+    const newProps = {
+        ...props,
+        language: props.lang,
+        translations,
+    }
 
-  return TranslatedText(newProps)
+    return TranslatedText(newProps)
 }

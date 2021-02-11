@@ -7,47 +7,47 @@ import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum
 import { urlParamsConst } from '@shared/utils/consts'
 
 const langCodeMapToGolLangCode = {
-  [SupportedLanguageEnum.cs]: 'cz',
-  [SupportedLanguageEnum.en]: 'en',
-  [SupportedLanguageEnum.al]: 'al',
-  [SupportedLanguageEnum.sk]: 'sk',
-  [SupportedLanguageEnum.vi]: 'vi',
+    [SupportedLanguageEnum.cs]: 'cz',
+    [SupportedLanguageEnum.en]: 'en',
+    [SupportedLanguageEnum.al]: 'al',
+    [SupportedLanguageEnum.sk]: 'sk',
+    [SupportedLanguageEnum.vi]: 'vi',
 }
 
 export const createResultUrl = (
-  flight: FlightParams,
-  lang: string,
-  agencyParams: AgencyParams,
-  addParams: { readonly [key: string]: string }
+    flight: FlightParams,
+    lang: string,
+    agencyParams: AgencyParams,
+    addParams: { readonly [key: string]: string },
 ): string => {
-  const validatedLang = SupportedLanguageEnum[lang]
-  if (!validatedLang) {
-    throw new AppLogicError(`Not supported language ${lang}`)
-  }
+    const validatedLang = SupportedLanguageEnum[lang]
+    if (!validatedLang) {
+        throw new AppLogicError(`Not supported language ${lang}`)
+    }
 
-  const { dealerId, frontendUrl } = agencyParams
-  const dealerIdUrlPart = dealerId ? '&dealer_id=' + dealerId.toString() : ''
-  const waitPageString = `${frontendUrl.toString()}/index.php?action=vWait&redirect=`
+    const { dealerId, frontendUrl } = agencyParams
+    const dealerIdUrlPart = dealerId ? '&dealer_id=' + dealerId.toString() : ''
+    const waitPageString = `${frontendUrl.toString()}/index.php?action=vWait&redirect=`
 
-  const addParamsPart = Object.entries(addParams).map((item) => {
-    return `&${item[0]}=${item[1]}`
-  })
+    const addParamsPart = Object.entries(addParams).map((item) => {
+        return `&${item[0]}=${item[1]}`
+    })
 
-  return (
-    waitPageString +
-    encodeURIComponent(
-      frontendUrl.toString() + createResultLink(flight, validatedLang) + dealerIdUrlPart + addParamsPart.join('')
+    return (
+        waitPageString +
+        encodeURIComponent(
+            frontendUrl.toString() + createResultLink(flight, validatedLang) + dealerIdUrlPart + addParamsPart.join(''),
+        )
     )
-  )
 }
 
 const createResultLink = (flight: FlightParams, lang: SupportedLanguageEnum): string => {
-  if (flight.flightType === 'return') {
-    if (!flight.arrival) {
-      throw new AppLogicError('Missing arrival for return flight')
-    }
+    if (flight.flightType === 'return') {
+        if (!flight.arrival) {
+            throw new AppLogicError('Missing arrival for return flight')
+        }
 
-    return `/index.php?action=vFlights\
+        return `/index.php?action=vFlights\
 &flights[0][departureDate]=${flight.departure.formatToSystem()}\
 &flights[0][destination]=${flight.destination.toString()}\
 &flights[0][origin]=${encodeURIComponent(flight.origin.toString())}\
@@ -59,10 +59,10 @@ const createResultLink = (flight: FlightParams, lang: SupportedLanguageEnum): st
 &returnTicket=on\
 &dateVariants=exact\
 &step=ChooseFromFour`
-  }
+    }
 
-  if (flight.flightType === 'oneway') {
-    return `/index.php?action=vFlights\
+    if (flight.flightType === 'oneway') {
+        return `/index.php?action=vFlights\
 &flights[0][departureDate]=${flight.departure.formatToSystem()}\
 &flights[0][destination]=${flight.destination.toString()}\
 &flights[0][origin]=${encodeURIComponent(flight.origin.toString())}\
@@ -71,30 +71,32 @@ const createResultLink = (flight: FlightParams, lang: SupportedLanguageEnum): st
 &returnTicket=\
 &dateVariants=exact\
 &step=ChooseFromFour`
-  }
+    }
 
-  throw new AppLogicError('Bad flight type')
+    throw new AppLogicError('Bad flight type')
 }
 
 export const createWatcherLinks = (
-  watcher: WatcherParams,
-  agencyParams: AgencyParams,
-  lang: SupportedLanguageEnum
+    watcher: WatcherParams,
+    agencyParams: AgencyParams,
+    lang: SupportedLanguageEnum,
 ): WatcherLinks => {
-  const { dealerId, frontendUrl } = agencyParams
-  const waitPageString = `${frontendUrl}/index.php?lang=${langCodeMapToGolLangCode[lang]}&action=vWait&redirect=`
-  const dealerIdUrlPart = dealerId ? '&dealer_id=' + dealerId.toString() : ''
-  const resultLinkString = frontendUrl + createResultLink(watcher, lang) + dealerIdUrlPart
+    const { dealerId, frontendUrl } = agencyParams
+    const waitPageString = `${frontendUrl}/index.php?lang=${langCodeMapToGolLangCode[lang]}&action=vWait&redirect=`
+    const dealerIdUrlPart = dealerId ? '&dealer_id=' + dealerId.toString() : ''
+    const resultLinkString = frontendUrl + createResultLink(watcher, lang) + dealerIdUrlPart
 
-  const resultLink = waitPageString + encodeURIComponent(resultLinkString) + `&${urlParamsConst.result}=`
+    const resultLink = waitPageString + encodeURIComponent(resultLinkString) + `&${urlParamsConst.result}=`
 
-  const continueLink =
-    waitPageString +
-    encodeURIComponent(resultLinkString + `&${urlParamsConst.continue}=` + encodeURIComponent(watcher.email.toString()))
+    const continueLink =
+        waitPageString +
+        encodeURIComponent(
+            resultLinkString + `&${urlParamsConst.continue}=` + encodeURIComponent(watcher.email.toString()),
+        )
 
-  return {
-    continueLink,
-    frontendUrl,
-    resultLink,
-  }
+    return {
+        continueLink,
+        frontendUrl,
+        resultLink,
+    }
 }

@@ -11,9 +11,9 @@ import { AppLogicError } from '@shared/errors/AppLogicError'
  * Is used by backend server
  */
 export const renderPageWatcherDeleted = (agencyParams: AgencyParams, lang: string): string => {
-  const validatedLang = SupportedLanguageEnum[lang]
-  if (!validatedLang) {
-    throw new AppLogicError(`Not supported language ${lang}`)
-  }
-  return renderToStaticMarkup(<PageWatcherDeleted link={agencyParams.frontendUrl} lang={validatedLang} />)
+    const validatedLang = SupportedLanguageEnum[lang]
+    if (!validatedLang) {
+        throw new AppLogicError(`Not supported language ${lang}`)
+    }
+    return renderToStaticMarkup(<PageWatcherDeleted link={agencyParams.frontendUrl} lang={validatedLang} />)
 }

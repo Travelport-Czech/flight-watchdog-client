@@ -10,51 +10,58 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 export const createWatcherListEmailRaw = async (
-  createImage: (html: string, width: number, height: number) => Promise<string>,
-  createLinkToPageWatcherDelete: (watcherId: string) => Promise<string>,
-  watcherFullInfoList: WatcherFullInfo[],
-  lang: SupportedLanguageEnum,
-  agencyParams: AgencyParams
+    createImage: (html: string, width: number, height: number) => Promise<string>,
+    createLinkToPageWatcherDelete: (watcherId: string) => Promise<string>,
+    watcherFullInfoList: WatcherFullInfo[],
+    lang: SupportedLanguageEnum,
+    agencyParams: AgencyParams,
 ): Promise<string> => {
-  const { email } = watcherFullInfoList[0].watcher
-  const subject = renderToStaticMarkup(<Text name={TranslationEnum.EmailWatcherListHeader} lang={lang} />)
-  const content = await createWatchersListEmail(
-    createLinkToPageWatcherDelete,
-    watcherFullInfoList,
-    lang,
-    agencyParams,
-    false
-  )
-  const rawEmail = createEmailRawBegin(subject, content, email, agencyParams.emailFrom, agencyParams.emailReplyTo, lang)
+    const { email } = watcherFullInfoList[0].watcher
+    const subject = renderToStaticMarkup(<Text name={TranslationEnum.EmailWatcherListHeader} lang={lang} />)
+    const content = await createWatchersListEmail(
+        createLinkToPageWatcherDelete,
+        watcherFullInfoList,
+        lang,
+        agencyParams,
+        false,
+    )
+    const rawEmail = createEmailRawBegin(
+        subject,
+        content,
+        email,
+        agencyParams.emailFrom,
+        agencyParams.emailReplyTo,
+        lang,
+    )
 
-  const attachments = await createAttachmentRawFromWatcherList(createImage, watcherFullInfoList, lang)
+    const attachments = await createAttachmentRawFromWatcherList(createImage, watcherFullInfoList, lang)
 
-  return rawEmail + attachments + rawEmailEndPart
+    return rawEmail + attachments + rawEmailEndPart
 }
 
 export const createWatchersListEmail = async (
-  createLinkToPageWatcherDelete: (watcherId: string) => Promise<string>,
-  watcherFullInfoList: WatcherFullInfo[],
-  lang: SupportedLanguageEnum,
-  agencyParams: AgencyParams,
-  showSvg: boolean
+    createLinkToPageWatcherDelete: (watcherId: string) => Promise<string>,
+    watcherFullInfoList: WatcherFullInfo[],
+    lang: SupportedLanguageEnum,
+    agencyParams: AgencyParams,
+    showSvg: boolean,
 ): Promise<string> => {
-  const linksToDeleteMap = new Map<string, string>()
-  const promises = watcherFullInfoList.map(async (item) => {
-    linksToDeleteMap.set(item.watcher.id.toString(), await createLinkToPageWatcherDelete(item.watcher.id))
-  })
+    const linksToDeleteMap = new Map<string, string>()
+    const promises = watcherFullInfoList.map(async (item) => {
+        linksToDeleteMap.set(item.watcher.id.toString(), await createLinkToPageWatcherDelete(item.watcher.id))
+    })
 
-  await Promise.all(promises)
+    await Promise.all(promises)
 
-  const content = (
-    <EmailWatchersListContent
-      watchersFullInfoList={watcherFullInfoList}
-      agencyParams={agencyParams}
-      showSvg={showSvg}
-      linksToDeleteMap={linksToDeleteMap}
-      lang={lang}
-    />
-  )
+    const content = (
+        <EmailWatchersListContent
+            watchersFullInfoList={watcherFullInfoList}
+            agencyParams={agencyParams}
+            showSvg={showSvg}
+            linksToDeleteMap={linksToDeleteMap}
+            lang={lang}
+        />
+    )
 
-  return emailTemplate.replace(/\{content\}/g, renderToStaticMarkup(content))
+    return emailTemplate.replace(/\{content\}/g, renderToStaticMarkup(content))
 }

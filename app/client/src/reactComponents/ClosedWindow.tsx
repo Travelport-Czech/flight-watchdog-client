@@ -6,33 +6,33 @@ import * as React from 'react'
 import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 interface Props {
-  readonly lang: SupportedLanguageEnum
-  handleOpen(event: React.MouseEvent<HTMLInputElement>): void
+    readonly lang: SupportedLanguageEnum
+    handleOpen(event: React.MouseEvent<HTMLInputElement>): void
 }
 
 export class ClosedWindow extends React.Component<Props> {
-  public render() {
-    return (
-      <div
-        className={`${Consts.elementClassPrefix}_window`}
-        style={styles.chatBox}
-        id="flight-watchdog-window-is-closed"
-      >
-        <span style={styles.icon} />
-        <input
-          type="checkbox"
-          checked
-          readOnly
-          style={styles.checkBoxInput}
-          onClick={this.props.handleOpen}
-          placeholder="placeholder"
-          aria-checked="false"
-          value="value"
-        />
-        <label style={styles.label} id="flight-watchdog-window-clicked-open-minimalized">
-          <Text name={TranslationEnum.ClientMessageMinimalizedWindow} lang={this.props.lang} />
-        </label>
-      </div>
-    )
-  }
+    public render() {
+        return (
+            <div
+                className={`${Consts.elementClassPrefix}_window`}
+                style={styles.chatBox}
+                id="flight-watchdog-window-is-closed"
+            >
+                <span style={styles.icon} />
+                <input
+                    type="checkbox"
+                    checked
+                    readOnly
+                    style={styles.checkBoxInput}
+                    onClick={this.props.handleOpen}
+                    placeholder="placeholder"
+                    aria-checked="false"
+                    value="value"
+                />
+                <label style={styles.label} id="flight-watchdog-window-clicked-open-minimalized">
+                    <Text name={TranslationEnum.ClientMessageMinimalizedWindow} lang={this.props.lang} />
+                </label>
+            </div>
+        )
+    }
 }

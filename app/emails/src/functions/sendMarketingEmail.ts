@@ -10,24 +10,24 @@ import { AppLogicError } from '@shared/errors/AppLogicError'
  * Is used by backend server
  */
 export const sendMarketingEmail = async (
-  sendEmail: (content: string) => Promise<void>,
-  createImage: (html: string, width: number, height: number) => Promise<string>,
-  createLinkToPageWatcherDelete: (watcherId: string) => Promise<string>,
-  watcherFullInfoList: WatcherFullInfo[],
-  lang: string,
-  agencyParams: AgencyParams
+    sendEmail: (content: string) => Promise<void>,
+    createImage: (html: string, width: number, height: number) => Promise<string>,
+    createLinkToPageWatcherDelete: (watcherId: string) => Promise<string>,
+    watcherFullInfoList: WatcherFullInfo[],
+    lang: string,
+    agencyParams: AgencyParams,
 ) => {
-  const validatedLang = SupportedLanguageEnum[lang]
-  if (!validatedLang) {
-    throw new AppLogicError(`Not supported language ${lang}`)
-  }
-  const emailContent = await createMarketingEmailRaw(
-    createImage,
-    createLinkToPageWatcherDelete,
-    watcherFullInfoList,
-    validatedLang,
-    agencyParams
-  )
+    const validatedLang = SupportedLanguageEnum[lang]
+    if (!validatedLang) {
+        throw new AppLogicError(`Not supported language ${lang}`)
+    }
+    const emailContent = await createMarketingEmailRaw(
+        createImage,
+        createLinkToPageWatcherDelete,
+        watcherFullInfoList,
+        validatedLang,
+        agencyParams,
+    )
 
-  await sendEmail(emailContent)
+    await sendEmail(emailContent)
 }

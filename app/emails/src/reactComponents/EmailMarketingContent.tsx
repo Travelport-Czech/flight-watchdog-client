@@ -10,61 +10,61 @@ import * as React from 'react'
 import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 interface Props {
-  readonly watchersFullInfoList: WatcherFullInfo[]
-  readonly lang: SupportedLanguageEnum
-  readonly agencyParams: AgencyParams
-  readonly showSvg?: boolean
-  readonly linksToDeleteMap: Map<string, string>
+    readonly watchersFullInfoList: WatcherFullInfo[]
+    readonly lang: SupportedLanguageEnum
+    readonly agencyParams: AgencyParams
+    readonly showSvg?: boolean
+    readonly linksToDeleteMap: Map<string, string>
 }
 
 export class EmailMarketingContent extends React.Component<Props> {
-  public render() {
-    const { watchersFullInfoList, agencyParams, showSvg, linksToDeleteMap, lang } = this.props
+    public render() {
+        const { watchersFullInfoList, agencyParams, showSvg, linksToDeleteMap, lang } = this.props
 
-    if (watchersFullInfoList.length === 0) {
-      throw new AppLogicError('Empty watcher list')
+        if (watchersFullInfoList.length === 0) {
+            throw new AppLogicError('Empty watcher list')
+        }
+
+        const watcherLinks = createWatcherLinks(watchersFullInfoList[0].watcher, agencyParams, lang)
+        const frontendUrl = watcherLinks.frontendUrl
+
+        return (
+            <div style={{ textAlign: 'center' }}>
+                <table style={{ width: '600px', margin: '0 auto' }}>
+                    <tr>
+                        <td>
+                            <div style={styles.header}>
+                                <div style={styles.headerText}>
+                                    <Text name={TranslationEnum.EmailMarketingHeader} lang={lang} />
+                                </div>
+                                <div style={styles.headerTextDescription}>
+                                    <Text name={TranslationEnum.EmailMarketingDescription} lang={lang}>
+                                        <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
+                                    </Text>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div className="content" style={styles.emailTableContent}>
+                                <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
+                                    <WatchersList
+                                        watchersFullInfoList={watchersFullInfoList}
+                                        agencyParams={agencyParams}
+                                        showSvg={showSvg}
+                                        linksToDeleteMap={linksToDeleteMap}
+                                        lang={lang}
+                                    />
+                                </div>
+                                <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
+                                    <Text name={TranslationEnum.EmailFooter} lang={lang} />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        )
     }
-
-    const watcherLinks = createWatcherLinks(watchersFullInfoList[0].watcher, agencyParams, lang)
-    const frontendUrl = watcherLinks.frontendUrl
-
-    return (
-      <div style={{ textAlign: 'center' }}>
-        <table style={{ width: '600px', margin: '0 auto' }}>
-          <tr>
-            <td>
-              <div style={styles.header}>
-                <div style={styles.headerText}>
-                  <Text name={TranslationEnum.EmailMarketingHeader} lang={lang} />
-                </div>
-                <div style={styles.headerTextDescription}>
-                  <Text name={TranslationEnum.EmailMarketingDescription} lang={lang}>
-                    <a href={frontendUrl.toString()}>{frontendUrl.toString()}</a>
-                  </Text>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div className="content" style={styles.emailTableContent}>
-                <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
-                  <WatchersList
-                    watchersFullInfoList={watchersFullInfoList}
-                    agencyParams={agencyParams}
-                    showSvg={showSvg}
-                    linksToDeleteMap={linksToDeleteMap}
-                    lang={lang}
-                  />
-                </div>
-                <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
-                  <Text name={TranslationEnum.EmailFooter} lang={lang} />
-                </div>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-    )
-  }
 }

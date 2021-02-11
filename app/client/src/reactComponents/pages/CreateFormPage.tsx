@@ -10,47 +10,55 @@ import { validateEmail } from '@shared/utils/validateEmail'
 import * as React from 'react'
 
 interface Props {
-  readonly email: string
-  readonly showBadEmailError: boolean
-  readonly flightParams: FlightParams
-  readonly appConfig: AppConfig
-  onClose(event: React.MouseEvent<HTMLElement>): void
-  onEmailChange(event: React.ChangeEvent<HTMLInputElement>): void
-  onCreateWatcher(): void
+    readonly email: string
+    readonly showBadEmailError: boolean
+    readonly flightParams: FlightParams
+    readonly appConfig: AppConfig
+    onClose(event: React.MouseEvent<HTMLElement>): void
+    onEmailChange(event: React.ChangeEvent<HTMLInputElement>): void
+    onCreateWatcher(): void
 }
 export class CreateFormPage extends React.Component<Props> {
-  public render() {
-    const { email, showBadEmailError, flightParams, appConfig, onClose, onEmailChange, onCreateWatcher } = this.props
-    const isEmailValid = validateEmail(email)
+    public render() {
+        const {
+            email,
+            showBadEmailError,
+            flightParams,
+            appConfig,
+            onClose,
+            onEmailChange,
+            onCreateWatcher,
+        } = this.props
+        const isEmailValid = validateEmail(email)
 
-    return (
-      <OpenedWindow
-        handleClose={onClose}
-        flightParams={flightParams}
-        appConfig={appConfig}
-        id="flight-watchdog-window-is-open-to-create"
-      >
-        <EmailInput value={email} onChange={onEmailChange} lang={appConfig.lang} />
-        <Button onClick={onCreateWatcher} id="flight-watchdog-window-clicked-create-watcher">
-          <Text name={TranslationEnum.ClientButtonCreate} lang={appConfig.lang} />
-        </Button>
-        <div style={styles.simpleText}>
-          <span style={styles.errorText}>
-            {!isEmailValid && showBadEmailError && (
-              <Text name={TranslationEnum.ClientBadEmailError} lang={appConfig.lang} />
-            )}
-          </span>
-          &nbsp;
-          <Button
-            onClick={onClose}
-            asLink
-            style={{ float: 'right' }}
-            id="flight-watchdog-window-clicked-not-interested"
-          >
-            <Text name={TranslationEnum.ClientButtonNotInterested} lang={appConfig.lang} />
-          </Button>
-        </div>
-      </OpenedWindow>
-    )
-  }
+        return (
+            <OpenedWindow
+                handleClose={onClose}
+                flightParams={flightParams}
+                appConfig={appConfig}
+                id="flight-watchdog-window-is-open-to-create"
+            >
+                <EmailInput value={email} onChange={onEmailChange} lang={appConfig.lang} />
+                <Button onClick={onCreateWatcher} id="flight-watchdog-window-clicked-create-watcher">
+                    <Text name={TranslationEnum.ClientButtonCreate} lang={appConfig.lang} />
+                </Button>
+                <div style={styles.simpleText}>
+                    <span style={styles.errorText}>
+                        {!isEmailValid && showBadEmailError && (
+                            <Text name={TranslationEnum.ClientBadEmailError} lang={appConfig.lang} />
+                        )}
+                    </span>
+                    &nbsp;
+                    <Button
+                        onClick={onClose}
+                        asLink
+                        style={{ float: 'right' }}
+                        id="flight-watchdog-window-clicked-not-interested"
+                    >
+                        <Text name={TranslationEnum.ClientButtonNotInterested} lang={appConfig.lang} />
+                    </Button>
+                </div>
+            </OpenedWindow>
+        )
+    }
 }

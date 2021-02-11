@@ -1,4 +1,4 @@
 export enum urlParamsConst {
-  continue = 'flightWatchdogContinue',
-  result = 'flightWatchdogResult',
+    continue = 'flightWatchdogContinue',
+    result = 'flightWatchdogResult',
 }

@@ -4,19 +4,19 @@ import * as React from 'react'
 import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 
 interface Props {
-  readonly lang: SupportedLanguageEnum
+    readonly lang: SupportedLanguageEnum
 }
 
 export class PageTokenInvalid extends React.Component<Props> {
-  public render() {
-    const { lang } = this.props
+    public render() {
+        const { lang } = this.props
 
-    return (
-      <div style={{ textAlign: 'center' }}>
-        <p>
-          <Text name={TranslationEnum.PageTokenNotValid} lang={lang} />
-        </p>
-      </div>
-    )
-  }
+        return (
+            <div style={{ textAlign: 'center' }}>
+                <p>
+                    <Text name={TranslationEnum.PageTokenNotValid} lang={lang} />
+                </p>
+            </div>
+        )
+    }
 }
