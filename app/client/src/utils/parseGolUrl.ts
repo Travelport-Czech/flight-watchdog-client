@@ -12,11 +12,13 @@ interface FlightData {
 }
 
 export const parseGolUrl = (url: string): undefined | FlightData => {
-    if (getUrlParameterValue(url, 'returnTicket') === 'on') {
+    const departureDate = getUrlParameterValue(url, 'departureDate')
+    const returnDate = getUrlParameterValue(url, 'returnDate')
+    if (departureDate !== '' && returnDate !== '') {
         return parseReturnFlight(url)
     }
 
-    if (getUrlParameterValue(url, 'returnTicket') === '') {
+    if (departureDate !== '' && returnDate === '') {
         return parseOneWayFlight(url)
     }
 
@@ -24,13 +26,12 @@ export const parseGolUrl = (url: string): undefined | FlightData => {
 }
 
 const parseOneWayFlight = (url: string): undefined | FlightData => {
-    const origin = getUrlParameterValue(url, 'flights[0][origin]=')
-    const destination = getUrlParameterValue(url, 'flights[0][destination]=')
-    const departure = getUrlParameterValue(url, 'flights[0][departureDate]=')
-    const step = getUrlParameterValue(url, 'step').toLowerCase() === 'choosefromfour'
+    const origin = getUrlParameterValue(url, 'from')
+    const destination = getUrlParameterValue(url, 'to')
+    const departure = getUrlParameterValue(url, 'departureDate')
     const emailToContinueWatching = getUrlParameterValue(url, urlParamsConst.continue)
 
-    if (!origin || !destination || !departure || !step) {
+    if (!origin || !destination || !departure) {
         return
     }
 
@@ -49,14 +50,13 @@ const parseOneWayFlight = (url: string): undefined | FlightData => {
 }
 
 const parseReturnFlight = (url: string): undefined | FlightData => {
-    const origin = getUrlParameterValue(url, 'flights[0][origin]=').toUpperCase()
-    const destination = getUrlParameterValue(url, 'flights[0][destination]=').toUpperCase()
-    const departure = getUrlParameterValue(url, 'flights[0][departureDate]=')
-    const arrival = getUrlParameterValue(url, 'flights[1][departureDate]=')
-    const step = getUrlParameterValue(url, 'step').toLowerCase() === 'choosefromfour'
+    const origin = getUrlParameterValue(url, 'from')
+    const destination = getUrlParameterValue(url, 'to')
+    const departure = getUrlParameterValue(url, 'departureDate')
+    const arrival = getUrlParameterValue(url, 'returnDate')
     const emailToContinueWatching = getUrlParameterValue(url, 'flightWatchdogContinue')
 
-    if (!origin || !destination || !departure || !arrival || !step) {
+    if (!origin || !destination || !departure || !arrival) {
         return
     }
 

@@ -1,11 +1,11 @@
-import { golUrlReturn, setOtpions } from '../../support/helper'
+import { golUrlReturn, setOptions } from '../../support/helper'
 
 const createButtonSelector = '#flight-watchdog-window-clicked-create-watcher'
 
-describe('Minimalize', function() {
-    it('Show minimalized after create and reload', function() {
+describe('Minimalize', function () {
+    it('Show minimalized after create and reload', function () {
         cy.visit(golUrlReturn)
-        setOtpions()
+        setOptions()
         cy.contains('Chcete hlídat cenu 2 000 CZK?')
         cy.get('.content input').type('michal@email.cz')
         cy.get(createButtonSelector).click()
@@ -13,13 +13,13 @@ describe('Minimalize', function() {
         cy.get('.content button').click()
         cy.contains('Hledáte levnější letenku? Klikněte zde.')
         cy.reload()
-        setOtpions()
+        setOptions()
         cy.contains('Hledáte levnější letenku? Klikněte zde.')
     })
 
-    it('Do not show minimalized after create and reload', function() {
+    it('Do not show minimalized after create and reload', function () {
         cy.visit(golUrlReturn)
-        setOtpions({keepMinimalisedInDays: 0})
+        setOptions({ keepMinimalisedInDays: 0 })
         cy.contains('Chcete hlídat cenu 2 000 CZK?')
         cy.get('.content input').type('michal@email.cz')
         cy.get(createButtonSelector).click()
@@ -27,7 +27,7 @@ describe('Minimalize', function() {
         cy.get('.content button').click()
         cy.contains('Hledáte levnější letenku? Klikněte zde.')
         cy.reload()
-        setOtpions({keepMinimalisedInDays: 0})
+        setOptions({ keepMinimalisedInDays: 0 })
         cy.contains('Chcete hlídat cenu 2 000 CZK?')
     })
 })

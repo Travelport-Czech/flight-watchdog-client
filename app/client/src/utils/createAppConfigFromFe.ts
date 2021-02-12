@@ -7,8 +7,7 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
     const appConfigPartFromUrl = parseGolUrl(url)
 
     if (!appConfigPartFromUrl) {
-        // tslint:disable-next-line
-        console.log('Flight watchdog error', 'Bad url.')
+        console.log('Flight watchdog error', 'Can not parse url.')
 
         return
     }
@@ -23,7 +22,6 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
         lowestPriceHtmlElement && lowestPriceHtmlElement.textContent ? lowestPriceHtmlElement.textContent : ''
 
     if (!lowestPrice) {
-        // tslint:disable-next-line
         console.log('Flight watchdog error', 'Price not found.')
 
         return

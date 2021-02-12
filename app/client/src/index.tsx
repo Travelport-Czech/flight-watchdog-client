@@ -18,10 +18,10 @@ export const initFlightWatchdogClient = async (settingsData: unknown) => {
           )
         : undefined
 
-    const golUrl = decodeURIComponent(window.location.href)
+    const frontendUrl = decodeURIComponent(window.location.href)
 
     const handleError = (err: Error, data?: unknown) => {
-        handleErrorDefault(sentryClient, golUrl, err, data)
+        handleErrorDefault(sentryClient, frontendUrl, err, data)
     }
 
     try {
@@ -34,7 +34,7 @@ export const initFlightWatchdogClient = async (settingsData: unknown) => {
         node.setAttribute('id', id)
         document.body.appendChild(node)
 
-        const appConfig = createAppConfigFromFe(document, golUrl)
+        const appConfig = createAppConfigFromFe(document, frontendUrl)
 
         if (!appConfig) {
             return

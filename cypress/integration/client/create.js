@@ -1,11 +1,11 @@
-import {golUrlReturn, golUrlOneway, setOtpions, normalizeText} from '../../support/helper'
+import { golUrlReturn, golUrlOneway, setOptions, normalizeText } from '../../support/helper'
 
 const createButtonSelector = '#flight-watchdog-window-clicked-create-watcher'
 
-describe('Create watcher', function() {
-    it('Default success return flight', function() {
+describe('Create watcher', function () {
+    it('Default success return flight', function () {
         cy.visit('/')
-        setOtpions({url: golUrlReturn})
+        setOptions({ url: golUrlReturn })
         cy.get('.flight-watchdog-client_window').should(($window) => {
             expect(normalizeText($window.text()), 'content').to.equal(`\
 ×Chcete hlídat cenu 2 000 CZK?\
@@ -22,9 +22,9 @@ Hlídat Nemám zájem`)
         cy.contains('Hledáte levnější letenku? Klikněte zde.')
     })
 
-    it('Default success oneway flight', function() {
+    it('Default success oneway flight', function () {
         cy.visit('/')
-        setOtpions({url: golUrlOneway})
+        setOptions({ url: golUrlOneway })
         cy.get('.flight-watchdog-client_window').should(($window) => {
             expect(normalizeText($window.text()), 'content').to.equal(`\
 ×Chcete hlídat cenu 2 000 CZK?\
@@ -41,9 +41,9 @@ Hlídat Nemám zájem`)
         cy.contains('Hledáte levnější letenku? Klikněte zde.')
     })
 
-    it('Bad email', function() {
+    it('Bad email', function () {
         cy.visit('/')
-        setOtpions({url: golUrlReturn})
+        setOptions({ url: golUrlReturn })
         cy.get('.flight-watchdog-client_window').should(($window) => {
             expect(normalizeText($window.text()), 'content').to.equal(`\
 ×Chcete hlídat cenu 2 000 CZK?\
@@ -60,15 +60,15 @@ Hlídat Nemám zájem`)
         cy.contains('Skvěle, hotovo. Až najdeme nižší cenu, pošleme Vám e-mail.')
     })
 
-    it('Return flight url with lower case step', function() {
+    it('Return flight url with lower case step', function () {
         cy.visit('/')
-        setOtpions({url: golUrlReturn.replace('ChooseFromFour', 'chooseFromFour')})
+        setOptions({ url: golUrlReturn.replace('ChooseFromFour', 'chooseFromFour') })
         cy.contains('Chcete hlídat cenu 2 000 CZK?')
     })
 
-    it('Oneway flight url with lower case step', function() {
+    it('Oneway flight url with lower case step', function () {
         cy.visit('/')
-        setOtpions({url: golUrlOneway.replace('ChooseFromFour', 'chooseFromFour')})
+        setOptions({ url: golUrlOneway.replace('ChooseFromFour', 'chooseFromFour') })
         cy.contains('Chcete hlídat cenu 2 000 CZK?')
     })
 })

@@ -1,11 +1,11 @@
-import { golUrlReturn, setOtpions } from '../../support/helper'
+import { golUrlReturn, setOptions } from '../../support/helper'
 
 const createButtonSelector = '#flight-watchdog-window-clicked-create-watcher'
 
 describe('Change language', function () {
     it('en', function () {
         cy.visit(golUrlReturn)
-        setOtpions({ lang: 'en' })
+        setOptions({ lang: 'en' })
         cy.contains('Track the price 2 000 CZK?')
         cy.contains('Prague - Ruzyne')
         cy.contains('London')
@@ -18,7 +18,7 @@ describe('Change language', function () {
 
     it('al', function () {
         cy.visit(golUrlReturn)
-        setOtpions({ lang: 'al' })
+        setOptions({ lang: 'al' })
         cy.contains('Gjurmo çmimin 2 000 CZK?')
         cy.contains('Prague - Ruzyne')
         cy.contains('London')
@@ -31,7 +31,7 @@ describe('Change language', function () {
 
     it('sk', function () {
         cy.visit(golUrlReturn)
-        setOtpions({ lang: 'sk' })
+        setOptions({ lang: 'sk' })
         cy.contains('Chcete sledovať cenu 2 000 CZK?')
         cy.contains('Prague - Ruzyne')
         cy.contains('London')
@@ -44,7 +44,7 @@ describe('Change language', function () {
 
     it('vi', function () {
         cy.visit(golUrlReturn)
-        setOtpions({ lang: 'vi' })
+        setOptions({ lang: 'vi' })
         cy.contains('Bạn muốn theo dõi giá 2 000 CZK?')
         cy.contains('Prague - Ruzyne')
         cy.contains('London')
