@@ -5,9 +5,8 @@ export const golUrlReturn = `?from=PRG&to=LON&flightClass=ECO&departureDate=${da
 export const golUrlOneway = `?from=PRG&to=LON&flightClass=ECO&departureDate=${dateFrom}&returnDate=&ADT=1`
 
 export const setOptions = ({ token, keepMinimalisedInDays, lang, url, price, defaultPrice } = {}) => {
-    if (url !== undefined) {
-        cy.get('#option-url').clear().type(url, { delay: 0, force: true })
-    }
+    const finalUrl = url ? url : golUrlReturn
+    cy.get('#option-url').clear().type(finalUrl, { delay: 0, force: true })
     if (token !== undefined) {
         cy.get('#option-token').clear().type(token, { delay: 0, force: true })
     }
