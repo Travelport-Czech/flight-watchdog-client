@@ -1,71 +1,81 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html lang="cs">
-  <head>
+<head>
     <title>Testing page</title>
     <script type="text/javascript">
-      function submit() {
-        var newUrl = document.getElementById('option-url').value
-        window.history.pushState('', '', newUrl)
-        var app = document.getElementById('flight-watchdog-client-app')
-        if (app) {
-          app.remove()
-        }
-        document.getElementsByTagName('html')[0].setAttribute('lang', document.getElementById('option-lang').value)
-        document.getElementsByClassName('AO3_TotalFareValue')[0].innerHTML = document.getElementById('option-price').value
-        document.getElementsByClassName('AO3_TotalFareValue')[0].setAttribute('data-default-price', document.getElementById('option-defaultPrice').value)
-        var settings = {
-          token: document.getElementById('option-token').value,
-          initStep: document.getElementById('option-initStep').value ? document.getElementById('option-initStep').value : undefined,
-          apiUrl: document.getElementById('option-apiUrl').value,
-          keepMinimalisedInDays: parseInt(document.getElementById('option-keepMinimalisedInDays').value),
-          analyticsId: document.getElementById('option-analyticsId').value,
-          sentryDns: document.getElementById('option-sentryDns').value
-        }
-        initFlightWatchdogClient(settings)
-      }
-    </script>
-  </head>
-  <body>
-    <h1>Testing page</h1>
-    <p>
-      Prices: <span class="AO3_TotalFareValue" data-default-price="2 000 CZK">2 000 CZK</span>
-    </p>
-    <p>
-      Options:<br/>
-      url: <input name="lang" value="" id="option-url"><br/>
-      initStep: <select id="option-initStep">
-        <option value="" selected>empty</option>
-        <option value="NONE">NONE</option>
-        <option value="CREATE_WATCHER_AGREE">CREATE_WATCHER_AGREE</option>
-        <option value="CREATE_WATCHER_WORKING">CREATE_WATCHER_WORKING</option>
-        <option value="CREATE_WATCHER_DONE">CREATE_WATCHER_DONE</option>
-        <option value="REMOVE_WATCHER_BY_ID">REMOVE_WATCHER_BY_ID</option>
-        <option value="REMOVE_WATCHER">REMOVE_WATCHER</option>
-        <option value="REMOVE_WATCHER_WORKING">REMOVE_WATCHER_WORKING</option>
-        <option value="REMOVE_MORE_WATCHERS">REMOVE_MORE_WATCHERS</option>
-        <option value="MINIMALIZED">MINIMALIZED</option>
-        <option value="CONTINUE_WATCHING">CONTINUE_WATCHING</option>
-        <option value="ERROR">ERROR</option>
-      </select><br/>
-      apiUrl: <input name="apiUrl" value="http://localhost:3000" id="option-apiUrl"><br/>
-      price: <input name="token" value="2 000 CZK" id="option-price"><br/>
-      defaultPrice: <input name="token" value="2 000 CZK" id="option-defaultPrice"><br/>
-      language: <input name="lang" value="cs" id="option-lang"><br/>
-      token: <input name="token" value="token" id="option-token"><br/>
-      analyticsId: <input name="analyticsId" value="false" id="option-analyticsId"><br/>
-      sentryDns: <input name="sentryDns" value="false" id="option-sentryDns"><br/>
-      keepMinimalisedInDays: <input name="keepMinimalisedInDays" value="1" id="option-keepMinimalisedInDays"><br/>
-      <button onclick="submit(this)" id="option-load-button">Load</button>
-    </p>
+        function submit() {
+            var newUrl = document.getElementById('option-url').value
+            window.history.pushState('', '', newUrl)
+            var app = document.getElementById('flight-watchdog-client-app')
+            if (app) {
+                app.remove()
+            }
+            document.getElementsByTagName('html')[0].setAttribute('lang', document.getElementById('option-lang').value)
+            document.getElementsByClassName('flight-prices-links-price')[0]
+                .getElementsByTagName('strong')[0]
+                .getElementsByTagName('span')[0]
+                .getElementsByTagName('span')[0] = document.getElementById('option-price').value
 
-    <script type="text/javascript">
-      var font = document.createElement('script')
-      font.href = 'https://fonts.googleapis.com/css?family=Roboto'
-      font.rel = 'stylesheet'
-      document.getElementsByTagName('head')[0].appendChild(font)
-      var s = document.createElement('script')
-      s.src = 'http://localhost:8080/client/index.js'
-      document.getElementsByTagName('head')[0].appendChild(s)
+            var settings = {
+                token: document.getElementById('option-token').value,
+                initStep: document.getElementById('option-initStep').value ? document.getElementById('option-initStep').value : undefined,
+                apiUrl: document.getElementById('option-apiUrl').value,
+                keepMinimalisedInDays: parseInt(document.getElementById('option-keepMinimalisedInDays').value),
+                analyticsId: document.getElementById('option-analyticsId').value,
+                sentryDns: document.getElementById('option-sentryDns').value
+            }
+            initFlightWatchdogClient(settings)
+        }
     </script>
-  </body>
+</head>
+<body>
+<h1>Testing page</h1>
+<p>
+    Prices:
+<div class="flight">
+    <div>
+        <div class="flight-prices-links">
+            <div class="flight-prices-links-price"><strong><span><span>2 000 CZK</span> </span></strong></div>
+        </div>
+    </div>
+</div>
+</p>
+<p>
+    Options:<br/>
+    url: <input name="lang" value="" id="option-url"><br/>
+    initStep: <select id="option-initStep">
+    <option value="" selected>empty</option>
+    <option value="NONE">NONE</option>
+    <option value="CREATE_WATCHER_AGREE">CREATE_WATCHER_AGREE</option>
+    <option value="CREATE_WATCHER_WORKING">CREATE_WATCHER_WORKING</option>
+    <option value="CREATE_WATCHER_DONE">CREATE_WATCHER_DONE</option>
+    <option value="REMOVE_WATCHER_BY_ID">REMOVE_WATCHER_BY_ID</option>
+    <option value="REMOVE_WATCHER">REMOVE_WATCHER</option>
+    <option value="REMOVE_WATCHER_WORKING">REMOVE_WATCHER_WORKING</option>
+    <option value="REMOVE_MORE_WATCHERS">REMOVE_MORE_WATCHERS</option>
+    <option value="MINIMALIZED">MINIMALIZED</option>
+    <option value="CONTINUE_WATCHING">CONTINUE_WATCHING</option>
+    <option value="ERROR">ERROR</option>
+</select><br/>
+    apiUrl: <input name="apiUrl" value="http://localhost:3000" id="option-apiUrl"><br/>
+    price: <input name="token" value="2 000 CZK" id="option-price"><br/>
+    defaultPrice (not work yet!): <input name="token" value="2 000 CZK" id="option-defaultPrice"><br/>
+    language: <input name="lang" value="cs" id="option-lang"><br/>
+    token: <input name="token" value="token" id="option-token"><br/>
+    analyticsId: <input name="analyticsId" value="false" id="option-analyticsId"><br/>
+    sentryDns: <input name="sentryDns" value="false" id="option-sentryDns"><br/>
+    keepMinimalisedInDays: <input name="keepMinimalisedInDays" value="1" id="option-keepMinimalisedInDays"><br/>
+    <button onclick="submit(this)" id="option-load-button">Load</button>
+</p>
+
+<script type="text/javascript">
+    var font = document.createElement('script')
+    font.href = 'https://fonts.googleapis.com/css?family=Roboto'
+    font.rel = 'stylesheet'
+    document.getElementsByTagName('head')[0].appendChild(font)
+    var s = document.createElement('script')
+    s.src = 'http://localhost:8080/client/index.js'
+    document.getElementsByTagName('head')[0].appendChild(s)
+</script>
+</body>
 </html>
