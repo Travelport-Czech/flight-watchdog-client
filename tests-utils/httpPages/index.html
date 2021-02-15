@@ -10,7 +10,7 @@
             if (app) {
                 app.remove()
             }
-            document.getElementsByTagName('html')[0].setAttribute('lang', document.getElementById('option-lang').value)
+            document.getElementsByClassName('header-menu-languages-selected')[0].textContent = document.getElementById('option-lang').value.toUpperCase()
             document.getElementsByClassName('flight-prices-links-price')[0]
                 .getElementsByTagName('strong')[0]
                 .getElementsByTagName('span')[0]
@@ -30,6 +30,7 @@
 </head>
 <body>
 <h1>Testing page</h1>
+<span class="header-menu-languages-selected">EN</span>
 <p>
     Prices:
 <div class="flight">

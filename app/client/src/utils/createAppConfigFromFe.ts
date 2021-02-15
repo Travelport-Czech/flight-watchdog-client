@@ -31,12 +31,10 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
         return
     }
 
-    const langElement = document.getElementsByTagName('html').item(0)
-    const lang = new ValidLanguage(
-        langElement && langElement.getAttribute('lang'),
-        undefined,
-        Object.values(SupportedLanguageEnum),
-    ).getString()
+    const langFromFe = document
+        .getElementsByClassName('header-menu-languages-selected')[0]
+        ?.textContent?.toLocaleLowerCase()
+    const lang = new ValidLanguage(langFromFe, undefined, Object.values(SupportedLanguageEnum)).getString()
 
     return {
         ...appConfigPartFromUrl,
