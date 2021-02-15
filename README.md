@@ -114,9 +114,6 @@ if (!flightWatchdogClientMobileCheck()) {
       subtree: true
    });
 }
-
-
-
 ```
 
 ## Version release workflow
