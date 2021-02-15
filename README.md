@@ -88,7 +88,7 @@ var startFlightWatchdogClient = function () {
             return;
          }
          var settings = {
-            token: 'c0g6CYPK5JRnJmWdF9mvWWH3k6Mn2HkPLfs0QnppcSpJ4O1Y4E'
+            token: 'XXX'
          };
          initFlightWatchdogClient(settings);
       };
