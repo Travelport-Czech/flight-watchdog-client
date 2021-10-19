@@ -5,8 +5,9 @@ import { createAuthorizationBasicToken } from '@client/utils/createAuthorization
 import { parseJson } from '@client/utils/parseJson'
 import { Location } from '@shared/types/Location'
 import {
+  createIataLocationFromUnknown,
+  createNotEmptyStringFromUnknown,
   ValidEmail,
-  ValidIATALocation,
   ValidIATALocationList,
   ValidNotEmptyString,
   ValidNumber,
@@ -59,9 +60,17 @@ export const getDestinationNames = async (
   }
 
   return result.context.map((item) => {
+    const codeResult = createIataLocationFromUnknown(item.code, { allowPlus: true })
+    if (!codeResult.success) {
+      throw new Error(codeResult.error)
+    }
+    const nameResult = item.name ? createNotEmptyStringFromUnknown(item.name) : undefined
+    if (nameResult && !nameResult.success) {
+      throw new Error(nameResult.error)
+    }
     return {
-      code: new ValidIATALocation(item.code),
-      name: item.name ? new ValidNotEmptyString(item.name).toString() : undefined,
+      code: codeResult.data,
+      name: nameResult?.data.toString(),
     }
   })
 }

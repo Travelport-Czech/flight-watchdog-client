@@ -1,6 +1,11 @@
 import { getUrlParameterValue } from '@client/utils/getUrlParameterValue'
 import { urlParamsConst } from '@shared/utils/consts'
-import { ValidDate, ValidEmail, ValidIATALocationList } from '@travelport-czech/valid-objects-ts'
+import {
+  createIataLocationListFromUnknown,
+  ValidDate,
+  ValidEmail,
+  ValidIATALocationList,
+} from '@travelport-czech/valid-objects-ts'
 
 interface FlightData {
   readonly flightType: 'return' | 'oneway'
@@ -39,11 +44,21 @@ const parseOneWayFlight = (url: string): undefined | FlightData => {
     return
   }
 
+  const destinationResult = createIataLocationListFromUnknown(destination, { allowPlus: true })
+  if (!destinationResult.success) {
+    throw new Error(destinationResult.error)
+  }
+
+  const originResult = createIataLocationListFromUnknown(origin, { allowPlus: true })
+  if (!originResult.success) {
+    throw new Error(originResult.error)
+  }
+
   return {
     departure: new ValidDate(departure),
-    destination: new ValidIATALocationList(destination),
+    destination: destinationResult.data,
     emailToContinueWatching: emailToContinueWatching ? new ValidEmail(emailToContinueWatching) : undefined,
-    origin: new ValidIATALocationList(origin),
+    origin: originResult.data,
     flightType: 'oneway',
   }
 }
@@ -65,12 +80,22 @@ const parseReturnFlight = (url: string): undefined | FlightData => {
     return
   }
 
+  const destinationResult = createIataLocationListFromUnknown(destination, { allowPlus: true })
+  if (!destinationResult.success) {
+    throw new Error(destinationResult.error)
+  }
+
+  const originResult = createIataLocationListFromUnknown(origin, { allowPlus: true })
+  if (!originResult.success) {
+    throw new Error(originResult.error)
+  }
+
   return {
     arrival: new ValidDate(arrival),
     departure: new ValidDate(departure),
-    destination: new ValidIATALocationList(destination),
+    destination: destinationResult.data,
     emailToContinueWatching: emailToContinueWatching ? new ValidEmail(emailToContinueWatching) : undefined,
-    origin: new ValidIATALocationList(origin),
+    origin: originResult.data,
     flightType: 'return',
   }
 }
