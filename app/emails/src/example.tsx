@@ -7,10 +7,10 @@ import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { WatcherParams } from '@emails/types/WatcherParams'
 import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 import {
+    createIataLocationListFromUnknown,
     ValidDate,
     ValidDateTime,
     ValidEmail,
-    ValidIATALocation,
     ValidIATALocationList,
     ValidLanguage,
     ValidPrice,
@@ -55,14 +55,24 @@ const agencySettings: AgencyParams = {
 }
 
 const createWatcherFullInfo = (): WatcherFullInfo => {
+    const destinationResult = createIataLocationListFromUnknown('LON', { allowPlus: true })
+    if (!destinationResult.success) {
+        throw new Error(destinationResult.error)
+    }
+
+    const originResult = createIataLocationListFromUnknown('PRG+', { allowPlus: true })
+    if (!originResult.success) {
+        throw new Error(originResult.error)
+    }
+
     const watcher: WatcherParams = {
         arrival: new ValidDate('2018-12-25'),
         created: new ValidDateTime('2018-09-19 12:00:00'),
         departure: new ValidDate('2018-12-16'),
-        destination: new ValidIATALocationList('LON'),
+        destination: destinationResult.data,
         email: new ValidEmail('none@email.cz'),
         id: 'example',
-        origin: new ValidIATALocationList('PRG'),
+        origin: originResult.data,
         priceLimit: new ValidPrice('6000 CZK'),
         flightType: 'return',
     }
@@ -79,14 +89,14 @@ const createWatcherFullInfo = (): WatcherFullInfo => {
     return {
         destinationLocationList: [
             {
-                code: new ValidIATALocation('PRG'),
-                name: 'Praha',
+                code: destinationResult.data,
+                name: 'Londýn',
             },
         ],
         originLocationList: [
             {
-                code: new ValidIATALocation('LON'),
-                name: 'Londýn',
+                code: originResult.data,
+                name: 'Praha',
             },
         ],
         watcher,

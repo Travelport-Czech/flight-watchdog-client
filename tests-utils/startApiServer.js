@@ -4,15 +4,15 @@ const server = new Hapi.Server({
     host: 'localhost',
     port: 3000,
     routes: {
-        cors: true
-    }
+        cors: true,
+    },
 })
 
 let tokenLimitCount = false
 
 server.route({
     method: 'POST',
-    path:'/count-all',
+    path: '/count-all',
     handler: function (request, h) {
         const headers = request.headers
 
@@ -31,19 +31,19 @@ server.route({
         }
 
         return h.response({
-            "result": "Success",
-            "message": "Done.",
-            "context": {
-                "limit": limit,
-                "count": count
-            }
+            result: 'Success',
+            message: 'Done.',
+            context: {
+                limit: limit,
+                count: count,
+            },
         })
-    }
+    },
 })
 
 server.route({
     method: 'POST',
-    path:'/count',
+    path: '/count',
     handler: function (request, h) {
         let count = 0
         let limit = 1
@@ -56,64 +56,68 @@ server.route({
             limit = 2
         }
         return h.response({
-            "result": "Success",
-            "message": "Done.",
-            "context": {
-                "email": request.payload.email,
-                "count": count,
-                "emailLimit": limit
-            }
+            result: 'Success',
+            message: 'Done.',
+            context: {
+                email: request.payload.email,
+                count: count,
+                emailLimit: limit,
+            },
         })
-    }
+    },
 })
 
 server.route({
     method: 'POST',
-    path:'/create',
+    path: '/create',
     handler: function (request, h) {
         return h.response({
-            "result": "Success",
-            "message": "Created.",
-            "context": {
-                "limit": 1000,
-                "count": 6,
-                "id": "315e5ba0-d6cc-11e8-a252-fdd6fb1ab92c"
-            }
+            result: 'Success',
+            message: 'Created.',
+            context: {
+                limit: 1000,
+                count: 6,
+                id: '315e5ba0-d6cc-11e8-a252-fdd6fb1ab92c',
+            },
         })
-    }
+    },
 })
 
 server.route({
     method: 'POST',
-    path:'/send-watcher-list',
+    path: '/send-watcher-list',
     handler: function (request, h) {
         return h.response({
-            "message": "Sent.",
-            "result": "Success"
+            message: 'Sent.',
+            result: 'Success',
         })
-    }
+    },
 })
 
 server.route({
     method: 'POST',
-    path:'/delete',
+    path: '/delete',
     handler: function (request, h) {
         return h.response({
-            "message": "Deleted.",
-            "result": "Success"
+            message: 'Deleted.',
+            result: 'Success',
         })
-    }
+    },
 })
 
 server.route({
     method: 'POST',
-    path:'/destination-name',
+    path: '/destination-name',
     handler: function (request, h) {
         let code = 'LON'
         let name = 'London'
         if (request.payload.locationCode === 'PRG') {
             code = 'PRG'
             name = 'Prague - Ruzyne'
+        }
+        if (request.payload.locationCode === 'PRG+') {
+            code = 'PRG'
+            name = 'Prague'
         }
         if (request.payload.lang === 'cs' && request.payload.locationCode === 'LON') {
             name = 'Londýn'
@@ -129,24 +133,31 @@ server.route({
             code = 'PRG'
             name = 'Prague - Ruzyne'
         }
+        if (request.payload.lang === 'cs' && request.payload.locationCode === 'PRG+') {
+            code = 'PRG+'
+            name = 'Praha'
+        }
+        if (request.payload.lang === 'en' && request.payload.locationCode === 'PRG+') {
+            code = 'PRG+'
+            name = 'Prague'
+        }
         return h.response({
-            "context": [{"code": code,"name": name}],
-            "message":"Found.",
-            "result":"Success"
+            context: [{ code: code, name: name }],
+            message: 'Found.',
+            result: 'Success',
         })
-    }
+    },
 })
 
-const start = async function() {
+const start = async function () {
     try {
         console.log('Starting HAPI server...')
-        await server.start();
+        await server.start()
         console.log('Server starter.')
-    } catch(err) {
-        console.log(err);
-        process.exit(1);
+    } catch (err) {
+        console.log(err)
+        process.exit(1)
     }
-};
+}
 
-start();
-
+start()

@@ -1,6 +1,6 @@
 const dateFrom = '2018-11-01'
 const dateTo = '2018-11-05'
-export const golUrlReturn = `?from=PRG&to=LON&flightClass=ECO&departureDate=${dateFrom}&returnDate=${dateTo}&ADT=1`
+export const golUrlReturn = `?from=PRG%2B&to=LON&flightClass=ECO&departureDate=${dateFrom}&returnDate=${dateTo}&ADT=1`
 
 export const golUrlOneway = `?from=PRG&to=LON&flightClass=ECO&departureDate=${dateFrom}&returnDate=&ADT=1`
 
