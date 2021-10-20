@@ -7,6 +7,7 @@ import { WatcherFullInfo } from '@emails/types/WatcherFullInfo'
 import { WatcherParams } from '@emails/types/WatcherParams'
 import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum'
 import {
+  createIataLocationFromUnknown,
   createIataLocationListFromUnknown,
   ValidDate,
   ValidDateTime,
@@ -54,12 +55,22 @@ const agencySettings: AgencyParams = {
 }
 
 const createWatcherFullInfo = (): WatcherFullInfo => {
-  const destinationResult = createIataLocationListFromUnknown('LON', { allowPlus: true })
+  const destinationListResult = createIataLocationListFromUnknown('LON', { allowPlus: true })
+  if (!destinationListResult.success) {
+    throw new Error(destinationListResult.error)
+  }
+
+  const originListResult = createIataLocationListFromUnknown('PRG+', { allowPlus: true })
+  if (!originListResult.success) {
+    throw new Error(originListResult.error)
+  }
+
+  const destinationResult = createIataLocationFromUnknown('LON', { allowPlus: true })
   if (!destinationResult.success) {
     throw new Error(destinationResult.error)
   }
 
-  const originResult = createIataLocationListFromUnknown('PRG+', { allowPlus: true })
+  const originResult = createIataLocationFromUnknown('PRG+', { allowPlus: true })
   if (!originResult.success) {
     throw new Error(originResult.error)
   }
@@ -68,18 +79,18 @@ const createWatcherFullInfo = (): WatcherFullInfo => {
     arrival: new ValidDate('2018-12-25'),
     created: new ValidDateTime('2018-09-19 12:00:00'),
     departure: new ValidDate('2018-12-16'),
-    destination: destinationResult.data,
+    destination: destinationListResult.data,
     email: new ValidEmail('none@email.cz'),
     id: 'example',
-    origin: originResult.data,
+    origin: originListResult.data,
     priceLimit: new ValidPrice('6000 CZK'),
     flightType: 'return',
   }
 
   const flightResult: FlightResult = {
     price: new ValidPrice('3500 CZK'),
-    origin: originResult.data,
-    destination: destinationResult.data,
+    origin: originListResult.data,
+    destination: destinationListResult.data,
     departure: new ValidDate('2018-12-16'),
     arrival: new ValidDate('2018-12-25'),
     flightType: 'return',
