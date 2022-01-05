@@ -20,8 +20,6 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
             .item(0)
             ?.getElementsByTagName('span')
             .item(0)
-            ?.getElementsByTagName('span')
-            .item(0)
     )
     const lowestPrice = lowestPriceHtmlElement?.textContent?.replace('Kč', 'CZK')
 
