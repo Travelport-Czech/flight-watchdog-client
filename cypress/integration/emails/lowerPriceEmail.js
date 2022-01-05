@@ -17,10 +17,10 @@ z Praha (PRG+) do Londýn (LON) a zpět\
             .eq(1)
             .should((tr) => {
                 expect(normalizeText(tr.text()), 'content').to.equal(`\
-Nalezli jsme cenu nižší o 1 000 CZK, což je o 17 % méně.\
+Nalezli jsme cenu nižší o 1 000 Kč, což je o 17 % méně.\
 Nalezená cena je\
-5 000 CZK\
-Původní cena byla 6 000 CZK\
+5 000 Kč\
+Původní cena byla 6 000 Kč\
 Pro zobrazení letu na webu klikněte na tlačítko níže:\
 Rezervovat\
 19.9.\

@@ -8,7 +8,7 @@ describe('Create watcher', function () {
         setOptions({ url: golUrlReturn })
         cy.get('.flight-watchdog-client_window').should(($window) => {
             expect(normalizeText($window.text()), 'content').to.equal(`\
-×Chcete hlídat cenu 2 000 CZK?\
+×Chcete hlídat cenu 2 000 Kč?\
 Budeme ji hlídat za Vás! Každý den pak dostanete informaci o jejím vývoji.\
 z Praha (PRG+) do Londýn (LON) a zpět\
 1. 11. 2018 až 5. 11. 2018\
@@ -27,7 +27,7 @@ Hlídat Nemám zájem`)
         setOptions({ url: golUrlOneway })
         cy.get('.flight-watchdog-client_window').should(($window) => {
             expect(normalizeText($window.text()), 'content').to.equal(`\
-×Chcete hlídat cenu 2 000 CZK?\
+×Chcete hlídat cenu 2 000 Kč?\
 Budeme ji hlídat za Vás! Každý den pak dostanete informaci o jejím vývoji.\
 z Praha - Letište Václava Havla (PRG) do Londýn (LON)\
 1. 11. 2018\
@@ -46,7 +46,7 @@ Hlídat Nemám zájem`)
         setOptions({ url: golUrlReturn })
         cy.get('.flight-watchdog-client_window').should(($window) => {
             expect(normalizeText($window.text()), 'content').to.equal(`\
-×Chcete hlídat cenu 2 000 CZK?\
+×Chcete hlídat cenu 2 000 Kč?\
 Budeme ji hlídat za Vás! Každý den pak dostanete informaci o jejím vývoji.\
 z Praha (PRG+) do Londýn (LON) a zpět\
 1. 11. 2018 až 5. 11. 2018\
@@ -63,12 +63,12 @@ Hlídat Nemám zájem`)
     it('Return flight url with lower case step', function () {
         cy.visit('/')
         setOptions({ url: golUrlReturn.replace('ChooseFromFour', 'chooseFromFour') })
-        cy.contains('Chcete hlídat cenu 2 000 CZK?')
+        cy.contains('Chcete hlídat cenu 2 000 Kč?')
     })
 
     it('Oneway flight url with lower case step', function () {
         cy.visit('/')
         setOptions({ url: golUrlOneway.replace('ChooseFromFour', 'chooseFromFour') })
-        cy.contains('Chcete hlídat cenu 2 000 CZK?')
+        cy.contains('Chcete hlídat cenu 2 000 Kč?')
     })
 })

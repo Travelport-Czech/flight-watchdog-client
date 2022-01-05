@@ -23,7 +23,7 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
             ?.getElementsByTagName('span')
             .item(0)
     )
-    const lowestPrice = lowestPriceHtmlElement?.textContent
+    const lowestPrice = lowestPriceHtmlElement?.textContent?.replace('Kč', 'CZK')
 
     if (!lowestPrice) {
         console.log('Flight watchdog error', 'Price not found.')
@@ -39,7 +39,7 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
     return {
         ...appConfigPartFromUrl,
         customerEmail: getCustomerEmail(doc),
-        lowestPrice: new ValidPrice(lowestPrice.replace('Kč', 'CZK')),
+        lowestPrice: new ValidPrice(lowestPrice),
         lowestPriceCustomCurrency: new ValidPrice(lowestPrice),
         lang: SupportedLanguageEnum[lang],
     }

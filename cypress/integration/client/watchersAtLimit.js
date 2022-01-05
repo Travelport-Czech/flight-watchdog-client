@@ -8,7 +8,7 @@ describe('Watchers at limit', function () {
         setOptions({ token: 'tokenLimit', url: golUrlReturn })
         cy.get('.flight-watchdog-client_window').should(($window) => {
             expect(normalizeText($window.text()), 'content').to.equal(`\
-×Chcete hlídat cenu 2 000 CZK?\
+×Chcete hlídat cenu 2 000 Kč?\
 Budeme ji hlídat za Vás! Každý den pak dostanete informaci o jejím vývoji.\
 z Praha (PRG+) do Londýn (LON) a zpět\
 1. 11. 2018 až 5. 11. 2018\

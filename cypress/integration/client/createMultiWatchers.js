@@ -6,7 +6,7 @@ describe('Create watcher multiple', function () {
     it('Create success', function () {
         cy.visit(golUrlReturn)
         setOptions()
-        cy.contains('Chcete hlídat cenu 2 000 CZK?')
+        cy.contains('Chcete hlídat cenu 2 000 Kč?')
         cy.get('.content input').type('multiple@email.cz')
         cy.get(createButtonSelector).click()
         cy.contains('Skvěle, hotovo. Až najdeme nižší cenu, pošleme Vám e-mail.')
@@ -17,7 +17,7 @@ describe('Create watcher multiple', function () {
     it('Create with delete question', function () {
         cy.visit(golUrlReturn)
         setOptions()
-        cy.contains('Chcete hlídat cenu 2 000 CZK?')
+        cy.contains('Chcete hlídat cenu 2 000 Kč?')
         cy.get('.content input').type('multiplefull@email.cz')
         cy.get(createButtonSelector).click()
         cy.contains(

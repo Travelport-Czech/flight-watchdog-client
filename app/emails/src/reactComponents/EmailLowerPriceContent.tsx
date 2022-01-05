@@ -48,7 +48,7 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                             <div className="content" style={styles.emailTableContent}>
                                 <div style={{ ...styles.simpleText, marginBottom: '15px' }}>
                                     <Text name={TranslationEnum.EmailContentDescription} lang={lang}>
-                                        <Price price={priceDiff} />
+                                        <Price price={priceDiff} lang={lang} />
                                         {priceDiffPercent.toString()}
                                     </Text>
                                 </div>
@@ -57,12 +57,12 @@ export class EmailLowerPriceContent extends React.Component<Props> {
                                 </div>
                                 <div style={{ fontSize: '25px', lineHeight: '25px', marginBottom: '10px' }}>
                                     <Text name={TranslationEnum.EmailPrice} lang={lang}>
-                                        <Price price={price} />
+                                        <Price price={price} lang={lang} />
                                     </Text>
                                 </div>
                                 <div style={{ ...styles.simpleText, marginBottom: '25px' }}>
                                     <Text name={TranslationEnum.EmailPriceSuffixText} lang={lang}>
-                                        <Price price={watcher.priceLimit} />
+                                        <Price price={watcher.priceLimit} lang={lang} />
                                     </Text>
                                 </div>
 

@@ -34,11 +34,11 @@ export class OpenedWindow extends React.Component<Props> {
                 ? TranslationEnum.ClientDestinationsReturn
                 : TranslationEnum.ClientDestinationsOneway
 
-        const price = <Price price={lowestPrice} />
+        const price = <Price price={lowestPrice} lang={lang} />
         const priceWithDifferentCurrencies = (
             <React.Fragment>
-                <Price price={lowestPrice} /> (
-                <Price price={lowestPriceCustomCurrency} />)
+                <Price price={lowestPrice} lang={lang} /> (
+                <Price price={lowestPriceCustomCurrency} lang={lang} />)
             </React.Fragment>
         )
 

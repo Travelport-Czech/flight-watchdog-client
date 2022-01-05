@@ -43,7 +43,7 @@ const createAdditionalResults = (
                     <p key={index2}>
                         <a href={link} style={styles.link}>
                             <span style={{ fontWeight: 'bold' }}>
-                                <Price price={flight.price} />
+                                <Price price={flight.price} lang={lang} />
                             </span>
                             {' - '}
                             <HeaderDates departure={flight.departure} arrival={flight.arrival} lang={lang} />
@@ -101,7 +101,7 @@ export class WatchersList extends React.Component<Props> {
 
                     <div style={styles.simpleText}>
                         <Text name={TranslationEnum.EmailPriceLimit} lang={lang}>
-                            {priceLimit.toString()}
+                            <Price price={priceLimit} lang={lang} />
                         </Text>
                     </div>
 
