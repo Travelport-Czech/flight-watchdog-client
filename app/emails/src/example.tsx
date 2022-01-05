@@ -11,6 +11,7 @@ import {
     ValidDate,
     ValidDateTime,
     ValidEmail,
+    ValidIATALocation,
     ValidIATALocationList,
     ValidLanguage,
     ValidPrice,
@@ -89,13 +90,13 @@ const createWatcherFullInfo = (): WatcherFullInfo => {
     return {
         destinationLocationList: [
             {
-                code: destinationResult.data,
+                code: new ValidIATALocation('LON', '', true),
                 name: 'Londýn',
             },
         ],
         originLocationList: [
             {
-                code: originResult.data,
+                code: new ValidIATALocation('PRG+', '', true),
                 name: 'Praha',
             },
         ],
