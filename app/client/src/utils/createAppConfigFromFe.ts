@@ -39,7 +39,7 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
     return {
         ...appConfigPartFromUrl,
         customerEmail: getCustomerEmail(doc),
-        lowestPrice: new ValidPrice(lowestPrice),
+        lowestPrice: new ValidPrice(lowestPrice.replace('Kč', 'CZK')),
         lowestPriceCustomCurrency: new ValidPrice(lowestPrice),
         lang: SupportedLanguageEnum[lang],
     }
