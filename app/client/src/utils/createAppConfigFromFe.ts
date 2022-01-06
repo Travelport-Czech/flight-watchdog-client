@@ -12,16 +12,11 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
         return
     }
 
-    const lowestPriceHtmlElement = <HTMLSpanElement | null>(
-        doc
-            .getElementsByClassName('flight-prices-links-price')
-            .item(0)
-            ?.getElementsByTagName('strong')
-            .item(0)
-            ?.getElementsByTagName('span')
-            .item(0)
-    )
-    const lowestPrice = lowestPriceHtmlElement?.textContent?.replace('Kč', 'CZK')
+    const lowestPrice = doc
+        .getElementsByClassName('flight-prices-links-price')
+        .item(0)
+        ?.textContent?.trim()
+        .replace('Kč', 'CZK')
 
     if (!lowestPrice) {
         console.log('Flight watchdog error', 'Price not found.')
