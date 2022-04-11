@@ -7,7 +7,7 @@ import { SupportedLanguageEnum } from '@shared/translation/SupportedLanguageEnum
 import { urlParamsConst } from '@shared/utils/consts'
 
 const langCodeMapToGolLangCode = {
-    [SupportedLanguageEnum.cs]: 'cz',
+    [SupportedLanguageEnum.cs]: 'cs',
     [SupportedLanguageEnum.en]: 'en',
     [SupportedLanguageEnum.al]: 'al',
     [SupportedLanguageEnum.sk]: 'sk',
@@ -27,50 +27,33 @@ export const createResultUrl = (
 
     const { dealerId, frontendUrl } = agencyParams
     const dealerIdUrlPart = dealerId ? '&dealer_id=' + dealerId.toString() : ''
-    const waitPageString = `${frontendUrl.toString()}/index.php?action=vWait&redirect=`
 
     const addParamsPart = Object.entries(addParams).map((item) => {
         return `&${item[0]}=${item[1]}`
     })
 
-    return (
-        waitPageString +
-        encodeURIComponent(
-            frontendUrl.toString() + createResultLink(flight, validatedLang) + dealerIdUrlPart + addParamsPart.join(''),
-        )
-    )
+    return frontendUrl.toString() + createResultLink(flight, validatedLang) + dealerIdUrlPart + addParamsPart.join('')
 }
 
 const createResultLink = (flight: FlightParams, lang: SupportedLanguageEnum): string => {
+    const onewayParams = `/results?\
+departureDate=${flight.departure.formatToSystem()}\
+&to=${flight.destination.toString()}\
+&from=${encodeURIComponent(flight.origin.toString())}\
+&lang=${langCodeMapToGolLangCode[lang.toString()]}\
+&ADT=1\
+&toleranceDays=0`
+
     if (flight.flightType === 'return') {
         if (!flight.arrival) {
             throw new AppLogicError('Missing arrival for return flight')
         }
 
-        return `/index.php?action=vFlights\
-&flights[0][departureDate]=${flight.departure.formatToSystem()}\
-&flights[0][destination]=${flight.destination.toString()}\
-&flights[0][origin]=${encodeURIComponent(flight.origin.toString())}\
-&flights[1][departureDate]=${flight.arrival.formatToSystem()}\
-&flights[1][destination]=${flight.origin.toString()}\
-&flights[1][origin]=${flight.destination.toString()}\
-&lang=${langCodeMapToGolLangCode[lang.toString()]}\
-&travelers[0]=ADT\
-&returnTicket=on\
-&dateVariants=exact\
-&step=ChooseFromFour`
+        return `${onewayParams}&returnDate=${flight.arrival.formatToSystem()}`
     }
 
     if (flight.flightType === 'oneway') {
-        return `/index.php?action=vFlights\
-&flights[0][departureDate]=${flight.departure.formatToSystem()}\
-&flights[0][destination]=${flight.destination.toString()}\
-&flights[0][origin]=${encodeURIComponent(flight.origin.toString())}\
-&lang=${langCodeMapToGolLangCode[lang.toString()]}\
-&travelers[0]=ADT\
-&returnTicket=\
-&dateVariants=exact\
-&step=ChooseFromFour`
+        return onewayParams
     }
 
     throw new AppLogicError('Bad flight type')
@@ -82,17 +65,14 @@ export const createWatcherLinks = (
     lang: SupportedLanguageEnum,
 ): WatcherLinks => {
     const { dealerId, frontendUrl } = agencyParams
-    const waitPageString = `${frontendUrl}/index.php?lang=${langCodeMapToGolLangCode[lang]}&action=vWait&redirect=`
     const dealerIdUrlPart = dealerId ? '&dealer_id=' + dealerId.toString() : ''
     const resultLinkString = frontendUrl + createResultLink(watcher, lang) + dealerIdUrlPart
 
-    const resultLink = waitPageString + encodeURIComponent(resultLinkString) + `&${urlParamsConst.result}=`
+    const resultLink = `${resultLinkString}&${urlParamsConst.result}=`
 
-    const continueLink =
-        waitPageString +
-        encodeURIComponent(
-            resultLinkString + `&${urlParamsConst.continue}=` + encodeURIComponent(watcher.email.toString()),
-        )
+    const continueLink = `${resultLinkString}&${urlParamsConst.continue}=${encodeURIComponent(
+        watcher.email.toString(),
+    )}`
 
     return {
         continueLink,
