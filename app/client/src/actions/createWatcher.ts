@@ -14,16 +14,8 @@ export const createWatcher = async (
         throw new Error('Email is not valid')
     }
 
-    const {
-        emailToContinueWatching,
-        arrival,
-        departure,
-        origin,
-        destination,
-        flightType,
-        lang,
-        lowestPrice,
-    } = props.appConfig
+    const { emailToContinueWatching, arrival, departure, origin, destination, flightType, lang, lowestPrice } =
+        props.appConfig
 
     const token = props.clientSettings.token
     const result = await functions.getWatchersCountOnEmail(token, apiUrl, state.email)

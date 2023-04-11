@@ -51,11 +51,9 @@ export const createAttachmentRawFromWatcherList = async (
     watcherFullInfoList: WatcherFullInfo[],
     lang: SupportedLanguageEnum,
 ): Promise<string> => {
-    const promiseList = watcherFullInfoList.map(
-        async (watcherFullInfo: WatcherFullInfo): Promise<string> => {
-            return createAttachmentRawFromWatcher(createImage, watcherFullInfo, lang)
-        },
-    )
+    const promiseList = watcherFullInfoList.map(async (watcherFullInfo: WatcherFullInfo): Promise<string> => {
+        return createAttachmentRawFromWatcher(createImage, watcherFullInfo, lang)
+    })
     const results = await Promise.all(promiseList)
 
     return results.join('')

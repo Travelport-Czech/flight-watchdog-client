@@ -1,4 +1,3 @@
-const os = require('os')
 const path = require('path')
 const Dotenv = require('dotenv-webpack')
 
@@ -47,9 +46,6 @@ const clientConfig = {
                 exclude: process.env.NODE_ENV === 'test' ? /node_modules/ : undefined,
                 use: [
                     {
-                        loader: 'cache-loader',
-                    },
-                    {
                         loader: 'babel-loader',
                         options: babelOptions,
                     },
@@ -62,9 +58,6 @@ const clientConfig = {
                 test: /\.(js)x?$/,
                 exclude: process.env.NODE_ENV === 'test' ? /node_modules/ : undefined,
                 use: [
-                    {
-                        loader: 'cache-loader',
-                    },
                     {
                         loader: 'babel-loader',
                         options: babelOptions,
