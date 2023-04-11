@@ -16,6 +16,8 @@ const initServer = async () => {
         routes: { log: { collect: true } },
     })
 
+    await server.register(require('@hapi/inert'))
+
     server.route({
         method: 'GET',
         path: '/client/index.js',

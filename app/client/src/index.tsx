@@ -20,7 +20,7 @@ export const initFlightWatchdogClient = async (settingsData: unknown) => {
 
     const frontendUrl = decodeURIComponent(window.location.href)
 
-    const handleError = (err: Error, data?: unknown) => {
+    const handleError = (err: unknown, data?: unknown) => {
         handleErrorDefault(sentryClient, frontendUrl, err, data)
     }
 
@@ -45,12 +45,11 @@ export const initFlightWatchdogClient = async (settingsData: unknown) => {
             document.getElementById(id),
         )
     } catch (err) {
-        // tslint:disable-next-line:no-unsafe-any
         handleError(err)
     }
 }
 
-const handleErrorDefault = (sentryClient: Hub | undefined, url: string, err: Error, data?: unknown) => {
+const handleErrorDefault = (sentryClient: Hub | undefined, url: string, err: unknown, data?: unknown) => {
     // tslint:disable-next-line
     console.log('Flight watchdog error:', err)
     if (sentryClient) {

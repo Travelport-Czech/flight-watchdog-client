@@ -20,15 +20,8 @@ interface Props {
 }
 export class CreateFormPage extends React.Component<Props> {
     public render() {
-        const {
-            email,
-            showBadEmailError,
-            flightParams,
-            appConfig,
-            onClose,
-            onEmailChange,
-            onCreateWatcher,
-        } = this.props
+        const { email, showBadEmailError, flightParams, appConfig, onClose, onEmailChange, onCreateWatcher } =
+            this.props
         const isEmailValid = validateEmail(email)
 
         return (

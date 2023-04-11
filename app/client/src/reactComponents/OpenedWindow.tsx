@@ -20,15 +20,8 @@ interface Props {
 export class OpenedWindow extends React.Component<Props> {
     public render() {
         const { lowestPrice, lowestPriceCustomCurrency, lang } = this.props.appConfig
-        const {
-            destination,
-            destinationLocationList,
-            origin,
-            originLocationList,
-            flightType,
-            departure,
-            arrival,
-        } = this.props.flightParams
+        const { destination, destinationLocationList, origin, originLocationList, flightType, departure, arrival } =
+            this.props.flightParams
         const destinationTextKey =
             flightType === 'return'
                 ? TranslationEnum.ClientDestinationsReturn

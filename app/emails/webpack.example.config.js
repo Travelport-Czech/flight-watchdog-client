@@ -47,9 +47,6 @@ const config = {
                 exclude: process.env.NODE_ENV === 'test' ? /node_modules/ : undefined,
                 use: [
                     {
-                        loader: 'cache-loader',
-                    },
-                    {
                         loader: 'babel-loader',
                         options: babelOptions,
                     },
@@ -62,9 +59,6 @@ const config = {
                 test: /\.(js)x?$/,
                 exclude: process.env.NODE_ENV === 'test' ? /node_modules/ : undefined,
                 use: [
-                    {
-                        loader: 'cache-loader',
-                    },
                     {
                         loader: 'babel-loader',
                         options: babelOptions,
