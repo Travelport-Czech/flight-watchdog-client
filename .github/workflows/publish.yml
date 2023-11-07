@@ -1,9 +1,9 @@
-name: "Test and publish on d4"
+name: "Test and publish on main"
 
 on:
   push:
     branches:
-      - "d4"
+      - "main"
 
 jobs:
   test:
@@ -20,7 +20,7 @@ jobs:
           key: ${{ runner.os }}-cypress
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 16
       - run: npm ci
         env:
           CI: true
@@ -45,7 +45,7 @@ jobs:
           key: ${{ runner.os }}-cypress
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 16
           registry-url: https://registry.npmjs.org
       - name: "Automated Version Bump"
         uses: "phips28/gh-action-bump-version@master"

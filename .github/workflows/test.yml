@@ -1,9 +1,9 @@
-name: "Test on no-d4"
+name: "Test on no-main"
 
 on:
   push:
     branches-ignore:
-      - "d4"
+      - "main"
 
 jobs:
   test:
@@ -21,7 +21,7 @@ jobs:
       - name: Install ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 16
       - run: npm ci
         env:
           CYPRESS_CACHE_FOLDER: '~/.cypress'
