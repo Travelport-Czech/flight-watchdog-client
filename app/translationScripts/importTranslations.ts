@@ -7,6 +7,7 @@ const csFilePath = 'app/shared/src/translation/csTranslation.ts'
 const enFilePath = 'app/shared/src/translation/enTranslation.ts'
 const skFilePath = 'app/shared/src/translation/skTranslation.ts'
 const viFilePath = 'app/shared/src/translation/viTranslation.ts'
+const rsFilePath = 'app/shared/src/translation/rsTranslation.ts'
 
 const translationFilePaths = {
     al: alFilePath,
@@ -14,6 +15,7 @@ const translationFilePaths = {
     en: enFilePath,
     sk: skFilePath,
     vi: viFilePath,
+    rs: rsFilePath,
 }
 
 translateImport(fileName, translationFilePaths)

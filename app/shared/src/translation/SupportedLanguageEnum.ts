@@ -4,4 +4,5 @@ export enum SupportedLanguageEnum {
     en = 'en',
     sk = 'sk',
     vi = 'vi',
+    rs = 'rs',
 }
