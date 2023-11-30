@@ -12,7 +12,7 @@ const langCodeMapToGolLangCode = {
     [SupportedLanguageEnum.al]: 'al',
     [SupportedLanguageEnum.sk]: 'sk',
     [SupportedLanguageEnum.vi]: 'vi',
-    [SupportedLanguageEnum.rs]: 'rs',
+    [SupportedLanguageEnum.sr]: 'sr',
 }
 
 export const createResultUrl = (
