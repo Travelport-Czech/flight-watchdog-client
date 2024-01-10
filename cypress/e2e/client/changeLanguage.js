@@ -54,4 +54,17 @@ describe('Change language', function () {
         cy.get('.content button').click()
         cy.contains('Bạn đang tìm một chuyến bay rẻ hơn? Bấm vào đây.')
     })
+
+    it('sr', function () {
+        cy.visit(golUrlReturn)
+        setOptions({ lang: 'sr' })
+        cy.contains('Pratite cenu 2.000,00 CZK?')
+        cy.contains('Prague')
+        cy.contains('London')
+        cy.get('.content input').type('michal@email.cz')
+        cy.get(createButtonSelector).click()
+        cy.contains('Gotovo. Čim nađemo povoljniju cenu poslaćemo Vam e-poruku.')
+        cy.get('.content button').click()
+        cy.contains('Tražite jeftiniji let? Kliknite ovde.')
+    })
 })
