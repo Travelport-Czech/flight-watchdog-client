@@ -57,8 +57,8 @@ describe('Change language', function () {
 
     it('sr', function () {
         cy.visit(golUrlReturn)
-        setOptions({ lang: 'sr' })
-        cy.contains('Pratite cenu 2.000,00 CZK?')
+        setOptions({ lang: 'sr', price: '7.125,00 RSD' })
+        cy.contains('Pratite cenu 7.125,00 RSD?')
         cy.contains('Prague')
         cy.contains('London')
         cy.get('.content input').type('michal@email.cz')

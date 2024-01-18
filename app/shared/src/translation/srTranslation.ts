@@ -22,7 +22,7 @@ export const srTranslation: TranslationKeys = {
     ClientMessageMinimalizedWindow: `Tražite jeftiniji let? Kliknite ovde.`,
     ClientInputEmailPlaceholder: `unesite Vašu e-poštu.`,
     ClientTitle: `Pratite cenu {?}?`,
-    ClientDestinationsReturn: `od{_}{?} do{_}{?} i {_}nazad`,
+    ClientDestinationsReturn: `od{_}{?} do{_}{?} i{_}nazad`,
     ClientDestinationsOneway: `od{_}{?} do{_}{?}`,
     ClientDescription: `Pratićemo to za Vas! I svaki dan ćete dobijati novosti. `,
     ClientDatesReturn: `{?} do {?}`,

@@ -17,6 +17,8 @@ export const createAppConfigFromFe = (doc: Document, url: string): AppConfig | u
         .item(0)
         ?.textContent?.trim()
         .replace('Kč', 'CZK')
+        .replace(',00', '') // for SR language is different format of price e.g. 7.125,00
+        .replace('.', ' ')
 
     if (!lowestPrice) {
         console.log('Flight watchdog error', 'Price not found.')
