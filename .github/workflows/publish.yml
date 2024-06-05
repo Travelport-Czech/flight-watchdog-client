@@ -60,7 +60,7 @@ jobs:
           key: ${{ runner.os }}-cypress-${{ hashFiles('cypress.json') }}
 
       - name: Automated Version Bump
-        uses: phips28/gh-action-bump-version@v9
+        uses: phips28/gh-action-bump-version@v11.0.4
         with:
           tag-prefix: 'd4-'
 
