@@ -59,6 +59,11 @@ jobs:
           path: ~/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('cypress.json') }}
 
+      - name: Verify NPM Registry and Package Name
+        run: |
+          echo "Registry URL: $(npm config get registry)"
+          echo "Package Name: $(node -p "require('./package.json').name")"
+
       - name: Automated Version Bump
         uses: phips28/gh-action-bump-version@v11.0.4
         with:
