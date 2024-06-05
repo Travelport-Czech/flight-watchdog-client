@@ -11,7 +11,7 @@ const rootWebDir = path.join(__dirname, './httpPages')
 
 const initServer = async () => {
     const server = Hapi.server({
-        host: 'localhost',
+        host: '127.0.0.1',
         port: 8080,
         routes: { log: { collect: true } },
     })
@@ -91,7 +91,7 @@ const start = async () => {
     try {
         console.log('Starting HAPI server...')
         server = await initServer()
-        console.log('Server starter.')
+        console.log('Server started.')
         server.events.on('log', (event, tags) => {
             if (tags.error) {
                 console.log(event)

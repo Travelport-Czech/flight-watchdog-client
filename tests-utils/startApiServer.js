@@ -1,7 +1,7 @@
 const Hapi = require('@hapi/hapi')
 
 const server = new Hapi.Server({
-    host: 'localhost',
+    host: '127.0.0.1',
     port: 3000,
     routes: {
         cors: true,
@@ -153,7 +153,7 @@ const start = async function () {
     try {
         console.log('Starting HAPI server...')
         await server.start()
-        console.log('Server starter.')
+        console.log('Server started.')
     } catch (err) {
         console.log(err)
         process.exit(1)
