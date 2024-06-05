@@ -1,56 +1,29 @@
-name: "Test and publish on main"
+name: "Publish to NPM"
 
 on:
-  push:
-    branches:
-      - "main"
+  workflow_dispatch:
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-d4-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v1
-        with:
-          path: ~/.cypress
-          key: ${{ runner.os }}-cypress
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 16
-      - run: npm ci
-        env:
-          CI: true
-          CYPRESS_CACHE_FOLDER: '~/.cypress'
-      - run: npm run lint
-      - run: npm test
-        env:
-          CYPRESS_CACHE_FOLDER: '~/.cypress'
   publish-npm:
     runs-on: ubuntu-latest
-    needs:
-      - test
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v1
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-d4-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v1
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - uses: actions/cache@v3
         with:
           path: ~/.cypress
-          key: ${{ runner.os }}-cypress
-      - uses: actions/setup-node@v1
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/cypress.json') }}
+          restore-keys: |
+            ${{ runner.os }}-cypress-
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org
-      - name: "Automated Version Bump"
-        uses: "phips28/gh-action-bump-version@master"
-        with:
-          tag-prefix: 'd4-'
       - run: npm ci
         env:
           CI: true
@@ -61,4 +34,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-
