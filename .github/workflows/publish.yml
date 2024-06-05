@@ -74,6 +74,18 @@ jobs:
         env:
           CI: true
 
+      - name: Debug NPM Publish
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > ~/.npmrc
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        continue-on-error: true
+
+      - name: Check NPM Publish Errors
+        if: failure()
+        run: cat /home/runner/.npm/_logs/*-debug.log
+
       - name: Publish to NPM registry
         run: npm publish --access public
         env:
