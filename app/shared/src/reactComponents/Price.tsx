@@ -13,7 +13,7 @@ export class Price extends React.Component<Props> {
         if (this.props.lang === SupportedLanguageEnum.cs) {
             return priceToShow.replace('CZK', 'Kč')
         }
-        if (this.props.lang === SupportedLanguageEnum.sr) {
+        if (this.props.lang === SupportedLanguageEnum.sr || this.props.price.currency === 'RSD') {
             return this.props.price.formatToLocale('#.##0,00 ¤')
         }
         return priceToShow

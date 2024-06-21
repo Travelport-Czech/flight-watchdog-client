@@ -67,4 +67,17 @@ describe('Change language', function () {
         cy.get('.content button').click()
         cy.contains('Tražite jeftiniji let? Kliknite ovde.')
     })
+
+    it('en but RSD currency, should shows price format as for sr lang', function () {
+        cy.visit(golUrlReturn)
+        setOptions({ lang: 'en', price: '7.125,00 RSD' })
+        cy.contains('Track the price 7.125,00 RSD?')
+        cy.contains('Prague')
+        cy.contains('London')
+        cy.get('.content input').type('michal@email.cz')
+        cy.get(createButtonSelector).click()
+        cy.contains('Done. When we find a lower price, we will send you an email.')
+        cy.get('.content button').click()
+        cy.contains('Looking for a cheaper flight? Click here.')
+    })
 })
