@@ -1,16 +1,16 @@
 {
     "compilerOptions": {
-        "target": "esnext",
-        "module": "commonjs",
+        "target": "ESNext",
+        "module": "es6",
         "sourceMap": true,
         "strict": true,
         "moduleResolution": "node",
-        "rootDir": "../../app",
-        "baseUrl": ".",
+        "rootDirs": [
+          "./src"
+        ],
+        "baseUrl": "./",
         "paths": {
-            "@emails/*": ["./src/*"],
-            "@shared/*": ["./../shared/src/*"],
-            "*": ["./../../node_modules/@types/*", "*"]
+            "@shared/*": ["./src/*"]
         },
         "pretty": true,
         "declaration": true,
@@ -20,8 +20,9 @@
         "noImplicitReturns": true,
         "suppressImplicitAnyIndexErrors": true,
         "forceConsistentCasingInFileNames": true,
-        "outDir": "../../dist-emails",
+        "outDir": "../../dist-client",
         "jsx": "react"
     },
-    "include": ["./src/**/*", "../shared/src/**/*"]
+    "include": ["./src/**/*"],
+    "exclude": ["../../node_modules", "**/*.spec.ts"]
 }

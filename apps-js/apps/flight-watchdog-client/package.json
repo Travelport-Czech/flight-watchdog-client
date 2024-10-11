@@ -14,8 +14,8 @@
   },
   "scripts": {
     "prepublishOnly": "npm run build-prod",
-    "lang-export": "esr ./app/translationScripts/exportTranslations.ts",
-    "lang-import": "esr ./app/translationScripts/importTranslations.ts",
+    "lang-export": "esr app/translationScripts/exportTranslations.ts",
+    "lang-import": "esr app/translationScripts/importTranslations.ts",
     "lint-client": "tsc --project app/client/tsconfig.json && eslint '*/**/*.ts' --quiet",
     "lint-emails": "tsc --project app/emails/tsconfig.json && eslint '*/**/*.ts' --quiet",
     "lint": "npm run lint-client && npm run lint-emails",
