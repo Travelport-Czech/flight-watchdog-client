@@ -1,3 +1,6 @@
+> [!WARNING]  
+> This project has been moved to the monorepo. This repository is archived and no longer maintained.
+
 # Flight Watchdog Client
 
 The *Flight Watchdog Client* is frontend part built on the [Flight Watchdog API](https://cee-systems.gitbook.io/flight-watchdog-api/)  and designated for the online booking tool [GOL IBE](https://www.cee-systems.com/gol-ibe). 
